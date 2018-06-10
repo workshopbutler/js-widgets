@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Test page for widget</title>
+
+  <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <link href="https://cdn.workshopbutler.com/styles.<%= htmlWebpackPlugin.options.config.themeVersion %>.min.css"  rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+
+</head>
+<body>
+<h1>Trainer Details</h1>
+<div id="wsb-trainer-details"></div>
+
+<script>
+    const apiKey = '<%= htmlWebpackPlugin.options.config.apiKey %>';
+    const themeName = '<%= htmlWebpackPlugin.options.config.theme %>';
+    document.addEventListener('wsbwidgetsloaded', function() {
+        const widgets = [
+            {
+                type: 'TrainerPage',
+                target: '#wsb-trainer-details',
+                theme: themeName,
+                widgets: [
+                    {
+                        type: 'SidebarEventList',
+                        hideIfEmpty: true,
+                        target: '#upcoming-events-nearby',
+                        eventPageUrl: '/event-page.html',
+                        length: 5,
+                        country: 'detect'
+                    },
+                    {
+                        type: 'SidebarEventList',
+                        target: '#past-events',
+                        eventPageUrl: '/event-page.html',
+                        future: false,
+                        trainer: WorkshopButlerWidgets.getQueryParam('id')
+                    },
+                    {
+                        type: 'SidebarEventList',
+                        target: '#upcoming-events',
+                        eventPageUrl: '/event-page.html',
+                        future: true,
+                        trainer: WorkshopButlerWidgets.getQueryParam('id')
+                    }
+                ]
+            }
+        ];
+        WorkshopButlerWidgets.launch(apiKey, widgets);
+    });
+
+</script>
+
+</body>
+</html>

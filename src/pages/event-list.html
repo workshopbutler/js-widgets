@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Test page for widget</title>
+
+  <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+          integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+          crossorigin="anonymous"></script>
+  <link href="https://cdn.workshopbutler.com/styles.<%= htmlWebpackPlugin.options.config.themeVersion %>.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+
+</head>
+
+<body>
+<h1>Event List</h1>
+<div id="wsb-event-list"></div>
+
+<script>
+    const apiKey = '<%= htmlWebpackPlugin.options.config.apiKey %>';
+    const themeName = '<%= htmlWebpackPlugin.options.config.theme %>';
+    document.addEventListener('wsbwidgetsloaded', function() {
+        const widgets = [
+            {
+                type: 'EventList',
+                target: '#wsb-event-list',
+                theme: themeName,
+                eventPageUrl: '/event-page.html',
+                filters: ['location', 'type', 'language', 'trainer'],
+                // template: '#event-tpl',
+                fields: ['description']
+            }
+        ];
+        WorkshopButlerWidgets.launch(apiKey, widgets);
+    });
+</script>
+
+<script id="event-tpl" type="text/x-nunjucks">
+    <div class="wb-tile" data-event-obj data-event-type="{{ event.type.id }}"
+      data-event-location="{{ event.country }}"
+      data-event-language="{{ event.languages }}" data-event-trainer="{{ event.trainers }}">
+        <a data-widget-go href="{{ event.url }}" class="wb-tile-title">{{ event.title }}</a>
+        <div class="wb-tile-info">
+          {{ event.schedule }}
+          {% if event.free %}
+            <div class="wb-tile-free">free</div>
+          {% endif %}
+          <br/>
+          {{ event.location }}
+        </div>
+        <div class="wb-tile-content">{{ event.description | safe }}</div>
+  </div>
+</script>
+</body>
+</html>

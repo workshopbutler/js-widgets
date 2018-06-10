@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Test page for widget</title>
+
+  <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+          integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+          crossorigin="anonymous"></script>
+  <link href="https://cdn.workshopbutler.com/styles.<%= htmlWebpackPlugin.options.config.themeVersion %>.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+
+</head>
+<body>
+<h1>Trainer List</h1>
+<div id="wsb-trainer-list"></div>
+
+<script>
+    const apiKey = '<%= htmlWebpackPlugin.options.config.apiKey %>';
+    const themeName = '<%= htmlWebpackPlugin.options.config.theme %>';
+    document.addEventListener('wsbwidgetsloaded', function () {
+        const widgets = [
+            {
+                type: 'TrainerList',
+                target: '#wsb-trainer-list',
+                theme: themeName,
+                trainerPageUrl: '/trainer-page.html',
+                filters: ['location', 'trainer', 'language'],
+            }
+        ];
+        WorkshopButlerWidgets.launch(apiKey, widgets);
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Test page for widget</title>
+
+  <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <link href="https://cdn.workshopbutler.com/styles.<%= htmlWebpackPlugin.options.config.themeVersion %>.min.css" rel="stylesheet">
+
+</head>
+<body>
+<h1>Event Details</h1>
+<div id="wsb-registration-form"></div>
+
+<script>
+    const apiKey = '<%= htmlWebpackPlugin.options.config.apiKey %>';
+    const themeName = '<%= htmlWebpackPlugin.options.config.theme %>';
+    document.addEventListener('wsbwidgetsloaded', function() {
+        const widgets = [
+            {
+                type: 'RegistrationPage',
+                target: '#wsb-registration-form',
+                theme: themeName,
+            }
+        ];
+        WorkshopButlerWidgets.launch(apiKey, widgets);
+    });
+
+</script>
+</body>
+</html>
