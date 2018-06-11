@@ -43,10 +43,10 @@ export default class EventListFilters extends ListFilters<Event> {
             }
         });
         if (events.length) {
-            this.$root.find('.wb-no-events').hide();
+            this.$root.find('[data-empty-list]').hide();
             events.show();
         } else {
-            this.$root.find('.wb-no-events').show();
+            this.$root.find('[data-empty-list]').show();
         }
     }
 

@@ -51,7 +51,9 @@ export default class RegistrationForm {
             transport.post(url, formData,
                 (data: any) => {
                     self.formHelper.clearForm();
-                    self.$root.addClass('wb-state__post-registration').removeClass('h-busy wb-state__pre-registration');
+                    self.$root.find('[data-registration-form]').hide();
+                    self.$root.find('[data-post-registration-message]').show();
+                    self.$root.removeClass('h-busy');
                     $(e.target as HTMLElement).removeProp('disabled').removeClass('h-busy');
                 });
         }

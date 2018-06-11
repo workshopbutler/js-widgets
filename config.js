@@ -16,11 +16,12 @@ const environments = {
 const options = {
     apiKey: process.env.API_KEY,
     theme: 'dacota',
-    themeVersion: '0.4.0'
+    themeVersion: '0.5.1'
 };
 
 const mapping = {
-    widgets: './app.js'
+    widgets: './app.js',
+    // themes: '../themes/src/styles/common.less'
 };
 
 module.exports = {

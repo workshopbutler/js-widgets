@@ -133,9 +133,9 @@ export default class EventPage extends RegistrationForm {
                     newTab.focus()
                 }
             } else {
-                $('[data-registration-form]').show();
-                this.$root.addClass('wb-state__pre-registration');
-                const offset = this.$root.find('[data-registration-form]').offset();
+                $('[data-registration-block]').show();
+                $('[data-post-registration-message]').hide();
+                const offset = this.$root.find('[data-registration-block]').offset();
                 $('html, body').animate({
                     scrollTop: offset && offset.top,
                 }, 400);

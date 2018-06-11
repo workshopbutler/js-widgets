@@ -43,10 +43,10 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
             }
         });
         if (trainers.length) {
-            this.$root.find('.wb-no-trainers').hide();
+            this.$root.find('[data-empty-list]').hide();
             trainers.show();
         } else {
-            this.$root.find('.wb-no-trainers').show();
+            this.$root.find('[data-empty-list]').show();
         }
     }
 
