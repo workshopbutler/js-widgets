@@ -1,7 +1,7 @@
 import {logError} from '../common/Error';
-import EventList from "./EventList";
+import Schedule from "./Schedule";
 import EventPage from "./EventPage";
-import TrainerPage from "./TrainerPage";
+import TrainerProfile from "./TrainerProfile";
 import RegistrationPage from "./RegistrationPage";
 import TrainerList from "./TrainerList";
 import SidebarEventList from "./SidebarEventList";
@@ -20,7 +20,7 @@ export default class WidgetFactory {
      * @private
      */
     createWidget(widget: any, index: number, apiKey: string, templates: ITemplates) {
-        const supportedWidgets = ['EventList', 'EventPage', 'RegistrationPage', 'TrainerPage', 'TrainerList', 'SidebarEventList'];
+        const supportedWidgets = ['Schedule', 'EventPage', 'RegistrationPage', 'TrainerProfile', 'TrainerList', 'SidebarEventList'];
         if (!widget.type || supportedWidgets.indexOf(widget.type) < 0) {
             logError(`Unknown widget type at the index ${index}`);
             return false;
@@ -30,8 +30,8 @@ export default class WidgetFactory {
             return false;
         }
         switch(widget.type) {
-            case 'EventList':
-                EventList.plugin(widget.target, apiKey, templates, widget);
+            case 'Schedule':
+                Schedule.plugin(widget.target, apiKey, templates, widget);
                 return true;
             case 'EventPage':
                 EventPage.plugin(widget.target, apiKey, templates, widget);
@@ -39,8 +39,8 @@ export default class WidgetFactory {
             case 'RegistrationPage':
                 RegistrationPage.plugin(widget.target, apiKey, templates, widget);
                 return true;
-            case 'TrainerPage':
-                TrainerPage.plugin(widget.target, apiKey, templates, widget);
+            case 'TrainerProfile':
+                TrainerProfile.plugin(widget.target, apiKey, templates, widget);
                 return true;
             case 'TrainerList':
                 TrainerList.plugin(widget.target, apiKey, templates, widget);

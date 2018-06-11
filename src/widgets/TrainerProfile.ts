@@ -12,7 +12,7 @@ import {renderString as nunjucksRenderString} from "nunjucks"
 /**
  * Logic for the trainer details
  */
-export default class TrainerPage {
+export default class TrainerProfile {
     private readonly $root: JQuery;
     private readonly apiKey: string;
     private readonly templates: ITemplates;
@@ -110,7 +110,7 @@ export default class TrainerPage {
             let data = $element.data('wsb.widget.trainer.details');
 
             if (!data) {
-                data = new TrainerPage(el, apiKey, templates, options);
+                data = new TrainerProfile(el, apiKey, templates, options);
                 $element.data('wsb.widget.trainer.details', data);
             }
         });

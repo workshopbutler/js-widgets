@@ -1,5 +1,6 @@
 ## 0.5.0
 * Changes the logic to remove the dependence on the theme's classes
+* Renames EventList widget to Schedule, TrainerPage to TrainerProfile
 * Ups the theme version to 0.5.1
 
 ## 0.4.0

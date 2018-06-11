@@ -8,7 +8,7 @@ import {renderString as nunjucksRenderString} from "nunjucks"
 /**
  * Logic for the list of events
  */
-export default class EventList {
+export default class Schedule {
     private readonly $root: JQuery;
     private readonly apiKey: string;
     private readonly templates: ITemplates;
@@ -115,7 +115,7 @@ export default class EventList {
             let data = $element.data('wsb.widget.event.list');
 
             if (!data) {
-                data = new EventList(el, apiKey, templates, options);
+                data = new Schedule(el, apiKey, templates, options);
                 $element.data('wsb.widget.event.list', data);
             }
         });
