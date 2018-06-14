@@ -49,5 +49,6 @@ a particular version of the styles is added to the HTML pages (for example, `eve
 
 JS widgets | Themes  
 -------------- | --------------------------
+0.6.0 | 0.5.1 
 0.5.0 | 0.5.1 
 0.4.0 | 0.4.0 

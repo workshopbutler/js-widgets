@@ -1,3 +1,8 @@
+## 0.6.0
+* Adds detailed statistics for trainers. See `Statistics.votes` attribute for more information
+* Adds `getFullName` function to `Trainer`
+* Fixes the support for a separate registration form
+
 ## 0.5.0
 * Changes the logic to remove the dependence on the theme's classes
 * Renames EventList widget to Schedule, TrainerPage to TrainerProfile

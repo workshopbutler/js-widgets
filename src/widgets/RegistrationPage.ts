@@ -4,6 +4,7 @@ import {formatPrice} from "../common/Price";
 import {getCombinedTicketTypeDescription, getTicketTypeState} from "../common/Ticket";
 import {formatDate} from "../common/Date";
 import {countries} from "../common/helpers/_countries";
+import Event from "../models/Event";
 import getTemplate from "./helpers/_templates";
 import {ITemplates} from "../templates/ITemplates";
 import {renderString as nunjucksRenderString} from "nunjucks"
@@ -29,14 +30,14 @@ export default class RegistrationPage extends RegistrationForm {
         this.templates = templates;
         this.event = null;
         this.ticketId = '';
-        let id: number = 0;
+        let id: string = '';
 
         const self = this;
 
         window.location.search.substr(1).split('&').forEach(function(el) {
             let param = el.split('=', 2);
             if (param.length === 2 && param[0] === 'id') {
-                id = parseInt(param[1]);
+                id = param[1];
             } else if (param.length === 2 && param[0] === 'ticket') {
                 self.ticketId = param[1];
             }
@@ -60,10 +61,10 @@ export default class RegistrationPage extends RegistrationForm {
 
     /**
      * Loads the event and renders the page
-     * @param eventId {number}
+     * @param eventId {string}
      * @private
      */
-    private loadContent(eventId: number) {
+    private loadContent(eventId: string) {
         const self = this;
         const url = this.getUrl(eventId);
 
@@ -105,7 +106,7 @@ export default class RegistrationPage extends RegistrationForm {
             });
     }
 
-    private getUrl(eventId: number) {
+    private getUrl(eventId: string) {
         return `events/${eventId}?api_key=${this.apiKey}`;
     }
 

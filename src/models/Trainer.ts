@@ -54,6 +54,14 @@ export default class Trainer {
         this.languages = jsonData.languages;
     }
 
+    /**
+     * Returns the full name of the trainer
+     * @return {string}
+     */
+    public getFullName(): string {
+        return this.firstName + ' ' + this.lastName;
+    }
+
     private getCountryName(jsonData: any): string {
         if (jsonData.country) {
             return getCountryName(jsonData.country)
@@ -77,22 +85,22 @@ export default class Trainer {
             if (publicWorkshops) {
                 if (recentWorkshops) {
                     return new Statistics(stats.recent_number_of_public_evaluations, stats.recent_public_median,
-                        stats.recent_public_nps, stats.recent_public_rating)
+                        stats.recent_public_nps, stats.recent_public_rating, stats.recent_public_impressions)
                 } else {
                     return new Statistics(stats.number_of_public_evaluations, stats.public_median,
-                        stats.public_nps, stats.public_rating)
+                        stats.public_nps, stats.public_rating, stats.public_impressions)
                 }
             } else {
                 if (recentWorkshops) {
                     return new Statistics(stats.recent_number_of_private_evaluations, stats.recent_private_median,
-                        stats.recent_private_nps, stats.recent_private_rating)
+                        stats.recent_private_nps, stats.recent_private_rating, stats.recent_private_impressions)
                 } else {
                     return new Statistics(stats.number_of_private_evaluations, stats.private_median,
-                        stats.private_nps, stats.private_rating)
+                        stats.private_nps, stats.private_rating, stats.private_impressions)
                 }
             }
         } else {
-            return new Statistics(0, 0, 0, 0);
+            return new Statistics(0, 0, 0, 0, {});
         }
     }
 }
