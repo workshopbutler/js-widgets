@@ -1,5 +1,3 @@
-import {dateInterval} from "../common/Date";
-import {getEventLocation} from "../common/helpers/_countries";
 import FreeTicketType from "./FreeTicketType";
 import PaidTicketType from "./PaidTicketType";
 import Tickets from "./Tickets";
@@ -7,6 +5,9 @@ import Registration from "../widgets/models/_registration";
 import Type from "./Type";
 import Trainer from "./Trainer";
 import {formatPrice} from "../common/Price";
+import Schedule from "./Schedule";
+import Location from "./Location";
+import {DateTime} from "luxon";
 
 export default class Event {
     options: any;
@@ -16,25 +17,18 @@ export default class Event {
     readonly title: string;
     readonly spokenLanguages: string[];
     readonly materialsLanguage: string;
-    readonly start: Date;
-    readonly end: Date;
-    readonly hoursPerDay: number;
-    readonly totalHours: number;
-    readonly city: string;
-    readonly country: string;
     readonly rating: number;
     readonly confirmed: boolean;
     readonly private: boolean;
     readonly free: boolean;
-    readonly online: boolean;
     readonly soldOut: boolean;
     readonly url: string;
     readonly registration: any;
     readonly tickets: Tickets | null;
     readonly trainers: Trainer[];
     readonly description: string;
-    readonly schedule: string;
-    readonly location: string;
+    readonly schedule: Schedule;
+    readonly location: Location;
     readonly instructions: string;
     readonly registrationForm: any;
 
@@ -49,19 +43,14 @@ export default class Event {
         this.type = attrs.type ? new Type(attrs.type) : Type.empty();
         this.spokenLanguages = attrs.spoken_languages;
         this.materialsLanguage = attrs.materials_language;
-        this.start = new Date(attrs.start);
-        this.end = new Date(attrs.end);
-        this.hoursPerDay = attrs.hours_per_day;
-        this.totalHours = attrs.total_hours;
-        this.city = attrs.city;
-        this.country = attrs.country;
         this.rating = attrs.rating;
         this.confirmed = attrs.confirmed;
         this.free = attrs.free;
         this.private = attrs.private;
-        this.online = attrs.online;
         this.description = attrs.description;
         this.soldOut = attrs.sold_out;
+        this.schedule = new Schedule(attrs.schedule);
+        this.location = new Location(attrs.location);
 
         this.options = options;
 
@@ -73,8 +62,6 @@ export default class Event {
         this.registrationForm = this.getRegistrationForm(this.tickets, attrs.registration_form);
 
         this.trainers = this.getTrainers(attrs, options);
-        this.schedule = dateInterval(this.start, this.end);
-        this.location = getEventLocation(this.country, this.city);
     }
 
     /**
@@ -156,6 +143,6 @@ export default class Event {
     }
 
     private isEnded() {
-        return this.end < new Date();
+        return this.schedule.end < DateTime.local();
     }
 }

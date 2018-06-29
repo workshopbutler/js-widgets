@@ -254,12 +254,4 @@ let getCountryName = function(code) {
     return countries[code]
 };
 
-let getEventLocation = function(country, city) {
-    if (country === "00") {
-        return city;
-    } else {
-        return city + ", " + getCountryName(country) || "";
-    }
-};
-
-export {getCountryName, getEventLocation, countries}
+export {getCountryName, countries}

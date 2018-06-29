@@ -79,7 +79,7 @@ export default class EventListFilters extends ListFilters<Event> {
 
     private getLocationFilterData(defaultName: string, events: Event[]): FilterValue[] {
         const unfiltered = events.map(function(event) {
-            return new FilterValue(getCountryName(event.country), event.country);
+            return new FilterValue(getCountryName(event.location.countryCode), event.location.countryCode);
         });
         return this.getFilterData(defaultName, unfiltered);
     }

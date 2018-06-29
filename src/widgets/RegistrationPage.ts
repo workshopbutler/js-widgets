@@ -2,7 +2,6 @@ import FormHelper from "./helpers/_form";
 import transport from "../common/Transport";
 import {formatPrice} from "../common/Price";
 import {getCombinedTicketTypeDescription, getTicketTypeState} from "../common/Ticket";
-import {formatDate} from "../common/Date";
 import {countries} from "../common/helpers/_countries";
 import Event from "../models/Event";
 import getTemplate from "./helpers/_templates";
@@ -90,8 +89,7 @@ export default class RegistrationPage extends RegistrationForm {
                     countries: countries,
                     formatPrice: formatPrice,
                     formatTicket: getCombinedTicketTypeDescription,
-                    formatTicketState: getTicketTypeState,
-                    formatDate: formatDate
+                    formatTicketState: getTicketTypeState
                 };
                 const content = template ?
                     nunjucksRenderString(template, data) :

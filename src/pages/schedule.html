@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <title>Test page for widget</title>
 
-  <script src="http://code.jquery.com/jquery-2.2.4.min.js"
-          integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-          crossorigin="anonymous"></script>
+  <script
+      src="https://code.jquery.com/jquery-2.1.4.min.js"
+      integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw="
+      crossorigin="anonymous"></script>
   <link href="https://cdn.workshopbutler.com/styles.<%= htmlWebpackPlugin.options.config.themeVersion %>.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
@@ -35,7 +36,9 @@
                 fields: ['description']
             }
         ];
-        WorkshopButlerWidgets.launch(apiKey, widgets);
+        const templates = WorkshopButlerWidgets.getDefaultTemplates();
+        templates.setEventListType(false);
+        WorkshopButlerWidgets.launch(apiKey, widgets, templates);
     });
 </script>
 

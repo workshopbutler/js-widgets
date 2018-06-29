@@ -129,7 +129,7 @@ export default class SidebarEventList {
      * @private
      */
     private getUrl(country: string) {
-        let fields =  'title,city,country,hashed_id,end,start,free,spoken_languages';
+        let fields =  'title,location,hashed_id,schedule,free,spoken_languages';
         if (this.options.fields) {
             fields += ',' + this.options.fields.join(',');
         }

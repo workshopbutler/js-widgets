@@ -1,6 +1,5 @@
 import {getCountryName} from '../common/helpers/_countries';
 import transport from '../common/Transport';
-import {formatDate} from "../common/Date";
 import getTemplate from "./helpers/_templates";
 import WidgetFactory from "./Factory";
 import {getQueryParam} from "../common/helpers/_urlParser";
@@ -77,7 +76,6 @@ export default class TrainerProfile {
                 const data = {
                     trainer: self.trainer,
                     options: self.options,
-                    formatDate: formatDate,
                     getCountryName: getCountryName
                 };
                 const content = template ?

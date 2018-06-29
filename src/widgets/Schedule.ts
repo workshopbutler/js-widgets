@@ -93,7 +93,7 @@ export default class Schedule {
     }
 
     private getUrl() {
-        let fields = 'title,city,country,hashed_id,end,start,free,type,registration_page,spoken_languages,sold_out,facilitators,free_ticket_type,paid_ticket_types';
+        let fields = 'title,schedule,location,hashed_id,free,type,registration_page,spoken_languages,sold_out,facilitators,free_ticket_type,paid_ticket_types';
         if (this.options.fields) {
             fields += ',' + this.options.fields.join(',');
         }

@@ -3,7 +3,6 @@ import transport from '../common/Transport';
 import Event from '../models/Event';
 import {formatPrice} from "../common/Price";
 import {formatTicketDescription, getCombinedTicketTypeDescription, getTicketTypeState} from "../common/Ticket";
-import {formatDate} from "../common/Date";
 import {logError} from "../common/Error";
 import getTemplate from "./helpers/_templates";
 import {getQueryParam} from "../common/helpers/_urlParser";
@@ -13,6 +12,7 @@ import {ITemplates} from "../templates/ITemplates";
 import RegistrationForm from "./blocks/RegistrationForm";
 import {renderString as nunjucksRenderString} from "nunjucks"
 import FormHelper from "./helpers/_form";
+import {DateTime} from "luxon";
 
 /**
  * Logic for the event details
@@ -88,9 +88,9 @@ export default class EventPage extends RegistrationForm {
                     formatPrice: formatPrice,
                     formatTicket: getCombinedTicketTypeDescription,
                     formatTicketState: getTicketTypeState,
-                    formatDate: formatDate,
                     formatTicketDescription: formatTicketDescription,
-                    formatLanguages: formatLanguages
+                    formatLanguages: formatLanguages,
+                    DateTime: DateTime
                 };
                 const content = template ?
                     nunjucksRenderString(template, data) :

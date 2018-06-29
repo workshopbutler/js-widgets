@@ -15,7 +15,7 @@ const environments = {
 
 const options = {
     apiKey: process.env.API_KEY,
-    theme: 'dacota',
+    theme: 'alfred',
     themeVersion: '0.5.1'
 };
 
