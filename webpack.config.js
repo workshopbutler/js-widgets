@@ -2,7 +2,7 @@
 
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 
@@ -16,13 +16,13 @@ let webpackConfig = {
         path: path.resolve(__dirname, config.src),
         filename: `[name].${process.env.npm_package_version}.js`,
         publicPath: "/",
+        sourceMapFilename: `[name].${process.env.npm_package_version}.js.map`
     },
     externals: {
         jquery: 'jQuery'
     },
     devtool: config.isDev? 'inline-source-map': false,
     plugins: [
-        new webpack.NoEmitOnErrorsPlugin(),
         new webpack.ProvidePlugin({
             jQuery: 'jquery',
             $: 'jquery',
@@ -31,7 +31,7 @@ let webpackConfig = {
         new webpack.DefinePlugin({
             BACKEND_URL: JSON.stringify(config.env.backend)
         }),
-        new ExtractTextPlugin({
+        new MiniCssExtractPlugin({
             filename: "[name].min.css"
         }),
         new HtmlWebpackPlugin({
@@ -96,21 +96,19 @@ let webpackConfig = {
             {
                 test: /\.less$/,
                 exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        'css-loader',
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: [
-                                    require('autoprefixer')()
-                                ]
-                            }
-                        },
-                        'less-loader'
-                    ]
-                })
+                use: [
+                    config.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                require('autoprefixer')()
+                            ]
+                        }
+                    },
+                    'less-loader'
+                ]
             },
             {
                 test: /\.png$/,
@@ -135,6 +133,9 @@ let webpackConfig = {
     },
     node: {
         fs: "empty"
+    },
+    optimization: {
+        noEmitOnErrors: true,
     }
 };
 
