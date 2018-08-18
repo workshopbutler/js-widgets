@@ -1,0 +1,6 @@
+{% from "./common/filters.njk" import drawFilters %}
+{% from "./event/list.njk" import list %}
+<div class="wsb-content">
+    {{ drawFilters(filters) }}
+    {{ list(events, template, _t, _f) }}
+</div>

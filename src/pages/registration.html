@@ -26,7 +26,12 @@
                 theme: themeName,
             }
         ];
-        WorkshopButlerWidgets.launch(apiKey, widgets);
+        const config = {
+            apiKey: apiKey,
+            locale: 'fr'
+        };
+
+        WorkshopButlerWidgets.launch(config, widgets);
     });
 
 </script>

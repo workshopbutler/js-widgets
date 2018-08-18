@@ -1,0 +1,11 @@
+{% macro drawFilters(availableFilters) %}
+    {% from "./filter.njk" import filter %}
+    {% set anyFilter = availableFilters.length > 0 %}
+    {% if anyFilter %}
+        <div class="wsb-filters">
+            {% for item in availableFilters %}
+                {{ filter(item.name, item.values) }}
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endmacro %}

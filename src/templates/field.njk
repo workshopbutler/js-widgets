@@ -1,0 +1,63 @@
+{% macro formField(field, countries, _t, _f) %}
+    <div class="wsb-form__field">
+        <div class="wsb-form__label">
+            {% if field.type !== "checkbox" %}
+                {{ _t('form.field.' + field.name) }}
+                {% if field.required %}
+                    <span class="wsb-form__required">*</span>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="h-rel">
+            {% if field.type === "textarea" %}
+                <textarea name="{{ field.name }}" data-control title="{{ field.label }}"
+                          class="form-control wsb-form__input
+                            {{ "_validate-required" if field.required }}"
+                          style="height : 90px ;" cols="30" rows="10"></textarea>
+            {% elif field.type === "select" %}
+                <select name="{{ field.name }}" title="{{ field.label }}"
+                        data-control
+                        class="form-control wsb-form__input
+                            {{ "_validate-required" if field.required }}">
+                    {% for option in field.options %}
+                        <option value="{{ option.value }}">{{ option.label }}</option>
+                    {% endfor %}
+                </select>
+            {% elif field.type === "country" %}
+                <select name="{{ field.name }}" title="{{ field.label }}"
+                        data-control
+                        class="form-control wsb-form__input
+                            {{ "_validate-required" if field.required }}">
+                    <option value="" selected disabled>{{ _t('form.country') }}</option>
+                    {% for code, name in countries %}
+                        <option value="{{ code }}">{{ name }}</option>
+                    {% endfor %}
+                </select>
+            {% elif field.type === "checkbox" %}
+                <label class="wsb-form__checkbox">
+                    <input name="{{ field.name }}" type="checkbox"
+                           class="form-control wsb-form__input wsb-form__checkbox-real
+                                   {{ "_validate-required" if field.required }}" value="yes" data-control/>
+                    <i class="wsb-form__checkbox-img"></i>
+                    {{ field.label | safe }}
+                </label>
+            {% elif field.type === "ticket" %}
+                <select name="{{ field.name }}" title="{{ field.label }}"
+                        data-control
+                        class="form-control wsb-form__input _validate-required">
+                    {% for ticket in field.tickets.paid %}
+                        {% if ticket.active() %}
+                            {% set name = _f(ticket.price) + ' - ' + ticket.name %}
+                            <option value="{{ ticket.id }}">{{ name  }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            {% else %}
+                <input name="{{ field.name }}" title="{{ field.label }}"
+                       type="{{ field.type }}"
+                       class="form-control wsb-form__input
+                           {{ "_validate-required" if field.required }}" data-control/>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}

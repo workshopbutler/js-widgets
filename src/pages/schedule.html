@@ -30,33 +30,21 @@
                 type: 'Schedule',
                 target: '#wsb-event-list',
                 theme: themeName,
+                table: true,
                 eventPageUrl: '/event-page.html',
                 filters: ['location', 'type', 'language', 'trainer'],
-                // template: '#event-tpl',
+                registrationPageUrl: '/registration.html',
                 fields: ['description']
             }
         ];
-        const templates = WorkshopButlerWidgets.getDefaultTemplates();
-        templates.setEventListType(false);
-        WorkshopButlerWidgets.launch(apiKey, widgets, templates);
+        const config = {
+          apiKey: apiKey,
+          locale: 'nl'
+        };
+
+        WorkshopButlerWidgets.launch(config, widgets);
     });
 </script>
 
-<script id="event-tpl" type="text/x-nunjucks">
-    <div class="wb-tile" data-event-obj data-event-type="{{ event.type.id }}"
-      data-event-location="{{ event.country }}"
-      data-event-language="{{ event.languages }}" data-event-trainer="{{ event.trainers }}">
-        <a data-widget-go href="{{ event.url }}" class="wb-tile-title">{{ event.title }}</a>
-        <div class="wb-tile-info">
-          {{ event.schedule }}
-          {% if event.free %}
-            <div class="wb-tile-free">free</div>
-          {% endif %}
-          <br/>
-          {{ event.location }}
-        </div>
-        <div class="wb-tile-content">{{ event.description | safe }}</div>
-  </div>
-</script>
 </body>
 </html>

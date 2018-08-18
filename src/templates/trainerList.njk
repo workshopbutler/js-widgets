@@ -1,0 +1,6 @@
+{% from "./common/filters.njk" import drawFilters %}
+{% from "./trainer/list.njk" import drawTrainers %}
+<div class="wsb-content">
+    {{ drawFilters(filters, _t, _f) }}
+    {{ drawTrainers(trainers, template, _t, _f) }}
+</div>

@@ -38,7 +38,12 @@
                 filters: ['location', 'trainer', 'language'],
             }
         ];
-        WorkshopButlerWidgets.launch(apiKey, widgets);
+        const config = {
+            apiKey: apiKey,
+            locale: 'de'
+        };
+
+        WorkshopButlerWidgets.launch(config, widgets);
     });
 </script>
 

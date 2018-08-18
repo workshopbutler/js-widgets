@@ -1,6 +1,6 @@
-import {getCountryName} from "../common/helpers/_countries";
 import SocialLinks from "./SocialLinks";
 import Statistics from "./Statistics";
+import getLangCode from "../utils/language";
 
 /**
  * A trainer
@@ -49,24 +49,25 @@ export default class Trainer {
         this.recentPrivateStats = this.getStatistics(jsonData, false, true);
         this.endorsements = jsonData.endorsements;
 
-        this.country = this.getCountryName(jsonData);
+        this.country = Trainer.getCountry(jsonData);
         this.url = `${options.trainerPageUrl}?id=${this.id}`;
-        this.languages = jsonData.languages;
+        this.languages = jsonData.languages ?
+            jsonData.languages.map((language: string) => getLangCode(language)) : [];
     }
 
     /**
      * Returns the full name of the trainer
      * @return {string}
      */
-    public getFullName(): string {
+    fullName(): string {
         return this.firstName + ' ' + this.lastName;
     }
 
-    private getCountryName(jsonData: any): string {
+    protected static getCountry(jsonData: any): string {
         if (jsonData.country) {
-            return getCountryName(jsonData.country)
+            return jsonData.country;
         } else if (jsonData.address && jsonData.address.country) {
-            return getCountryName(jsonData.address.country)
+            return jsonData.address.country;
         } else {
             return '';
         }

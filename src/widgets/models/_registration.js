@@ -9,40 +9,6 @@ export default class Registration {
     }
 
     /**
-     * Returns true if the registration for the event is closed
-     * @return {boolean}
-     */
-    isClosed() {
-        if (this._isEventEnded()) {
-            return true;
-        } else if (this.attrs.private) {
-            return true;
-        } else if (this.attrs.free && this.attrs.free_ticket_type.state.sold_out) {
-            return true;
-        } else {
-            if (!this.attrs.free && this.attrs.paid_ticket_types.length > 0) {
-                let closed = true;
-                this.attrs.paid_ticket_types.forEach((item) => {
-                    if (item.state.valid) {
-                        closed = false;
-                    }
-                });
-                return closed;
-            } else {
-                return false;
-            }
-        }
-    }
-
-    /**
-     * Returns true if the registration for the event is open
-     * @return {boolean}
-     */
-    isOpen() {
-        return !this.isClosed();
-    }
-
-    /**
      * Returns true if it's an event promotion and an external registration form should be used
      * @return {*}
      */
@@ -74,13 +40,4 @@ export default class Registration {
         }
     }
 
-    /**
-     * Returns true if the event has ended
-     * @return {boolean}
-     * @private
-     */
-    _isEventEnded() {
-        let endDate = new Date(this.attrs.end);
-        return endDate < new Date();
-    }
 }

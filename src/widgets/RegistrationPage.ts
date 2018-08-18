@@ -1,33 +1,36 @@
 import FormHelper from "./helpers/_form";
 import transport from "../common/Transport";
-import {formatPrice} from "../common/Price";
-import {getCombinedTicketTypeDescription, getTicketTypeState} from "../common/Ticket";
-import {countries} from "../common/helpers/_countries";
 import Event from "../models/Event";
 import getTemplate from "./helpers/_templates";
-import {ITemplates} from "../templates/ITemplates";
+import {ITemplates} from "../interfaces/ITemplates";
 import {renderString as nunjucksRenderString} from "nunjucks"
 import RegistrationForm from "./blocks/RegistrationForm";
+import Localisation from "../utils/Localisation";
+import Formatter from "../view/Formatter";
+import RegistrationPageConfig from "./config/RegistrationPageConfig";
 
 /**
  * Logic for the registration form page
  */
-export default class RegistrationPage extends RegistrationForm {
-    private readonly templates: ITemplates;
+export default class RegistrationPage extends RegistrationForm<RegistrationPageConfig> {
     private ticketId: string;
-    private readonly options: any;
+    protected readonly formatter: Formatter;
 
     /**
-     * Creates a new list
-     * @param selector {string} JQuery selector
-     * @param apiKey {string}
-     * @param templates {Templates} Templates for widgets
-     * @param options {object} Configuration options
+     * Creates a new registration page
+     * @param selector {HTMLElement} JQuery selector
+     * @param apiKey {string} API key
+     * @param templates {ITemplates} Templates
+     * @param loc {Localisation} Localisation instance
+     * @param config {RegistrationPageConfig} Configuration config
      */
-    constructor(selector: HTMLElement, apiKey: string, templates: ITemplates, options: any) {
-        super(selector, apiKey);
-        this.templates = templates;
-        this.event = null;
+    protected constructor(selector: HTMLElement,
+                          apiKey: string,
+                          templates: ITemplates,
+                          loc: Localisation,
+                          config: RegistrationPageConfig) {
+        super(selector, apiKey, templates, loc, config);
+        this.formatter = new Formatter(loc);
         this.ticketId = '';
         let id: string = '';
 
@@ -41,20 +44,13 @@ export default class RegistrationPage extends RegistrationForm {
                 self.ticketId = param[1];
             }
         });
-        if (this.checkOptions(options)) {
-            this.options = options;
-            this.init();
-            this.loadContent(id);
-        }
-    }
-
-    private checkOptions(options: any) {
-        return true;
+        this.init();
+        this.loadContent(id);
     }
 
     private init() {
-        if (this.options.theme) {
-            this.$root.addClass(this.options.theme);
+        if (this.config.theme) {
+            this.$root.addClass(this.config.theme);
         }
     }
 
@@ -69,7 +65,7 @@ export default class RegistrationPage extends RegistrationForm {
 
         transport.get(url, {},
             (data: any) => {
-                self.event = new Event(data.response, self.options);
+                self.event = new Event(data.response, self.config);
                 self.renderRegistrationForm();
             },
             (data: any) => {
@@ -80,16 +76,19 @@ export default class RegistrationPage extends RegistrationForm {
     private renderRegistrationForm() {
         const self = this;
 
-        $.when(getTemplate(self.options)).done(
+        $.when(getTemplate(self.config)).done(
             function (template) {
                 const data = {
                     event: self.event,
-                    options: self.options,
+                    options: self.config,
                     ticket: self.ticketId,
-                    countries: countries,
-                    formatPrice: formatPrice,
-                    formatTicket: getCombinedTicketTypeDescription,
-                    formatTicketState: getTicketTypeState
+                    countries: self.getCountries(),
+                    _t: function(key: string, options: any = null) {
+                        return self.loc.translate(key, options);
+                    },
+                    _f: function(object: any, type: string | null) {
+                        return self.formatter.format(object, type);
+                    }
                 };
                 const content = template ?
                     nunjucksRenderString(template, data) :
@@ -100,7 +99,7 @@ export default class RegistrationPage extends RegistrationForm {
 
                 self.formHelper = new FormHelper({
                     $controls: self.$root.find('[data-control]')
-                });
+                }, self.getErrorMessages());
             });
     }
 
@@ -111,19 +110,23 @@ export default class RegistrationPage extends RegistrationForm {
     /**
      * @param selector {string} JQuery selector
      * @param apiKey {string} API key
-     * @param templates {Templates} Templates for widgets
-     * @param options {object} Configuration options
+     * @param templates {ITemplates} Templates for widgets
+     * @param loc {Localisation} Localisation instance
+     * @param options {object} Configuration config
      */
-    static plugin(selector: string, apiKey: string, templates: ITemplates, options: any) {
+    static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
         const $elems = $(selector);
         if (!$elems.length) return;
+
+        const config = RegistrationPageConfig.create(options);
+        if (!config) return;
 
         return $elems.each((index, el) => {
             let $element = $(el);
             let data = $element.data('wsb.widget.registration.form');
 
             if (!data) {
-                data = new RegistrationPage(el, apiKey, templates, options);
+                data = new RegistrationPage(el, apiKey, templates, loc, config);
                 $element.data('wsb.widget.registration.form', data);
             }
         });

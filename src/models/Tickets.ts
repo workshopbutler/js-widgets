@@ -74,11 +74,11 @@ export default class Tickets {
      * @return {IPaidTicketType[]}
      */
     protected getActive() {
-        return this.paid.filter(ticket => ticket.isActive());
+        return this.paid.filter(ticket => ticket.active());
     }
 
     protected getFuture() {
-        return this.paid.filter(ticket => ticket.isInFuture());
+        return this.paid.filter(ticket => ticket.inFuture());
     }
 
     /**

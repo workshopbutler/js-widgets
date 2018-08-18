@@ -1,0 +1,35 @@
+{% macro info(event, _t, _f) %}
+    <div class="wsb-info">
+        <div class="wsb-info__title">{{ _t('event.info.date') }}:</div>
+        {% if event.schedule.atOneDay() %}
+            {{ _f(event.schedule, 'full_long') }} {{ _f(event.schedule, 'timezone_short') }}
+        {% else %}
+            {{ _f(event.schedule, 'start_long') }}
+            —<br>{{ _f(event.schedule, 'end_long') }} {{ _f(event.schedule, 'timezone_short') }}
+        {% endif %}
+        {% if event.location.online and event.schedule.timezone %}
+            <div class="wsb-info__footer">
+                {{ _t('event.info.now', {zone: _f(event.schedule, 'timezone_short')}) }}
+                {{ DateTime.local().setZone(event.schedule.timezone).toFormat('t') }}
+            </div>
+        {% endif %}
+    </div>
+    <div class="wsb-info">
+        <div class="wsb-info__title">{{ _t('event.info.loc') }}:</div>
+        {{ _f(event.location) }}
+        <div class="wsb-info__footer">{{ _f(event.language) }}</div>
+    </div>
+    {% if event.tickets.nonEmpty() %}
+        <div class="wsb-tickets wsb-info">
+            {% if event.free %}
+                {% from "./freeTicket.njk" import freeTicket %}
+                {{ freeTicket(event.tickets.free, _t, _f) }}
+            {% else %}
+                {% from "./paidTicket.njk" import paidTicket %}
+                {% for ticket in event.tickets.paid %}
+                    {{ paidTicket(ticket, _t, _f) }}
+                {% endfor %}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endmacro %}

@@ -1,0 +1,6 @@
+{% from "./common/filters.njk" import drawFilters %}
+{% from "./event/table.njk" import table %}
+<div class="wsb-content">
+    {{ drawFilters(filters) }}
+    {{ table(events, template, options, _t, _f) }}
+</div>

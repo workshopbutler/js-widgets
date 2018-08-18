@@ -1,0 +1,25 @@
+{% macro drawTrainer(trainer, _t, _f) %}
+    {% set trainerName = trainer.firstName + " " + trainer.lastName %}
+
+    <div class="wsb-trainer-tile" data-trainer-obj
+         data-trainer-location="{{ trainer.country }}"
+         data-trainer-language="{{ trainer.languages.join(',') }}"
+         data-trainer-trainer="{{ trainer.fullName() }}">
+        <div class="wsb-trainer-tile__box">
+            <a href="{{ trainer.url }}">
+                {% set photo = "background-image: url(" + trainer.photo + ");" %}
+                <div class="wsb-trainer-tile_img" style="{{ photo }}"></div>
+            </a>
+
+            <div class="wsb-trainer-tile__info">
+                <a href="{{ trainer.url }}">
+                    <div>{{ trainer.fullName() }}</div>
+                </a>
+                <div class="wsb-trainer-tile__country">
+                    {{ _t('country.' + trainer.country) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endmacro %}

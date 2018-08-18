@@ -1,22 +1,25 @@
-import {getCountryName} from "../../common/helpers/_countries";
 import {FilterValue} from "./Filter";
 import Event from "../../models/Event";
 import {ListFilters} from "./ListFilters";
+import Localisation from "../../utils/Localisation";
 
 /**
  * Manages the logic for event list filters
  */
 export default class EventListFilters extends ListFilters<Event> {
     private $root: JQuery;
+    private readonly loc: Localisation;
 
     /**
      * Creates event list filters
      * @param selector {HTMLElement} JQuery selector
-     * @param visibleFilters {array} Configuration options
+     * @param loc {Localisation} Localisation instance
+     * @param visibleFilters {array} Configuration config
      */
-    constructor(selector: HTMLElement, visibleFilters: any[]) {
+    constructor(selector: HTMLElement, loc: Localisation, visibleFilters: any[]) {
         super();
         this.$root = $(selector);
+        this.loc = loc;
         this.filters = visibleFilters;
         this.assignEvents();
     }
@@ -53,13 +56,13 @@ export default class EventListFilters extends ListFilters<Event> {
     protected getFilterValues(name: string, events: Event[]): FilterValue[] {
         switch(name) {
             case 'language':
-                return this.getLanguageFilterData("All languages", events);
+                return this.getLanguageFilterData(this.loc.translate('filter.languages'), events);
             case 'type':
-                return this.getTypeFilterData("All types", events);
+                return this.getTypeFilterData(this.loc.translate('filter.types'), events);
             case 'location':
-                return this.getLocationFilterData("All locations", events);
+                return this.getLocationFilterData(this.loc.translate('filter.locations'), events);
             case 'trainer':
-                return this.getTrainerFilterData("All trainers", events);
+                return this.getTrainerFilterData(this.loc.translate('filter.trainers'), events);
             default:
                 return []
         }
@@ -68,9 +71,10 @@ export default class EventListFilters extends ListFilters<Event> {
     private getLanguageFilterData(defaultName: string, events: Event[]): FilterValue[] {
         const languages = [];
         for(let i = 0; i < events.length; i++) {
-            const eventLanguages = events[i].spokenLanguages;
+            const eventLanguages = events[i].language.spoken;
             for(let j = 0; j < eventLanguages.length; j++) {
-                let language = new FilterValue(eventLanguages[j], eventLanguages[j]);
+                const languageName = this.loc.translate(`language.${eventLanguages[j]}`);
+                let language = new FilterValue(languageName, eventLanguages[j]);
                 languages.push(language)
             }
         }
@@ -78,8 +82,10 @@ export default class EventListFilters extends ListFilters<Event> {
     }
 
     private getLocationFilterData(defaultName: string, events: Event[]): FilterValue[] {
+        const self = this;
         const unfiltered = events.map(function(event) {
-            return new FilterValue(getCountryName(event.location.countryCode), event.location.countryCode);
+            const countryName = self.loc.translate(`country.${event.location.countryCode}`);
+            return new FilterValue(countryName, event.location.countryCode);
         });
         return this.getFilterData(defaultName, unfiltered);
     }

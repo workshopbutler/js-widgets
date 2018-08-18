@@ -46,7 +46,12 @@
                 ],
             }
         ];
-        WorkshopButlerWidgets.launch(apiKey, widgets);
+        const config = {
+            apiKey: apiKey,
+            locale: 'nl'
+        };
+
+        WorkshopButlerWidgets.launch(config, widgets);
     });
 
 </script>

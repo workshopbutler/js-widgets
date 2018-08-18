@@ -9,7 +9,7 @@ export default class FreeTicketType implements IFreeTicketType {
     readonly start: Date;
     readonly end: Date;
     private readonly unlimited: boolean;
-    private readonly soldOut: boolean;
+    private readonly stateSoldOut: boolean;
 
     constructor(jsonData: any) {
         this.numberOfTickets = jsonData.amount;
@@ -17,18 +17,25 @@ export default class FreeTicketType implements IFreeTicketType {
         this.start = new Date(jsonData.start);
         this.end = new Date(jsonData.end);
         this.unlimited = jsonData.unlimited;
-        this.soldOut = jsonData.state.sold_out;
+        this.stateSoldOut = jsonData.state.sold_out;
     }
 
     /**
      * Returns true if no more seats left
      * @return {boolean}
      */
-    isSoldOut(): boolean {
-        return this.soldOut;
+    soldOut(): boolean {
+        return this.stateSoldOut;
     }
 
     withUnlimitedSeats(): boolean {
+        return this.unlimited;
+    }
+
+    /**
+     * Returns true if there is no limitation for a number of tickets
+     */
+    withoutLimit(): boolean {
         return this.unlimited;
     }
 }

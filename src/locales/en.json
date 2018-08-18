@@ -1,5 +1,11 @@
-
-const countries = {
+{
+  "filter": {
+    "locations": "All locations",
+    "languages": "All languages",
+    "types": "All types",
+    "trainers": "All trainers"
+  },
+  "country": {
     "AF": "Afghanistan",
     "AL": "Albania",
     "DZ": "Algeria",
@@ -114,10 +120,10 @@ const countries = {
     "KE": "Kenya",
     "KI": "Kiribati",
     "KG": "Kyrgyzstan",
-    "KP": "Korea, Democratic People's Republic ",
+    "KP": "Korea, Democratic People's Republic",
     "KR": "Korea, Republic",
     "KW": "Kuwait",
-    "LA": "Lao People's Democratic Republic	",
+    "LA": "Lao People's Democratic Republic",
     "LV": "Latvia",
     "LB": "Lebanon",
     "LS": "Lesotho",
@@ -244,14 +250,143 @@ const countries = {
     "ZM": "Zambia",
     "ZW": "Zimbabwe",
     "00": "Online"
-};
-
-/**
- * Returns the name of the country by its code
- * @param code {string}
- */
-let getCountryName = function(code) {
-    return countries[code]
-};
-
-export {getCountryName, countries}
+  },
+  "language": {
+    "AR": "Arabic",
+    "BG": "Bulgarian",
+    "ZH": "Chinese",
+    "HR": "Croatian",
+    "CS": "Czech",
+    "DA": "Danish",
+    "NL": "Dutch",
+    "EN": "English",
+    "FI": "Finnish",
+    "FR": "French",
+    "DE": "German",
+    "IT": "Italian",
+    "SL": "Slovenian",
+    "JA": "Japanese",
+    "NO": "Norwegian",
+    "PL": "Polish",
+    "PT": "Portuguese",
+    "RO": "Romanian",
+    "RU": "Russian",
+    "ES": "Spanish",
+    "SV": "Swedish",
+    "SR": "Serbian",
+    "TR": "Turkish",
+    "VI": "Vietnamese"
+  },
+  "schedule": {
+    "noEvents": "No events were found",
+    "when": "When",
+    "where": "Where",
+    "what": "What",
+    "event": {
+      "register": "Register",
+      "soldOut": "Sold Out",
+      "free": "Free"
+    }
+  },
+  "trainers": {
+    "noTrainers": "No trainers were found"
+  },
+  "event": {
+    "register": "Register Now",
+    "soldOut": "Sold Out",
+    "free": "Free",
+    "info": {
+      "date": "Date",
+      "loc": "Location",
+      "oneLang": "Event is in $t(language.{{lang}})",
+      "twoLangs": "Event is in $t(language.{{first}}) and $t(language.{{second}})",
+      "materials": ", all materials and handouts are in $t(language.{{lang}})",
+      "now": "Current time in {{zone}}",
+      "tickets": "Tickets"
+    },
+    "state": {
+      "ended": "This event has ended",
+      "private": "This event is private",
+      "soldOut": "Sold out"
+    },
+    "ticket": {
+      "free": "Free. Registration is required.",
+      "endedOn": "Ended on {{date}}",
+      "endsOn": "Ends on {{date}}",
+      "onSaleFrom": "On sale from {{date}}",
+      "soldOut": "Sold out",
+      "ended": "Ended",
+      "left": "1 ticket left",
+      "left_plural": "{{count}} tickets left"
+    },
+    "share": "Share event",
+    "form": {
+      "title": "Register for the event",
+      "button": "Register"
+    }
+  },
+  "trainer": {
+    "email": "Contact by email",
+    "experience": {
+      "years": "Years as trainer",
+      "events": "Events held",
+      "rating": {
+        "public": "Rating for public events",
+        "private": "Rating for private events",
+        "basedOn": "based on 1&nbsp;evaluation",
+        "basedOn_plural": "based on {{count}}&nbsp;evaluations"
+      }
+    },
+    "bio": "Bio",
+    "feedback": "Attendees feedback"
+  },
+  "form": {
+    "country": "Choose a country",
+    "error": {
+      "required": "This field is required",
+      "email": "Please enter a valid email address",
+      "url": "Please enter a valid URL",
+      "date": "Please enter a valid date",
+      "number": "Please enter a valid number",
+      "digits": "Please enter only digits"
+    },
+    "field": {
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "organisation": "Organisation",
+      "street_1": "Street 1",
+      "street_2": "Street 2",
+      "city": "City",
+      "province": "Province/State",
+      "country": "Country",
+      "postcode": "Postcode",
+      "tax_name": "VAT Name",
+      "tax_number": "VAT Number",
+      "phone": "Phone",
+      "date_of_birth": "Date of Birth",
+      "role": "Which best describes what you do?",
+      "job_title": "Job Title",
+      "website": "Website",
+      "blog": "Blog",
+      "ticket": "Ticket",
+      "comment": "Comment"
+    },
+    "section": {
+      "Home Address": "Home Address",
+      "Billing Address": "Billing Address",
+      "Work Info": "Work Info",
+      "Additional Information": "Additional Information",
+      "Ticket": "Ticket"
+    }
+  },
+  "registration": {
+    "successTitle": "Thank you for the registration",
+    "successMsg": "Further details and your joining instructions will follow shortly by email."
+  },
+  "sidebar": {
+    "future": "Upcoming events",
+    "past": "Past events",
+    "noEvents": "No events"
+  }
+}

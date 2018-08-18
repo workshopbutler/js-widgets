@@ -9,6 +9,7 @@
     "target": "es6"
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "./typings.d.ts"
   ]
 }

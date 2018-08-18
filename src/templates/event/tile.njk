@@ -1,0 +1,33 @@
+{% macro drawEvent(event, _t, _f) %}
+    <div class="wsb-tile" data-event-obj data-event-type="{{ event.type.id }}"
+         data-event-location="{{ event.location.countryCode }}"
+         data-event-language="{{ event.language.spoken | join(',') }}"
+         data-event-trainer="{{ event.trainers | join(',') }}">
+        <a data-widget-go href="{{ event.url }}" class="wsb-tile-title">{{ event.title }}</a>
+        <div class="wsb-tile-info">
+            {% if event.schedule.atOneDay() %}
+                {{ _f(event.schedule, 'full_long') }}
+                {% if event.location.online and event.schedule.timezone %}
+                    {{ _f(event.schedule, 'timezone_short') }}
+                {% endif %}
+            {% else %}
+                {{ _f(event.schedule, 'full_short') }}
+            {% endif %}
+            {% if event.free %}
+                <div class="wsb-tile-free">{{ _t('event.free') }}</div>
+            {% endif %}
+            <br/>
+            {{ _f(event.location) }}
+        </div>
+        <div class="wsb-tile-content">{{ event.description | safe }}</div>
+        <div class="wsb-tile-button">
+            <a data-widget-go href="{{ event.url }}" class="wsb-btn wsb-btn-primary wsb-tile-btn">
+                {% if event.soldOut %}
+                    {{ _t('schedule.event.soldOut') }}
+                {% else %}
+                    {{ _t('schedule.event.register') }}
+                {% endif %}
+            </a>
+        </div>
+    </div>
+{% endmacro %}

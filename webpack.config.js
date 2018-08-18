@@ -121,7 +121,7 @@ let webpackConfig = {
                         }
                     }
                 ]
-            }
+            },
         ]
     },
     resolve: {
@@ -129,7 +129,7 @@ let webpackConfig = {
             "node_modules",
             path.resolve(__dirname, "src")
         ],
-        extensions: [".js", ".ts"]
+        extensions: [".js", ".ts", '.njk']
     },
     node: {
         fs: "empty"

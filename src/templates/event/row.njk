@@ -1,0 +1,38 @@
+{% macro drawRow(event, options, _t, _f) %}
+    <div class="wsb-table__row" data-event-obj data-event-type="{{ event.type.id }}"
+         data-event-location="{{ event.location.countryCode }}"
+         data-event-language="{{ event.language.spoken | join(',') }}"
+         data-event-trainer="{{ event.trainers | join(',') }}">
+        <div class="wsb-table__col">
+            {% if event.schedule.atOneDay() %}
+                {{ _f(event.schedule, 'full_long') }}
+                {% if event.location.online and event.schedule.timezone %}
+                    {{ _f(event.schedule, 'timezone_short') }}
+                {% endif %}
+            {% else %}
+                {{ _f(event.schedule, 'full_short') }}
+            {% endif %}
+        </div>
+        <div class="wsb-table__col">{{ _f(event.location) }}
+            {% if event.free %}
+                <div class="wsb-table__first-free">{{ _t('schedule.event.free') | lower }}</div>
+            {% endif %}
+        </div>
+        <div class="wsb-table__col {{ "with-badge" if event.type.badge }}">
+            {% if event.type.badge %}
+                <img class="wsb-table__img" src="{{ event.type.badge }}">
+            {% endif %}
+            <a data-widget-go="" href="{{ event.url }}" class="wsb-table__link link-msimple">
+                {{ event.title }}
+            </a>
+        </div>
+        <div class="wsb-table__col">
+            {% if event.free %}
+                <div class="wsb-table__free">{{ _t('schedule.event.free') | lower }}</div>
+            {% endif %}
+            <a href="{{ event.url }}" class="wsb-table__btn">
+                {{ _t('schedule.event.register') }}
+            </a>
+        </div>
+    </div>
+{% endmacro %}

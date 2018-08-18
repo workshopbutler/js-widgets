@@ -1,61 +1,51 @@
-import {countries} from '../common/helpers/_countries';
 import transport from '../common/Transport';
 import Event from '../models/Event';
-import {formatPrice} from "../common/Price";
-import {formatTicketDescription, getCombinedTicketTypeDescription, getTicketTypeState} from "../common/Ticket";
 import {logError} from "../common/Error";
 import getTemplate from "./helpers/_templates";
 import {getQueryParam} from "../common/helpers/_urlParser";
-import WidgetFactory from "./Factory";
-import {formatLanguages} from "../common/Language";
-import {ITemplates} from "../templates/ITemplates";
+import WidgetFactory from "../Factory";
+import {ITemplates} from "../interfaces/ITemplates";
 import RegistrationForm from "./blocks/RegistrationForm";
 import {renderString as nunjucksRenderString} from "nunjucks"
 import FormHelper from "./helpers/_form";
 import {DateTime} from "luxon";
+import Localisation from "../utils/Localisation";
+import Formatter from "../view/Formatter";
+import EventPageConfig from "./config/EventPageConfig";
 
 /**
  * Logic for the event details
  */
-export default class EventPage extends RegistrationForm {
-    private readonly templates: ITemplates;
-    private readonly options: any;
+export default class EventPage extends RegistrationForm<EventPageConfig> {
+    protected readonly formatter: Formatter;
 
     /**
-     * Creates a new list
-     * @param selector {string} JQuery selector
-     * @param apiKey {string}
-     * @param templates {Templates} Templates
-     * @param options {object} Configuration options
+     * Creates a new event page
+     * @param selector {HTMLElement} JQuery selector
+     * @param apiKey {string} API key
+     * @param templates {ITemplates} Templates
+     * @param loc {Localisation} Localisation instance
+     * @param config {EventPageConfig} Configuration config
      */
-    constructor(selector: HTMLElement, apiKey: string, templates: ITemplates, options: any) {
-        super(selector, apiKey);
-        this.event = null;
-        this.templates = templates;
-        if (this.checkOptions(options)) {
-            this.options = options;
-            this.init();
-            let id = getQueryParam('id');
-            if (id) {
-                this.loadContent(id);
-            } else {
-                logError("`id` query parameter is not found")
-            }
+    protected constructor(selector: HTMLElement,
+                          apiKey: string,
+                          templates: ITemplates,
+                          loc: Localisation,
+                          config: EventPageConfig) {
+        super(selector, apiKey, templates, loc, config);
+        this.formatter = new Formatter(loc);
+        this.init();
+        let id = getQueryParam('id');
+        if (id) {
+            this.loadContent(id);
+        } else {
+            logError("`id` query parameter is not found")
         }
-    }
-
-    private checkOptions(options: any) {
-        let good = true;
-        if (options.withTrainers && (!options.trainerPageUrl || typeof options.trainerPageUrl !== 'string')) {
-            console.log('Attribute [trainerPageUrl] is not set correctly');
-            good = false;
-        }
-        return good;
     }
 
     private init() {
-        if (this.options.theme) {
-            this.$root.addClass(this.options.theme);
+        if (this.config.theme) {
+            this.$root.addClass(this.config.theme);
         }
     }
 
@@ -69,7 +59,7 @@ export default class EventPage extends RegistrationForm {
 
         transport.get(url, {},
             (data: any) => {
-                self.event = new Event(data.response, self.options);
+                self.event = new Event(data.response, self.config);
                 self.renderWidget();
             },
             (data: any) => {
@@ -79,36 +69,37 @@ export default class EventPage extends RegistrationForm {
 
     private renderWidget() {
         const self = this;
-        $.when(getTemplate(self.options)).done(
+        $.when(getTemplate(self.config)).done(
             function (template) {
                 const data = {
                     event: self.event,
-                    options: self.options,
-                    countries: countries,
-                    formatPrice: formatPrice,
-                    formatTicket: getCombinedTicketTypeDescription,
-                    formatTicketState: getTicketTypeState,
-                    formatTicketDescription: formatTicketDescription,
-                    formatLanguages: formatLanguages,
-                    DateTime: DateTime
+                    options: self.config,
+                    countries: self.getCountries(),
+                    DateTime: DateTime,
+                    _t: function(key: string, options: any = null) {
+                        return self.loc.translate(key, options);
+                    },
+                    _f: function(object: any, type: string | null) {
+                        return self.formatter.format(object, type);
+                    }
                 };
                 const content = template ?
                     nunjucksRenderString(template, data) :
                     self.templates.eventPage.render(data);
 
                 self.$root.html(content);
-                if (self.options.widgets) {
-                    WidgetFactory.launch(self.apiKey, self.options.widgets);
+                if (self.config.widgets) {
+                    WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
                 }
                 self._assignEvents();
                 self.formHelper = new FormHelper({
                     $controls: self.$root.find('[data-control]')
-                });
+                }, self.getErrorMessages());
             });
     }
 
     _assignEvents() {
-        if (this.event.registration.isOpen()) {
+        if (this.event.state.open()) {
             this.$root.on('click', '[data-registration-button]', this.onRegistration.bind(this));
         }
         super.assignEvents();
@@ -121,7 +112,7 @@ export default class EventPage extends RegistrationForm {
      */
     private onRegistration(e: JQuery.Event) {
         e.preventDefault();
-        if (this.event.registration.isClosed()) {
+        if (this.event.state.closed()) {
             logError("EventPage widget configured incorrectly. Registration button shouldn't be active when the registration is closed");
         } else {
             const btn = $(e.currentTarget);
@@ -151,18 +142,22 @@ export default class EventPage extends RegistrationForm {
      * @param selector {string} JQuery selector
      * @param apiKey {string} API key
      * @param templates {ITemplates} Templates
-     * @param options {object} Configuration options
+     * @param loc {Localisation} Localisation instance
+     * @param options {object} Configuration config
      */
-    static plugin(selector: string, apiKey: string, templates: ITemplates, options: any) {
+    static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
         const $elems = $(selector);
         if (!$elems.length) return;
+
+        const config = EventPageConfig.create(options);
+        if (!config) return;
 
         return $elems.each((index, el) => {
             let $element = $(el);
             let data = $element.data('wsb.widget.event.details');
 
             if (!data) {
-                data = new EventPage(el, apiKey, templates, options);
+                data = new EventPage(el, apiKey, templates, loc, config);
                 $element.data('wsb.widget.event.details', data);
             }
         });

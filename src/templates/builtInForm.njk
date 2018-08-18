@@ -1,0 +1,32 @@
+{% macro registrationForm(form, countries, _t, _f) %}
+<div>
+    <div class="wsb-congratulation" data-post-registration-message>
+        <h2 class="wsb-congratulation__title">
+            {{ _t('registration.successTitle') }}
+        </h2>
+        <div class="wsb-congratulation__p">
+            {{ _t('registration.successMsg') }}
+        </div>
+    </div>
+
+    <form action="#" class="wsb-form" data-registration-form>
+        <div class="wsb-form__body">
+            <div class="wsb-form__title">{{ _t('event.form.title') }}</div>
+            <div class="wsb-form__instructions">{{ form.instructions }}</div>
+            {% from "./field.njk" import formField %}
+            {% for section in form.sections %}
+                {% if section.name %}
+                    <div class="wsb-form__section-title">{{ _t('form.section.' + section.name) }}</div>
+                {% endif %}
+                {% for field in section.fields %}
+                    {{ formField(field, countries, _t, _f) }}
+                {% endfor %}
+            {% endfor %}
+            <div class="wsb-form__error" data-form-major-error></div>
+            <button data-widget-submit type="submit" class="btn btn-primary wsb-form__btn">
+                {{ _t('event.form.button') }}
+            </button>
+        </div>
+    </form>
+</div>
+{% endmacro %}

@@ -4,10 +4,11 @@ import Tickets from "./Tickets";
 import Registration from "../widgets/models/_registration";
 import Type from "./Type";
 import Trainer from "./Trainer";
-import {formatPrice} from "../common/Price";
 import Schedule from "./Schedule";
 import Location from "./Location";
-import {DateTime} from "luxon";
+import Language from "./Language";
+import EventState from "./EventState";
+import Form from "./form/Form";
 
 export default class Event {
     options: any;
@@ -15,8 +16,7 @@ export default class Event {
     readonly hashedId: string;
     readonly type: Type;
     readonly title: string;
-    readonly spokenLanguages: string[];
-    readonly materialsLanguage: string;
+    readonly language: Language;
     readonly rating: number;
     readonly confirmed: boolean;
     readonly private: boolean;
@@ -29,8 +29,8 @@ export default class Event {
     readonly description: string;
     readonly schedule: Schedule;
     readonly location: Location;
-    readonly instructions: string;
-    readonly registrationForm: any;
+    readonly registrationForm?: Form;
+    readonly state: EventState;
 
     /**
      * @param attrs {object}
@@ -41,8 +41,7 @@ export default class Event {
         this.hashedId = attrs.hashed_id;
         this.title = attrs.title;
         this.type = attrs.type ? new Type(attrs.type) : Type.empty();
-        this.spokenLanguages = attrs.spoken_languages;
-        this.materialsLanguage = attrs.materials_language;
+        this.language = new Language(attrs.spoken_languages, attrs.materials_language);
         this.rating = attrs.rating;
         this.confirmed = attrs.confirmed;
         this.free = attrs.free;
@@ -58,50 +57,22 @@ export default class Event {
         this.registration = new Registration(attrs, options.registrationPageUrl);
         this.tickets = this.getTickets(this.free, attrs.free_ticket_type, attrs.paid_ticket_types);
 
-        this.instructions = attrs.instructions;
-        this.registrationForm = this.getRegistrationForm(this.tickets, attrs.registration_form);
+        this.registrationForm = attrs.registration_form ?
+            new Form(attrs.instructions, attrs.registration_form, this) :
+            undefined;
 
         this.trainers = this.getTrainers(attrs, options);
-    }
-
-    /**
-     * Adds ticket field if the paid tickets exist
-     * @param {Tickets | null} tickets
-     * @param {any} form Registration form
-     * @return {any}
-     */
-    private getRegistrationForm(tickets: Tickets | null, form: any): any {
-        if (tickets && tickets.paid.length > 0 && form) {
-            for (let section of form) {
-                const fields: any[] = section.fields;
-                for (let field of fields) {
-                    if (field.type !== "ticket") {
-                        continue;
-                    }
-                    let options: any[] = [];
-                    for (let ticket of tickets.paid) {
-                        if (ticket.isActive()) {
-                            options.push({
-                                value: ticket.id,
-                                label: `${formatPrice(ticket.price, ticket.withTax)} – ${ticket.name}`
-                            })
-                        }
-                    }
-                    if (options.length > 0) {
-                        field['options'] = options;
-                        field.type = 'select';
-                    }
-                }
-            }
-        }
-        return form;
+        this.state = new EventState(this);
     }
 
     private getTickets(free: boolean, freeTicketType: any, paidTicketTypes: any[]): Tickets | null {
         if (freeTicketType || paidTicketTypes) {
             return free ?
                 new Tickets([], new FreeTicketType(freeTicketType)) :
-                new Tickets(paidTicketTypes.map(type => new PaidTicketType(type)));
+                new Tickets(paidTicketTypes.map(type =>
+                        new PaidTicketType(type, this.schedule.defaultTimezone())
+                    )
+                );
         } else {
             return null;
         }
@@ -114,35 +85,5 @@ export default class Event {
         } else {
             return [];
         }
-    }
-
-    getReasonForClosedRegistration() {
-        if (this.isEnded() || !this.tickets) {
-            return 'The event has ended';
-        } else if (this.private) {
-            return 'The event is private';
-        } else if (this.free && this.tickets.free && this.tickets.free.isSoldOut()) {
-            return 'Sold out';
-        } else {
-            if (!this.free) {
-                let soldOut = true;
-                this.tickets.paid.forEach((item) => {
-                    if (!item.isSoldOut()) {
-                        soldOut = false;
-                    }
-                });
-                if (soldOut) {
-                    return 'Booked out';
-                } else {
-                    return 'Registrations are closed';
-                }
-            } else {
-                return '';
-            }
-        }
-    }
-
-    private isEnded() {
-        return this.schedule.end < DateTime.local();
     }
 }

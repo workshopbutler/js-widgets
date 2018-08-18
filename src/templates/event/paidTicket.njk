@@ -1,0 +1,18 @@
+{% macro paidTicket(ticket, _t, _f) %}
+    <div class="wsb-ticket {% if not ticket.active() %} state-closed {% endif %}">
+        <div class="wsb-ticket__val">
+            {{ _f(ticket.price) }}
+        </div>
+        <div class="wsb-ticket__name">
+            {{ ticket.name }}
+        </div>
+        <div class="wsb-ticket__desc">
+            {{ _f(ticket, 'desc') }}
+        </div>
+        {% if not ticket.ended() %}
+            <div class="wsb-ticket__footer">
+                {{ _f(ticket, 'state') }}
+            </div>
+        {% endif %}
+    </div>
+{% endmacro %}

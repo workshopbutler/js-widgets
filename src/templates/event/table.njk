@@ -1,0 +1,23 @@
+{% macro table(events, tmpl, options, _t, _f) %}
+    {% from "./row.njk" import drawRow %}
+    <div class="wsb-schedule">
+        <div class="wsb-table" data-event-list>
+            <div class="wsb-table__head">
+                <div class="wsb-table__col">{{ _t('schedule.when') }}</div>
+                <div class="wsb-table__col">{{ _t('schedule.where') }}</div>
+                <div class="wsb-table__col">{{ _t('schedule.what') }}</div>
+                <div class="wsb-table__col"></div>
+            </div>
+            {% for event in events %}
+                {% if tmpl %}
+                    {{ tmpl(event, options, _t, _f) | safe }}
+                {% else %}
+                    {{ drawRow(event, options, _t, _f) }}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="wsb-no-events" data-empty-list>
+            {{ _t('schedule.noEvents') }}
+        </div>
+    </div>
+{% endmacro %}

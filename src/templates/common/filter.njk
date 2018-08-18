@@ -1,0 +1,7 @@
+{% macro filter(name, values) %}
+    <select class="wsb-filter" data-filter data-name="{{ name }}">
+        {% for item in values %}
+            <option class="wsb-filter" value="{{ item.value }}">{{ item.name }}</option>
+        {% endfor %}
+    </select>
+{% endmacro %}

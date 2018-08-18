@@ -10,7 +10,7 @@ export default interface IFreeTicketType extends ITicketType {
      * Returns true if no more seats left
      * @return {boolean}
      */
-    isSoldOut(): boolean
+    soldOut(): boolean
 
     /**
      * Returns true if there is no limitation for a number of seats. For example, in a webinar

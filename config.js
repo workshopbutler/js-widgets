@@ -21,7 +21,6 @@ const options = {
 
 const mapping = {
     widgets: './app.js',
-    // themes: '../themes/src/styles/common.less'
 };
 
 module.exports = {

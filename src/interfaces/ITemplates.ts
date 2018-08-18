@@ -3,10 +3,10 @@ export interface ITemplate {
 }
 
 export interface ITemplates {
-    readonly eventList: ITemplate;
+    readonly schedule: ITemplate;
     readonly eventPage: ITemplate;
     readonly trainerList: ITemplate;
-    readonly trainerPage: ITemplate;
+    readonly trainerProfile: ITemplate;
     readonly registrationPage: ITemplate;
-    readonly sidebar: ITemplate;
+    readonly sidebarEventList: ITemplate;
 }

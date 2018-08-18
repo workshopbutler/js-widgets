@@ -1,53 +1,50 @@
-import {getCountryName} from '../common/helpers/_countries';
 import transport from '../common/Transport';
 import getTemplate from "./helpers/_templates";
-import WidgetFactory from "./Factory";
+import WidgetFactory from "../Factory";
 import {getQueryParam} from "../common/helpers/_urlParser";
-import {ITemplates} from "../templates/ITemplates";
+import {ITemplates} from "../interfaces/ITemplates";
 import Trainer from "../models/Trainer";
 import {logError} from "../common/Error";
 import {renderString as nunjucksRenderString} from "nunjucks"
+import Widget from "./Widget";
+import Localisation from "../utils/Localisation";
+import Formatter from "../view/Formatter";
+import TrainerProfileConfig from "./config/TrainerProfileConfig";
 
 /**
  * Logic for the trainer details
  */
-export default class TrainerProfile {
-    private readonly $root: JQuery;
-    private readonly apiKey: string;
-    private readonly templates: ITemplates;
-    private readonly options: any;
+export default class TrainerProfile extends Widget<TrainerProfileConfig> {
+    protected readonly formatter: Formatter;
     private trainer: Trainer;
 
     /**
      * Creates a new trainer page
-     * @param selector {string} JQuery selector
-     * @param apiKey {string}
-     * @param templates {Templates} Templates for widgets
-     * @param options {object} Configuration options
+     * @param selector {HTMLElement} JQuery selector
+     * @param apiKey {string} API key
+     * @param templates {ITemplates} Templates
+     * @param loc {Localisation} Localisation instance
+     * @param config {TrainerProfileConfig} Configuration config
      */
-    constructor(selector: HTMLElement, apiKey: string, templates: ITemplates, options: any) {
-        this.$root = $(selector);
-        this.apiKey = apiKey;
-        this.templates = templates;
+    protected constructor(selector: HTMLElement,
+                          apiKey: string,
+                          templates: ITemplates,
+                          loc: Localisation,
+                          config: TrainerProfileConfig) {
+        super(selector, apiKey, templates, loc, config);
+        this.formatter = new Formatter(loc);
         let id = getQueryParam('id');
-        if (this.checkOptions(options)) {
-            this.options = options;
-            this.init();
-            if (id) {
-                this.loadContent(parseInt(id));
-            } else {
-                logError("`id` query parameter is not found")
-            }
+        this.init();
+        if (id) {
+            this.loadContent(parseInt(id));
+        } else {
+            logError("`id` query parameter is not found")
         }
     }
 
-    private checkOptions(options: any) {
-        return true;
-    }
-
     private init() {
-        if (this.options.theme) {
-            this.$root.addClass(this.options.theme);
+        if (this.config.theme) {
+            this.$root.addClass(this.config.theme);
         }
     }
 
@@ -61,7 +58,7 @@ export default class TrainerProfile {
         const url = this.getUrl(trainerId);
         transport.get(url, {},
             (data: any) => {
-                self.trainer = new Trainer(data.response, self.options);
+                self.trainer = new Trainer(data.response, self.config);
                 self.render();
             },
             (data: any) => {
@@ -71,20 +68,25 @@ export default class TrainerProfile {
 
     private render() {
         const self = this;
-        $.when(getTemplate(self.options)).done(
+        $.when(getTemplate(self.config)).done(
             function (template) {
                 const data = {
                     trainer: self.trainer,
-                    options: self.options,
-                    getCountryName: getCountryName
+                    options: self.config,
+                    _t: function(key: string, options: any = null) {
+                        return self.loc.translate(key, options);
+                    },
+                    _f: function(object: any, type: string | null) {
+                        return self.formatter.format(object, type);
+                    }
                 };
                 const content = template ?
                     nunjucksRenderString(template, data) :
-                    self.templates.trainerPage.render(data);
+                    self.templates.trainerProfile.render(data);
 
                 self.$root.html(content);
-                if (self.options.widgets) {
-                    WidgetFactory.launch(self.apiKey, self.options.widgets);
+                if (self.config.widgets) {
+                    WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
                 }
             });
     }
@@ -96,19 +98,23 @@ export default class TrainerProfile {
     /**
      * @param selector {string} JQuery selector
      * @param apiKey {string} API key
-     * @param templates {ITemplates} Templates for widgets
-     * @param options {object} Configuration options
+     * @param templates {ITemplates} Templates
+     * @param loc {Localisation} Localisation instance
+     * @param options {object} Configuration config
      */
-    static plugin(selector: string, apiKey: string, templates: ITemplates, options: any) {
+    static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
         const $elems = $(selector);
         if (!$elems.length) return;
+
+        const config = TrainerProfileConfig.create(options);
+        if (!config) return;
 
         return $elems.each((index, el) => {
             let $element = $(el);
             let data = $element.data('wsb.widget.trainer.details');
 
             if (!data) {
-                data = new TrainerProfile(el, apiKey, templates, options);
+                data = new TrainerProfile(el, apiKey, templates, loc, config);
                 $element.data('wsb.widget.trainer.details', data);
             }
         });

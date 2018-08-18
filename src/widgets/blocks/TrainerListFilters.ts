@@ -1,22 +1,25 @@
-import {getCountryName} from "../../common/helpers/_countries";
 import {FilterValue} from "./Filter";
 import Trainer from "../../models/Trainer";
 import {ListFilters} from "./ListFilters";
+import Localisation from "../../utils/Localisation";
 
 /**
  * Manages the logic for trainer list filters
  */
 export default class TrainerListFilters extends ListFilters<Trainer> {
     private $root: JQuery;
+    private readonly loc: Localisation;
 
     /**
      * Creates event list filters
      * @param selector {HTMLElement} JQuery selector
-     * @param visibleFilters {array} Configuration options
+     * @param loc {Localisation} Localisation instance
+     * @param visibleFilters {array} Configuration config
      */
-    constructor(selector: HTMLElement, visibleFilters: any[]) {
+    constructor(selector: HTMLElement, loc: Localisation, visibleFilters: any[]) {
         super();
         this.$root = $(selector);
+        this.loc = loc;
         this.filters = visibleFilters;
         this.assignEvents();
     }
@@ -54,11 +57,11 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
     protected getFilterValues(name: string, trainers: Trainer[]): FilterValue[] {
         switch(name) {
             case 'language':
-                return this.getLanguageFilterData("All languages", trainers);
+                return this.getLanguageFilterData(this.loc.translate('filter.languages'), trainers);
             case 'location':
-                return this.getLocationFilterData("All locations", trainers);
+                return this.getLocationFilterData(this.loc.translate('filter.locations'), trainers);
             case 'trainer':
-                return this.getTrainerFilterData("All trainers", trainers);
+                return this.getTrainerFilterData(this.loc.translate('filter.trainers'), trainers);
             default:
                 return []
         }
@@ -69,10 +72,8 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
         for(let i = 0; i < trainers.length; i++) {
             const trainerLanguages = trainers[i].languages;
             for(let j = 0; j < trainerLanguages.length; j++) {
-                let language = {
-                    value: trainerLanguages[j],
-                    name: trainerLanguages[j]
-                };
+                const languageName = this.loc.translate(`language.${trainerLanguages[j]}`);
+                let language = new FilterValue(languageName, trainerLanguages[j]);
                 languages.push(language)
             }
         }
@@ -80,8 +81,10 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
     }
 
     private getLocationFilterData(defaultName: string, trainers: Trainer[]) {
+        const self = this;
         const unfiltered = trainers.map(function(trainer) {
-            return { value: getCountryName(trainer.country), name: getCountryName(trainer.country) }
+            const countryName = self.loc.translate(`country.${trainer.country}`);
+            return new FilterValue(countryName, trainer.country);
         });
         return this.getFilterData(defaultName, unfiltered);
     }
