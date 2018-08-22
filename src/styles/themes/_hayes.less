@@ -1,0 +1,352 @@
+@hayes: #32866c;
+
+.hayes .wsb-content {
+  font-family: 'Open Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+  @textSize: 14px;
+  font-size: @textSize;
+  line-height: 1.4;
+  color: #333;
+
+  a {
+    color: @hayes;
+  }
+
+  .wsb-btn-primary {
+    color: #343434 !important;
+    background: none;
+    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: @textSize;
+    font-weight: 400;
+    text-transform: uppercase;
+    border: 2px solid #343434;
+    border-radius: 0;
+    -webkit-font-smoothing: antialiased;
+
+    &:hover {
+      opacity: .8;
+    }
+
+    &.active,
+    &:active {
+      opacity: 1;
+    }
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      opacity: .7 !important;
+      cursor: default;
+    }
+  }
+
+  .link-msimple {
+    color: @hayes !important;
+
+    &:hover {
+      color: @hayes !important;
+      border-bottom-color: @hayes;
+    }
+  }
+
+  // tiles
+  .wsb-tile-title,
+  .wsb-tile-free {
+    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+
+  .wsb-tile {
+    background-color: #f9f9f9;
+    height: 22em;
+    padding: 26px 23px 0;
+  }
+
+  .wsb-tile-title {
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    color: @hayes;
+    max-height: 5em;
+    margin-bottom: 5px;
+    overflow: hidden;
+  }
+
+  .wsb-tile-info {
+    margin-bottom: 12px;
+    color: #7a7a7a;
+    font-size: 14px;
+    line-height: 23px;
+  }
+
+  .wsb-tile-free {
+    background-color: #7a7a7a;
+  }
+
+  .wsb-tile-content {
+    font-size: 14px;
+    line-height: 23px;
+    color: #1d1d1d;
+    max-height: 160px;
+  }
+
+  .wsb-tile-button {
+    background-color: #f9f9f9;
+    height: 85px;
+    padding: 0 23px;
+    bottom: 0;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+    transform: none !important;
+  }
+
+  .wsb-tile-btn {
+    margin-top: 15px;
+    position: static;
+    padding: 15px 0 17px;
+    width: 100%;
+    height: auto;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  // table
+  .wsb-table__head,
+  .wsb-table__btn,
+  .wsb-table__first-free,
+  .wsb-table__free {
+    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+
+  .wsb-table__head {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #7a7a7a;
+    border-color: rgba(53, 53, 53, .1);
+
+    .wsb-table__col {
+      font-size: 12px;
+    }
+  }
+
+  .wsb-table__row {
+    border-color: rgba(53, 53, 53, .1);
+  }
+
+  .wsb-table__col {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .wsb-table__btn {
+    background: none;
+    border: 2px solid #101010;
+    color: #101010 !important;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    border-radius: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 26px;
+  }
+
+  .wsb-table__first-free,
+  .wsb-table__free {
+    font-weight: bold;
+    font-size: 12px;
+    color: #7a7a7a;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  //page
+  .wsb-title,
+  .wsb-ticket__val,
+  .wsb-ticket__name,
+  .wsb-profile__name h3,
+  .wsb-form__title,
+  .wsb-form__label,
+  .wsb-sidebar__register,
+  .wsb-form__btn {
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    font-family: Montserrat, "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .wsb-header {
+    padding-bottom: 10px;
+  }
+
+  .wsb-title {
+    font-size: 30px;
+    margin-bottom: 6px;
+  }
+
+  .wsb-subtitle,
+  .wsb-page,
+  .wsb-workshops__title {
+    font-size: @textSize;
+  }
+
+  .wsb-body {
+    position: relative;
+    padding-top: 24px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 20px;
+      left: 20px;
+      height: 2px;
+      background-color: #E7E7E7;
+    }
+  }
+
+  .wsb-desc {
+    font-size: 14px;
+    line-height: 23px;
+
+    p {
+      margin-bottom: 8px;
+    }
+  }
+
+  .wsb-info {
+    line-height: 1.7em;
+  }
+
+  .wsb-trainers .wsb-profile__text {
+    font-size: 14px;
+    line-height: 25px;
+  }
+
+  .wsb-tickets {
+    margin-bottom: 20px;
+    background-color: #FFF;
+
+    .wsb-ticket {
+      padding: 11px 9px;
+      background-color: @background-grey;
+      border: 1px solid #e8e8e8;
+      border-radius: 2px;
+      margin: 0 0 10px;
+      text-align: left;
+
+      &.state-closed {
+        background-color: transparent;
+      }
+    }
+  }
+
+  .wsb-ticket {
+    border: 2px solid #F9F9F9;
+    background-color: #F9F9F9;
+
+    &.state-closed {
+      background-color: #FFF;
+
+      .wsb-ticket__val,
+      .wsb-ticket__name {
+        color: #7A7A7A;
+      }
+    }
+  }
+
+  .wsb-ticket__val {
+    color: #32866C;
+    font-size: 28px;
+    margin-bottom: 3px;
+  }
+
+  .wsb-ticket__name {
+    color: #343434;
+    font-size: 14px;
+  }
+
+  .wsb-ticket__desc {
+    color: #7A7A7A;
+    font-size: 14px;
+  }
+
+  .wsb-ticket__footer {
+    text-transform: uppercase;
+  }
+
+  .wsb-sharing {
+    margin-bottom: 42px;
+
+    a {
+      border-radius: 0;
+    }
+  }
+
+  .wsb-workshops {
+    font-size: @textSize;
+    color: #7A7A7A;
+  }
+  .wsb-workshops__title {
+    font-weight: bold;
+    color: @text-black;
+  }
+
+  .wsb-link,
+  .wsb-trainers a,
+  .wsb-desc a {
+    color: #32866C !important;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .wsb-form__input {
+    font-size: 14px;
+    font-family: "Open Sans", "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .wsb-sidebar__register {
+    margin-bottom: 21px;
+  }
+
+  .wsb-sidebar__register,
+  .wsb-form__btn {
+    background: none;
+    border: 2px solid #333 !important;
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 16px 0;
+    color: #333 !important;
+  }
+
+  .wsb-form {
+    padding-top: 22px;
+    margin-top: 41px;
+  }
+
+  &.wsb-footer {
+    background-color: transparent;
+    padding-top: 0;
+
+    .wsb-center {
+      position: relative;
+      padding-top: 34px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 20px;
+        left: 20px;
+        height: 2px;
+        background-color: #E7E7E7;
+      }
+    }
+  }
+  .wsb-sharing__icon {
+    color: transparent;
+  }
+
+}

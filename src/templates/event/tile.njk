@@ -3,7 +3,10 @@
          data-event-location="{{ event.location.countryCode }}"
          data-event-language="{{ event.language.spoken | join(',') }}"
          data-event-trainer="{{ event.trainers | join(',') }}">
-        <a data-widget-go href="{{ event.url }}" class="wsb-tile-title">{{ event.title }}</a>
+        {% if not event.free %}
+            <div class="wsb-tile-free">{{ _t('event.free') }}</div>
+        {% endif %}
+        <a data-widget-go href="{{ event.url }}" class="wsb-tile-title">{{ event.title | truncate(60) }}</a>
         <div class="wsb-tile-info">
             {% if event.schedule.atOneDay() %}
                 {{ _f(event.schedule, 'full_long') }}
@@ -13,13 +16,19 @@
             {% else %}
                 {{ _f(event.schedule, 'full_short') }}
             {% endif %}
-            {% if event.free %}
-                <div class="wsb-tile-free">{{ _t('event.free') }}</div>
-            {% endif %}
             <br/>
             {{ _f(event.location) }}
         </div>
-        <div class="wsb-tile-content">{{ event.description | safe }}</div>
+        <div class="wsb-tile-content">
+            {% for trainer in event.trainers %}
+                <div class="wsb-trainer">
+                    {% set url = options.trainerPageUrl + '?id=' + trainer.id %}
+                    {% set photo = "background-image: url(" + trainer.photo + ");" %}
+                    <a class="wsb-photo" href="{{ url }}" style="{{ photo }}"></a>
+                    <a class="wsb-name" href="{{ url }}"> {{ trainer.fullName() }}</a>
+                </div>
+            {% endfor %}
+        </div>
         <div class="wsb-tile-button">
             <a data-widget-go href="{{ event.url }}" class="wsb-btn wsb-btn-primary wsb-tile-btn">
                 {% if event.soldOut %}

@@ -1,0 +1,33 @@
+.wsb-content {
+  .wsb-footer {
+    background-color: @background-grey;
+    padding-top: 34px;
+    height: 80px;
+    margin-top: -80px;
+    text-align: center;
+  }
+
+  .wsb-footer__content {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    padding-left: 50px;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: left;
+    color: @text-grey;
+    box-sizing: border-box;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: -13px;
+      width: 40px;
+      height: 42px;
+      background: url(../images/icon-alfred.png) no-repeat;
+      -webkit-background-size: cover;
+      background-size: cover;
+    }
+  }
+}

@@ -32,7 +32,7 @@ let webpackConfig = {
             BACKEND_URL: JSON.stringify(config.env.backend)
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].min.css"
+            filename: `[name].${process.env.npm_package_version}.min.css`
         }),
         new HtmlWebpackPlugin({
             template: 'pages/schedule.html',

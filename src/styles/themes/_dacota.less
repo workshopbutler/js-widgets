@@ -1,0 +1,280 @@
+@dacota: #1c3f7f;
+
+.dacota .wsb-content {
+  font-family: 'Arapey', 'SFNS Display', Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.42857143;
+  color: #333;
+
+  a {
+    color: @dacota;
+  }
+
+  .wsb-btn-primary {
+    color: #fff !important;
+    background: #7a7a7a;
+    border-color: #7a7a7a;
+    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 0;
+
+    &:hover {
+      background-color: #666;
+    }
+
+    &.active,
+    &:active {
+      opacity: 1;
+    }
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+      opacity: .7 !important;
+      cursor: default;
+    }
+  }
+
+  .link-msimple {
+    color: #255184 !important;
+
+    &:hover {
+      color: #255184 !important;
+      border-bottom-color: #255184;
+    }
+  }
+
+  // tiles
+  .wsb-tile-title,
+  .wsb-tile-free {
+    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+
+  .wsb-tile {
+    background-color: transparent;
+    border: 1px solid rgba(52, 53, 53, .2);
+  }
+
+  .wsb-tile-title {
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    color: @dacota;
+  }
+
+  .wsb-tile-info {
+    color: #788188;
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .wsb-tile-free {
+    background-color: #343434;
+  }
+
+  .wsb-tile-content {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  // table
+  .wsb-table__btn,
+  .wsb-table__first-free,
+  .wsb-table__free {
+    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+
+  .wsb-table__head {
+    display: none;
+  }
+
+  .wsb-table__row {
+    border-color: rgba(53, 52, 52, .1);
+
+    &:first-child {
+      border-top: 1px solid rgba(53, 52, 52, .1);
+    }
+  }
+
+  .wsb-table__col {
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .wsb-table__btn {
+    background: #7a7a7a;
+    border: none;
+    color: #fff !important;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    border-radius: 0;
+  }
+
+  .wsb-table__first-free,
+  .wsb-table__free {
+    font-weight: bold;
+    font-size: 12px;
+    color: #343434;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  // page
+  .wsb-title,
+  .wsb-header h1,
+  .wsb-trainer__name h3,
+  .wsb-ticket__val,
+  .wsb-ticket__name,
+  .wsb-ticket__footer,
+  .wsb-profile__name h3,
+  .wsb-form__title,
+  .wsb-form__label,
+  .wsb-workshops__title {
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Montserrat', 'SFNS Display', "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .wsb-ticket__footer,
+  .wsb-sidebar__register,
+  .wsb-form__btn {
+    font-family: Montserrat, "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .wsb-header {
+    padding-top: 58px;
+    padding-bottom: 72px;
+    background-color: @dacota;
+    color: #FFF;
+  }
+
+  .wsb-title {
+    margin-bottom: 9px;
+
+    &.type-only {
+      color: #343434;
+    }
+  }
+
+  .wsb-subtitle {
+    font-size: 18px;
+  }
+
+  .wsb-desc {
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .wsb-profile__text {
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .wsb-sidebar__register,
+  .wsb-form__btn {
+    font-size: 18px;
+    background: #7a7a7a;
+    color: #fff !important;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 0;
+  }
+
+  .wsb-form__input {
+    font-size: 16px;
+    font-family: Arapey, "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .wsb-tickets {
+    border: 2px solid #F9F9F9;
+    margin-bottom: 29px;
+    background-color: #E8E8E8;
+    border-radius: 0;
+
+    .wsb-ticket {
+      padding: 11px 9px;
+      background-color: #fff;
+      border: 1px solid transparent;
+      border-radius: 2px;
+      margin: 5px;
+      text-align: left;
+
+      &.state-closed {
+        border-color: #e8e8e8;
+        background-color: transparent;
+      }
+    }
+  }
+
+
+  .wsb-ticket {
+    background-color: #fff;
+    border-color: #fff;
+    border-radius: 0;
+
+    &.state-closed {
+      background-color: transparent;
+      border-color: #c1bfbf;
+
+      .wsb-ticket__name,
+      .wsb-ticket__val {
+        color: #7a7a7a;
+      }
+    }
+  }
+
+  .wsb-ticket__footer {
+    text-transform: uppercase;
+  }
+
+  .wsb-ticket__val {
+    color: @dacota;
+  }
+
+  .wsb-ticket__name {
+    color: #1d1d1d;
+  }
+
+  .wsb-ticket__desc {
+    font-size: 18px;
+    color: #7a7a7a;
+  }
+
+  .wsb-workshop {
+    font-size: 18px;
+  }
+
+
+  .wsb-ticket__footer {
+    color: #7a7a7a;
+    font-weight: 400 !important;
+    text-transform: uppercase;
+  }
+
+  .wsb-link,
+  .wsb-trainers a,
+  .wsb-desc a {
+    color: #1c3f7f !important;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  .wsb-sharing__icon {
+    color: transparent;
+  }
+
+  &.wsb-footer {
+    background-color: @dacota;
+
+    .wsb-footer__content {
+      color: #FFF;
+    }
+
+    .link-black {
+      color: #FFF !important;
+      border-bottom: none !important;
+    }
+  }
+
+}
