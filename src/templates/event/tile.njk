@@ -3,8 +3,8 @@
          data-event-location="{{ event.location.countryCode }}"
          data-event-language="{{ event.language.spoken | join(',') }}"
          data-event-trainer="{{ event.trainers | join(',') }}">
-        {% if not event.free %}
-            <div class="wsb-tile-free">{{ _t('event.free') }}</div>
+        {% if event.free %}
+            <div class="wsb-free">{{ _t('event.free') }}</div>
         {% endif %}
         <a data-widget-go href="{{ event.url }}" class="wsb-tile-title">{{ event.title | truncate(60) }}</a>
         <div class="wsb-tile-info">

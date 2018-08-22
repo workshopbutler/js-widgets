@@ -15,7 +15,7 @@
         </div>
         <div class="wsb-table__col">{{ _f(event.location) }}
             {% if event.free %}
-                <div class="wsb-table__first-free">{{ _t('schedule.event.free') | lower }}</div>
+                <div class="wsb-free wsb-first">{{ _t('schedule.event.free') | lower }}</div>
             {% endif %}
         </div>
         <div class="wsb-table__col {{ "with-badge" if event.type.badge }}">
@@ -28,7 +28,7 @@
         </div>
         <div class="wsb-table__col">
             {% if event.free %}
-                <div class="wsb-table__free">{{ _t('schedule.event.free') | lower }}</div>
+                <div class="wsb-free">{{ _t('schedule.event.free') | lower }}</div>
             {% endif %}
             <a href="{{ event.url }}" class="wsb-table__btn">
                 {{ _t('schedule.event.register') }}
