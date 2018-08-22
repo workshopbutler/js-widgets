@@ -1,0 +1,19 @@
+{% macro render_rating_stars(rating, with_empty_stars) %}
+    {% set rating = rating | int %}
+    {% set stars = range(5) %}
+    {% for item in stars %}
+        {% set index = item + 1 %}
+        {% if index * 2 <= rating %}
+            <i class="fas fa-star"></i>
+            {% elif index * 2 > rating + 1 %}
+            {% if with_empty_stars %}
+                <i class="far fa-star"></i>
+            {% endif %}
+        {% else %}
+            <div class="fa-stack">
+                <i class="fas fa-star-half fa-stack-1x"></i>
+                <i class="far fa-star-half fa-stack-1x fa-flip-horizontal"></i>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endmacro %}

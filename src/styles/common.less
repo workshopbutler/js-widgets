@@ -24,3 +24,30 @@
 @import "themes/_gatsby";
 @import "themes/_hayes";
 @import "themes/_dacota";
+
+
+.wsb-content {
+  @media screen and ( max-width: 72em ) {
+    .wsb-center {
+      width: auto;
+    }
+  }
+
+  @media screen and ( max-width: 63em ) {
+    .wsb-left-col {
+      margin-right: 0;
+    }
+
+    .wsb-right-col {
+      float: none;
+      width: auto;
+      margin-left: 0;
+      margin-bottom: 30px;
+
+    }
+
+    .wsb-trainers {
+      flex-direction: row;
+    }
+  }
+}

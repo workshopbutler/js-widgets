@@ -1,6 +1,8 @@
 .wsb-content {
   .wsb-trainers {
     margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
   }
 
   .wsb-trainer {
@@ -16,30 +18,10 @@
     }
   }
 
-  .wsb-profile__text {
-    font-size: 16px;
-    line-height: 25px;
-
-    .b-flip__inner {
-      min-height: 75px;
-    }
-
-    .b-flip__link {
-      padding-bottom: 30px;
-      font-size: 16px;
-      line-height: 1;
-    }
-  }
-
   .wsb-profile_img {
     display: block;
-    float: left;
-    margin-right: 13px;
-    width: 70px;
-    height: 70px;
-    border-radius: 10px;
+    height: 14em;
     overflow: hidden;
-    -webkit-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -47,23 +29,17 @@
   }
 
   .wsb-profile__name {
+    padding: 12px 10px;
     position: relative;
-    top: -1px;
     overflow: hidden;
-    display: table;
-    height: 70px;
-    width: 120px;
-
-    .inner {
-      display: table-cell;
-      vertical-align: middle;
-    }
-
-    h3 {
-      font-size: 22px;
-      line-height: 30px;
-      margin: 0;
-      font-weight: 400;
-    }
+    font-weight: bold;
+    background: @light-grey;
   }
+  .wsb-profile__rating {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    padding-top: 8px;
+  }
+
 }

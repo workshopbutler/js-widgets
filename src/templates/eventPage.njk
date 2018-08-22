@@ -1,5 +1,5 @@
 <div class="wsb-content">
-    <div class="wsb-page">
+    <div class="wsb-page wsb-event-page">
         <div class="wsb-header wsb-center">
             <h1>{{ event.title }}</h1>
         </div>
@@ -17,8 +17,8 @@
                     {% endif %}
                 </div>
                 {% from "./event/info.njk" import info %}
-                {{ info(event, _t, _f) }}
-                <div class="wsb-workshops" id="upcoming-events">
+                {{ info(event, options, _t, _f) }}
+                <div class="wsb-info" id="upcoming-events">
                     <div class="wsb-workshops__title">
                         {{ _t('sidebar.future') }}:
                     </div>
@@ -30,33 +30,6 @@
             <div class="wsb-left-col">
                 {% if event.description %}
                     <div class="wsb-desc">{{ event.description | safe }}</div>
-                {% endif %}
-                {% if options.withTrainers %}
-                    <div class="wsb-trainers">
-                        {% for trainer in event.trainers %}
-                            <div class="wsb-trainer">
-                                <div class="wsb-profile">
-                                    {% set url = options.trainerPageUrl + '?id=' + trainer.id %}
-                                    {% set photo = "background-image: url(" + trainer.photo + ");" %}
-                                    <a class="wsb-profile_img" href="{{ url }}" style="{{ photo }}"></a>
-                                    <div class="wsb-profile__name">
-                                        <div class="inner">
-                                            <h3>
-                                                {{ trainer.firstName }}
-                                                <br/>
-                                                {{ trainer.lastName }}
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% if trainer.bio %}
-                                    <div class="wsb-profile__text" data-max-height="80">
-                                        {{ trainer.bio | safe }}
-                                    </div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-                    </div>
                 {% endif %}
 
                 {% from "./builtInForm.njk" import registrationForm %}
