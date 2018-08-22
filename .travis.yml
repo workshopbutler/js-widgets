@@ -32,9 +32,13 @@ deploy:
     skip_cleanup: true
     local_dir: .latest
     bucket: wsb-integrations
+    on:
+      branch: /^\d+\.\d+(\.\d+)?(-\S*)?$/
 
   - provider: surge
     project: ./.all/
     domain: cdn.workshopbutler.com
     skip_cleanup: true
+    on:
+      branch: /^\d+\.\d+(\.\d+)?(-\S*)?$/
 
