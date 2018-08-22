@@ -34,6 +34,10 @@ export default class Formatter {
         if (object instanceof EventState) {
             return EventStateFormatter.format(this.loc, <EventState>object);
         }
+        if (typeof object === 'number') {
+            const opts = { maximumFractionDigits: 2, minimumFractionDigits: 0 };
+            return Intl.NumberFormat(this.loc.locale, opts).format(object);
+        }
         return "";
     }
 }

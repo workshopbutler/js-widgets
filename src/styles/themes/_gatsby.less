@@ -1,7 +1,11 @@
-@gatsby: #a36c1f;
 
 .gatsby .wsb-content {
-  font-family: 'Raleway', "SFNS Display", Helvetica Neue, Helvetica, Arial, sans-serif;
+  @gatsby: #a36c1f;
+  @darkRed: #9a1200;
+  @mainFont: 'Raleway', "SFNS Display", Helvetica Neue, Helvetica, Arial, sans-serif;
+  @additionalFont: 'Montserrat', "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+
+  font-family: @mainFont;
   font-size: 16px;
   line-height: 1.42857143;
   color: #1d1d1d;
@@ -17,7 +21,7 @@
     border-radius: 0;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: @additionalFont;
 
     &:hover {
       opacity: .8;
@@ -48,7 +52,7 @@
   // tiles
   .wsb-tile-title,
   .wsb-free {
-    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: @additionalFont;
   }
 
   .wsb-tile {
@@ -68,14 +72,14 @@
   }
 
   .wsb-free {
-    background-color: #9a1200;
+    background-color: @darkRed;
   }
 
   // table
   .wsb-table__btn,
   .wsb-table__first-free,
   .wsb-table__free {
-    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: @additionalFont;
   }
 
   .wsb-table__head {
@@ -103,7 +107,7 @@
   .wsb-table__free {
     font-weight: bold;
     font-size: 14px;
-    color: #9a1200;
+    color: @darkRed;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -116,10 +120,13 @@
   .wsb-form__title,
   .wsb-form__label,
   .wsb-header h1,
-  .wsb-trainer__name h3 {
+  .wsb-trainer__name h3,
+  .wsb-trainer-details-title,
+  .wsb-descr,
+  .wsb-workshops__title {
     -webkit-font-smoothing: antialiased;
     font-weight: bold;
-    font-family: Montserrat, "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+    font-family: @additionalFont;
   }
 
   .wsb-header {
@@ -168,7 +175,7 @@
   }
 
   .wsb-ticket__val {
-    color: #9a1200;
+    color: @darkRed;
   }
 
   .wsb-ticket__footer {
@@ -183,6 +190,13 @@
       color: #1d1d1d;
     }
   }
+
+  .wsb-big-number {
+    font-family: @additionalFont;
+    color: @darkRed;
+    font-weight: 400;
+  }
+
 
   .wsb-workshops__title,
   .wsb-info__title {
@@ -203,7 +217,7 @@
 
   .wsb-form__input {
     font-size: 16px;
-    font-family: Raleway, "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+    font-family: @mainFont;
   }
 
   .wsb-sidebar__register,
@@ -223,7 +237,7 @@
   }
 
   .wsb-ticket__val {
-    color: #9a1200;
+    color: @darkRed;
   }
 
   .wsb-ticket__footer {

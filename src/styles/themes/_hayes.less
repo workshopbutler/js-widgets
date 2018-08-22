@@ -1,8 +1,10 @@
-@hayes: #32866c;
-
 .hayes .wsb-content {
-  font-family: 'Open Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
+  @hayes: #32866c;
+  @additionalFont: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+  @mainFont: 'Open Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
   @textSize: 14px;
+
+  font-family: @mainFont;
   font-size: @textSize;
   line-height: 1.4;
   color: #333;
@@ -14,7 +16,7 @@
   .wsb-btn-primary {
     color: #343434 !important;
     background: none;
-    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: @additionalFont;
     font-size: @textSize;
     font-weight: 400;
     text-transform: uppercase;
@@ -51,7 +53,7 @@
   // tiles
   .wsb-tile-title,
   .wsb-free {
-    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: @additionalFont;
   }
 
   .wsb-tile {
@@ -117,7 +119,7 @@
   .wsb-table__btn,
   .wsb-table__first-free,
   .wsb-table__free {
-    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: @additionalFont;
   }
 
   .wsb-table__head {
@@ -169,10 +171,13 @@
   .wsb-form__title,
   .wsb-form__label,
   .wsb-sidebar__register,
-  .wsb-form__btn {
+  .wsb-form__btn,
+  .wsb-trainer-details-title,
+  .wsb-descr,
+  .wsb-workshops__title {
     font-weight: bold;
     -webkit-font-smoothing: antialiased;
-    font-family: Montserrat, "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+    font-family: @additionalFont;
   }
 
   .wsb-header {
@@ -208,6 +213,7 @@
   .wsb-desc {
     font-size: 14px;
     line-height: 23px;
+    font-family: @additionalFont;
 
     p {
       margin-bottom: 8px;
@@ -221,6 +227,12 @@
   .wsb-trainers .wsb-profile__text {
     font-size: 14px;
     line-height: 25px;
+  }
+
+  .wsb-big-number {
+    font-family: @additionalFont;
+    color: @hayes;
+    font-weight: 400;
   }
 
   .wsb-tickets {
@@ -288,8 +300,8 @@
     color: #7A7A7A;
   }
   .wsb-workshops__title {
-    font-weight: bold;
-    color: @text-black;
+    color: @text-grey;
+    font-size: @textSize * 1.1;
   }
 
   .wsb-link,
@@ -304,7 +316,7 @@
 
   .wsb-form__input {
     font-size: 14px;
-    font-family: "Open Sans", "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+    font-family: @mainFont;
   }
 
   .wsb-sidebar__register {

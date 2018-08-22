@@ -50,7 +50,7 @@
                         {% endif %}
                         {% if trainer.publicStats.numberOfEvaluations > 0 %}
                             <div class="wsb-trainer-details-fact">
-                                <span class="wsb-big-number">{{ trainer.publicStats.rating.toPrecision(3) }}</span>&nbsp;<span class="wsb-small-number">/&nbsp;10</span>
+                                <span class="wsb-big-number">{{ _f(trainer.publicStats.rating) }}</span>&nbsp;<span class="wsb-small-number">/&nbsp;10</span>
                                 <span class="wsb-descr">{{ _t('trainer.experience.rating.public') }}</span>
                                 <span class="wsb-descr__sub">
                                     {{ _t('trainer.experience.rating.basedOn', { count: trainer.publicStats.numberOfEvaluations }) | safe }}
@@ -59,7 +59,7 @@
                         {% endif %}
                         {% if trainer.privateStats.numberOfEvaluations > 0 %}
                             <div class="wsb-trainer-details-fact">
-                                <span class="wsb-big-number">{{ trainer.privateStats.rating.toPrecision(3) }}</span>&nbsp;<span class="wsb-small-number">/&nbsp;10</span>
+                                <span class="wsb-big-number">{{ _f(trainer.privateStats.rating) }}</span>&nbsp;<span class="wsb-small-number">/&nbsp;10</span>
                                 <span class="wsb-descr">{{ _t('trainer.experience.rating.private') }}</span>
                                 <span class="wsb-descr__sub">
                                     {{ _t('trainer.experience.rating.basedOn', { count: trainer.privateStats.numberOfEvaluations }) | safe }}
@@ -78,14 +78,14 @@
                 <div class="wsb-trainer-events">
                     <div class="wsb-workshops" id="upcoming-events">
                         <div class="wsb-workshops__title">
-                            {{ _t('sidebar.future') }}
+                            {{ _t('sidebar.future') }}:
                         </div>
                         <div data-events-list>
                         </div>
                     </div>
                     <div class="wsb-workshops" id="past-events">
                         <div class="wsb-workshops__title">
-                            {{ _t('sidebar.past') }}
+                            {{ _t('sidebar.past') }}:
                         </div>
                         <div data-events-list>
                         </div>

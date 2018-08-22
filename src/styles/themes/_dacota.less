@@ -1,7 +1,10 @@
 @dacota: #1c3f7f;
 
 .dacota .wsb-content {
-  font-family: 'Arapey', 'SFNS Display', Helvetica Neue, Helvetica, Arial, sans-serif;
+  @mainFont: 'Arapey', 'SFNS Display', Helvetica Neue, Helvetica, Arial, sans-serif;
+  @additionalFont: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+
+  font-family: @mainFont;
   font-size: 16px;
   line-height: 1.42857143;
   color: #333;
@@ -14,7 +17,7 @@
     color: #fff !important;
     background: #7a7a7a;
     border-color: #7a7a7a;
-    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: @additionalFont;
     font-size: 18px;
     font-weight: 400;
     border-radius: 0;
@@ -48,7 +51,7 @@
   // tiles
   .wsb-tile-title,
   .wsb-free {
-    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: @additionalFont;
   }
 
   .wsb-tile {
@@ -81,7 +84,7 @@
   .wsb-table__btn,
   .wsb-table__first-free,
   .wsb-table__free {
-    font-family: 'Montserrat', Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: @additionalFont;
   }
 
   .wsb-table__head {
@@ -120,24 +123,29 @@
 
   // page
   .wsb-title,
-  .wsb-header h1,
-  .wsb-trainer__name h3,
+  h1, h3,
   .wsb-ticket__val,
   .wsb-ticket__name,
   .wsb-ticket__footer,
-  .wsb-profile__name h3,
   .wsb-form__title,
   .wsb-form__label,
-  .wsb-workshops__title {
+  .wsb-trainer-details-title,
+  .wsb-descr,
+  .wsb-workshops__title,
+  .wsb-big-number,
+  .wsb-cite,
+  .wsb-info__title,
+  .wsb-profile__name a {
     font-weight: bold;
     -webkit-font-smoothing: antialiased;
-    font-family: 'Montserrat', 'SFNS Display', "Helvetica Neue", Arial, sans-serif;
+    font-family: @additionalFont;
   }
 
   .wsb-ticket__footer,
   .wsb-sidebar__register,
-  .wsb-form__btn {
-    font-family: Montserrat, "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+  .wsb-form__btn,
+  .wsb-desc {
+    font-family: @mainFont;
   }
 
   .wsb-header {
@@ -179,9 +187,14 @@
     border-radius: 0;
   }
 
+  .wsb-big-number {
+    color: @dacota;
+    font-weight: normal;
+  }
+
   .wsb-form__input {
     font-size: 16px;
-    font-family: Arapey, "SFNS Display", "Helvetica Neue", Arial, sans-serif;
+    font-family: @mainFont;
   }
 
   .wsb-tickets {
