@@ -261,7 +261,7 @@ export default class FormHelper {
             var val = $el.val();
             return val && val.length > 0;
         }
-        if ($el.is('input[type="checkbox"]')) {
+        if ($el.is('input[type="checkbox"]') || $el.is('input[type="radio"]')) {
             return $el.prop('checked');
         }
         return value.length > 0;

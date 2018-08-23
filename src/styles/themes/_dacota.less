@@ -11,6 +11,12 @@
 
   a {
     color: @dacota;
+
+    &:hover {
+      color: @dacota !important;
+      border-bottom-color: @dacota;
+    }
+
   }
 
   .wsb-btn-primary {
@@ -36,15 +42,6 @@
     fieldset[disabled] & {
       opacity: .7 !important;
       cursor: default;
-    }
-  }
-
-  .link-msimple {
-    color: #255184 !important;
-
-    &:hover {
-      color: #255184 !important;
-      border-bottom-color: #255184;
     }
   }
 

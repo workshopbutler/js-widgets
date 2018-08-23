@@ -38,15 +38,16 @@
                 {{ field.label | safe }}
             </label>
         {% elif field.type === "ticket" %}
-            <select name="{{ field.name }}" title="{{ field.label }}"
-                    data-control class=" _validate-required">
-                {% for ticket in field.tickets.paid %}
-                    {% if ticket.active() %}
-                        {% set name = _f(ticket.price) + ' - ' + ticket.name %}
-                        <option value="{{ ticket.id }}">{{ name  }}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
+            {% for ticket in field.tickets.paid %}
+                {% if ticket.active() %}
+                    {% set name = _f(ticket.price) + ' - ' + ticket.name %}
+                    <label for="{{ ticket.id }}" class="wsb-radio">
+                        <input id="{{ ticket.id }}" name="{{ field.name }}" title="{{ field.label }}" type="radio"
+                               data-control required value="{{ ticket.id }}"/>
+                        {{ name }}
+                    </label>
+                {% endif %}
+            {% endfor %}
         {% else %}
             <input name="{{ field.name }}" title="{{ field.label }}"
                    type="{{ field.type }}"

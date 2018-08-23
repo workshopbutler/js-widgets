@@ -12,6 +12,11 @@
 
   a {
     color: @gatsby;
+
+    &:hover {
+      color: @gatsby !important;
+      border-bottom-color: @gatsby;
+    }
   }
 
   .wsb-btn-primary {
@@ -37,15 +42,6 @@
     fieldset[disabled] & {
       opacity: .7 !important;
       cursor: default;
-    }
-  }
-
-  .link-msimple {
-    color: @gatsby !important;
-
-    &:hover {
-      color: @gatsby !important;
-      border-bottom-color: @gatsby;
     }
   }
 

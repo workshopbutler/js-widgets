@@ -11,6 +11,11 @@
 
   a {
     color: @hayes;
+
+    &:hover {
+      color: @hayes !important;
+      border-bottom-color: @hayes;
+    }
   }
 
   .wsb-btn-primary {
@@ -38,15 +43,6 @@
     fieldset[disabled] & {
       opacity: .7 !important;
       cursor: default;
-    }
-  }
-
-  .link-msimple {
-    color: @hayes !important;
-
-    &:hover {
-      color: @hayes !important;
-      border-bottom-color: @hayes;
     }
   }
 

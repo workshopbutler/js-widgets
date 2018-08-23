@@ -28,7 +28,7 @@ export default class Section {
             case FieldType.Select: return new Select(fieldData);
             case FieldType.Country: return new Country(fieldData);
             case FieldType.Ticket:
-                if (event.free || !event.tickets) {
+                if (event.free || !event.tickets || event.soldOut) {
                     return null;
                 } else {
                     return new Ticket(fieldData, event.tickets);

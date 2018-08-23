@@ -323,7 +323,8 @@
       "soldOut": "Uitverkocht"
     },
     "ticket": {
-      "free": "Gratis. Registratie is verplicht.",
+      "free": "Gratis",
+      "freeDescr": "Registratie is verplicht.",
       "endedOn": "Bedichteigd op {{date}}",
       "endsOn": "Eindigt op {{date}}",
       "onSaleFrom": "Te koop vanaf {{date}}",

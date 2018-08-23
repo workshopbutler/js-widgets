@@ -8,6 +8,11 @@
 
   a {
     color: @britton;
+
+    &:hover {
+      color: @britton !important;
+      border-bottom-color: @britton;
+    }
   }
 
   .wsb-btn-primary {
@@ -30,15 +35,6 @@
     fieldset[disabled] & {
       opacity: .7 !important;
       cursor: default;
-    }
-  }
-
-  .link-msimple {
-    color: @britton !important;
-
-    &:hover {
-      color: @britton !important;
-      border-bottom-color: @britton;
     }
   }
 

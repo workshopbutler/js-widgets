@@ -323,7 +323,8 @@
       "soldOut": "Ausverkauft"
     },
     "ticket": {
-      "free": "Frei. Anmeldung ist erforderlich.",
+      "free": "Frei",
+      "freeDescr": "Anmeldung ist erforderlich.",
       "endedOn": "Endete am {{date}}",
       "endsOn": "Endet am {{date}}",
       "onSaleFrom": "Zum Verkauf ab {{date}}",

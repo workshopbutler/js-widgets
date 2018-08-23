@@ -25,7 +25,7 @@ export default class EventState {
             if (!this.event.free && this.event.tickets.paid.length > 0) {
                 let soldOut = true;
                 this.event.tickets.paid.forEach((item) => {
-                    if (!item.soldOut()) {
+                    if (item.active()) {
                         soldOut = false;
                     }
                 });
@@ -50,7 +50,7 @@ export default class EventState {
             if (!this.event.free && this.event.tickets.paid.length > 0) {
                 let soldOut = true;
                 this.event.tickets.paid.forEach((item) => {
-                    if (!item.soldOut()) {
+                    if (item.active()) {
                         soldOut = false;
                     }
                 });
