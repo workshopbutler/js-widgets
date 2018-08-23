@@ -1,4 +1,4 @@
-{% macro table(events, tmpl, options, _t, _f) %}
+{% macro table(events, tmpl, config, _t, _f) %}
     {% from "./row.njk" import drawRow %}
     <div class="wsb-schedule">
         <div class="wsb-table" data-event-list>
@@ -10,9 +10,9 @@
             </div>
             {% for event in events %}
                 {% if tmpl %}
-                    {{ tmpl(event, options, _t, _f) | safe }}
+                    {{ tmpl(event, config, _t, _f) | safe }}
                 {% else %}
-                    {{ drawRow(event, options, _t, _f) }}
+                    {{ drawRow(event, config, _t, _f) }}
                 {% endif %}
             {% endfor %}
         </div>

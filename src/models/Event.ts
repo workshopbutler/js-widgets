@@ -53,7 +53,6 @@ export default class Event {
         this.url = `${options.eventPageUrl}?id=${this.hashedId}`;
         this.tickets = this.getTickets(this.free, attrs.free_ticket_type, attrs.paid_ticket_types);
         this.registrationPage = new RegistrationPage(attrs.registration_page, options.registrationPageUrl, this.hashedId);
-
         this.registrationForm = attrs.registration_form ?
             new Form(attrs.instructions, attrs.registration_form, this) :
             undefined;

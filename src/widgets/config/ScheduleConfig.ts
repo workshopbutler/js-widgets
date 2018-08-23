@@ -8,12 +8,14 @@ export default class ScheduleConfig extends WidgetConfig {
     readonly eventPageUrl: string;
     readonly registrationPageUrl?: string;
     readonly filters: string[];
+    readonly registration: boolean;
 
     protected constructor(options: any) {
         super(options);
         this.eventPageUrl = options.eventPageUrl;
         this.registrationPageUrl = options.registrationPageUrl;
         this.filters = options.filters;
+        this.registration = options.registration !== undefined ? options.registration : false;
     }
 
     /**

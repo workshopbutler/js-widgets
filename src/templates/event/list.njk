@@ -1,12 +1,12 @@
-{% macro list(events, tmpl, _t, _f) %}
+{% macro list(events, tmpl, config, _t, _f) %}
     {% from "./tile.njk" import drawEvent %}
     <div class="wsb-schedule">
         <div class="wsb-tiles" data-event-list>
             {% for event in events %}
                 {% if tmpl %}
-                    {{ tmpl(event, _t, _f) | safe }}
+                    {{ tmpl(event, config, _t, _f) | safe }}
                 {% else %}
-                    {{ drawEvent(event, _t, _f) }}
+                    {{ drawEvent(event, config, _t, _f) }}
                 {% endif %}
             {% endfor %}
         </div>

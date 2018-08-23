@@ -8,15 +8,10 @@
 
   a {
     color: @britton;
-
-    &:hover {
-      color: @britton !important;
-      border-bottom-color: @britton;
-    }
   }
 
   .wsb-btn-primary {
-    color: #fff !important;
+    color: #fff;
     background-color: #7796a8;
     border-color: #668394;
     border-radius: 2px;
@@ -35,6 +30,7 @@
     fieldset[disabled] & {
       opacity: .7 !important;
       cursor: default;
+      color: @britton;
     }
   }
 
@@ -73,7 +69,7 @@
   .wsb-tile-button {
     position: static;
     height: auto;
-    margin: 15px 0;
+    margin: 2em 0;
     -webkit-transform: none !important;
     -moz-transform: none !important;
     -ms-transform: none !important;
@@ -85,9 +81,10 @@
     position: static;
     padding: 6px 15px;
     height: auto;
-    line-height: 1;
+    line-height: 2;
     font-size: 16px;
     font-weight: 400;
+
   }
 
   // table

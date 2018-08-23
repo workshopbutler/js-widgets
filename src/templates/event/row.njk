@@ -1,4 +1,4 @@
-{% macro drawRow(event, options, _t, _f) %}
+{% macro drawRow(event, config, _t, _f) %}
     <div class="wsb-table__row" data-event-obj data-event-type="{{ event.type.id }}"
          data-event-location="{{ event.location.countryCode }}"
          data-event-language="{{ event.language.spoken | join(',') }}"
@@ -22,7 +22,7 @@
             {% if event.type.badge %}
                 <img class="wsb-table__img" src="{{ event.type.badge }}">
             {% endif %}
-            <a data-widget-go="" href="{{ event.url }}" class="wsb-table__link">
+            <a href="{{ event.url }}" class="wsb-table__link">
                 {{ event.title }}
             </a>
         </div>
@@ -30,9 +30,14 @@
             {% if event.free %}
                 <div class="wsb-free">{{ _t('schedule.event.free') | lower }}</div>
             {% endif %}
-            <a href="{{ event.url }}" class="wsb-table__btn">
-                {{ _t('schedule.event.register') }}
-            </a>
+            {% if event.state.closed() %}
+                <button class="wsb-table__btn" disabled>{{ _t('schedule.event.soldOut') }}</button>
+            {% else %}
+                <a href="{% if config.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
+                    class="wsb-table__btn">
+                    {{ _t('schedule.event.register') }}
+                </a>
+            {% endif %}
         </div>
     </div>
 {% endmacro %}

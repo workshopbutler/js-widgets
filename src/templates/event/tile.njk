@@ -1,4 +1,4 @@
-{% macro drawEvent(event, _t, _f) %}
+{% macro drawEvent(event, config, _t, _f) %}
     <div class="wsb-tile" data-event-obj data-event-type="{{ event.type.id }}"
          data-event-location="{{ event.location.countryCode }}"
          data-event-language="{{ event.language.spoken | join(',') }}"
@@ -33,13 +33,16 @@
             {% endfor %}
         </div>
         <div class="wsb-tile-button">
-            <a data-widget-go href="{{ event.url }}" class="wsb-btn wsb-btn-primary wsb-tile-btn">
-                {% if event.soldOut %}
+            {% if event.state.closed() %}
+                <button disabled class="wsb-btn wsb-btn-primary wsb-tile-btn">
                     {{ _t('schedule.event.soldOut') }}
-                {% else %}
-                    {{ _t('schedule.event.register') }}
-                {% endif %}
+                </button>
+            {% else %}
+            <a href="{% if config.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
+               class="wsb-btn wsb-btn-primary wsb-tile-btn">
+                {{ _t('schedule.event.register') }}
             </a>
+            {% endif %}
         </div>
     </div>
 {% endmacro %}

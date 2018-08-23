@@ -75,6 +75,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
 
             const data = {
                 events: self.events,
+                config: self.config,
                 filters: self.filters.getFilters(self.events),
                 template: template ? renderTemplate : null,
                 _t: function(key: string, options: any = null) {
