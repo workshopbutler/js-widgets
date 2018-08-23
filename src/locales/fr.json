@@ -348,7 +348,9 @@
         "public": "Évaluation pour événements publics",
         "private": "Notation pour des événements privés",
         "basedOn": "basé sur 1&nbsp;évaluation",
-        "basedOn_plural": "basé sur {{count}}&nbsp;évaluations"
+        "basedOn_plural": "basé sur {{count}}&nbsp;évaluations",
+        "review": "à partir de 1 avis",
+        "review_plural": "à partir de {{count}} avis"
       }
     },
     "bio": "Bio",

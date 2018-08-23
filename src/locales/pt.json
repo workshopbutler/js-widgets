@@ -348,7 +348,9 @@
         "public": "Classificação para eventos públicos",
         "private": "Classificação para eventos privados",
         "basedOn": "com base em 1&nbsp;avaliação",
-        "basedOn_plural": "com base em {{count}}&nbsp;avaliações"
+        "basedOn_plural": "com base em {{count}}&nbsp;avaliações",
+        "review": "a partir de 1 comentário",
+        "review_plural": "a partir de {{count}} comentários"
       }
     },
     "bio": "Bio",

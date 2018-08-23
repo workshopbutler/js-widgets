@@ -348,7 +348,9 @@
         "public": "Beoordeling voor openbare evenementen",
         "private": "Beoordeling voor privé-evenementen",
         "basedOn": "op basis van 1&nbsp;evaluatie",
-        "basedOn_plural": "gebaseerd op {{count}}&nbsp;evaluaties"
+        "basedOn_plural": "gebaseerd op {{count}}&nbsp;evaluaties",
+        "review": "van 1 beoordeling",
+        "review_plural": "van {{count}} beoordelingen"
       }
     },
     "bio": "Bio",

@@ -335,7 +335,9 @@
         "public": "Rating for public events",
         "private": "Rating for private events",
         "basedOn": "based on 1&nbsp;evaluation",
-        "basedOn_plural": "based on {{count}}&nbsp;evaluations"
+        "basedOn_plural": "based on {{count}}&nbsp;evaluations",
+        "review": "from 1 review",
+        "review_plural": "from {{count}} reviews"
       }
     },
     "bio": "Bio",

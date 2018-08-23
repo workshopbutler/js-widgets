@@ -348,7 +348,9 @@
         "public": "Bewertung für öffentliche Veranstaltungen",
         "private": "Bewertung für private Veranstaltungen",
         "basedOn": "basierend auf 1&nbsp;Bewertung",
-        "basedOn_plural": "basierend auf {{count}}&nbsp;Bewertungen"
+        "basedOn_plural": "basierend auf {{count}}&nbsp;Bewertungen",
+        "review": "von 1 Bewertung",
+        "review_plural": "von {{count}} Bewertungen"
       }
     },
     "bio": "Bio",
