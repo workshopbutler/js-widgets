@@ -9,7 +9,7 @@ import JQueryEvent = JQuery.Event;
 import WidgetConfig from "../config/WidgetConfig";
 
 /**
- * Logic for the registration form page
+ * Logic for the registrationPage form page
  */
 export default abstract class RegistrationForm<T extends WidgetConfig> extends Widget<T> {
     protected event: Event;

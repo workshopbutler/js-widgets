@@ -5,19 +5,19 @@ import getTemplate from "./helpers/_templates";
 import {getQueryParam} from "../common/helpers/_urlParser";
 import WidgetFactory from "../Factory";
 import {ITemplates} from "../interfaces/ITemplates";
-import RegistrationForm from "./blocks/RegistrationForm";
 import {renderString as nunjucksRenderString} from "nunjucks"
-import FormHelper from "./helpers/_form";
 import {DateTime} from "luxon";
 import Localisation from "../utils/Localisation";
 import Formatter from "../view/Formatter";
 import EventPageConfig from "./config/EventPageConfig";
+import Widget from "./Widget";
 
 /**
  * Logic for the event details
  */
-export default class EventPage extends RegistrationForm<EventPageConfig> {
+export default class EventPage extends Widget<EventPageConfig> {
     protected readonly formatter: Formatter;
+    protected event: Event;
 
     /**
      * Creates a new event page
@@ -74,7 +74,6 @@ export default class EventPage extends RegistrationForm<EventPageConfig> {
                 const data = {
                     event: self.event,
                     config: self.config,
-                    countries: self.getCountries(),
                     DateTime: DateTime,
                     _t: function(key: string, options: any = null) {
                         return self.loc.translate(key, options);
@@ -92,10 +91,6 @@ export default class EventPage extends RegistrationForm<EventPageConfig> {
                 if (self.config.widgets) {
                     WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
                 }
-                self._assignEvents();
-                self.formHelper = new FormHelper({
-                    $controls: self.$root.find('[data-control]')
-                }, self.getErrorMessages());
             });
     }
 
@@ -111,42 +106,6 @@ export default class EventPage extends RegistrationForm<EventPageConfig> {
      */
     protected updateTitle() {
         document.title = this.event.title;
-    }
-
-    _assignEvents() {
-        if (this.event.state.open()) {
-            this.$root.on('click', '[data-registration-button]', this.onRegistration.bind(this));
-        }
-        super.assignEvents();
-    }
-
-    /**
-     * Process the click on 'Registration' button
-     * @param e {Event}
-     * @private
-     */
-    private onRegistration(e: JQuery.Event) {
-        e.preventDefault();
-        if (this.event.state.closed()) {
-            logError("EventPage widget configured incorrectly. Registration button shouldn't be active when the registration is closed");
-        } else {
-            const btn = $(e.currentTarget);
-            const ticketId = $(btn).data('ticket-id');
-            const url = this.event.registration.getUrl(ticketId);
-            if (url) {
-                const newTab = window.open(url, '_blank');
-                if (newTab) {
-                    newTab.focus()
-                }
-            } else {
-                $('[data-registration-block]').show();
-                $('[data-post-registration-message]').hide();
-                const offset = this.$root.find('[data-registration-block]').offset();
-                $('html, body').animate({
-                    scrollTop: offset && offset.top,
-                }, 400);
-            }
-        }
     }
 
     private getUrl(eventId: string) {

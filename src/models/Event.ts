@@ -1,7 +1,7 @@
 import FreeTicketType from "./FreeTicketType";
 import PaidTicketType from "./PaidTicketType";
 import Tickets from "./Tickets";
-import Registration from "../widgets/models/_registration";
+import RegistrationPage from "./RegistrationPage";
 import Type from "./Type";
 import Trainer from "./Trainer";
 import Schedule from "./Schedule";
@@ -11,7 +11,6 @@ import EventState from "./EventState";
 import Form from "./form/Form";
 
 export default class Event {
-    options: any;
     readonly id: number;
     readonly hashedId: string;
     readonly type: Type;
@@ -23,7 +22,7 @@ export default class Event {
     readonly free: boolean;
     readonly soldOut: boolean;
     readonly url: string;
-    readonly registration: any;
+    readonly registrationPage: RegistrationPage;
     readonly tickets: Tickets | null;
     readonly trainers: Trainer[];
     readonly description: string;
@@ -51,11 +50,9 @@ export default class Event {
         this.schedule = new Schedule(attrs.schedule);
         this.location = new Location(attrs.location);
 
-        this.options = options;
-
         this.url = `${options.eventPageUrl}?id=${this.hashedId}`;
-        this.registration = new Registration(attrs, options.registrationPageUrl);
         this.tickets = this.getTickets(this.free, attrs.free_ticket_type, attrs.paid_ticket_types);
+        this.registrationPage = new RegistrationPage(attrs.registration_page, options.registrationPageUrl, this.hashedId);
 
         this.registrationForm = attrs.registration_form ?
             new Form(attrs.instructions, attrs.registration_form, this) :

@@ -9,10 +9,7 @@
                     {% if event.state.closed() %}
                         <button class="wsb-sidebar__register" disabled>{{ _f(event.state) }}</button>
                     {% else %}
-                        <a href="#" target="_blank" data-registration-button
-                                {% if event.tickets.getActiveTicketId() %}
-                                    data-ticket-id="{{ event.tickets.getActiveTicketId() }}"
-                                {% endif %}
+                        <a href="{{ event.registrationPage.url }}" target="_blank"
                            class="wsb-sidebar__register">{{ _t('event.register') }}</a>
                     {% endif %}
                 </div>
@@ -31,12 +28,6 @@
                 {% if event.description %}
                     <div class="wsb-desc">{{ event.description | safe }}</div>
                 {% endif %}
-
-                {% from "./builtInForm.njk" import registrationForm %}
-                <div data-registration-block class="wsb-before-registration">
-                    {{ registrationForm(event.registrationForm, countries, _t, _f) }}
-                </div>
-
             </div>
         </div>
     </div>
