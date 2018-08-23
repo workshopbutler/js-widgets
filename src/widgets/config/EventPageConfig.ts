@@ -5,17 +5,29 @@ import {logError} from "../../common/Error";
  * Contains @EventPageConfig widget configuration options
  */
 export default class EventPageConfig extends WidgetConfig {
-    readonly withTrainers: boolean;
+    readonly trainers: boolean;
     readonly trainerPageUrl?: string;
     readonly registrationPageUrl?: string;
     readonly widgets: any[];
 
+    /**
+     * When true, expired tickets are shown
+     */
+    readonly expiredTickets: boolean;
+
+    /**
+     * When true, the number of left tickets for each ticket type is shown
+     */
+    readonly numberOfTickets: boolean;
+
     protected constructor(options: any) {
         super(options);
-        this.withTrainers = options.withTrainers !== undefined ? options.withTrainers : false;
+        this.trainers = options.trainers !== undefined ? options.trainers : false;
         this.trainerPageUrl = options.trainerPageUrl ? options.trainerPageUrl : undefined;
         this.registrationPageUrl = options.registrationPageUrl ? options.registrationPageUrl : undefined;
         this.widgets = options.widgets !== undefined ? options.widgets : [];
+        this.expiredTickets = options.expiredTickets !== undefined ? options.expiredTickets : true;
+        this.numberOfTickets = options.numberOfTickets !== undefined ? options.numberOfTickets : true;
     }
 
     /**

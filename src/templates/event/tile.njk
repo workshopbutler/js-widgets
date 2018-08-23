@@ -22,10 +22,13 @@
         <div class="wsb-tile-content">
             {% for trainer in event.trainers %}
                 <div class="wsb-trainer">
-                    {% set url = options.trainerPageUrl + '?id=' + trainer.id %}
-                    {% set photo = "background-image: url(" + trainer.photo + ");" %}
-                    <a class="wsb-photo" href="{{ url }}" style="{{ photo }}"></a>
-                    <a class="wsb-name" href="{{ url }}"> {{ trainer.fullName() }}</a>
+                    {% if trainer.url %}
+                        {% set photo = "background-image: url(" + trainer.photo + ");" %}
+                        <a class="wsb-photo" href="{{ trainer.url }}" style="{{ photo }}"></a>
+                        <a class="wsb-name" href="{{ trainer.url }}"> {{ trainer.fullName() }}</a>
+                    {% else %}
+                        <img class="wsb-photo" src="{{ trainer.photo }}"/>{{ trainer.fullName() }}
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>

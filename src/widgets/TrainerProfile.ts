@@ -85,10 +85,25 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
                     self.templates.trainerProfile.render(data);
 
                 self.$root.html(content);
+                self.updateHTML();
                 if (self.config.widgets) {
                     WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
                 }
             });
+    }
+
+    /**
+     * Updates key elements of the page
+     */
+    protected updateHTML() {
+        this.updateTitle();
+    }
+
+    /**
+     * Changes the title of the page
+     */
+    protected updateTitle() {
+        document.title = this.trainer.fullName();
     }
 
     private getUrl(trainerId: number) {

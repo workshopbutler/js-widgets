@@ -6,10 +6,24 @@ import {logError} from "../../common/Error";
  */
 export default class RegistrationPageConfig extends WidgetConfig {
     readonly eventPageUrl?: string;
+    readonly trainers: boolean;
+
+    /**
+     * When true, expired tickets are shown
+     */
+    readonly expiredTickets: boolean;
+
+    /**
+     * When true, the number of left tickets for each ticket type is shown
+     */
+    readonly numberOfTickets: boolean;
 
     protected constructor(options: any) {
         super(options);
         this.eventPageUrl = options.eventPageUrl ? options.eventPageUrl : undefined;
+        this.trainers = options.trainers ? options.trainers : false;
+        this.expiredTickets = options.expiredTickets !== undefined ? options.expiredTickets : false;
+        this.numberOfTickets = options.numberOfTickets !== undefined ? options.numberOfTickets : true;
     }
 
     /**

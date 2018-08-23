@@ -73,7 +73,7 @@ export default class EventPage extends RegistrationForm<EventPageConfig> {
             function (template) {
                 const data = {
                     event: self.event,
-                    options: self.config,
+                    config: self.config,
                     countries: self.getCountries(),
                     DateTime: DateTime,
                     _t: function(key: string, options: any = null) {
@@ -88,6 +88,7 @@ export default class EventPage extends RegistrationForm<EventPageConfig> {
                     self.templates.eventPage.render(data);
 
                 self.$root.html(content);
+                self.updateHTML();
                 if (self.config.widgets) {
                     WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
                 }
@@ -96,6 +97,20 @@ export default class EventPage extends RegistrationForm<EventPageConfig> {
                     $controls: self.$root.find('[data-control]')
                 }, self.getErrorMessages());
             });
+    }
+
+    /**
+     * Updates key elements of the page
+     */
+    protected updateHTML() {
+        this.updateTitle();
+    }
+
+    /**
+     * Changes the title of the page
+     */
+    protected updateTitle() {
+        document.title = this.event.title;
     }
 
     _assignEvents() {

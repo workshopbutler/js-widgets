@@ -80,7 +80,7 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
             function (template) {
                 const data = {
                     event: self.event,
-                    options: self.config,
+                    config: self.config,
                     ticket: self.ticketId,
                     countries: self.getCountries(),
                     _t: function(key: string, options: any = null) {
@@ -104,7 +104,7 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
     }
 
     private getUrl(eventId: string) {
-        return `events/${eventId}?api_key=${this.apiKey}`;
+        return `events/${eventId}?api_key=${this.apiKey}&fields=trainer.rating`;
     }
 
     /**

@@ -13,7 +13,7 @@ export default class Trainer {
     readonly email: string;
     readonly photo: string;
     readonly bio: string;
-    readonly url: string;
+    readonly url?: string;
     readonly country: string;
     readonly languages: string[];
     readonly yearsOfExperience: number;
@@ -50,7 +50,7 @@ export default class Trainer {
         this.endorsements = jsonData.endorsements;
 
         this.country = Trainer.getCountry(jsonData);
-        this.url = `${options.trainerPageUrl}?id=${this.id}`;
+        this.url = options.trainerPageUrl ? `${options.trainerPageUrl}?id=${this.id}` : undefined;
         this.languages = jsonData.languages ?
             jsonData.languages.map((language: string) => getLangCode(language)) : [];
     }

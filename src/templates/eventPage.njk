@@ -17,7 +17,7 @@
                     {% endif %}
                 </div>
                 {% from "./event/info.njk" import info %}
-                {{ info(event, options, _t, _f) }}
+                {{ info(event, config, _t, _f) }}
                 <div class="wsb-info" id="upcoming-events">
                     <div class="wsb-workshops__title">
                         {{ _t('sidebar.future') }}:

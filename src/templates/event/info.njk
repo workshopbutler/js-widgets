@@ -1,4 +1,4 @@
-{% macro info(event, options, _t, _f) %}
+{% macro info(event, config, _t, _f) %}
     <div class="wsb-info">
         <div class="wsb-info__title">{{ _t('event.info.date') }}:</div>
         {% if event.schedule.atOneDay() %}
@@ -27,27 +27,34 @@
             {% else %}
                 {% from "./paidTicket.njk" import paidTicket %}
                 {% for ticket in event.tickets.paid %}
-                    {{ paidTicket(ticket, _t, _f) }}
+                    {{ paidTicket(ticket, config, _t, _f) }}
                 {% endfor %}
             {% endif %}
         </div>
     {% endif %}
-    {% if options.withTrainers %}
+    {% if config.trainers %}
         <div class="wsb-trainers">
             {% for trainer in event.trainers %}
                 <div class="wsb-trainer">
                     <div class="wsb-profile">
-                        {% set url = options.trainerPageUrl + '?id=' + trainer.id %}
-                        {% set photo = "background-image: url(" + trainer.photo + ");" %}
-                        <a class="wsb-profile_img" href="{{ url }}" style="{{ photo }}"></a>
+                        {% if trainer.url %}
+                            {% set photo = "background-image: url(" + trainer.photo + ");" %}
+                            <a class="wsb-profile_img" href="{{ trainer.url }}" style="{{ photo }}"></a>
+                        {% else %}
+                            <div class="wsb-profile_img"><img src="{{ trainer.photo }}"/></div>
+                        {% endif %}
                         <div class="wsb-profile__name">
                             <div>
-                                <a href="{{ url }}">{{ trainer.fullName() }}</a>
+                                {% if trainer.url %}
+                                    <a href="{{ trainer.url }}">{{ trainer.fullName() }}</a>
+                                {% else %}
+                                    {{ trainer.fullName() }}
+                                {% endif %}
                             </div>
                             <div class="wsb-profile__rating">
                                 {% from "../common/rating.njk" import render_rating_stars %}
                                 {{ render_rating_stars(trainer.publicStats.rating, false) }}
-                                {{ trainer.publicStats.rating.toPrecision(3) }} <span>from {{ trainer.publicStats.numberOfEvaluations }} reviews</span>
+                                {{ _f(trainer.publicStats.rating) }} <span>from {{ trainer.publicStats.numberOfEvaluations }} reviews</span>
                             </div>
                         </div>
                     </div>
