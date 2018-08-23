@@ -1,19 +1,13 @@
+@import "../core/settings";
+
 .wsb-content {
   // form
   .wsb-form {
-    border-top: 1px solid #e7e7e7;
-    padding-top: 22px;
-    margin-top: 50px;
+    padding-top: -24px;
   }
 
   .wsb-form__body {
-    max-width: 531px;
-  }
-
-  .wsb-form__title {
-    font-size: 22px;
-    line-height: 1;
-    margin-bottom: 20px;
+    max-width: 800px;
   }
 
   .wsb-form__instructions {
@@ -32,8 +26,19 @@
     color: @red;
   }
 
+  section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
   .wsb-form__field {
+    flex: 0 1 46%;
     margin-bottom: 21px;
+
+    &.textarea {
+      flex: 1 1 46%;
+    }
 
     .b-error {
       top: 15px;
@@ -41,23 +46,17 @@
     }
   }
 
-  .wsb-form__label {
+  label {
     font-size: 14px;
-    line-height: 1;
     font-weight: bold;
     margin-bottom: 10px;
+    display: inline-block;
   }
 
-  .wsb-form__input {
-    display: block;
-    width: 100%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    height: 45px;
+  textarea,
+  select,
+  input {
     padding: 0 10px;
-    font-size: 16px;
-    border: 1px solid #dbdcde;
     border-radius: 2px;
     box-shadow: none;
     .transition(all .15s ease);
@@ -68,7 +67,7 @@
   }
 
   // checkbox
-  .wsb-form__checkbox {
+  label.wsb-form__checkbox {
     display: block;
     position: relative;
     padding-left: 27px !important;
@@ -138,7 +137,7 @@
 
   .wsb-form__btn {
     display: inline-block;
-    width: 100%;
+    width: 50%;
     min-width: 300px;
     padding: 15px 0;
     text-decoration: none !important;
@@ -170,4 +169,14 @@
     color: @red;
     padding-bottom: 1em;
   }
+
+  @media screen and (max-width: 600px) {
+    .wsb-form__field {
+      flex: 0 1 100%;
+    }
+    .wsb-form__btn {
+      width: 100%;
+    }
+  }
+
 }

@@ -14,6 +14,8 @@ import WidgetConfig from "../config/WidgetConfig";
 export default abstract class RegistrationForm<T extends WidgetConfig> extends Widget<T> {
     protected event: Event;
     protected formHelper: FormHelper;
+    protected successMessage: JQuery<HTMLElement>;
+    protected form: JQuery<HTMLElement>;
 
     /**
      * Creates a new registration form
@@ -29,6 +31,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
                           loc: Localisation,
                           config: T) {
         super(selector, apiKey, templates, loc, config);
+        this.$root.find('#wsb-success').hide();
     }
 
     protected assignEvents() {
@@ -60,8 +63,8 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
             transport.post(url, formData,
                 (data: any) => {
                     self.formHelper.clearForm();
-                    self.$root.find('[data-registration-form]').hide();
-                    self.$root.find('[data-post-registration-message]').show();
+                    self.successMessage.show();
+                    self.form.hide();
                     self.$root.removeClass('h-busy');
                     $(e.target as HTMLElement).removeProp('disabled').removeClass('h-busy');
                 });
