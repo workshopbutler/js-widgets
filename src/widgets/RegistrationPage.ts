@@ -78,6 +78,7 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
 
         $.when(getTemplate(self.config)).done(
             function (template) {
+                self.updateHTML();
                 const data = {
                     event: self.event,
                     config: self.config,
@@ -104,6 +105,20 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
                     $controls: self.$root.find('[data-control]')
                 }, self.getErrorMessages());
             });
+    }
+
+    /**
+     * Updates key elements of the page
+     */
+    protected updateHTML() {
+        this.updateTitle();
+    }
+
+    /**
+     * Changes the title of the page
+     */
+    protected updateTitle() {
+        document.title = this.event.title;
     }
 
     private getUrl(eventId: string) {

@@ -162,6 +162,7 @@
   //page
   .wsb-title,
   .wsb-ticket__val,
+  .wsb-header h1,
   .wsb-ticket__name,
   .wsb-profile__name h3,
   .wsb-form__title,
@@ -177,7 +178,9 @@
   }
 
   .wsb-header {
-    padding-bottom: 10px;
+    padding-top: 5em;
+    padding-bottom: 1em;
+    border-bottom: 0.2em solid @background-grey;
   }
 
   .wsb-title {
@@ -194,16 +197,6 @@
   .wsb-body {
     position: relative;
     padding-top: 24px;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 20px;
-      left: 20px;
-      height: 2px;
-      background-color: #E7E7E7;
-    }
   }
 
   .wsb-desc {
@@ -327,11 +320,6 @@
     text-transform: uppercase;
     padding: 16px 0;
     color: #333 !important;
-  }
-
-  .wsb-form {
-    padding-top: 22px;
-    margin-top: 41px;
   }
 
   &.wsb-footer {

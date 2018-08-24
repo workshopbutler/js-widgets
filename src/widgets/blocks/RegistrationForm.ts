@@ -36,7 +36,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
 
     protected assignEvents() {
         if (this.event.state.open()) {
-            this.$root.on('click', '[data-widget-submit]', this.onFormSubmittion.bind(this));
+            this.$root.on('submit', this.onFormSubmittion.bind(this));
         }
     }
 

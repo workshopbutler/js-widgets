@@ -62,39 +62,22 @@
     min-height: 114px;
   }
 
-  .b-error {
-    position: absolute;
-    bottom: 15px;
-    font-size: 12px;
-    right: 10px;
-    color: #e73b2b;
-    opacity: 0;
-    visibility: hidden;
-  }
+  input,
+  select,
+  textarea {
+    &:invalid:not(:focus) {
+      border-color: @red;
 
-  .b-error_show {
-    .b-error {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    input,
-    select,
-    textarea {
-      border-color: #d64456;
-
-      &:focus {
-        outline: none !important;
+      &[type='radio'] {
+        color: @red;
       }
     }
-    &.wsb-radio {
-      color: @red;
-    }
   }
+
 
   // form
   .wsb-form {
-    padding-top: -24px;
+    margin-top: -24px;
   }
 
   .wsb-form__body {

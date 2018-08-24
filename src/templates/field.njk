@@ -10,20 +10,18 @@
         {% endif %}
         {% if field.type === "textarea" %}
             <textarea name="{{ field.name }}" data-control title="{{ field.label }}"
-                      class="{{ "_validate-required" if field.required }}"
+                      {{ 'required' if field.required }}
                       style="height : 90px ;" cols="30" rows="10"></textarea>
         {% elif field.type === "select" %}
             <select name="{{ field.name }}" title="{{ field.label }}"
-                    data-control
-                    class="{{ "_validate-required" if field.required }}">
+                    data-control {{ 'required' if field.required }}
                 {% for option in field.options %}
                     <option value="{{ option.value }}">{{ option.label }}</option>
                 {% endfor %}
             </select>
         {% elif field.type === "country" %}
             <select name="{{ field.name }}" title="{{ field.label }}"
-                    data-control
-                    class="{{ "_validate-required" if field.required }}">
+                    data-control {{ 'required' if field.required }}
                 <option value="" selected disabled>{{ _t('form.country') }}</option>
                 {% for code, name in countries %}
                     <option value="{{ code }}">{{ name }}</option>
@@ -32,8 +30,8 @@
         {% elif field.type === "checkbox" %}
             <label class="wsb-form__checkbox">
                 <input name="{{ field.name }}" type="checkbox"
-                       class=" wsb-form__checkbox-real
-                               {{ "_validate-required" if field.required }}" value="yes" data-control/>
+                       class=" wsb-form__checkbox-real" {{ 'required' if field.required }}
+                       value="yes" data-control/>
                 <i class="wsb-form__checkbox-img"></i>
                 {{ field.label | safe }}
             </label>
@@ -50,8 +48,7 @@
             {% endfor %}
         {% else %}
             <input name="{{ field.name }}" title="{{ field.label }}"
-                   type="{{ field.type }}"
-                   class="{{ "_validate-required" if field.required }}" data-control/>
+                   type="{{ field.type }}" {{ 'required' if field.required }} data-control/>
         {% endif %}
     </div>
 {% endmacro %}
