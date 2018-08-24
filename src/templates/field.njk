@@ -1,4 +1,4 @@
-{% macro formField(field, countries, _t, _f) %}
+{% macro formField(field, disabled, countries, _t, _f) %}
     <div class="wsb-form__field {{ field.type }}">
         {% if field.type !== "checkbox" %}
             <label for="{{ field.name }}">
@@ -10,44 +10,43 @@
         {% endif %}
         {% if field.type === "textarea" %}
             <textarea name="{{ field.name }}" data-control title="{{ field.label }}"
-                      {{ 'required' if field.required }}
+                      {{ 'required' if field.required }} {{ 'disabled' if disabled }}
                       style="height : 90px ;" cols="30" rows="10"></textarea>
         {% elif field.type === "select" %}
             <select name="{{ field.name }}" title="{{ field.label }}"
-                    data-control {{ 'required' if field.required }}
+                    data-control {{ 'required' if field.required }} {{ 'disabled' if disabled }}
                 {% for option in field.options %}
                     <option value="{{ option.value }}">{{ option.label }}</option>
                 {% endfor %}
             </select>
         {% elif field.type === "country" %}
             <select name="{{ field.name }}" title="{{ field.label }}"
-                    data-control {{ 'required' if field.required }}
+                    data-control {{ 'required' if field.required }} {{ 'disabled' if disabled }}>
                 <option value="" selected disabled>{{ _t('form.country') }}</option>
                 {% for code, name in countries %}
                     <option value="{{ code }}">{{ name }}</option>
                 {% endfor %}
             </select>
         {% elif field.type === "checkbox" %}
-            <label class="wsb-form__checkbox">
-                <input name="{{ field.name }}" type="checkbox"
-                       class=" wsb-form__checkbox-real" {{ 'required' if field.required }}
+            <label class="wsb-label" for="{{ field.name }}">
+                <input name="{{ field.name }}" id="{{ field.name }}" type="checkbox" {{ 'disabled' if disabled }}
+                        {{ 'required' if field.required }}
                        value="yes" data-control/>
-                <i class="wsb-form__checkbox-img"></i>
                 {{ field.label | safe }}
             </label>
         {% elif field.type === "ticket" %}
             {% for ticket in field.tickets.paid %}
                 {% if ticket.active() %}
                     {% set name = _f(ticket.price) + ' - ' + ticket.name %}
-                    <label for="{{ ticket.id }}" class="wsb-radio">
+                    <label for="{{ ticket.id }}" class="wsb-label">
                         <input id="{{ ticket.id }}" name="{{ field.name }}" title="{{ field.label }}" type="radio"
-                               data-control required value="{{ ticket.id }}"/>
+                               data-control required value="{{ ticket.id }}" {{ 'disabled' if disabled }} />
                         {{ name }}
                     </label>
                 {% endif %}
             {% endfor %}
         {% else %}
-            <input name="{{ field.name }}" title="{{ field.label }}"
+            <input name="{{ field.name }}" title="{{ field.label }}" {{ 'disabled' if disabled }}
                    type="{{ field.type }}" {{ 'required' if field.required }} data-control/>
         {% endif %}
     </div>

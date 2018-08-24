@@ -11,7 +11,7 @@
             <div class="wsb-left-col">
                 {% from "./form.njk" import registrationForm %}
                 {% if event.registrationForm %}
-                    {{ registrationForm(event.registrationForm, countries, _t, _f) }}
+                    {{ registrationForm(event, countries, _t, _f) }}
                 {% endif %}
             </div>
         </div>

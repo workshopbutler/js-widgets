@@ -386,14 +386,33 @@
       "website": "Webseite",
       "blog": "Blog",
       "ticket": "Ticket",
-      "comment": "Kommentar"
+      "comment": "Kommentar",
+      "promo_code": "Gutscheincode",
+      "member_id": "Mitgliedsnummer",
+      "billing": {
+        "street_1": "Adresse (Zeile 1)",
+        "street_2": "Adresse (Zeile 2)",
+        "city": "Wohnort",
+        "province": "Bundesland",
+        "country": "Land",
+        "postcode": "Postleitzahl"
+      },
+      "work": {
+        "street_1": "Adresse (Zeile 1)",
+        "street_2": "Adresse (Zeile 2)",
+        "city": "Wohnort",
+        "province": "Bundesland",
+        "country": "Land",
+        "postcode": "Postleitzahl"
+      }
     },
     "section": {
-      "Home Address": "Heimatadresse",
-      "Billing Address": "Rechnungsadresse",
-      "Work Info": "Arbeitsinfo",
-      "Additional Information": "zusätzliche Information",
-      "Ticket": "Ticket"
+      "home address": "Heimatadresse",
+      "billing address": "Rechnungsadresse",
+      "billing info": "Rechnungsinfo",
+      "work info": "Arbeitsinfo",
+      "additional information": "zusätzliche Information",
+      "ticket": "Ticket"
     }
   },
   "registration": {

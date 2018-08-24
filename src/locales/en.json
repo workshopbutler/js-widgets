@@ -374,7 +374,17 @@
       "blog": "Blog",
       "ticket": "Ticket",
       "comment": "Comment",
+      "promo_code": "Promo code",
+      "member_id": "Member ID",
       "billing": {
+        "street_1": "Street 1",
+        "street_2": "Street 2",
+        "city": "City",
+        "province": "Province/State",
+        "country": "Country",
+        "postcode": "Postcode"
+      },
+      "work": {
         "street_1": "Street 1",
         "street_2": "Street 2",
         "city": "City",
@@ -384,12 +394,12 @@
       }
     },
     "section": {
-      "Home Address": "Home Address",
-      "Billing Address": "Billing Address",
-      "Billing Info": "Billing Address",
-      "Work Info": "Work Info",
-      "Additional Information": "Additional Information",
-      "Ticket": "Ticket"
+      "home address": "Home Address",
+      "billing address": "Billing Address",
+      "billing info": "Billing Info",
+      "work info": "Work Info",
+      "additional information": "Additional Information",
+      "ticket": "Ticket"
     }
   },
   "registration": {

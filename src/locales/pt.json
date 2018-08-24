@@ -386,14 +386,33 @@
       "website": "Website",
       "blog": "Blog",
       "ticket": "Bilhete",
-      "comment": "Comentário"
+      "comment": "Comentário",
+      "promo_code": "Código promocional",
+      "member_id": "ID do membro",
+      "billing": {
+        "street_1": "Endereço 1",
+        "street_2": "Endereço 2",
+        "city": "Cidade",
+        "province": "Município/Estado",
+        "country": "País",
+        "postcode": "Código Postal"
+      },
+      "work": {
+        "street_1": "Endereço 1",
+        "street_2": "Endereço 2",
+        "city": "Cidade",
+        "province": "Município/Estado",
+        "country": "País",
+        "postcode": "Código Postal"
+      }
     },
     "section": {
-      "Home Address": "Endereço Residencial",
-      "Billing Address": "Endereço de Cobrança",
-      "Work Info": "Info de Trabalho",
-      "Additional Information": "Informação Adicional",
-      "Ticket": "Bilhete"
+      "home address": "Endereço Residencial",
+      "billing address": "Endereço de Cobrança",
+      "work info": "Info de Trabalho",
+      "billing info": "Informação de pagamento",
+      "additional information": "Informação Adicional",
+      "ticket": "Bilhete"
     }
   },
   "registration": {

@@ -21,13 +21,8 @@ export default class FormHelper {
 
     _assignEvents() {
         this.$controls
-            .on('focus', this._onFocusControl.bind(this))
             .on('blur', this._onBlurControl.bind(this))
             .on('input change', this._onInputControl.bind(this))
-    }
-
-    _onFocusControl(e){
-        const $el = $(e.currentTarget);
     }
 
     _onBlurControl(e){

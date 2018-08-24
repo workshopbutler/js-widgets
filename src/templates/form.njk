@@ -1,4 +1,4 @@
-{% macro registrationForm(form, countries, _t, _f) %}
+{% macro registrationForm(event, countries, _t, _f) %}
     <div class="wsb-congratulation" id="wsb-success">
         <h2 class="wsb-congratulation__title">
             {{ _t('registration.successTitle') }}
@@ -10,22 +10,26 @@
 
     <form action="#" class="wsb-form" id="wsb-form">
         <div class="wsb-form__body">
-            <div class="wsb-form__instructions">{{ form.instructions }}</div>
+            <div class="wsb-form__instructions">{{ event.registrationForm.instructions }}</div>
             {% from "./field.njk" import formField %}
-            {% for section in form.sections %}
+            {% for section in event.registrationForm.sections %}
                 {% if section.name %}
-                    <div class="wsb-form__section-title">{{ _t('form.section.' + section.name) }}</div>
+                    <div class="wsb-form__section-title">{{ _t('form.section.' + section.name.toLowerCase()) }}</div>
                 {% endif %}
                 <section>
                     {% for field in section.fields %}
-                        {{ formField(field, countries, _t, _f) }}
+                        {{ formField(field, event.state.closed(), countries, _t, _f) }}
                     {% endfor %}
                 </section>
             {% endfor %}
             <div class="wsb-form__error" data-form-major-error></div>
-            <button data-widget-submit type="submit" class="wsb-form__btn">
-                {{ _t('event.form.button') }}
-            </button>
+            {% if event.state.closed() %}
+                <button class="wsb-form__btn" disabled>{{ _f(event.state) }}</button>
+            {% else %}
+                <button type="submit" class="wsb-form__btn">
+                    {{ _t('event.form.button') }}
+                </button>
+            {% endif %}
         </div>
     </form>
 {% endmacro %}

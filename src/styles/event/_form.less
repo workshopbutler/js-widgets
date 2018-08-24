@@ -33,7 +33,7 @@
     border-radius: 4px;
     .transition(all .15s ease);
 
-    &[type='radio'] {
+    &[type=radio], &[type=checkbox] {
       width: 2em;
       height: 1.1em;
       display: inline-block;
@@ -74,7 +74,6 @@
     }
   }
 
-
   // form
   .wsb-form {
     margin-top: -24px;
@@ -111,7 +110,7 @@
     margin-bottom: 21px;
     position: relative;
 
-    &.textarea, &.ticket {
+    &.textarea, &.ticket, &.checkbox {
       flex: 1 0 100%;
     }
   }
@@ -122,7 +121,7 @@
     margin-bottom: 10px;
     display: inline-block;
   }
-  label.wsb-radio {
+  label.wsb-label {
     font-weight: normal;
     cursor: pointer;
     display: block;
@@ -245,9 +244,11 @@
     .wsb-form__body {
       max-width: 100%;
     }
+
     .wsb-form__field {
       flex: 0 1 100%;
     }
+
     .wsb-form__btn {
       width: 100%;
     }

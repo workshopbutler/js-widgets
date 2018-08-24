@@ -13,7 +13,7 @@ export default class Localisation {
         this.locale = locale;
         i18next.init({
             lng: language,
-            debug: true,
+            debug: false,
             fallbackLng: 'en',
             resources: {
                 en: {

@@ -386,15 +386,34 @@
       "website": "Website",
       "blog": "Blog",
       "ticket": "Ticket",
-      "comment": "Commentaar"
+      "comment": "Commentaar",
+      "promo_code": "Promotiecode",
+      "member_id": "Gebruikers ID",
+      "billing": {
+        "street_1": "Straat 1",
+        "street_2": "Straat 2",
+        "city": "Stad",
+        "province": "Provincie / Staat",
+        "postcode": "Postcode",
+        "country": "Land"
+      },
+      "work": {
+        "street_1": "Straat 1",
+        "street_2": "Straat 2",
+        "city": "Stad",
+        "province": "Provincie / Staat",
+        "postcode": "Postcode",
+        "country": "Land"
+      }
 
     },
     "section": {
-      "Home Address": "Thuisadres",
-      "Billing Address": "Facturatie adres",
-      "Work Info": "Werkinfo",
-      "Additional Information": "Extra informatie",
-      "Ticket": "Ticket"
+      "home address": "Thuisadres",
+      "billing address": "Facturatie adres",
+      "work info": "Werkinfo",
+      "billing info": "Betaal informatie",
+      "additional information": "Extra informatie",
+      "ticket": "Ticket"
     }
   },
   "registration": {
