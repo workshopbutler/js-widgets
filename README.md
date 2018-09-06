@@ -47,6 +47,9 @@ a particular version of the styles is added to the HTML pages (for example, `eve
 
 ## Compatibility
 
+Starting version 1.0.0, the versions for JS widgets and themes are sync. If you use a version 1.1.0 for widgets, 
+you must use version 1.1.0 for themes. 
+
 JS widgets | Themes  
 -------------- | --------------------------
 0.9.0 | 0.5.3

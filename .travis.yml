@@ -16,13 +16,15 @@ script:
 
 after_success:
   - mkdir -p .latest .all
-  - cp dist/widgets.*.js .latest/
+  - cp -n dist/widgets.*.js .latest/
+  - cp -n dist/styles.*.min.css .latest/
 
   - export AWS_ACCESS_KEY_ID=$AWS_S3_ACCESS_KEY
   - export AWS_SECRET_ACCESS_KEY=$AWS_S3_SECRET_KEY
   - export AWS_DEFAULT_REGION=eu-central-1
   - aws s3 sync s3://wsb-integrations .all
-  - cp dist/widgets.*.js .all/
+  - cp -n dist/widgets.*.js .all/
+  - cp -n dist/styles.*.min.css .all/
 
 
 deploy:
