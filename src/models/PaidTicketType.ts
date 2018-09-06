@@ -2,6 +2,7 @@ import IPaidTicketType from "../interfaces/IPaidTicketType";
 import {TicketTypeState} from "./TicketTypeState";
 import TicketPrice from "./TicketPrice";
 import {DateTime} from "luxon";
+import PlainObject = JQuery.PlainObject;
 
 /**
  * A default implementation of IPaidTicketType interface
@@ -13,18 +14,21 @@ export default class PaidTicketType implements IPaidTicketType {
     readonly numberOfTicketsLeft: number;
     readonly start: DateTime;
     readonly end: DateTime;
-    readonly withTax: boolean;
+    /**
+     * True when a sales tax is NOT included in the price
+     */
+    readonly excludedTax: boolean;
     readonly price: TicketPrice;
     private readonly state: TicketTypeState;
 
-    constructor(jsonData: any, timezone: string) {
+    constructor(jsonData: PlainObject, timezone: string) {
         this.id = jsonData.id;
         this.name = jsonData.name;
         this.numberOfTickets = jsonData.amount;
         this.numberOfTicketsLeft = jsonData.left;
         this.start = DateTime.fromFormat(jsonData.start, 'yyyy-MM-dd', { zone: timezone });
         this.end = DateTime.fromFormat(jsonData.end, 'yyyy-MM-dd', { zone: timezone });
-        this.withTax = jsonData.with_vat;
+        this.excludedTax = !jsonData.with_vat;
         this.price = new TicketPrice(jsonData.price);
         this.state = new TicketTypeState(jsonData.state);
     }

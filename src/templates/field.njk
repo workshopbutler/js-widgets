@@ -45,6 +45,11 @@
                     </label>
                 {% endif %}
             {% endfor %}
+            {% if field.excludedTax %}
+                {{ _t("tax.excluded_all") }}
+            {% else %}
+                {{ _t("tax.included_all") }}
+            {% endif %}
         {% else %}
             <input name="{{ field.name }}" title="{{ field.label }}" {{ 'disabled' if disabled }}
                    type="{{ field.type }}" {{ 'required' if field.required }} data-control/>

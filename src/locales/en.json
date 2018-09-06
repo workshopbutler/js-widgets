@@ -343,6 +343,10 @@
     "bio": "Bio",
     "feedback": "Attendees feedback"
   },
+  "tax": {
+    "excluded_all": "All prices do not include VAT",
+    "included_all": "All prices include VAT"
+  },
   "form": {
     "country": "Choose a country",
     "error": {

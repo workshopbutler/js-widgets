@@ -356,6 +356,10 @@
     "bio": "Bio",
     "feedback": "Commentaires des participants"
   },
+  "tax": {
+    "excluded_all": "Tous les prix ne comprennent pas la TVA",
+    "included_all": "Tous les prix incluent la TVA"
+  },
   "form": {
     "country": "Choisissez un pays",
     "error": {

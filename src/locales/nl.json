@@ -356,6 +356,10 @@
     "bio": "Bio",
     "feedback": "Reacties van de deelnemers"
   },
+  "tax": {
+    "excluded_all": "Alle prijzen zijn exclusief BTW",
+    "included_all": "Alle prijzen zijn inclusief BTW"
+  },
   "form": {
     "country": "Kies een land",
     "error": {

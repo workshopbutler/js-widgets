@@ -356,6 +356,10 @@
     "bio": "Bio",
     "feedback": "Feedback des Teilnehmers"
   },
+  "tax": {
+    "excluded_all": "Alle Preise enthalten keine MwSt",
+    "included_all": "Alle Preisangaben inkl. MwSt"
+  },
   "form": {
     "country": "Wählen Sie ein Land",
     "error": {
