@@ -68,9 +68,6 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
             (data: PlainObject[]) => {
                 self.event = new Event(data, self.config);
                 self.renderRegistrationForm();
-            },
-            (data: any) => {
-                console.log(data);
             });
     }
 

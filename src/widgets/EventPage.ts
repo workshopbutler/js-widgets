@@ -62,9 +62,6 @@ export default class EventPage extends Widget<EventPageConfig> {
             (data: PlainObject) => {
                 self.event = new Event(data, self.config);
                 self.renderWidget();
-            },
-            (data: any) => {
-                console.log(data);
             });
     }
 

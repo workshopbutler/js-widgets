@@ -62,9 +62,6 @@ export default class Schedule extends Widget<ScheduleConfig> {
                     return new Event(event, self.config);
                 });
                 self.render();
-            },
-            (data: any) => {
-                console.log(data);
             });
     }
 

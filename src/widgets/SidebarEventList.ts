@@ -61,9 +61,6 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
                         return new Event(event, self.config);
                     });
                     self.renderUpcomingEventList();
-                },
-                (data: any) => {
-                    console.log(data);
                 });
         });
     }

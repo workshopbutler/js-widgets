@@ -61,9 +61,6 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
             (data: PlainObject) => {
                 self.trainer = new Trainer(data, self.config);
                 self.render();
-            },
-            (data: any) => {
-                console.log(data);
             });
     }
 

@@ -1,3 +1,7 @@
+import IApiResponse from "../interfaces/IApiResponse";
+import {logError} from "./Error";
+import IError from "../interfaces/IError";
+
 declare var BACKEND_URL: string;
 declare var API_VERSION: string;
 
@@ -21,23 +25,48 @@ class Transport {
      * @param {Function} callbackSuccess
      * @param {Function} callbackError
      */
-    get(url: string, data: object, callbackSuccess: Function, callbackError: Function) {
+    get(url: string, data: object, callbackSuccess: Function, callbackError?: (error: IError) => void) {
+        const withVersion = `${url}&version=${API_VERSION}`;
         const settings = {
-            url: this.makeUrl(url),
+            url: this.makeUrl(withVersion),
             crossDomain: true,
-            dataType: 'json',
-            headers: {
-                'X-API-Version': API_VERSION
-            },
+            dataType: 'jsonp',
             data: $.extend(true, {}, data),
-            success: callbackSuccess.bind(this),
-            error: callbackError.bind(this)
         };
-        $.ajax(settings);
+        $.ajax(settings).done(function(response: IApiResponse) {
+            if (response.status >= 400) {
+                const error = <IError>response.response;
+                const msg = error.info ? `${error.message}, additional info: ${error.info}` : error.message;
+                logError(msg);
+                if (callbackError) {
+                    callbackError(error);
+                }
+            } else {
+                callbackSuccess(response.response);
+            }
+        });
     }
 
     post(url: string, data: any, callbackSuccess: Function) {
-        this.makeFrameRequest('POST', url, data, callbackSuccess)
+        const withVersion = `${url}&version=${API_VERSION}`;
+        const settings = {
+            method: 'POST',
+            url: this.makeUrl(withVersion),
+            crossDomain: true,
+            dataType: 'json',
+            data: $.extend(true, {}, data),
+        };
+        $.ajax(settings).done(function(response: IApiResponse) {
+            if (response.status >= 400) {
+                const error = <IError>response.response;
+                const msg = error.info ? `${error.message}, additional info: ${error.info}` : error.message;
+                logError(msg);
+            } else {
+                callbackSuccess(response.response);
+            }
+        });
+
+        // this.makeFrameRequest('POST', url, data, callbackSuccess)
     }
 
     put(url: string, data: any, callbackSuccess: Function) {
@@ -54,7 +83,7 @@ class Transport {
         if (this.iframe) {
             if (this.isFrameLoaded && this.iframe.contentWindow) {
                 frameWindow = this.iframe.contentWindow;
-                frameWindow.postMessage(message, '*');
+                frameWindow.postMessage(message, BACKEND_URL);
                 return false;
             } else {
                 this.messageStack.push(message);
@@ -73,12 +102,12 @@ class Transport {
         this.iframe.onload = function () {
             if (self.messageStack.length > 0) {
                 self.messageStack.forEach(function (value) {
-                    frameWindow.postMessage(value, '*');
+                    frameWindow.postMessage(value, BACKEND_URL);
                 });
 
                 self.messageStack = [];
             } else {
-                frameWindow.postMessage(message, '*');
+                frameWindow.postMessage(message, BACKEND_URL);
             }
             self.isFrameLoaded = true;
         }.bind(this);
@@ -129,9 +158,13 @@ class Transport {
     }
 
     private addMessageListener(e: JQuery.Event) {
-        let data = (e.originalEvent as MessageEvent).data;
-        if (data.cb && typeof this.callbacks[data.cb] === "function") {
-            this.callbacks[data.cb](data);
+        if (!e.originalEvent) return;
+        const event = (e.originalEvent as MessageEvent);
+        if (event.origin != BACKEND_URL) {
+            return;
+        }
+        if (event.data.cb && typeof this.callbacks[event.data.cb] === "function") {
+            this.callbacks[event.data.cb](event.data);
         }
     }
 

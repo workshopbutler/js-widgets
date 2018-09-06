@@ -59,9 +59,6 @@ export default class TrainerList extends Widget<TrainerListConfig> {
                     return new Trainer(trainer, self.config);
                 });
                 self.render();
-            },
-            (data: any) => {
-                console.log(data);
             });
     }
 
@@ -95,7 +92,7 @@ export default class TrainerList extends Widget<TrainerListConfig> {
     /**
      * @param selector {string} JQuery selector
      * @param apiKey {string} API key
-     * @param templates {Templates} Templates
+     * @param templates {ITemplates} Templates
      * @param loc {Localisation} Localisation instance
      * @param options {object} Configuration config
      */
