@@ -1,4 +1,5 @@
-declare var BACKEND_URL: any;
+declare var BACKEND_URL: string;
+declare var API_VERSION: string;
 
 /**
  * Performs cross-site AJAX requests
@@ -21,15 +22,18 @@ class Transport {
      * @param {Function} callbackError
      */
     get(url: string, data: object, callbackSuccess: Function, callbackError: Function) {
-        $.ajax({
+        const settings = {
             url: this.makeUrl(url),
             crossDomain: true,
-            dataType: 'jsonp',
-
+            dataType: 'json',
+            headers: {
+                'X-API-Version': API_VERSION
+            },
             data: $.extend(true, {}, data),
             success: callbackSuccess.bind(this),
             error: callbackError.bind(this)
-        });
+        };
+        $.ajax(settings);
     }
 
     post(url: string, data: any, callbackSuccess: Function) {
@@ -113,8 +117,9 @@ class Transport {
             delete that.callbacks[callbackId];
         };
 
+        const withVersion = `${url}&version=${API_VERSION}`;
         this.sendToFrame({
-            url: url,
+            url: withVersion,
             data: JSON.stringify(data),
             method: method,
             cb: callbackId

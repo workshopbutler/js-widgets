@@ -9,6 +9,8 @@ import Widget from "./Widget";
 import Formatter from "../view/Formatter";
 import {logError} from "../common/Error";
 import ScheduleConfig from "./config/ScheduleConfig";
+import jqXHR = JQuery.jqXHR;
+import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the list of events
@@ -55,8 +57,8 @@ export default class Schedule extends Widget<ScheduleConfig> {
 
         const url = this.getUrl();
         transport.get(url, {},
-            (data: any) => {
-                self.events = data.response.map(function (event: any) {
+            (data: PlainObject[], status: string, jqXHR: jqXHR) => {
+                self.events = data.map(function (event: PlainObject) {
                     return new Event(event, self.config);
                 });
                 self.render();

@@ -9,6 +9,7 @@ import Location from "./Location";
 import Language from "./Language";
 import EventState from "./EventState";
 import Form from "./form/Form";
+import PlainObject = JQuery.PlainObject;
 
 export default class Event {
     readonly id: number;
@@ -35,7 +36,7 @@ export default class Event {
      * @param attrs {object}
      * @param options {object}
      */
-    constructor(attrs: any, options: any) {
+    constructor(attrs: PlainObject, options: any) {
         this.id = attrs.id;
         this.hashedId = attrs.hashed_id;
         this.title = attrs.title;

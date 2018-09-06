@@ -61,7 +61,7 @@ export default class ScheduleFormatter {
         if (schedule.atOneDay()) {
             return DateTimeFormatter.format(loc, schedule.start);
         } else if (schedule.start.year != schedule.end.year || schedule.start.month != schedule.end.month) {
-            return `${DateTimeFormatter.format(loc, schedule.start)} — ${DateTimeFormatter.format(loc, schedule.start)}`
+            return `${DateTimeFormatter.format(loc, schedule.start)} — ${DateTimeFormatter.format(loc, schedule.end)}`
         } else {
             return this.formatSameMonthInterval(loc, schedule.start, schedule.end);
         }

@@ -15,10 +15,12 @@ export default class EventState {
      * Returns true if the registrations for this event are closed
      */
     closed(): boolean {
-        if (this.event.schedule.ended() || !this.event.tickets) {
+        if (this.event.schedule.ended()) {
             return true;
         } else if (this.event.private) {
             return true;
+        } else if (!this.event.tickets) {
+            return false;
         } else if (this.event.free && this.event.tickets.free && this.event.tickets.free.soldOut()) {
             return true;
         } else {
@@ -44,6 +46,8 @@ export default class EventState {
             return 'event.state.ended';
         } else if (this.event.private) {
             return 'event.state.private';
+        } else if (!this.event.tickets) {
+            return null;
         } else if (this.event.free && this.event.tickets.free && this.event.tickets.free.soldOut()) {
             return 'event.state.soldOut';
         } else {

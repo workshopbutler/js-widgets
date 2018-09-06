@@ -8,6 +8,7 @@ import Widget from "./Widget";
 import Localisation from "../utils/Localisation";
 import Formatter from "../view/Formatter";
 import TrainerListConfig from "./config/TrainerListConfig";
+import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the list of trainers
@@ -53,8 +54,8 @@ export default class TrainerList extends Widget<TrainerListConfig> {
 
         const url = this.getUrl();
         transport.get(url, {},
-            (data: any) => {
-                self.trainers = (data.response as any[]).map(function(trainer: any) {
+            (data: PlainObject[]) => {
+                self.trainers = data.map(function(trainer: any) {
                     return new Trainer(trainer, self.config);
                 });
                 self.render();

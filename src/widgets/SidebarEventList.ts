@@ -7,6 +7,7 @@ import Widget from "./Widget";
 import Localisation from "../utils/Localisation";
 import Formatter from "../view/Formatter";
 import SidebarEventListConfig from "./config/SidebarEventListConfig";
+import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the sidebar list of events
@@ -53,8 +54,8 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
         $.when(this.getVisitorCountry()).done((country) => {
             const url = this.getUrl(country);
             transport.get(url, {},
-                (data: any) => {
-                    const events =  data.response.filter((event: any) => event.hashed_id !== self.config.excludeId);
+                (data: PlainObject[]) => {
+                    const events =  data.filter((event: PlainObject) => event.hashed_id !== self.config.excludeId);
                     const length = self.config.length ? self.config.length : 3;
                     self.events = events.slice(0, length).map(function (event: any) {
                         return new Event(event, self.config);

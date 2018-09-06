@@ -169,8 +169,7 @@ export default class FormHelper {
         this.$controls.each((index, el) => {
             const $el = $(el);
             const name = $el.attr('name');
-
-            if (name) {
+            if (name && formData[name] === undefined) {
                 formData[name] = this.getControlValue($el)
             }
         });
@@ -242,6 +241,8 @@ export default class FormHelper {
 
         if ($control.is(':checkbox')) {
             value = $control.prop('checked');
+        } else if ($control.is(':radio') && $control.prop('checked')) {
+            return $control.val();
         } else {
             value = $control.val();
         }

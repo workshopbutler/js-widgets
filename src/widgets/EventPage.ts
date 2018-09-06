@@ -11,6 +11,7 @@ import Localisation from "../utils/Localisation";
 import Formatter from "../view/Formatter";
 import EventPageConfig from "./config/EventPageConfig";
 import Widget from "./Widget";
+import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the event details
@@ -58,8 +59,8 @@ export default class EventPage extends Widget<EventPageConfig> {
         const url = this.getUrl(eventId);
 
         transport.get(url, {},
-            (data: any) => {
-                self.event = new Event(data.response, self.config);
+            (data: PlainObject) => {
+                self.event = new Event(data, self.config);
                 self.renderWidget();
             },
             (data: any) => {

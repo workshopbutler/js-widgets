@@ -29,7 +29,8 @@ let webpackConfig = {
             nunjucks: 'nunjucks'
         }),
         new webpack.DefinePlugin({
-            BACKEND_URL: JSON.stringify(config.env.backend)
+            BACKEND_URL: JSON.stringify(config.env.backend),
+            API_VERSION: JSON.stringify(config.options.apiVersion)
         }),
         new MiniCssExtractPlugin({
             filename: `[name].${process.env.npm_package_version}.min.css`

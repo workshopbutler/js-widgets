@@ -10,6 +10,7 @@ import Widget from "./Widget";
 import Localisation from "../utils/Localisation";
 import Formatter from "../view/Formatter";
 import TrainerProfileConfig from "./config/TrainerProfileConfig";
+import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the trainer details
@@ -57,8 +58,8 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
         const self = this;
         const url = this.getUrl(trainerId);
         transport.get(url, {},
-            (data: any) => {
-                self.trainer = new Trainer(data.response, self.config);
+            (data: PlainObject) => {
+                self.trainer = new Trainer(data, self.config);
                 self.render();
             },
             (data: any) => {

@@ -8,6 +8,7 @@ import RegistrationForm from "./blocks/RegistrationForm";
 import Localisation from "../utils/Localisation";
 import Formatter from "../view/Formatter";
 import RegistrationPageConfig from "./config/RegistrationPageConfig";
+import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the registration form page
@@ -64,8 +65,8 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
         const url = this.getUrl(eventId);
 
         transport.get(url, {},
-            (data: any) => {
-                self.event = new Event(data.response, self.config);
+            (data: PlainObject[]) => {
+                self.event = new Event(data, self.config);
                 self.renderRegistrationForm();
             },
             (data: any) => {
