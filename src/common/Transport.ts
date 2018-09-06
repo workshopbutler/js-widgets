@@ -48,25 +48,7 @@ class Transport {
     }
 
     post(url: string, data: any, callbackSuccess: Function) {
-        const withVersion = `${url}&version=${API_VERSION}`;
-        const settings = {
-            method: 'POST',
-            url: this.makeUrl(withVersion),
-            crossDomain: true,
-            dataType: 'json',
-            data: $.extend(true, {}, data),
-        };
-        $.ajax(settings).done(function(response: IApiResponse) {
-            if (response.status >= 400) {
-                const error = <IError>response.response;
-                const msg = error.info ? `${error.message}, additional info: ${error.info}` : error.message;
-                logError(msg);
-            } else {
-                callbackSuccess(response.response);
-            }
-        });
-
-        // this.makeFrameRequest('POST', url, data, callbackSuccess)
+        this.makeFrameRequest('POST', url, data, callbackSuccess)
     }
 
     put(url: string, data: any, callbackSuccess: Function) {
