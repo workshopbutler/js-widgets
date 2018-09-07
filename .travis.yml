@@ -36,7 +36,6 @@ deploy:
     bucket: wsb-integrations
     on:
       all_branches: true
-      condition: $TRAVIS_BRANCH =~ /^\d+\.\d+(\.\d+)?(-\S*)?$/
       tags: true
 
   - provider: surge
@@ -45,6 +44,5 @@ deploy:
     skip_cleanup: true
     on:
       all_branches: true
-      condition: $TRAVIS_BRANCH =~ /^\d+\.\d+(\.\d+)?(-\S*)?$/
       tags: true
 
