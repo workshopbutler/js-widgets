@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/workshopbutler/js-widgets.svg?branch=master)](https://travis-ci.org/workshopbutler/js-widgets)
+
 # Workshop Butler JS Widgets
 
 A set of Javascript widgets to integrate any website with Workshop Butler. 
