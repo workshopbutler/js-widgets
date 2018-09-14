@@ -1,0 +1,40 @@
+<div class="wsb-content">
+    <div class="wsb-page">
+        <div class="wsb-center">
+            {% if trainer.endorsements.length > 0 %}
+                <div class="wsb-trainer-details-endorsements">
+                    {% for endorsement in trainer.endorsements %}
+                        <div class="wsb-endorsement">
+                                <span class="wsb-cite">
+                                    <strong>{{ endorsement.name }}</strong>
+                                    {% if endorsement.company %}
+                                        , {{ endorsement.company }}
+                                    {% endif %}
+                                </span>
+                            {% if endorsement.rating %}
+                                <div class="wsb-rating">
+                                    {% set rating = endorsement.rating %}
+                                    {% set stars = range(5) %}
+                                    {% for item in stars %}
+                                        {% set index = item + 1 %}
+                                        {% if index * 2 <= rating %}
+                                            <i class="fas fa-star"></i>
+                                            {% elif index * 2 > rating + 1 %}
+                                            <i class="far fa-star"></i>
+                                        {% else %}
+                                            <div class="fa-stack">
+                                                <i class="fas fa-star-half fa-stack-1x"></i>
+                                                <i class="far fa-star-half fa-stack-1x fa-flip-horizontal"></i>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <p class="wsb-endorsement-text">{{ endorsement.content }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

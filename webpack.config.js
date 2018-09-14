@@ -54,6 +54,12 @@ let webpackConfig = {
             config: config.options
         }),
         new HtmlWebpackPlugin({
+            template: 'pages/endorsement-list.html',
+            filename: 'endorsement-list.html',
+            inject: 'head',
+            config: config.options
+        }),
+        new HtmlWebpackPlugin({
             template: 'pages/trainer-list.html',
             filename: 'trainer-list.html',
             inject: 'head',
