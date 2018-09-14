@@ -1,5 +1,6 @@
 import TiledScheduleTmpl from './templates/eventList.njk';
 import TableScheduleTmpl from './templates/eventTable.njk';
+import EndorsementListTmpl from './templates/endorsementList.njk';
 import EventDetailsTmpl from './templates/eventPage.njk';
 import RegistrationFormTmpl from './templates/registrationPage.njk';
 import SidebarTmpl from './templates/sidebarEventList.njk';
@@ -21,6 +22,7 @@ class Template implements ITemplate {
 export default class DefaultTemplates implements ITemplates {
     schedule: Template;
     readonly eventPage: Template;
+    readonly endorsementList: Template;
     readonly trainerList: Template;
     readonly trainerProfile: Template;
     readonly registrationPage: Template;
@@ -28,6 +30,7 @@ export default class DefaultTemplates implements ITemplates {
 
     constructor() {
         this.schedule = new Template(TiledScheduleTmpl);
+        this.endorsementList = new Template(EndorsementListTmpl);
         this.eventPage = new Template(EventDetailsTmpl);
         this.trainerList = new Template(TrainerListTmpl);
         this.trainerProfile = new Template(TrainerProfileTmpl);

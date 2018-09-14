@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>Test page for widget</title>
+
+
+  <script
+      src="https://code.jquery.com/jquery-2.1.4.min.js"
+      integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw="
+      crossorigin="anonymous"></script>
+
+  <!--<script src="http://code.jquery.com/jquery-2.2.4.min.js"-->
+          <!--integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="-->
+          <!--crossorigin="anonymous"></script>-->
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+
+</head>
+<body>
+<h1>Endorsement List</h1>
+<div id="wsb-endorsement-list"></div>
+
+<script>
+    const apiKey = '<%= htmlWebpackPlugin.options.config.apiKey %>';
+    const themeName = '<%= htmlWebpackPlugin.options.config.theme %>';
+    document.addEventListener('wsbwidgetsloaded', function () {
+        const widgets = [
+            {
+                type: 'EndorsementList',
+                target: '#wsb-endorsement-list',
+                trainerId: 2811,
+                theme: themeName,
+            }
+        ];
+        const config = {
+            apiKey: apiKey,
+            locale: 'de'
+        };
+
+        WorkshopButlerWidgets.launch(config, widgets);
+    });
+</script>
+
+</body>
+</html>

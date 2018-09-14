@@ -9,6 +9,7 @@ import {ITemplates} from "./interfaces/ITemplates";
 import Localisation from "./utils/Localisation";
 import FactoryConfig from "./FactoryConfig";
 import DefaultTemplates from "./DefaultTemplates";
+import EndorsementList from "./widgets/EndorsementList";
 
 // Singleton
 let factory: WidgetFactory;
@@ -33,7 +34,8 @@ export default class WidgetFactory {
      * @private
      */
     createWidget(config: any, index: number, apiKey: string, templates: ITemplates) {
-        const supportedWidgets = ['Schedule', 'EventPage', 'RegistrationPage', 'TrainerProfile', 'TrainerList', 'SidebarEventList'];
+        const supportedWidgets = ['Schedule', 'EventPage', 'RegistrationPage', 'TrainerProfile',
+            'TrainerList', 'SidebarEventList', 'EndorsementList'];
         if (!config.type || supportedWidgets.indexOf(config.type) < 0) {
             logError(`Unknown widget type at the index ${index}`);
             return false;
@@ -48,6 +50,9 @@ export default class WidgetFactory {
                     (<DefaultTemplates>templates).changeScheduleLayout(true);
                 }
                 Schedule.plugin(config.target, apiKey, templates, this.loc, config);
+                return true;
+            case 'EndorsementList':
+                EndorsementList.plugin(config.target, apiKey, templates, this.loc, config);
                 return true;
             case 'EventPage':
                 EventPage.plugin(config.target, apiKey, templates, this.loc, config);

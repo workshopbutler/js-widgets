@@ -4,6 +4,7 @@ export interface ITemplate {
 
 export interface ITemplates {
     readonly schedule: ITemplate;
+    readonly endorsementList: ITemplate;
     readonly eventPage: ITemplate;
     readonly trainerList: ITemplate;
     readonly trainerProfile: ITemplate;
