@@ -142,6 +142,9 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
         if (this.config.trainerId) {
             url += `&trainerId=${this.config.trainerId}`;
         }
+        if (this.config.categoryId) {
+            url += `&categoryId=${this.config.categoryId}`;
+        }
         return url;
     }
 

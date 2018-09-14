@@ -94,7 +94,11 @@ export default class Schedule extends Widget<ScheduleConfig> {
         if (this.config.fields) {
             fields += ',' + this.config.fields.join(',');
         }
-        return `events?api_key=${this.apiKey}&future=true&public=true&fields=${fields}`;
+        let categoryId = '';
+        if (this.config.categoryId) {
+            categoryId = `&categoryId=${this.config.categoryId}`;
+        }
+        return `events?api_key=${this.apiKey}&future=true&public=true&fields=${fields}${categoryId}`;
     }
 
     /**

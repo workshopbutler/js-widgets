@@ -5,9 +5,30 @@ import WidgetConfig from "./WidgetConfig";
  * Contains @Schedule widget configuration options
  */
 export default class ScheduleConfig extends WidgetConfig {
+
+    /**
+     * A url of the page with an installed 'EventPage' widget on it
+     */
     readonly eventPageUrl: string;
+
+    /**
+     * Category ID to filter the events
+     */
+    readonly categoryId?: number;
+
+    /**
+     * A url of the page with an installed 'RegistrationPage' widget on it
+     */
     readonly registrationPageUrl?: string;
+
+    /**
+     * All active filters
+     */
     readonly filters: string[];
+
+    /**
+     * When true, 'Register' button leads directly to the registration page
+     */
     readonly registration: boolean;
 
     protected constructor(options: any) {
@@ -16,6 +37,7 @@ export default class ScheduleConfig extends WidgetConfig {
         this.registrationPageUrl = options.registrationPageUrl;
         this.filters = options.filters;
         this.registration = options.registration !== undefined ? options.registration : false;
+        this.categoryId = options.categoryId;
     }
 
     /**

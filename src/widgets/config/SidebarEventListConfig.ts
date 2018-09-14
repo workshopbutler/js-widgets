@@ -5,6 +5,10 @@ import {logError} from "../../common/Error";
  * Contains @SidebarEventListConfig widget configuration options
  */
 export default class SidebarEventListConfig extends WidgetConfig {
+
+    /**
+     * A url of the page with an installed 'EventPage' widget on it
+     */
     readonly eventPageUrl: string;
     readonly hideIfEmpty: boolean;
     readonly length: number;
@@ -13,6 +17,11 @@ export default class SidebarEventListConfig extends WidgetConfig {
     readonly future: boolean;
     readonly trainerId?: number;
     readonly excludeId?: number;
+
+    /**
+     * Category ID to filter the events
+     */
+    readonly categoryId?: number;
 
     protected constructor(options: any) {
         super(options);
@@ -25,6 +34,8 @@ export default class SidebarEventListConfig extends WidgetConfig {
         this.eventType = options.eventType !== undefined ? options.eventType : undefined;
         this.trainerId = options.trainerId !== undefined ? options.trainerId : undefined;
         this.excludeId = options.excludeId !== undefined ? options.excludeId : undefined;
+
+        this.categoryId = options.categoryId;
     }
 
     /**
