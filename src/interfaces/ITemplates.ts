@@ -1,5 +1,5 @@
 export interface ITemplate {
-    render(data: any): string
+    render(data: any): string;
 }
 
 export interface ITemplates {

@@ -1,138 +1,146 @@
 <div class="wsb-content">
-    <div class="wsb-page">
-        <div class="wsb-body wsb-center">
-            <div class="wsb-trainer-details__header">
-                <div class="wsb-trainer__header-row">
-                    {% set photo = "background-image: url(" + trainer.photo + ");" %}
-                    <div class="wsb-trainer-details-image" style="{{ photo }}"></div>
-                    <div class="wsb-trainer-details-title-container">
-                        <h1 class="wsb-trainer-details-title">{{ trainer.fullName() }}</h1>
-                        <div class="wsb-trainer-details-country">{{ _t('country.' + trainer.country) }}</div>
-                    </div>
-                    <div class="wsb-trainer-details-subtitle-container">
-                        <div class="wsb-trainer__social-networks">
-                            {% if trainer.socialLinks.website %}
-                                <a href="{{ trainer.socialLinks.website }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                            {% endif %}
-                            {% if trainer.socialLinks.blog %}
-                                <a href="{{ trainer.socialLinks.blog }}" target="_blank"><i class="fas fa-rss"></i></a>
-                            {% endif %}
-                            {% if trainer.socialLinks.twitter %}
-                                <a href="{{ trainer.socialLinks.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
-                            {% endif %}
-                            {% if trainer.socialLinks.facebook %}
-                                <a href="{{ trainer.socialLinks.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>
-                            {% endif %}
-                            {% if trainer.socialLinks.linkedIn %}
-                                <a href="{{ trainer.socialLinks.linkedIn }}" target="_blank"><i class="fab fa-linkedin"></i></a>
-                            {% endif %}
-                            {% if trainer.socialLinks.googlePlus %}
-                                <a href="{{ trainer.socialLinks.googlePlus }}" target="_blank"><i class="fab fa-google"></i></a>
-                            {% endif %}
-                        </div>
-                        <a class="btn btn-primary wsb-form__btn wsb-contact-button" href="mailto:{{ trainer.email }}"
-                           title="{{ _t('trainer.email') }}">{{ _t('trainer.email') }}</a>
-                    </div>
-                </div>
-                <div class="wsb-trainer__header-row">
-                    <div class="wsb-trainer-details-facts">
-                        {% if trainer.yearsOfExperience %}
-                            <div class="wsb-trainer-details-fact">
-                                <span class="wsb-big-number">{{ trainer.yearsOfExperience }}</span>
-                                <span class="wsb-descr">{{ _t('trainer.experience.years') }}</span>
-                            </div>
-                        {% endif %}
-                        {% if trainer.numberOfEvents %}
-                            <div class="wsb-trainer-details-fact">
-                                <span class="wsb-big-number">{{ trainer.numberOfEvents }}</span>
-                                <span class="wsb-descr">{{ _t('trainer.experience.events') }}</span>
-                            </div>
-                        {% endif %}
-                        {% if trainer.publicStats.numberOfEvaluations > 0 %}
-                            <div class="wsb-trainer-details-fact">
-                                <span class="wsb-big-number">{{ _f(trainer.publicStats.rating) }}</span>&nbsp;<span class="wsb-small-number">/&nbsp;10</span>
-                                <span class="wsb-descr">{{ _t('trainer.experience.rating.public') }}</span>
-                                <span class="wsb-descr__sub">
+  <div class="wsb-page">
+    <div class="wsb-body wsb-center">
+      <div class="wsb-trainer-details__header">
+        <div class="wsb-trainer__header-row">
+          {% set photo = "background-image: url(" + trainer.photo + ");" %}
+          <div class="wsb-trainer-details-image" style="{{ photo }}"></div>
+          <div class="wsb-trainer-details-title-container">
+            <h1 class="wsb-trainer-details-title">{{ trainer.fullName() }}</h1>
+            <div class="wsb-trainer-details-country">{{ _t('country.' + trainer.country) }}</div>
+          </div>
+          <div class="wsb-trainer-details-subtitle-container">
+            <div class="wsb-trainer__social-networks">
+              {% if trainer.socialLinks.website %}
+                <a href="{{ trainer.socialLinks.website }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+              {% endif %}
+              {% if trainer.socialLinks.blog %}
+                <a href="{{ trainer.socialLinks.blog }}" target="_blank"><i class="fas fa-rss"></i></a>
+              {% endif %}
+              {% if trainer.socialLinks.twitter %}
+                <a href="{{ trainer.socialLinks.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+              {% endif %}
+              {% if trainer.socialLinks.facebook %}
+                <a href="{{ trainer.socialLinks.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>
+              {% endif %}
+              {% if trainer.socialLinks.linkedIn %}
+                <a href="{{ trainer.socialLinks.linkedIn }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+              {% endif %}
+              {% if trainer.socialLinks.googlePlus %}
+                <a href="{{ trainer.socialLinks.googlePlus }}" target="_blank"><i class="fab fa-google"></i></a>
+              {% endif %}
+            </div>
+            <a class="btn btn-primary wsb-form__btn wsb-contact-button" href="mailto:{{ trainer.email }}"
+               title="{{ _t('trainer.email') }}">{{ _t('trainer.email') }}</a>
+          </div>
+        </div>
+        <div class="wsb-trainer__header-row">
+          <div class="wsb-trainer-details-facts">
+            {% if trainer.yearsOfExperience %}
+              <div class="wsb-trainer-details-fact">
+                <span class="wsb-big-number">{{ trainer.yearsOfExperience }}</span>
+                <span class="wsb-descr">{{ _t('trainer.experience.years') }}</span>
+              </div>
+            {% endif %}
+            {% if trainer.numberOfEvents %}
+              <div class="wsb-trainer-details-fact">
+                <span class="wsb-big-number">{{ trainer.numberOfEvents }}</span>
+                <span class="wsb-descr">{{ _t('trainer.experience.events') }}</span>
+              </div>
+            {% endif %}
+            {% if trainer.publicStats.numberOfEvaluations > 0 %}
+              <div class="wsb-trainer-details-fact">
+                <span class="wsb-big-number">{{ _f(trainer.publicStats.rating) }}</span>&nbsp;<span
+                  class="wsb-small-number">/&nbsp;10</span>
+                <span class="wsb-descr">{{ _t('trainer.experience.rating.public') }}</span>
+                <span class="wsb-descr__sub">
                                     {{ _t('trainer.experience.rating.basedOn', { count: trainer.publicStats.numberOfEvaluations }) | safe }}
                                 </span>
-                            </div>
-                        {% endif %}
-                        {% if trainer.privateStats.numberOfEvaluations > 0 %}
-                            <div class="wsb-trainer-details-fact">
-                                <span class="wsb-big-number">{{ _f(trainer.privateStats.rating) }}</span>&nbsp;<span class="wsb-small-number">/&nbsp;10</span>
-                                <span class="wsb-descr">{{ _t('trainer.experience.rating.private') }}</span>
-                                <span class="wsb-descr__sub">
+              </div>
+            {% endif %}
+            {% if trainer.privateStats.numberOfEvaluations > 0 %}
+              <div class="wsb-trainer-details-fact">
+                <span class="wsb-big-number">{{ _f(trainer.privateStats.rating) }}</span>&nbsp;<span
+                  class="wsb-small-number">/&nbsp;10</span>
+                <span class="wsb-descr">{{ _t('trainer.experience.rating.private') }}</span>
+                <span class="wsb-descr__sub">
                                     {{ _t('trainer.experience.rating.basedOn', { count: trainer.privateStats.numberOfEvaluations }) | safe }}
                                 </span>
-                            </div>
-                        {% endif %}
-                    </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="wsb-right-col">
+        <div class="wsb-trainer-badges">
+          {% for badge in trainer.badges %}
+            <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
+          {% endfor %}
+        </div>
+        {% if config.showFutureEvents or config.showPastEvents %}
+          <div class="wsb-trainer-events">
+            {% if config.showFutureEvents %}
+              <div class="wsb-events" id="upcoming-events">
+                <div class="wsb-events__title">
+                  {{ _t('sidebar.future') }}:
                 </div>
-            </div>
-            <div class="wsb-right-col">
-                <div class="wsb-trainer-badges">
-                    {% for badge in trainer.badges %}
-                        <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
-                    {% endfor %}
+                <div data-events-list>
                 </div>
-                <div class="wsb-trainer-events">
-                    <div class="wsb-workshops" id="upcoming-events">
-                        <div class="wsb-workshops__title">
-                            {{ _t('sidebar.future') }}:
-                        </div>
-                        <div data-events-list>
-                        </div>
-                    </div>
-                    <div class="wsb-workshops" id="past-events">
-                        <div class="wsb-workshops__title">
-                            {{ _t('sidebar.past') }}:
-                        </div>
-                        <div data-events-list>
-                        </div>
-                    </div>
+              </div>
+            {% endif %}
+            {% if config.showPastEvents %}
+              <div class="wsb-events" id="past-events">
+                <div class="wsb-events__title">
+                  {{ _t('sidebar.past') }}:
                 </div>
-            </div>
-            <div class="wsb-left-col">
-                <h3>{{ _t('trainer.bio') }}</h3>
-                <div class="wsb-desc">
-                    {{ trainer.bio | safe }}
+                <div data-events-list>
                 </div>
-                {% if trainer.endorsements.length > 0 %}
-                    <h3>{{ _t('trainer.feedback') }}</h3>
-                    <div class="wsb-trainer-details-endorsements">
-                        {% for endorsement in trainer.endorsements %}
-                            <div class="wsb-endorsement">
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="wsb-left-col">
+        <h3>{{ _t('trainer.bio') }}</h3>
+        <div class="wsb-desc">
+          {{ trainer.bio | safe }}
+        </div>
+        {% if trainer.endorsements.length > 0 %}
+          <h3>{{ _t('trainer.feedback') }}</h3>
+          <div class="wsb-trainer-details-endorsements">
+            {% for endorsement in trainer.endorsements %}
+              <div class="wsb-endorsement">
                                 <span class="wsb-cite">
                                     <strong>{{ endorsement.name }}</strong>
-                                    {% if endorsement.company %}
-                                        , {{ endorsement.company }}
-                                    {% endif %}
+                                  {% if endorsement.company %}
+                                    , {{ endorsement.company }}
+                                  {% endif %}
                                 </span>
-                                {% if endorsement.rating %}
-                                    <div class="wsb-rating">
-                                    {% set rating = endorsement.rating %}
-                                    {% set stars = range(5) %}
-                                    {% for item in stars %}
-                                        {% set index = item + 1 %}
-                                        {% if index * 2 <= rating %}
-                                            <i class="fas fa-star"></i>
-                                            {% elif index * 2 > rating + 1 %}
-                                            <i class="far fa-star"></i>
-                                        {% else %}
-                                            <div class="fa-stack">
-                                                <i class="fas fa-star-half fa-stack-1x"></i>
-                                                <i class="far fa-star-half fa-stack-1x fa-flip-horizontal"></i>
-                                            </div>
-                                        {% endif %}
-                                    {% endfor %}
-                                    </div>
-                                {% endif %}
-                                <p class="wsb-endorsement-text">{{ endorsement.content }}</p>
-                            </div>
-                        {% endfor %}
-                    </div>
+                {% if endorsement.rating %}
+                  <div class="wsb-rating">
+                    {% set rating = endorsement.rating %}
+                    {% set stars = range(5) %}
+                    {% for item in stars %}
+                      {% set index = item + 1 %}
+                      {% if index * 2 <= rating %}
+                        <i class="fas fa-star"></i>
+                        {% elif index * 2 > rating + 1 %}
+                        <i class="far fa-star"></i>
+                      {% else %}
+                        <div class="fa-stack">
+                          <i class="fas fa-star-half fa-stack-1x"></i>
+                          <i class="far fa-star-half fa-stack-1x fa-flip-horizontal"></i>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
                 {% endif %}
-            </div>
-        </div>
+                <p class="wsb-endorsement-text">{{ endorsement.content }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
     </div>
+  </div>
 </div>

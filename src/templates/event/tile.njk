@@ -23,8 +23,9 @@
             {% for trainer in event.trainers %}
                 <div class="wsb-trainer">
                     {% if trainer.url %}
-                        {% set photo = "background-image: url(" + trainer.photo + ");" %}
-                        <a class="wsb-photo" href="{{ trainer.url }}" style="{{ photo }}"></a>
+                        <a href="{{ trainer.url }}">
+                          <img class="wsb-photo" src="{{ trainer.photo }}"/>
+                        </a>
                         <a class="wsb-name" href="{{ trainer.url }}"> {{ trainer.fullName() }}</a>
                     {% else %}
                         <img class="wsb-photo" src="{{ trainer.photo }}"/>{{ trainer.fullName() }}

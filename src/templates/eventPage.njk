@@ -1,34 +1,36 @@
 <div class="wsb-content">
-    <div class="wsb-page wsb-event-page">
-        <div class="wsb-header wsb-center">
-            <h1>{{ event.title }}</h1>
-        </div>
-        <div class="wsb-body wsb-center">
-            <div class="wsb-right-col">
-                <div>
-                    {% if event.state.closed() %}
-                        <button class="wsb-sidebar__register" disabled>{{ _f(event.state) }}</button>
-                    {% else %}
-                        <a href="{{ event.registrationPage.url }}" target="_blank"
-                           class="wsb-sidebar__register">{{ _t('event.register') }}</a>
-                    {% endif %}
-                </div>
-                {% from "./event/info.njk" import info %}
-                {{ info(event, config, _t, _f) }}
-                <div class="wsb-info" id="upcoming-events">
-                    <div class="wsb-workshops__title">
-                        {{ _t('sidebar.future') }}:
-                    </div>
-                    <div data-events-list></div>
-                </div>
-                {% from "./event/share.njk" import shareEvent %}
-                {{ shareEvent(event, _t, _f) }}
-            </div>
-            <div class="wsb-left-col">
-                {% if event.description %}
-                    <div class="wsb-desc">{{ event.description | safe }}</div>
-                {% endif %}
-            </div>
-        </div>
+  <div class="wsb-page wsb-event-page">
+    <div class="wsb-header wsb-center">
+      <h1>{{ event.title }}</h1>
     </div>
+    <div class="wsb-body wsb-center">
+      <div class="wsb-right-col">
+        <div>
+          {% if event.state.closed() %}
+            <button class="wsb-sidebar__register" disabled>{{ _f(event.state) }}</button>
+          {% else %}
+            <a href="{{ event.registrationPage.url }}" target="_blank"
+               class="wsb-sidebar__register">{{ _t('event.register') }}</a>
+          {% endif %}
+        </div>
+        {% from "./event/info.njk" import info %}
+        {{ info(event, config, _t, _f) }}
+        {% if config.showFutureEvents %}
+          <div class="wsb-info" id="upcoming-events">
+            <div class="wsb-events__title">
+              {{ _t('sidebar.future') }}:
+            </div>
+            <div data-events-list></div>
+          </div>
+        {% endif %}
+        {% from "./event/share.njk" import shareEvent %}
+        {{ shareEvent(event, _t, _f) }}
+      </div>
+      <div class="wsb-left-col">
+        {% if event.description %}
+          <div class="wsb-desc">{{ event.description | safe }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 {% macro shareEvent(event, _t, _f) %}
-<div class="wsb-workshops">
-    <div class="wsb-workshops__title">
+<div class="wsb-events">
+    <div class="wsb-events__title">
         {{ _t('event.share') }}:
     </div>
     <div class="wsb-sharing js-sharing" data-title="{{ event.title }}" data-summary="{{ event.title }}. {{ _f(event.schedule) }}, {{ _f(event.location) }}" data-hashtags="training">

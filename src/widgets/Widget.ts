@@ -1,6 +1,6 @@
-import {ITemplates} from "../interfaces/ITemplates";
-import Localisation from "../utils/Localisation";
-import WidgetConfig from "./config/WidgetConfig";
+import {ITemplates} from '../interfaces/ITemplates';
+import Localisation from '../utils/Localisation';
+import WidgetConfig from './config/WidgetConfig';
 
 export default abstract class Widget<T extends WidgetConfig> {
     protected readonly $root: JQuery;
