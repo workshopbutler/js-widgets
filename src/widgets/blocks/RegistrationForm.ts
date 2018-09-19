@@ -2,7 +2,7 @@ import transport from "../../common/Transport";
 import {logError} from "../../common/Error";
 import FormHelper from "../helpers/_form";
 import Widget from "../Widget";
-import {ITemplates} from "../../interfaces/ITemplates";
+import {ITemplates} from "../../templates/ITemplates";
 import Localisation from "../../utils/Localisation";
 import Event from "../../models/Event";
 import JQueryEvent = JQuery.Event;

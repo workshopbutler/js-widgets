@@ -1,4 +1,4 @@
-import {ITemplates} from '../interfaces/ITemplates';
+import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import WidgetConfig from './config/WidgetConfig';
 

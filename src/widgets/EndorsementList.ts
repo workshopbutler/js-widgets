@@ -1,7 +1,7 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import transport from '../common/Transport';
-import {ITemplates} from '../interfaces/ITemplates';
 import Trainer from '../models/Trainer';
+import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import Formatter from '../view/Formatter';
 import EndorsementListConfig from './config/EndorsementListConfig';

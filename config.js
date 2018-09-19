@@ -20,7 +20,7 @@ const options = {
 };
 
 const mapping = {
-    widgets: './app.js',
+    widgets: './app.ts',
     'styles': 'styles/common.less'
 };
 

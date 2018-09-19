@@ -1,7 +1,7 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import transport from '../common/Transport';
-import {ITemplates} from '../interfaces/ITemplates';
 import Event from '../models/Event';
+import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import Formatter from '../view/Formatter';
 import SidebarEventListConfig from './config/SidebarEventListConfig';

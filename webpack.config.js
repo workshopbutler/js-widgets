@@ -36,37 +36,37 @@ let webpackConfig = {
             filename: `[name].${process.env.npm_package_version}.min.css`
         }),
         new HtmlWebpackPlugin({
-            template: 'pages/schedule.html',
+            template: '../pages/schedule.html',
             filename: 'schedule.html',
             inject: 'head',
             config: config.options
         }),
         new HtmlWebpackPlugin({
-            template: 'pages/event-page.html',
+            template: '../pages/event-page.html',
             filename: 'event-page.html',
             inject: 'head',
             config: config.options
         }),
         new HtmlWebpackPlugin({
-            template: 'pages/registration.html',
+            template: '../pages/registration.html',
             filename: 'registration.html',
             inject: 'head',
             config: config.options
         }),
         new HtmlWebpackPlugin({
-            template: 'pages/endorsement-list.html',
+            template: '../pages/endorsement-list.html',
             filename: 'endorsement-list.html',
             inject: 'head',
             config: config.options
         }),
         new HtmlWebpackPlugin({
-            template: 'pages/trainer-list.html',
+            template: '../pages/trainer-list.html',
             filename: 'trainer-list.html',
             inject: 'head',
             config: config.options
         }),
         new HtmlWebpackPlugin({
-            template: 'pages/trainer-page.html',
+            template: '../pages/trainer-page.html',
             filename: 'trainer-page.html',
             inject: 'head',
             config: config.options
