@@ -1,137 +1,140 @@
+import {renderString as nunjucksRenderString} from 'nunjucks';
+import {logError} from '../common/Error';
+import {getQueryParam} from '../common/helpers/_urlParser';
 import transport from '../common/Transport';
+import WidgetFactory from '../Factory';
+import {ITemplates} from '../interfaces/ITemplates';
 import Event from '../models/Event';
-import {logError} from "../common/Error";
-import getTemplate from "./helpers/_templates";
-import {getQueryParam} from "../common/helpers/_urlParser";
-import WidgetFactory from "../Factory";
-import {ITemplates} from "../interfaces/ITemplates";
-import {renderString as nunjucksRenderString} from "nunjucks"
-import {DateTime} from "luxon";
-import Localisation from "../utils/Localisation";
-import Formatter from "../view/Formatter";
-import EventPageConfig from "./config/EventPageConfig";
-import Widget from "./Widget";
+import Localisation from '../utils/Localisation';
+import Formatter from '../view/Formatter';
+import EventPageConfig from './config/EventPageConfig';
+import getTemplate from './helpers/_templates';
+import Widget from './Widget';
 import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the event details
  */
 export default class EventPage extends Widget<EventPageConfig> {
-    protected readonly formatter: Formatter;
-    protected event: Event;
 
-    /**
-     * Creates a new event page
-     * @param selector {HTMLElement} JQuery selector
-     * @param apiKey {string} API key
-     * @param templates {ITemplates} Templates
-     * @param loc {Localisation} Localisation instance
-     * @param config {EventPageConfig} Configuration config
-     */
-    protected constructor(selector: HTMLElement,
-                          apiKey: string,
-                          templates: ITemplates,
-                          loc: Localisation,
-                          config: EventPageConfig) {
-        super(selector, apiKey, templates, loc, config);
-        this.formatter = new Formatter(loc);
-        this.init();
-        let id = getQueryParam('id');
-        if (id) {
-            this.loadContent(id);
-        } else {
-            logError("`id` query parameter is not found")
-        }
+  /**
+   * @param selector {string} JQuery selector
+   * @param apiKey {string} API key
+   * @param templates {ITemplates} Templates
+   * @param loc {Localisation} Localisation instance
+   * @param options {object} Configuration config
+   */
+  static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
+    const $elems = $(selector);
+    if (!$elems.length) {
+      return;
     }
 
-    private init() {
-        if (this.config.theme) {
-            this.$root.addClass(this.config.theme);
-        }
+    const config = EventPageConfig.create(options);
+    if (!config) {
+      return;
     }
 
-    /**
-     * Loads the event and renders the page
-     * @param eventId {number}
-     */
-    private loadContent(eventId: string) {
-        const self = this;
-        const url = this.getUrl(eventId);
+    return $elems.each((index, el) => {
+      const $element = $(el);
+      let data = $element.data('wsb.widget.event.details');
 
-        transport.get(url, {},
-            (data: PlainObject) => {
-                self.event = new Event(data, self.config);
-                self.renderWidget();
-            });
+      if (!data) {
+        data = new EventPage(el, apiKey, templates, loc, config);
+        $element.data('wsb.widget.event.details', data);
+      }
+    });
+  }
+
+  protected readonly formatter: Formatter;
+  protected event: Event;
+
+  /**
+   * Creates a new event page
+   * @param selector {HTMLElement} JQuery selector
+   * @param apiKey {string} API key
+   * @param templates {ITemplates} Templates
+   * @param loc {Localisation} Localisation instance
+   * @param config {EventPageConfig} Configuration config
+   */
+  protected constructor(selector: HTMLElement,
+                        apiKey: string,
+                        templates: ITemplates,
+                        loc: Localisation,
+                        config: EventPageConfig) {
+    super(selector, apiKey, templates, loc, config);
+    this.formatter = new Formatter(loc);
+    this.init();
+    const id = getQueryParam('id');
+    if (id) {
+      this.loadContent(id);
+    } else {
+      logError('`id` query parameter is not found');
     }
+  }
 
-    private renderWidget() {
-        const self = this;
-        $.when(getTemplate(self.config)).done(
-            function (template) {
-                const data = {
-                    event: self.event,
-                    config: self.config,
-                    DateTime: DateTime,
-                    _t: function(key: string, options: any = null) {
-                        return self.loc.translate(key, options);
-                    },
-                    _f: function(object: any, type: string | null) {
-                        return self.formatter.format(object, type);
-                    }
-                };
-                const content = template ?
-                    nunjucksRenderString(template, data) :
-                    self.templates.eventPage.render(data);
+  /**
+   * Updates key elements of the page
+   */
+  protected updateHTML() {
+    this.updateTitle();
+  }
 
-                self.$root.html(content);
-                self.updateHTML();
-                if (self.config.widgets) {
-                    WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
-                }
-            });
+  /**
+   * Changes the title of the page
+   */
+  protected updateTitle() {
+    document.title = this.event.title;
+  }
+
+  private init() {
+    if (this.config.theme) {
+      this.$root.addClass(this.config.theme);
     }
+  }
 
-    /**
-     * Updates key elements of the page
-     */
-    protected updateHTML() {
-        this.updateTitle();
-    }
+  /**
+   * Loads the event and renders the page
+   * @param eventId {number}
+   */
+  private loadContent(eventId: string) {
+    const self = this;
+    const url = this.getUrl(eventId);
 
-    /**
-     * Changes the title of the page
-     */
-    protected updateTitle() {
-        document.title = this.event.title;
-    }
+    transport.get(url, {},
+      (data: PlainObject) => {
+        self.event = new Event(data, self.config);
+        self.renderWidget();
+      });
+  }
 
-    private getUrl(eventId: string) {
-        return `events/${eventId}?api_key=${this.apiKey}&fields=trainer.rating`;
-    }
+  private renderWidget() {
+    const self = this;
+    $.when(getTemplate(self.config)).done((template) => {
+      const data = {
+        _f: (object: any, type: string | null) => {
+          return self.formatter.format(object, type);
+        },
+        _t: (key: string, options: any = null) => {
+          return self.loc.translate(key, options);
+        },
+        config: self.config,
+        event: self.event,
+      };
+      const content = template ?
+        nunjucksRenderString(template, data) :
+        self.templates.eventPage.render(data);
 
-    /**
-     * @param selector {string} JQuery selector
-     * @param apiKey {string} API key
-     * @param templates {ITemplates} Templates
-     * @param loc {Localisation} Localisation instance
-     * @param options {object} Configuration config
-     */
-    static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
-        const $elems = $(selector);
-        if (!$elems.length) return;
+      self.$root.html(content);
+      self.updateHTML();
+      if (self.config.widgets) {
+        WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
+      }
+    });
+  }
 
-        const config = EventPageConfig.create(options);
-        if (!config) return;
+  private getUrl(eventId: string) {
+    return `events/${eventId}?api_key=${this.apiKey}&fields=trainer.rating`;
+  }
 
-        return $elems.each((index, el) => {
-            let $element = $(el);
-            let data = $element.data('wsb.widget.event.details');
-
-            if (!data) {
-                data = new EventPage(el, apiKey, templates, loc, config);
-                $element.data('wsb.widget.event.details', data);
-            }
-        });
-    }
 }

@@ -8,3 +8,4 @@ target
 TODO
 dist/
 .changelog
+.DS_Store

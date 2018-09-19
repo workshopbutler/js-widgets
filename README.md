@@ -10,8 +10,9 @@ A set of Javascript widgets to integrate any website with Workshop Butler.
 * TrainerPage widget renders the profile of a trainer
 * RegistrationPage widget renders a registration form for an event
 * SidebarEventList widget renders the list of events, designed specifically for sidebars and columns
+* EndorsementList widget renders the list of endorsements for one trainer
 
-The widgets work with [default themes](https://github.com/workshopbutler/themes). If you want to customise
+The widgets work with [default themes](https://workshopbutler.com/developers/themes/). If you want to customise
 the look, check the themes. The widgets render the pages using the templates, provided by a theme, and 
 apply an additional logic. 
 
@@ -28,7 +29,7 @@ copy an API key for your account
 
 This command launches a webserver on `http://localhost:8081`. 
 
-* Open `http://localhost:8081/event-list.html` for the list of all events
+* Open `http://localhost:8081/schedule.html` for the list of all events
 * Open `http://localhost:8081/trainer-list.html` for the list of all trainers
 
 To compile a theme, use `npm run build`. The compiled files are in `dist/` directory.       
@@ -41,11 +42,6 @@ Contains a version number, used in `widgets.[version].js`
 `config.js -> options -> theme`
 
 Name of an active theme. For default themes, use these values: `alfred`, `dacota`, `britton`, `gatsby`, `hayes`.
-
-`config.js -> options -> themeVersion`
-
-Version number of [Workshop Butler Themes](https://github.com/workshopbutler/themes). Based on this parameters, 
-a particular version of the styles is added to the HTML pages (for example, `event-list.html`).
 
 ## Compatibility
 
