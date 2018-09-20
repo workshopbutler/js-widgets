@@ -1,4 +1,4 @@
-{% macro drawTrainer(trainer, _t, _f) %}
+{% macro drawTrainer(trainer, config, _t, _f) %}
   {% set trainerName = trainer.firstName + " " + trainer.lastName %}
 
   <div class="wsb-trainer-tile" data-trainer-obj
@@ -19,6 +19,17 @@
         </a>
         <div class="wsb-trainer-tile__country">
           {{ _t('country.' + trainer.country) }}
+        </div>
+        <div>
+        {% if config.showBadges %}
+            {% for badge in trainer.badges %}
+              <img src="{{ badge.url }}" width="30px"/>
+            {% endfor %}
+        {% endif %}
+        {% if config.showRating and trainer.publicStats.rating > 0 %}
+            <i class="fas fa-star"></i>
+            {{ _f(trainer.publicStats.rating) }}
+        {% endif %}
         </div>
       </div>
     </div>

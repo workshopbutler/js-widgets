@@ -106,6 +106,7 @@ export default class TrainerList extends Widget<TrainerListConfig> {
         _t: (key: string, options: any = null) => {
           return self.loc.translate(key, options);
         },
+        config: self.config,
         filters: self.filters.getFilters(self.trainers),
         template: template ? renderTemplate : null,
         trainers: self.trainers,

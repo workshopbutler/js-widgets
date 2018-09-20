@@ -1,23 +1,28 @@
 <!doctype html>
 <html lang="en-US">
 <head>
-  <meta charset="UTF-8">
-  <title>Test page for widget</title>
+<meta charset="UTF-8">
+<title>Test page for widget</title>
 
 
-  <script
-      src="https://code.jquery.com/jquery-2.1.4.min.js"
-      integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw="
-      crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-2.1.4.min.js"
+  integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw="
+  crossorigin="anonymous"></script>
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+      rel="stylesheet">
 
-  <!--<script src="http://code.jquery.com/jquery-2.2.4.min.js"-->
-          <!--integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="-->
-          <!--crossorigin="anonymous"></script>-->
-  <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+<!--<script src="http://code.jquery.com/jquery-2.2.4.min.js"-->
+<!--integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="-->
+<!--crossorigin="anonymous"></script>-->
+<link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700"
+      rel="stylesheet">
 
 </head>
 <body>
@@ -25,25 +30,27 @@
 <div id="wsb-trainer-list"></div>
 
 <script>
-    const apiKey = '<%= htmlWebpackPlugin.options.config.apiKey %>';
-    const themeName = '<%= htmlWebpackPlugin.options.config.theme %>';
-    document.addEventListener('wsbwidgetsloaded', function () {
-        const widgets = [
-            {
-                type: 'TrainerList',
-                target: '#wsb-trainer-list',
-                theme: themeName,
-                trainerPageUrl: '/trainer-page.html',
-                filters: ['location', 'badge', 'language', 'rating'],
-            }
-        ];
-        const config = {
-            apiKey: apiKey,
-            locale: 'fr'
-        };
+const apiKey = '<%= htmlWebpackPlugin.options.config.apiKey %>';
+const themeName = '<%= htmlWebpackPlugin.options.config.theme %>';
+document.addEventListener('wsbwidgetsloaded', function() {
+  const widgets = [
+    {
+      type: 'TrainerList',
+      target: '#wsb-trainer-list',
+      theme: themeName,
+      badges: false,
+      rating: false,
+      trainerPageUrl: '/trainer-page.html',
+      filters: ['location', 'badge', 'language', 'rating'],
+    }
+  ];
+  const config = {
+    apiKey: apiKey,
+    locale: 'fr'
+  };
 
-        WorkshopButlerWidgets.launch(config, widgets);
-    });
+  WorkshopButlerWidgets.launch(config, widgets);
+});
 </script>
 
 </body>

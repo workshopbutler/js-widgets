@@ -1,12 +1,12 @@
-{% macro drawTrainers(trainers, tmpl, _t, _f) %}
+{% macro drawTrainers(trainers, config, tmpl, _t, _f) %}
     {% from "./item.njk" import drawTrainer %}
     <div class="wsb-trainer-list">
         <div class="wsb-tiles" data-trainer-list>
             {% for trainer in trainers %}
                 {% if tmpl %}
-                    {{ tmpl(trainer, _t, _f) | safe }}
+                    {{ tmpl(trainer, config, _t, _f) | safe }}
                 {% else %}
-                    {{ drawTrainer(trainer, _t, _f) }}
+                    {{ drawTrainer(trainer, config, _t, _f) }}
                 {% endif %}
             {% endfor %}
         </div>
