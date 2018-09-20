@@ -77,6 +77,13 @@ export default class Trainer {
   }
 
   /**
+   * Returns the list of badge's name
+   */
+  nameOfBadges(): string[] {
+    return this.badges.map((badge) => badge.name);
+  }
+
+  /**
    * Returns a specific type of statistics
    * @param jsonData JSON data from Workshop Butler API
    * @param {boolean} publicWorkshops True if the statistics is from public workshops

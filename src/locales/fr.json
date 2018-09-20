@@ -4,7 +4,8 @@
     "languages": "Toutes les langues",
     "types": "Tous les types",
     "trainers": "Tous les formateurs",
-    "rating": "Toutes les cotes"
+    "rating": "Toutes les cotes",
+    "badge": "Tous les badges"
   },
   "country": {
     "00": "En ligne",

@@ -34,6 +34,8 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
         return this.getTrainerFilterData(this.loc.translate('filter.trainers'), trainers);
       case 'rating':
         return this.getRatingFilterData(this.loc.translate('filter.rating'), trainers);
+      case 'badge':
+        return this.getBadgeFilterData(this.loc.translate('filter.badge'), trainers);
       default:
         return [];
     }
@@ -106,6 +108,21 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
       return new FilterValue(name, value);
     });
     return this.getFilterData(defaultName, unfiltered);
+  }
+
+  /**
+   * Returns the data for badge filter
+   * @param defaultName {string} Name of the default filter
+   * @param trainers {Trainer[]} List of trianers
+   */
+  private getBadgeFilterData(defaultName: string, trainers: Trainer[]) {
+    const badges = [];
+    for (const trainer of trainers) {
+      for (const badge of trainer.badges) {
+        badges.push(new FilterValue(badge.name, badge.name));
+      }
+    }
+    return this.getFilterData(defaultName, badges);
   }
 
   private getLanguageFilterData(defaultName: string, trainers: Trainer[]) {

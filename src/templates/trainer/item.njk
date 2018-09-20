@@ -4,7 +4,7 @@
   <div class="wsb-trainer-tile" data-trainer-obj
        data-trainer-location="{{ trainer.country }}"
        data-trainer-rating={{ trainer.publicStats.rating }}
-       data-trainer-badge="{{ trainer.badges.join(',') }}"
+       data-trainer-badge="{{ trainer.nameOfBadges().join(',') }}"
        data-trainer-language="{{ trainer.languages.join(',') }}"
        data-trainer-trainer="{{ trainer.fullName() }}">
     <div class="wsb-trainer-tile__box">
