@@ -77,11 +77,38 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
     const ratingFunction = (index: number, el: HTMLElement) => {
       return $(el).data('trainer-rating') > value;
     };
+    const experienceFunction = (index: number, el: HTMLElement) => {
+      const exp = $(el).data('trainer-exp');
+      switch (value) {
+        case 'one': return exp < 1;
+        case 'three': return exp <= 3 && exp >= 1;
+        case 'five': return exp > 3 && exp <= 5;
+        case 'seven': return exp > 5 && exp <= 7;
+        case 'more': return exp > 7;
+        default: return false;
+      }
+    };
     switch (name) {
       case 'location': return `[data-trainer-${name}="${value}"]`;
+      case 'experience': return experienceFunction;
       case 'rating': return ratingFunction;
       default: return `[data-trainer-${name}*="${value}"]`;
     }
+  }
+
+  /**
+   * Returns the data for experience filter
+   * @param defaultName {string} Name of the default filter
+   * @param trainers {Trainer[]} List of trainers
+   */
+  private getExperienceFilterData(defaultName: string, trainers: Trainer[]) {
+    const self = this;
+    const experience = ['one', 'three', 'five', 'seven', 'more'];
+    const unfiltered = experience.map((value) => {
+      const name = self.loc.translate(`experience.${value}`);
+      return new FilterValue(name, value);
+    });
+    return this.getFilterData(defaultName, unfiltered);
   }
 
   /**
@@ -103,9 +130,8 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
       {name: 'nine', value: 9},
     ];
     const unfiltered = ratings.map((rating) => {
-      const value = Math.floor(rating.value);
       const name = self.loc.translate(`rating.${rating.name}`);
-      return new FilterValue(name, value);
+      return new FilterValue(name, rating.value);
     });
     return this.getFilterData(defaultName, unfiltered);
   }
