@@ -32,6 +32,8 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
         return this.getLocationFilterData(this.loc.translate('filter.locations'), trainers);
       case 'trainer':
         return this.getTrainerFilterData(this.loc.translate('filter.trainers'), trainers);
+      case 'rating':
+        return this.getRatingFilterData(this.loc.translate('filter.rating'), trainers);
       default:
         return [];
     }
@@ -51,9 +53,7 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
     this.$root.find('[data-filter]').each((index, el) => {
       const filterName = $(el).data('name');
       const value = $(el).val();
-      const filter = filterName === 'location' ?
-        `[data-trainer-${filterName}="${value}"]` :
-        `[data-trainer-${filterName}*="${value}"]`;
+      const filter = this.getFilter(filterName, value);
       if (value !== 'all') {
         trainers = trainers.filter(filter);
       }
@@ -66,13 +66,54 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
     }
   }
 
+  /**
+   * Returns a correct filter based on its name
+   * @param name {string} Name of the filter
+   * @param value {any} Value of the filter
+   */
+  private getFilter(name: string, value: any) {
+    const ratingFunction = (index: number, el: HTMLElement) => {
+      return $(el).data('trainer-rating') > value;
+    };
+    switch (name) {
+      case 'location': return `[data-trainer-${name}="${value}"]`;
+      case 'rating': return ratingFunction;
+      default: return `[data-trainer-${name}*="${value}"]`;
+    }
+  }
+
+  /**
+   * Returns the data for rating filter
+   * @param defaultName {string} Name of the default filter
+   * @param trainers {Trainer[]} List of trainers
+   */
+  private getRatingFilterData(defaultName: string, trainers: Trainer[]) {
+    const self = this;
+    const ratings = [
+      {name: 'one', value: 1},
+      {name: 'two', value: 2},
+      {name: 'three', value: 3},
+      {name: 'four', value: 4},
+      {name: 'five', value: 5},
+      {name: 'six', value: 6},
+      {name: 'seven', value: 7},
+      {name: 'eight', value: 8},
+      {name: 'nine', value: 9},
+    ];
+    const unfiltered = ratings.map((rating) => {
+      const value = Math.floor(rating.value);
+      const name = self.loc.translate(`rating.${rating.name}`);
+      return new FilterValue(name, value);
+    });
+    return this.getFilterData(defaultName, unfiltered);
+  }
+
   private getLanguageFilterData(defaultName: string, trainers: Trainer[]) {
     const languages = [];
-    for (let i = 0; i < trainers.length; i++) {
-      const trainerLanguages = trainers[i].languages;
-      for (let j = 0; j < trainerLanguages.length; j++) {
-        const languageName = this.loc.translate(`language.${trainerLanguages[j]}`);
-        const language = new FilterValue(languageName, trainerLanguages[j]);
+    for (const trainer of trainers) {
+      for (const languageId of trainer.languages) {
+        const languageName = this.loc.translate(`language.${languageId}`);
+        const language = new FilterValue(languageName, languageId);
         languages.push(language);
       }
     }

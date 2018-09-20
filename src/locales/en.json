@@ -3,7 +3,8 @@
     "locations": "All locations",
     "languages": "All languages",
     "types": "All types",
-    "trainers": "All trainers"
+    "trainers": "All trainers",
+    "rating": "All ratings"
   },
   "country": {
     "AF": "Afghanistan",
@@ -276,6 +277,17 @@
     "SR": "Serbian",
     "TR": "Turkish",
     "VI": "Vietnamese"
+  },
+  "rating": {
+    "one": "More than 1",
+    "two": "More than 2",
+    "three": "More than 3",
+    "four": "More than 4",
+    "five": "More than 5",
+    "six": "More than 6",
+    "seven": "More than 7",
+    "eight": "More than 8",
+    "nine": "More than 9"
   },
   "schedule": {
     "noEvents": "No events were found",

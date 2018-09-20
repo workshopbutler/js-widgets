@@ -3,7 +3,8 @@
     "locations": "Alle locaties",
     "languages": "Alle talen",
     "types": "Alle typen",
-    "trainers": "Alle trainers"
+    "trainers": "Alle trainers",
+    "rating": "Alle beoordelingen"
   },
   "country": {
     "00": "online",
@@ -289,6 +290,17 @@
     "SR": "Servisch",
     "TR": "Turks",
     "VI": "Vietnamees"
+  },
+  "rating": {
+    "one": "Meer dan 1",
+    "two": "Meer dan 2",
+    "three": "Meer dan 3",
+    "four": "Meer dan 4",
+    "five": "Meer dan 5",
+    "six": "Meer dan 6",
+    "seven": "Meer dan 7",
+    "eight": "Meer dan 8",
+    "nine": "Meer dan 9"
   },
   "schedule": {
     "noEvents": "Er zijn geen evenementen gevonden",

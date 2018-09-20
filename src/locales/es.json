@@ -3,7 +3,8 @@
     "locations": "Todas las localizaciones",
     "languages": "Todos los idiomas",
     "types": "Todos los tipos",
-    "trainers": "Todos los entrenadores"
+    "trainers": "Todos los entrenadores",
+    "rating": "Todas las calificaciones"
   },
   "country": {
     "00": "En línea",
@@ -289,6 +290,17 @@
     "SR": "Serbio",
     "TR": "Turco",
     "VI": "Vietnamita"
+  },
+  "rating": {
+    "one": "Más de 1",
+    "two": "Más de 2",
+    "three": "Más de 3",
+    "four": "Más de 4",
+    "five": "Más de 5",
+    "six": "Más de 6",
+    "seven": "Más de 7",
+    "eight": "Más de 8",
+    "nine": "Más de 9"
   },
   "schedule": {
     "noEvents": "No se encontraron eventos",

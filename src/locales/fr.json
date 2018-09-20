@@ -3,7 +3,8 @@
     "locations": "Tous les lieux",
     "languages": "Toutes les langues",
     "types": "Tous les types",
-    "trainers": "Tous les formateurs"
+    "trainers": "Tous les formateurs",
+    "rating": "Toutes les cotes"
   },
   "country": {
     "00": "En ligne",
@@ -289,6 +290,17 @@
     "SR": "Serbian",
     "TR": "Turc",
     "VI": "Vietnamien"
+  },
+  "rating": {
+    "one": "Plus de 1",
+    "two": "Plus de 2",
+    "three": "Plus de 3",
+    "four": "Plus de 4",
+    "five": "Plus de 5",
+    "six": "Plus de 6",
+    "seven": "Plus de 7",
+    "eight": "Plus de 8",
+    "nine": "Plus de 9"
   },
   "schedule": {
     "noEvents": "Aucun événement n'a été trouvé",

@@ -3,7 +3,8 @@
     "locations": "Todos os locais",
     "languages": "Todas as línguas",
     "types": "Todos os tipos",
-    "trainers": "Todos os treinadores"
+    "trainers": "Todos os treinadores",
+    "rating": "Todas as classificações"
   },
   "country": {
     "00": "Online",
@@ -289,6 +290,17 @@
     "SR": "sérvio",
     "TR": "turco",
     "VI": "vietnamita"
+  },
+  "rating": {
+    "one": "Mais de 1",
+    "two": "Mais de 2",
+    "three": "Mais de 3",
+    "four": "Mais de 4",
+    "five": "Mais de 5",
+    "six": "Mais de 6",
+    "seven": "Mais de 7",
+    "eight": "Mais de 8",
+    "nine": "Mais de 9"
   },
   "schedule": {
     "noEvents": "Nenhum evento foi encontrado",
