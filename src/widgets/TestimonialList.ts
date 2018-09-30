@@ -4,15 +4,15 @@ import Trainer from '../models/Trainer';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import Formatter from '../view/Formatter';
-import EndorsementListConfig from './config/EndorsementListConfig';
+import TestimonialListConfig from './config/TestimonialListConfig';
 import getTemplate from './helpers/_templates';
 import Widget from './Widget';
 import PlainObject = JQuery.PlainObject;
 
 /**
- * Logic for the trainer details
+ * Logic for the list of trainer's testimonials
  */
-export default class EndorsementList extends Widget<EndorsementListConfig> {
+export default class TestimonialList extends Widget<TestimonialListConfig> {
 
   /**
    * @param selector {string} JQuery selector
@@ -27,18 +27,18 @@ export default class EndorsementList extends Widget<EndorsementListConfig> {
       return;
     }
 
-    const config = EndorsementListConfig.create(options);
+    const config = TestimonialListConfig.create(options);
     if (!config) {
       return;
     }
 
     return $elems.each((index, el) => {
       const $element = $(el);
-      let data = $element.data('wsb.widget.trainer.endorsements');
+      let data = $element.data('wsb.widget.trainer.testimonials');
 
       if (!data) {
-        data = new EndorsementList(el, apiKey, templates, loc, config);
-        $element.data('wsb.widget.trainer.endorsements', data);
+        data = new TestimonialList(el, apiKey, templates, loc, config);
+        $element.data('wsb.widget.trainer.testimonials', data);
       }
     });
   }
@@ -47,18 +47,18 @@ export default class EndorsementList extends Widget<EndorsementListConfig> {
   private trainer: Trainer;
 
   /**
-   * Creates a new endorsement list
+   * Creates a new testimonial list
    * @param selector {HTMLElement} JQuery selector
    * @param apiKey {string} API key
    * @param templates {ITemplates} Templates
    * @param loc {Localisation} Localisation instance
-   * @param config {EndorsementListConfig} Configuration config
+   * @param config {TestimonialListConfig} Configuration config
    */
   protected constructor(selector: HTMLElement,
                         apiKey: string,
                         templates: ITemplates,
                         loc: Localisation,
-                        config: EndorsementListConfig) {
+                        config: TestimonialListConfig) {
     super(selector, apiKey, templates, loc, config);
     this.formatter = new Formatter(loc);
     this.init();
@@ -101,7 +101,7 @@ export default class EndorsementList extends Widget<EndorsementListConfig> {
       };
       const content = template ?
         nunjucksRenderString(template, data) :
-        self.templates.endorsementList.render(data);
+        self.templates.testimonialList.render(data);
 
       self.$root.html(content);
     });

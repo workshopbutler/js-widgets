@@ -35,7 +35,7 @@ export default class Trainer {
   readonly privateStats: Statistics;
   readonly recentPublicStats: Statistics;
   readonly recentPrivateStats: Statistics;
-  readonly endorsements: any[];
+  readonly testimonials: any[];
 
   constructor(jsonData: any, options: any) {
     this.id = jsonData.id;
@@ -60,7 +60,7 @@ export default class Trainer {
     this.privateStats = this.getStatistics(jsonData, false, false);
     this.recentPublicStats = this.getStatistics(jsonData, true, true);
     this.recentPrivateStats = this.getStatistics(jsonData, false, true);
-    this.endorsements = jsonData.endorsements;
+    this.testimonials = jsonData.endorsements;
 
     this.country = Trainer.getCountry(jsonData);
     this.url = options.trainerPageUrl ? `${options.trainerPageUrl}?id=${this.id}` : undefined;

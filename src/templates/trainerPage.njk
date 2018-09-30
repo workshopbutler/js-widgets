@@ -105,20 +105,20 @@
         <div class="wsb-desc">
           {{ trainer.bio | safe }}
         </div>
-        {% if trainer.endorsements.length > 0 %}
+        {% if trainer.testimonials.length > 0 %}
           <h3>{{ _t('trainer.feedback') }}</h3>
-          <div class="wsb-trainer-details-endorsements">
-            {% for endorsement in trainer.endorsements %}
-              <div class="wsb-endorsement">
+          <div>
+            {% for testimonial in trainer.testimonials %}
+              <div class="wsb-testimonial">
                                 <span class="wsb-cite">
-                                    <strong>{{ endorsement.name }}</strong>
-                                  {% if endorsement.company %}
-                                    , {{ endorsement.company }}
+                                    <strong>{{ testimonial.name }}</strong>
+                                  {% if testimonial.company %}
+                                    , {{ testimonial.company }}
                                   {% endif %}
                                 </span>
-                {% if endorsement.rating %}
+                {% if testimonial.rating %}
                   <div class="wsb-rating">
-                    {% set rating = endorsement.rating %}
+                    {% set rating = testimonial.rating %}
                     {% set stars = range(5) %}
                     {% for item in stars %}
                       {% set index = item + 1 %}
@@ -135,7 +135,7 @@
                     {% endfor %}
                   </div>
                 {% endif %}
-                <p class="wsb-endorsement-text">{{ endorsement.content }}</p>
+                <p class="wsb-testimonial-text">{{ testimonial.content }}</p>
               </div>
             {% endfor %}
           </div>

@@ -1,6 +1,6 @@
 import DefaultTemplate from './DefaultTemplate';
 import {ITemplates} from './ITemplates';
-import EndorsementListTmpl from './endorsementList.njk';
+import TestimonialListTmpl from './testimonialList.njk';
 import TiledScheduleTmpl from './eventList.njk';
 import EventDetailsTmpl from './eventPage.njk';
 import TableScheduleTmpl from './eventTable.njk';
@@ -15,7 +15,7 @@ import TrainerProfileTmpl from './trainerPage.njk';
 export default class DefaultTemplates implements ITemplates {
     schedule: DefaultTemplate;
     readonly eventPage: DefaultTemplate;
-    readonly endorsementList: DefaultTemplate;
+    readonly testimonialList: DefaultTemplate;
     readonly trainerList: DefaultTemplate;
     readonly trainerProfile: DefaultTemplate;
     readonly registrationPage: DefaultTemplate;
@@ -23,7 +23,7 @@ export default class DefaultTemplates implements ITemplates {
 
     constructor() {
         this.schedule = new DefaultTemplate(TiledScheduleTmpl);
-        this.endorsementList = new DefaultTemplate(EndorsementListTmpl);
+        this.testimonialList = new DefaultTemplate(TestimonialListTmpl);
         this.eventPage = new DefaultTemplate(EventDetailsTmpl);
         this.trainerList = new DefaultTemplate(TrainerListTmpl);
         this.trainerProfile = new DefaultTemplate(TrainerProfileTmpl);

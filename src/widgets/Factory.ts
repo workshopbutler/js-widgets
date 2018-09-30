@@ -3,7 +3,7 @@ import DefaultTemplates from '../templates/DefaultTemplates';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import FactoryConfig from './config/FactoryConfig';
-import EndorsementList from './EndorsementList';
+import TestimonialList from './TestimonialList';
 import EventPage from './EventPage';
 import RegistrationPage from './RegistrationPage';
 import Schedule from './Schedule';
@@ -56,7 +56,7 @@ export default class WidgetFactory {
    */
   createWidget(config: any, index: number, apiKey: string, templates: ITemplates) {
     const supportedWidgets = ['Schedule', 'EventPage', 'RegistrationPage', 'TrainerProfile',
-      'TrainerList', 'SidebarEventList', 'EndorsementList'];
+      'TrainerList', 'SidebarEventList', 'TestimonialList'];
     if (!config.type || supportedWidgets.indexOf(config.type) < 0) {
       logError(`Unknown widget type at the index ${index}`);
       return false;
@@ -72,8 +72,8 @@ export default class WidgetFactory {
         }
         Schedule.plugin(config.target, apiKey, templates, this.loc, config);
         return true;
-      case 'EndorsementList':
-        EndorsementList.plugin(config.target, apiKey, templates, this.loc, config);
+      case 'TestimonialList':
+        TestimonialList.plugin(config.target, apiKey, templates, this.loc, config);
         return true;
       case 'EventPage':
         EventPage.plugin(config.target, apiKey, templates, this.loc, config);
