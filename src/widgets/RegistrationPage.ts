@@ -149,6 +149,6 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
   }
 
   private getUrl(eventId: string) {
-    return `events/${eventId}?api_key=${this.apiKey}&fields=trainer.rating`;
+    return `events/${eventId}?api_key=${this.apiKey}&fields=trainer.rating&t=${this.getWidgetStats()}`;
   }
 }

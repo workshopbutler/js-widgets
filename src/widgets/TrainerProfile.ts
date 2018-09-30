@@ -134,6 +134,6 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
   }
 
   private getUrl(trainerId: number) {
-    return `facilitators/${trainerId}?api_key=${this.apiKey}`;
+    return `facilitators/${trainerId}?api_key=${this.apiKey}&t=${this.getWidgetStats()}`;
   }
 }

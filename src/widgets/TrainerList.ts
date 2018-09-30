@@ -117,7 +117,7 @@ export default class TrainerList extends Widget<TrainerListConfig> {
   }
 
   private getUrl(): string {
-    return `facilitators?api_key=${this.apiKey}`;
+    return `facilitators?api_key=${this.apiKey}&t=${this.getWidgetStats()}`;
   }
 
 }

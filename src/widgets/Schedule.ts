@@ -128,7 +128,8 @@ export default class Schedule extends Widget<ScheduleConfig> {
     if (this.config.categoryId) {
       categoryId = `&categoryId=${this.config.categoryId}`;
     }
-    return `events?api_key=${this.apiKey}&future=true&public=true&fields=${fields}${categoryId}`;
+    const query = `future=true&public=true&fields=${fields}${categoryId}`;
+    return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}`;
   }
 
 }
