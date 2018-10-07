@@ -10,7 +10,7 @@ A set of Javascript widgets to integrate any website with Workshop Butler.
 * TrainerPage widget renders the profile of a trainer
 * RegistrationPage widget renders a registration form for an event
 * SidebarEventList widget renders the list of events, designed specifically for sidebars and columns
-* EndorsementList widget renders the list of endorsements for one trainer
+* TestimonialList widget renders the list of endorsements for one trainer
 
 The widgets work with [default themes](https://workshopbutler.com/developers/themes/). If you want to customise
 the look, check the themes. The widgets render the pages using the templates, provided by a theme, and 

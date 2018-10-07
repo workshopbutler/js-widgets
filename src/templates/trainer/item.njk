@@ -17,9 +17,11 @@
         <a href="{{ trainer.url }}">
           <div>{{ trainer.fullName() }}</div>
         </a>
+        {% if trainer.country %}
         <div class="wsb-trainer-tile__country">
           {{ _t('country.' + trainer.country) }}
         </div>
+        {% endif %}
         <div>
         {% if config.showBadges %}
             {% for badge in trainer.badges %}

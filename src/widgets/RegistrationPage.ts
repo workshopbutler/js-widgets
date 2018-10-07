@@ -143,7 +143,7 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
       self.assignEvents();
 
       self.formHelper = new FormHelper({
-        $controls: self.$root.find('[data-control]')
+        $controls: self.$root.find('[data-control]'),
       }, self.getErrorMessages());
     });
   }

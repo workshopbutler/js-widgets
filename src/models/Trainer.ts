@@ -7,13 +7,13 @@ import Statistics from './Statistics';
  */
 export default class Trainer {
 
-  protected static getCountry(jsonData: any): string {
+  protected static getCountry(jsonData: any): string | null {
     if (jsonData.country) {
       return jsonData.country;
     } else if (jsonData.address && jsonData.address.country) {
       return jsonData.address.country;
     } else {
-      return '';
+      return null;
     }
   }
 
@@ -25,7 +25,7 @@ export default class Trainer {
   readonly photo: string;
   readonly bio: string;
   readonly url?: string;
-  readonly country: string;
+  readonly country: string | null;
   readonly languages: string[];
   readonly yearsOfExperience: number;
   readonly numberOfEvents: number;

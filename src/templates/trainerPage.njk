@@ -1,37 +1,40 @@
 <div class="wsb-content">
   <div class="wsb-page">
     <div class="wsb-body wsb-center">
-      <div class="wsb-trainer-details__header">
+      <div class="wsb-trainer__header">
         <div class="wsb-trainer__header-row">
-          {% set photo = "background-image: url(" + trainer.photo + ");" %}
-          <div class="wsb-trainer-details-image" style="{{ photo }}"></div>
-          <div class="wsb-trainer-details-title-container">
-            <h1 class="wsb-trainer-details-title">{{ trainer.fullName() }}</h1>
-            <div class="wsb-trainer-details-country">{{ _t('country.' + trainer.country) }}</div>
-          </div>
-          <div class="wsb-trainer-details-subtitle-container">
-            <div class="wsb-trainer__social-networks">
-              {% if trainer.socialLinks.website %}
-                <a href="{{ trainer.socialLinks.website }}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-              {% endif %}
-              {% if trainer.socialLinks.blog %}
-                <a href="{{ trainer.socialLinks.blog }}" target="_blank"><i class="fas fa-rss"></i></a>
-              {% endif %}
-              {% if trainer.socialLinks.twitter %}
-                <a href="{{ trainer.socialLinks.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
-              {% endif %}
-              {% if trainer.socialLinks.facebook %}
-                <a href="{{ trainer.socialLinks.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>
-              {% endif %}
-              {% if trainer.socialLinks.linkedIn %}
-                <a href="{{ trainer.socialLinks.linkedIn }}" target="_blank"><i class="fab fa-linkedin"></i></a>
-              {% endif %}
-              {% if trainer.socialLinks.googlePlus %}
-                <a href="{{ trainer.socialLinks.googlePlus }}" target="_blank"><i class="fab fa-google"></i></a>
+          <img src="{{ trainer.photo }}"/>
+          <div class="wsb-trainer__header-col">
+            <div class="wsb-trainer-title">
+              <h1 class="wsb-trainer-name">{{ trainer.fullName() }}</h1>
+              {% if trainer.country %}
+                <div class="wsb-trainer-country">{{ _t('country.' + trainer.country) }}</div>
               {% endif %}
             </div>
-            <a class="btn btn-primary wsb-form__btn wsb-contact-button" href="mailto:{{ trainer.email }}"
-               title="{{ _t('trainer.email') }}">{{ _t('trainer.email') }}</a>
+            <div class="wsb-trainer-buttons">
+              <div class="wsb-trainer__social-networks">
+                {% if trainer.socialLinks.website %}
+                  <a href="{{ trainer.socialLinks.website }}" target="_blank">Website</a>
+                {% endif %}
+                {% if trainer.socialLinks.blog %}
+                  <a href="{{ trainer.socialLinks.blog }}" target="_blank">Blog</a>
+                {% endif %}
+                {% if trainer.socialLinks.twitter %}
+                  <a href="{{ trainer.socialLinks.twitter }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                {% endif %}
+                {% if trainer.socialLinks.facebook %}
+                  <a href="{{ trainer.socialLinks.facebook }}" target="_blank"><i class="fab fa-facebook"></i></a>
+                {% endif %}
+                {% if trainer.socialLinks.linkedIn %}
+                  <a href="{{ trainer.socialLinks.linkedIn }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+                {% endif %}
+                {% if trainer.socialLinks.googlePlus %}
+                  <a href="{{ trainer.socialLinks.googlePlus }}" target="_blank"><i class="fab fa-google"></i></a>
+                {% endif %}
+              </div>
+              <a class="btn btn-primary wsb-form__btn wsb-contact-button" href="mailto:{{ trainer.email }}"
+                 title="{{ _t('trainer.email') }}">{{ _t('trainer.email') }}</a>
+            </div>
           </div>
         </div>
         <div class="wsb-trainer__header-row">

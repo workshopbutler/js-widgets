@@ -14,8 +14,8 @@ const environments = {
 
 const options = {
   apiKey: process.env.API_KEY,
-  theme: 'hayes',
-  apiVersion: '2018-06-28'
+  theme: 'alfred',
+  apiVersion: '2018-09-14'
 };
 
 const mapping = {

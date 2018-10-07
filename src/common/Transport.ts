@@ -144,7 +144,9 @@ class Transport {
       return;
     }
     const event = (e.originalEvent as MessageEvent);
-    if (event.origin !== BACKEND_URL) {
+    const backendUrlWithoutSlack = BACKEND_URL.replace(/\/$/, '');
+    const originWithoutSlack = event.origin.replace('\/$', '');
+    if (originWithoutSlack !== backendUrlWithoutSlack) {
       return;
     }
     if (event.data.cb && typeof this.callbacks[event.data.cb] === 'function') {

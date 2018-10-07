@@ -1,51 +1,49 @@
 .wsb-content {
 
-  .wsb-trainer-details__header {
+  .wsb-trainer__header {
     background-color: @light-grey;
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
   }
   .wsb-trainer__header-row {
-    flex: 0 0 100px;
+    flex: 0 0 100%;
+    display: flex;
     padding-bottom: 10px;
+
+    img {
+      flex: 0 0 150px;
+      height: 150px;
+    }
+  }
+  .wsb-trainer__header-col {
+    flex: 1 0 20%;
+    padding: 1em;
   }
 
-  .wsb-trainer-details-image {
-    background-size: cover;
-    background-position: center;
-    width: 150px;
-    height: 150px;
-    display: inline-block;
-    margin-right: 20px;
-    position: absolute;
+  .wsb-trainer-buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
-  .wsb-trainer-details-title-container, .wsb-trainer-details-subtitle-container {
-    margin-bottom: 2rem;
-    vertical-align: top;
-    position: relative;
-    margin-left: 170px;
-  }
-
-  .wsb-trainer-details-title {
+  .wsb-trainer-name {
     font-weight: bold;
     font-size: 36px;
     margin-bottom: 0;
     margin-top: 0;
   }
 
-  .wsb-trainer-details-country {
+  .wsb-trainer-country {
     margin-top: 0;
+    padding-bottom: 1em;
     font-size: 16px;
     line-height: 1.3;
     color: @text-grey;
   }
 
   .wsb-contact-button {
-    float: right;
     width: 150px;
-    margin-right: 10px;
   }
 
   .wsb-trainer__social-networks  {
@@ -53,6 +51,10 @@
     padding-bottom: 10px;
     a {
       padding-left: 10px;
+
+      &:first-child {
+        padding-left: 0;
+      }
     }
   }
 
@@ -62,6 +64,7 @@
   }
 
   .wsb-trainer-details-facts {
+    flex: 1 0 100%;
     display: flex;
     flex-wrap: wrap;
 
@@ -121,31 +124,23 @@
     }
   }
   @media screen and ( max-width: 40em ) {
-    .wsb-trainer-details-title {
+    .wsb-trainer-name {
       font-size: 24px;
     }
-    .wsb-trainer-details-image {
-      width: 100px;
+    .wsb-trainer__header-row img {
+      flex: 0 0 100px;
       height: 100px;
-    }
-    .wsb-trainer-details-title-container {
-      margin-left: 120px;
-    }
-    .wsb-trainer-details-subtitle-container {
-      margin-left: 0;
-      margin-top: 70px;
     }
     .wsb-trainer__social-networks {
       a:first-child {
         padding-left: 0;
       }
     }
+    .wsb-contact-button {
+      margin-bottom: 10px;
+    }
   }
   @media screen and ( max-width: 30em ) {
-    .wsb-trainer-details-subtitle-container {
-      margin-left: 0;
-      margin-top: 50px;
-    }
     .wsb-trainer__social-networks {
       display: block;
     }
