@@ -59,7 +59,6 @@
   }
 
   .wsb-tile-info {
-    margin-bottom: 15px;
     font-size: 16px;
     line-height: 23px;
   }
@@ -68,12 +67,20 @@
     font-size: 16px;
     line-height: 26px;
     max-height: 182px;
+    margin-top: 15px;
     display: flex;
+    justify-content: space-between;
 
     .wsb-trainer {
       margin: 0;
-      padding-right: 1em;
       display: flex;
+
+      a {
+        margin-right: 0.4em;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
     }
 
     .wsb-name {
