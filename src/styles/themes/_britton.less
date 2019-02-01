@@ -2,8 +2,6 @@
 
 .britton .wsb-content {
   font-family: 'Droid Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.42857143;
   color: #3d4246;
 
   a {
@@ -43,33 +41,27 @@
     color: @britton;
     font-weight: bold;
     -webkit-font-smoothing: antialiased;
-    max-height: 72px;
     overflow: hidden;
   }
 
   .wsb-free {
     background-color: #859529;
     font-weight: bold;
-    font-size: 14px;
     -webkit-font-smoothing: antialiased;
   }
 
   .wsb-tile-info {
-    max-height: 46px;
     overflow: hidden;
     color: #788188;
   }
 
   .wsb-tile-content {
     color: #3d4246;
-    line-height: 26px;
-    max-height: 155px;
   }
 
   .wsb-tile-button {
-    position: static;
-    height: auto;
-    margin: 2em 0;
+    padding: 0 23px;
+    bottom: 0;
     -webkit-transform: none !important;
     -moz-transform: none !important;
     -ms-transform: none !important;
@@ -79,12 +71,9 @@
 
   .wsb-tile-btn {
     position: static;
-    padding: 6px 15px;
-    height: auto;
-    line-height: 2;
-    font-size: 16px;
+    height: 3em;
     font-weight: 400;
-
+    font-size: 1em;
   }
 
   // table
@@ -110,7 +99,6 @@
   .wsb-table__first-free,
   .wsb-table__free {
     font-weight: bold;
-    font-size: 14px;
     color: #859529;
     -webkit-font-smoothing: antialiased;
   }
@@ -133,7 +121,6 @@
   }
 
   .wsb-form__input {
-    font-size: 16px;
     font-family: "Droid Sans", "Helvetica Neue", Arial, sans-serif;
   }
 
@@ -182,31 +169,14 @@
     border: 1px solid #E8E8E8;
     background-color: #F6F6F6;
     color: @britton !important;
-    padding: 6px 0 6px 32px;
-    height: auto;
+    padding: 0.2em 0 0.5em 2em;
     border-radius: 2px;
-    font-size: 14px;
-    line-height: 1;
     .transition(all .15s ease);
 
     .icon {
       position: absolute;
-      left: 5px;
+      left: 0.6em;
       top: 4px;
-    }
-
-    &.type-tw::before {
-      top: 7px;
-    }
-
-    &.type-ld::before {
-      top: 5px;
-    }
-    &.type-fb::before {
-      top: 5px;
-    }
-    &.type-gp::before {
-      top: 5px;
     }
 
     &:hover {

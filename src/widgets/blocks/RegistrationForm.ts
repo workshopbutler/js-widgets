@@ -1,3 +1,4 @@
+import * as JQuery from 'jquery';
 import {logError} from '../../common/Error';
 import transport from '../../common/Transport';
 import Event from '../../models/Event';
@@ -6,7 +7,6 @@ import Localisation from '../../utils/Localisation';
 import WidgetConfig from '../config/WidgetConfig';
 import FormHelper from '../helpers/_form';
 import Widget from '../Widget';
-import JQueryEvent = JQuery.Event;
 
 /**
  * Logic for the registrationPage form page
@@ -45,7 +45,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
    * @param e {Event}
    * @private
    */
-  protected onFormSubmittion(e: JQueryEvent) {
+  protected onFormSubmittion(e: JQuery.TriggeredEvent) {
     e.preventDefault();
     if (this.event.state.closed()) {
       logError('Widget configured incorrectly. Registration button shouldn\'t be active when the registration ' +
@@ -104,7 +104,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
       'CH', 'SY', 'TJ', 'TW', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC', 'TV', 'UG', 'UA',
       'AE', 'GB', 'US', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VG', 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW'];
     const countries = codes.map((code) =>
-      <[string, string]>[code, this.loc.translate('country.' + code)]
+      [code, this.loc.translate('country.' + code)] as [string, string],
     );
     return countries.sort((a, b) => a[1].localeCompare(b[1]));
   }

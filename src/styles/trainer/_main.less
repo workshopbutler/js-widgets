@@ -5,31 +5,48 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+
+    @media @tablet {
+      font-size: 24px;
+    }
+
+    @media @phone {
+      font-size: 32px;
+    }
   }
+
   .wsb-trainer__header-row {
     flex: 0 0 100%;
     display: flex;
-    padding-bottom: 10px;
+    padding-bottom: 1em;
 
     img {
-      flex: 0 0 150px;
       height: 150px;
+
+      @media @phone, @tablet {
+        height: 350px;
+      }
     }
   }
+
   .wsb-trainer__header-col {
     flex: 1 0 20%;
-    padding: 1em;
+    padding: 0 1em;
   }
 
   .wsb-trainer-buttons {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+
+    @media @phone {
+      display: block;
+    }
   }
 
   .wsb-trainer-name {
     font-weight: bold;
-    font-size: 36px;
+    font-size: 2em;
     margin-bottom: 0;
     margin-top: 0;
   }
@@ -37,30 +54,32 @@
   .wsb-trainer-country {
     margin-top: 0;
     padding-bottom: 1em;
-    font-size: 16px;
-    line-height: 1.3;
     color: @text-grey;
   }
 
   .wsb-contact-button {
     width: 150px;
+
+    @media @phone {
+      width: 100%;
+    }
   }
 
-  .wsb-trainer__social-networks  {
+  .wsb-trainer__social-networks {
     display: inline-block;
-    padding-bottom: 10px;
+    padding-bottom: 1em;
+
     a {
-      padding-left: 10px;
+      padding-left: 1em;
 
       &:first-child {
         padding-left: 0;
       }
     }
-  }
 
-  .wsb-trainer__badge {
-    width: 100px;
-    padding-bottom: 20px;
+    @media @phone {
+      display: block;
+    }
   }
 
   .wsb-trainer-details-facts {
@@ -71,44 +90,74 @@
     .wsb-trainer-details-fact {
       flex: 1 1 50px;
       text-align: center;
-      margin: 1rem 1em 1rem 0;
       padding: 10px;
-      font-size: 1rem;
       display: inline-block;
       vertical-align: top;
 
       &:last-child {
         border-right: none;
       }
+
+      @media @phone {
+        flex: 1 1 50%;
+        padding-bottom: 1.5em;
+      }
     }
 
     .wsb-big-number {
-      font-size: 3rem;
+      font-size: 3em;
     }
 
     .wsb-descr {
       color: @text-grey;
       display: block;
-      clear: both;
-      font-size: 1.1rem;
+      font-size: 1em;
+
+      @media @phone {
+        font-size: 0.6em;
+      }
     }
+
     .wsb-descr__sub {
       color: @text-grey;
-      font-size: 0.85rem;
+      font-size: 0.70em;
     }
   }
+
+  .wsb-trainer-badges {
+    @media @phone {
+      text-align: center;
+    }
+  }
+
+  .wsb-trainer__badge {
+    width: 100px;
+    padding-bottom: 1em;
+
+    @media @phone {
+      width: 250px;
+    }
+  }
+
+
   .wsb-testimonial {
     background-color: @light-grey;
     padding: 20px;
     margin-bottom: 10px;
   }
+
   .wsb-cite {
     color: @text-grey;
   }
+
   .wsb-rating {
     float: right;
     color: @yellow;
-    font-size: 14px;
+    font-size: 1em;
+
+    @media @phone {
+      font-size: 2em;
+    }
 
     .fa-stack {
       width: 1.1em;
@@ -116,42 +165,19 @@
     }
   }
 
-  @media screen and ( max-width: 63em ) {
-    .wsb-trainer-details-facts {
-      .wsb-trainer-details-fact {
-        margin: 0.5rem 0.8em 0.5rem 0.8em;
-      }
-    }
-  }
   @media screen and ( max-width: 40em ) {
     .wsb-trainer-name {
       font-size: 24px;
     }
-    .wsb-trainer__header-row img {
-      flex: 0 0 100px;
-      height: 100px;
-    }
+
     .wsb-trainer__social-networks {
       a:first-child {
         padding-left: 0;
       }
     }
+
     .wsb-contact-button {
       margin-bottom: 10px;
     }
   }
-  @media screen and ( max-width: 30em ) {
-    .wsb-trainer__social-networks {
-      display: block;
-    }
-    .wsb-contact-button {
-      display: block;
-      float: none;
-      min-width: 100%;
-      height: 40px;
-      font-size: 16px !important;
-      line-height: 0.4;
-    }
-  }
-
 }

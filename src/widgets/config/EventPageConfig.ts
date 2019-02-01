@@ -1,6 +1,6 @@
 import {logError} from '../../common/Error';
+import IPlainObject from '../../interfaces/IPlainObject';
 import WidgetConfig from './WidgetConfig';
-import PlainObject = JQuery.PlainObject;
 
 /**
  * Contains @EventPageConfig widget configuration options
@@ -9,9 +9,9 @@ export default class EventPageConfig extends WidgetConfig {
 
   /**
    * Returns the config if the options are correct
-   * @param options {PlainObject} Widget's options
+   * @param options {IPlainObject} Widget's options
    */
-  static create(options: PlainObject): EventPageConfig | null {
+  static create(options: IPlainObject): EventPageConfig | null {
     if (EventPageConfig.validate(options)) {
       return new EventPageConfig(options);
     } else {
@@ -21,9 +21,9 @@ export default class EventPageConfig extends WidgetConfig {
 
   /**
    * Returns true if the options can be used to create the widget's config
-   * @param options {PlainObject} Widget's config
+   * @param options {IPlainObject} Widget's config
    */
-  protected static validate(options: PlainObject): boolean {
+  protected static validate(options: IPlainObject): boolean {
     let valid = true;
     if (options.withTrainers && (!options.trainerPageUrl || typeof options.trainerPageUrl !== 'string')) {
       logError('Attribute [trainerPageUrl] is not set correctly while [withTrainers=true]');
@@ -51,7 +51,7 @@ export default class EventPageConfig extends WidgetConfig {
    * List of additional widgets, rendered on the page. Default themes support one SidebarEventList widget
    * on #upcoming-events
    */
-  readonly widgets: PlainObject[];
+  readonly widgets: IPlainObject[];
 
   /**
    * True if a container for future workshops (#upcoming-events) should be rendered

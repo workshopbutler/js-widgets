@@ -1,0 +1,72 @@
+// tickets
+.wsb-tickets {
+  @media @phone, @tablet {
+    display: flex;
+  }
+}
+.wsb-ticket {
+  padding: 0.5em 0.5em;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  text-align: left;
+
+  &.state-closed {
+    background-color: #ffffff;
+    border-color: #c1bfbf;
+
+    .wsb-ticket__name,
+    .wsb-ticket__val {
+      color: #7a7a7a;
+    }
+  }
+
+  @media @phone, @tablet {
+    flex: 1;
+  }
+}
+
+
+.wsb-ticket__val {
+  margin-bottom: 0.4em;
+  font-size: 2em;
+
+  @media @phone {
+    margin-bottom: 0;
+    font-size: 4em;
+  }
+}
+
+.wsb-ticket__name {
+  @media @phone {
+    font-size: 2em;
+  }
+}
+
+.wsb-ticket__desc {
+  color: #788188;
+  min-height: 1.3em;
+  font-size: 0.8em;
+
+  @media @tablet {
+    font-size: 1em;
+  }
+
+  @media @phone {
+    font-size: 2em;
+  }
+}
+
+.wsb-ticket__footer {
+  color: #788188;
+  font-size: 0.8em;
+  margin-top: 1em;
+
+  @media @tablet {
+    font-size: 1em;
+  }
+  @media @phone {
+    font-size: 1.5em;
+  }
+}
+

@@ -4,8 +4,14 @@
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,
-    "module": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
     "allowJs": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+//    "strict": true,
+    "noEmit": true,
     "target": "es6"
   },
   "include": [

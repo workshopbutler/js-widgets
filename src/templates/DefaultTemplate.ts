@@ -1,4 +1,4 @@
-import {ITemplate} from 'ITemplates';
+import {ITemplate} from './ITemplates';
 
 /**
  * A default implementation of @Template interface

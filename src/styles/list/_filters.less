@@ -1,14 +1,18 @@
 .wsb-content {
   .wsb-filters {
     display: flex;
-    align-content: space-between;
+    justify-content: space-between;
     flex-wrap: wrap;
   }
   .wsb-filter {
-    flex: 1 0 15%;
-    margin: 0 20px 20px 0;
+    flex: 0 0 24%;
+    margin: 0 0 20px 0;
     &:last-child {
       margin-right: 0;
+    }
+
+    @media @phone {
+      flex: 0 0 49%;
     }
   }
 }

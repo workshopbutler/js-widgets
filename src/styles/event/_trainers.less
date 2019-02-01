@@ -1,12 +1,16 @@
 .wsb-content {
   .wsb-trainers {
-    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
   }
 
   .wsb-trainer {
-    margin-bottom: 38px;
+    margin-bottom: 2em;
+    flex: 1 0 25%;
+
+    @media @tablet {
+      flex: 0 0 30%;
+    }
   }
 
   .wsb-profile {
@@ -25,6 +29,13 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+
+    @media @phone {
+      height: 26em;
+    }
+    @media @tablet {
+
+    }
   }
 
   .wsb-profile__name {
@@ -33,18 +44,19 @@
     overflow: hidden;
     font-weight: bold;
     background: @light-grey;
-    max-width: 18em;
+
+    @media @phone {
+      font-size: 2em;
+    }
   }
   .wsb-profile__rating {
     color: black;
-    font-size: 14px;
+    font-size: 0.8em;
     font-weight: bold;
     padding-top: 8px;
 
     .fa-stack {
       width: 1.1em;
-      line-height: 1.9em;
     }
   }
-
 }

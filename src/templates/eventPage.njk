@@ -15,6 +15,15 @@
         </div>
         {% from "./event/info.njk" import info %}
         {{ info(event, config, _t, _f) }}
+      </div>
+      <div class="wsb-left-col">
+        {% if event.description %}
+          <div class="wsb-desc">{{ event.description | safe }}</div>
+        {% endif %}
+      </div>
+      <div class="wsb-right-col">
+        {% from "./event/share.njk" import shareEvent %}
+        {{ shareEvent(event, _t, _f) }}
         {% if config.showFutureEvents %}
           <div class="wsb-info" id="upcoming-events">
             <div class="wsb-events__title">
@@ -22,13 +31,6 @@
             </div>
             <div data-events-list></div>
           </div>
-        {% endif %}
-        {% from "./event/share.njk" import shareEvent %}
-        {{ shareEvent(event, _t, _f) }}
-      </div>
-      <div class="wsb-left-col">
-        {% if event.description %}
-          <div class="wsb-desc">{{ event.description | safe }}</div>
         {% endif %}
       </div>
     </div>

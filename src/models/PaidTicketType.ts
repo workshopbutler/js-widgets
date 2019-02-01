@@ -1,8 +1,8 @@
-import IPaidTicketType from "../interfaces/IPaidTicketType";
-import {TicketTypeState} from "./TicketTypeState";
-import TicketPrice from "./TicketPrice";
-import {DateTime} from "luxon";
-import PlainObject = JQuery.PlainObject;
+import {DateTime} from 'luxon';
+import IPaidTicketType from '../interfaces/IPaidTicketType';
+import IPlainObject from '../interfaces/IPlainObject';
+import TicketPrice from './TicketPrice';
+import {TicketTypeState} from './TicketTypeState';
 
 /**
  * A default implementation of IPaidTicketType interface
@@ -21,7 +21,7 @@ export default class PaidTicketType implements IPaidTicketType {
     readonly price: TicketPrice;
     private readonly state: TicketTypeState;
 
-    constructor(jsonData: PlainObject, timezone: string) {
+    constructor(jsonData: IPlainObject, timezone: string) {
         this.id = jsonData.id;
         this.name = jsonData.name;
         this.numberOfTickets = jsonData.amount;

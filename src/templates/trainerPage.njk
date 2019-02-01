@@ -80,31 +80,8 @@
             <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
           {% endfor %}
         </div>
-        {% if config.showFutureEvents or config.showPastEvents %}
-          <div class="wsb-trainer-events">
-            {% if config.showFutureEvents %}
-              <div class="wsb-events" id="upcoming-events">
-                <div class="wsb-events__title">
-                  {{ _t('sidebar.future') }}:
-                </div>
-                <div data-events-list>
-                </div>
-              </div>
-            {% endif %}
-            {% if config.showPastEvents %}
-              <div class="wsb-events" id="past-events">
-                <div class="wsb-events__title">
-                  {{ _t('sidebar.past') }}:
-                </div>
-                <div data-events-list>
-                </div>
-              </div>
-            {% endif %}
-          </div>
-        {% endif %}
       </div>
       <div class="wsb-left-col">
-        <h3>{{ _t('trainer.bio') }}</h3>
         <div class="wsb-desc">
           {{ trainer.bio | safe }}
         </div>
@@ -141,6 +118,30 @@
                 <p class="wsb-testimonial-text">{{ testimonial.content }}</p>
               </div>
             {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="wsb-right-col">
+        {% if config.showFutureEvents or config.showPastEvents %}
+          <div class="wsb-trainer-events">
+            {% if config.showFutureEvents %}
+              <div class="wsb-events" id="upcoming-events">
+                <div class="wsb-events__title">
+                  {{ _t('sidebar.future') }}:
+                </div>
+                <div data-events-list>
+                </div>
+              </div>
+            {% endif %}
+            {% if config.showPastEvents %}
+              <div class="wsb-events" id="past-events">
+                <div class="wsb-events__title">
+                  {{ _t('sidebar.past') }}:
+                </div>
+                <div data-events-list>
+                </div>
+              </div>
+            {% endif %}
           </div>
         {% endif %}
       </div>

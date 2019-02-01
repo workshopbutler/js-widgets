@@ -1,4 +1,4 @@
-import PlainObject = JQuery.PlainObject;
+import IPlainObject from '../../interfaces/IPlainObject';
 import WidgetConfig from './WidgetConfig';
 
 /**
@@ -8,9 +8,9 @@ export default class TrainerProfileConfig extends WidgetConfig {
 
   /**
    * Returns the config if the options are correct
-   * @param options {PlainObject} Widget's options
+   * @param options {IPlainObject} Widget's options
    */
-  static create(options: PlainObject): TrainerProfileConfig | null {
+  static create(options: IPlainObject): TrainerProfileConfig | null {
     if (TrainerProfileConfig.validate(options)) {
       return new TrainerProfileConfig(options);
     } else {
@@ -20,9 +20,9 @@ export default class TrainerProfileConfig extends WidgetConfig {
 
   /**
    * Returns true if the options can be used to create the widget's config
-   * @param options {PlainObject} Widget's config
+   * @param options {IPlainObject} Widget's config
    */
-  protected static validate(options: PlainObject): boolean {
+  protected static validate(options: IPlainObject): boolean {
     return true;
   }
 
@@ -30,7 +30,7 @@ export default class TrainerProfileConfig extends WidgetConfig {
    * List of additional widgets, rendered on the page. Default themes support two SidebarEventList widgets,
    *  situated in #past-events and #upcoming-events
    */
-  readonly widgets: PlainObject[];
+  readonly widgets: IPlainObject[];
 
   /**
    * True if a container for future workshops (#upcoming-events) should be rendered
@@ -42,7 +42,7 @@ export default class TrainerProfileConfig extends WidgetConfig {
    */
   readonly showPastEvents: boolean;
 
-  protected constructor(options: PlainObject) {
+  protected constructor(options: IPlainObject) {
     super(options);
     this.widgets = options.widgets !== undefined ? options.widgets : [];
     this.showFutureEvents = options.futureEvents !== undefined ? options.futureEvents : true;

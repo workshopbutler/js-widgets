@@ -3,6 +3,7 @@
 @import "core/_scaffolding";
 @import "core/_buttons";
 @import "core/_helpers";
+@import "core/_media";
 
 // list
 @import "list/_common";
@@ -26,13 +27,46 @@
 
 
 .wsb-content {
+  font-size: 16px;
+  line-height: 1.42857143;
+
+  @media @phone {
+    font-size: 20px;
+    line-height: 1.72;
+  }
+
+  // body layout
+  .wsb-body {
+    padding-top: 31px;
+    .clearfix();
+  }
+
+  .wsb-left-col {
+    margin-bottom: 40px;
+    overflow: hidden;
+    width: 66%;
+    float: left;
+
+    @media screen and ( max-width: 63em ), @phone {
+      float: none;
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  .wsb-right-col {
+    float: right;
+    width: 290px;
+    margin-left: 50px;
+  }
+
   @media screen and ( max-width: 72em ) {
     .wsb-center {
       width: auto;
     }
   }
 
-  @media screen and ( max-width: 63em ) {
+  @media screen and ( max-width: 63em ), @phone {
     .wsb-left-col {
       margin-right: 0;
     }
@@ -42,14 +76,13 @@
       width: auto;
       margin-left: 0;
       margin-bottom: 30px;
-
     }
 
     .wsb-trainers {
       flex-direction: row;
     }
   }
-  @media screen and ( max-width: 33em ) {
+  @media screen and ( max-width: 33em ), @phone {
     .wsb-trainers {
       flex-direction: column;
     }

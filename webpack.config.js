@@ -5,6 +5,8 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const config = require('./config.js');
 
@@ -83,23 +85,9 @@ let webpackConfig = {
         }
       },
       {
-        test: /\.ts?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.js?$/,
+        test: /\.(js|ts)$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              'presets': [['babel-preset-env', {
-                "targets.uglify": true
-              }]]
-            }
-          }
-        ]
+        loader: 'babel-loader',
       },
       {
         test: /\.less$/,
@@ -144,6 +132,14 @@ let webpackConfig = {
   },
   optimization: {
     noEmitOnErrors: true,
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
   }
 };
 

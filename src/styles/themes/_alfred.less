@@ -1,17 +1,7 @@
 .alfred .wsb-content {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.42857143;
   color: #333;
   background-color: #fff;
-
-  .wsb-subtitle {
-    font-size: 16px;
-    line-height: 1;
-    color: #777;
-    font-weight: bold;
-    margin-bottom: 9px;
-  }
 
   .wsb-body {
     .clearfix();
@@ -19,20 +9,15 @@
   }
 
   .wsb-tickets {
-    margin-bottom: 30px;
 
     .wsb-ticket {
       &.state-closed {
         color: @grey;
-        background-color: transparent;
+        background-color: #fff;
       }
       border: 2px solid @background-grey;
       background-color: @background-grey;
       border-radius: 4px;
-      margin: 0 0 10px;
-      padding: 11px 9px;
-
-      line-height: 20px;
 
       .hint {
         font-size: 14px;
@@ -49,18 +34,17 @@
 
   .wsb-sidebar__register,
   .wsb-form__btn {
-    background-color: #4a90e2;
-    border-radius: 5px;
+    background-color: @alfred;
+    border-radius: 0.3em;
     font-weight: 400;
-    font-size: 18px;
   }
 
   .wsb-btn-primary {
     color: #fff !important;
-    background-color: #4a90e2;
+    background-color: @alfred;
 
     &:hover {
-      background-color: #4a90e2;
+      background-color: @alfred;
       border-color: #4682c8;
       box-shadow: 0 1px #4682c8 inset, 0 -1px #4682c8 inset, 1px 0 #4682c8 inset, -1px 0 #4682c8 inset;
     }
@@ -85,7 +69,7 @@
   }
 
   .wsb-tile-title {
-    color: #4a90e2;
+    color: @alfred;
   }
 
   .wsb-free {
@@ -124,7 +108,7 @@
 
   .wsb-table__btn {
     color: #fff !important;
-    background-color: #4a90e2;
+    background-color: @alfred;
   }
   .wsb-sharing__icon {
     color: transparent;

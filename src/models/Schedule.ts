@@ -1,4 +1,4 @@
-import {DateTime, Info} from "luxon";
+import {DateTime, Info} from 'luxon';
 
 /**
  * Represents a schedule for a workshop
@@ -14,7 +14,7 @@ export default class Schedule {
      * @param attrs {any} JSON representation of the schedule
      */
     constructor(attrs: any) {
-        //check if the browser support IANA-specified zones
+        // check if the browser support IANA-specified zones
         if (attrs.timezone && Info.features().zones && DateTime.local().setZone(attrs.timezon).isValid) {
             this.timezone = attrs.timezone;
         } else {
@@ -47,7 +47,7 @@ export default class Schedule {
      * @return {boolean}
      */
     atOneDay(): boolean {
-        return this.start.toFormat('yyyy-MM-dd') == this.end.toFormat('yyyy-MM-dd');
+        return this.start.toFormat('yyyy-MM-dd') === this.end.toFormat('yyyy-MM-dd');
     }
 
 }

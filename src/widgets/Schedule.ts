@@ -1,6 +1,7 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import {logError} from '../common/Error';
 import transport from '../common/Transport';
+import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
@@ -9,7 +10,6 @@ import Filters from './blocks/EventListFilters';
 import ScheduleConfig from './config/ScheduleConfig';
 import getTemplate from './helpers/_templates';
 import Widget from './Widget';
-import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the list of events
@@ -86,8 +86,8 @@ export default class Schedule extends Widget<ScheduleConfig> {
 
     const url = this.getUrl();
     transport.get(url, {},
-      (data: PlainObject[], status: string) => {
-        self.events = data.map((event: PlainObject) => {
+      (data: IPlainObject[]) => {
+        self.events = data.map((event: IPlainObject) => {
           return new Event(event, self.config);
         });
         self.render();

@@ -63,7 +63,7 @@ export default class Trainer {
     this.testimonials = jsonData.endorsements;
 
     this.country = Trainer.getCountry(jsonData);
-    this.url = options.trainerPageUrl ? `${options.trainerPageUrl}?id=${this.id}` : undefined;
+    this.url = options.trainerPageUrl ? this.getTrainerUrl(options.trainerPageUrl) : undefined;
     this.languages = jsonData.languages ?
       jsonData.languages.map((language: string) => getLangCode(language)) : [];
   }
@@ -81,6 +81,10 @@ export default class Trainer {
    */
   nameOfBadges(): string[] {
     return this.badges.map((badge) => badge.name);
+  }
+
+  private getTrainerUrl(baseUrl: string): string {
+    return `${baseUrl}?id=${this.id}&name=${this.fullName()}`;
   }
 
   /**

@@ -1,0 +1,15 @@
+{% macro renderRegisterButton(event, config, _t, _f) %}
+  <div class="wsb-table__col wsb-table__col-register">
+    {% if event.free %}
+      <div class="wsb-free">{{ _t('schedule.event.free') | lower }}</div>
+    {% endif %}
+    {% if event.state.closed() %}
+      <button class="wsb-table__btn" disabled>{{ _t('schedule.event.soldOut') }}</button>
+    {% else %}
+      <a href="{% if config.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
+         class="wsb-table__btn">
+        {{ _t('schedule.event.register') }}
+      </a>
+    {% endif %}
+  </div>
+{% endmacro %}
