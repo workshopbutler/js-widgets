@@ -1,11 +1,11 @@
 import DefaultTemplate from './DefaultTemplate';
 import {ITemplates} from './ITemplates';
-import TestimonialListTmpl from './testimonialList.njk';
 import TiledScheduleTmpl from './eventList.njk';
 import EventDetailsTmpl from './eventPage.njk';
 import TableScheduleTmpl from './eventTable.njk';
 import RegistrationFormTmpl from './registrationPage.njk';
 import SidebarTmpl from './sidebarEventList.njk';
+import TestimonialListTmpl from './testimonialList.njk';
 import TrainerListTmpl from './trainerList.njk';
 import TrainerProfileTmpl from './trainerPage.njk';
 

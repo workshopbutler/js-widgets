@@ -2,6 +2,7 @@ import {renderString as nunjucksRenderString} from 'nunjucks';
 import {logError} from '../common/Error';
 import {getQueryParam} from '../common/helpers/_urlParser';
 import transport from '../common/Transport';
+import IPlainObject from '../interfaces/IPlainObject';
 import Trainer from '../models/Trainer';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
@@ -9,7 +10,6 @@ import Formatter from '../view/Formatter';
 import TrainerProfileConfig from './config/TrainerProfileConfig';
 import WidgetFactory from './Factory';
 import getTemplate from './helpers/_templates';
-import PlainObject = JQuery.PlainObject;
 import Widget from './Widget';
 
 /**
@@ -102,7 +102,7 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
     const self = this;
     const url = this.getUrl(trainerId);
     transport.get(url, {},
-      (data: PlainObject) => {
+      (data: IPlainObject) => {
         self.trainer = new Trainer(data, self.config);
         self.render();
       });

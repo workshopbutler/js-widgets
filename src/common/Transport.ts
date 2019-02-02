@@ -1,3 +1,4 @@
+import * as JQuery from 'jquery';
 import IApiResponse from '../interfaces/IApiResponse';
 import IError from '../interfaces/IError';
 import {logError} from './Error';
@@ -25,7 +26,7 @@ class Transport {
    * @param {Function} callbackSuccess
    * @param {Function} callbackError
    */
-  get(url: string, data: object, callbackSuccess: Function, callbackError?: (error: IError) => void) {
+  get(url: string, data: object, callbackSuccess: (response: any) => void, callbackError?: (error: IError) => void) {
     const withVersion = `${url}&version=${API_VERSION}`;
     const settings = {
       crossDomain: true,
@@ -47,15 +48,15 @@ class Transport {
     });
   }
 
-  post(url: string, data: any, callbackSuccess: Function) {
+  post(url: string, data: any, callbackSuccess: (response: any) => void) {
     this.makeFrameRequest('POST', url, data, callbackSuccess);
   }
 
-  put(url: string, data: any, callbackSuccess: Function) {
+  put(url: string, data: any, callbackSuccess: (response: any) => void) {
     this.makeFrameRequest('PUT', url, data, callbackSuccess);
   }
 
-  delete(url: string, data: any, callbackSuccess: Function) {
+  delete(url: string, data: any, callbackSuccess: (response: any) => void) {
     this.makeFrameRequest('DELETE', url, data, callbackSuccess);
   }
 
@@ -116,7 +117,7 @@ class Transport {
     return iframe;
   }
 
-  private makeFrameRequest(method: string, url: string, data: any, callbackSuccess: Function) {
+  private makeFrameRequest(method: string, url: string, data: any, callbackSuccess: (response: any) => void) {
     const that = this;
     const callbackId = 'cb' + (Math.random() * 100).toString().replace(/\./g, '');
 
@@ -139,7 +140,7 @@ class Transport {
     return false;
   }
 
-  private addMessageListener(e: JQuery.Event) {
+  private addMessageListener(e: JQuery.TriggeredEvent) {
     if (!e.originalEvent) {
       return;
     }

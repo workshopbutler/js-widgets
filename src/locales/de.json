@@ -308,6 +308,7 @@
     "when": "Wann",
     "where": "Wo",
     "what": "Was",
+    "who": "Wer",
     "event": {
       "register": "Registrieren",
       "soldOut": "Ausverkauft",

@@ -3,14 +3,21 @@
   .wsb-sharing__icon {
     display: inline-block;
     vertical-align: top;
-    width: 38px;
-    height: 38px;
-    margin-left: 14px;
+    width: 2em;
+    height: 2em;
+    margin-left: 1em;
     border: 2px solid @icon-grey;
-    border-radius: 19px;
+    border-radius: 1em;
     position: relative;
     -webkit-transition: all 0.15s ease;
     transition: all 0.15s ease;
+
+    @media @phone {
+      font-size: 2em;
+    }
+    @media @tablet {
+      font-size: 1.5em;
+    }
 
     &:hover {
       border-color: @icon-grey;
@@ -28,34 +35,49 @@
     }
 
     &.type-tw::before {
-      left: 9px;
-      top: 11px;
-      width: 16px;
-      height: 13px;
+      left: 0.45em;
+      top: 0.55em;
+      width: 1em;
+      height: 0.8em;
       background: url(../images/icon-tw.png) no-repeat;
     }
 
     &.type-ld::before {
-      left: 9px;
-      top: 9px;
-      width: 17px;
-      height: 16px;
+      left: 0.35em;
+      top: 0.35em;
+
+      @media @phone, @tablet {
+        left: 0.45em;
+        top: 0.45em;
+      }
+      width: 1em;
+      height: 1em;
       background: url(../images/icon-ld.png) no-repeat;
     }
 
     &.type-fb::before {
-      left: 12px;
-      top: 9px;
-      width: 10px;
-      height: 16px;
+      left: 0.50em;
+      top: 0.40em;
+
+      @media @phone, @tablet {
+        left: 0.55em;
+        top: 0.45em;
+      }
+      width: 0.7em;
+      height: 1em;
       background: url(../images/icon-fb.png) no-repeat;
     }
 
     &.type-gp::before {
-      left: 11px;
-      top: 10px;
-      width: 14px;
-      height: 14px;
+      left: 0.35em;
+      top: 0.35em;
+
+      @media @phone, @tablet {
+        left: 0.45em;
+        top: 0.45em;
+      }
+      width: 1em;
+      height: 1em;
       background: url(../images/icon-gp.png) no-repeat;
     }
   }

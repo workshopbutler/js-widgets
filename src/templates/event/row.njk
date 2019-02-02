@@ -1,43 +1,25 @@
 {% macro drawRow(event, config, _t, _f) %}
-    <div class="wsb-table__row" data-event-obj data-event-type="{{ event.type.id }}"
-         data-event-location="{{ event.location.countryCode }}"
-         data-event-language="{{ event.language.spoken | join(',') }}"
-         data-event-trainer="{{ event.nameOfTrainers() | join(',') }}">
-        <div class="wsb-table__col">
-            {% if event.schedule.atOneDay() %}
-                {{ _f(event.schedule, 'full_long') }}
-                {% if event.location.online and event.schedule.timezone %}
-                    {{ _f(event.schedule, 'timezone_short') }}
-                {% endif %}
-            {% else %}
-                {{ _f(event.schedule, 'full_short') }}
-            {% endif %}
-        </div>
-        <div class="wsb-table__col">{{ _f(event.location) }}
-            {% if event.free %}
-                <div class="wsb-free wsb-first">{{ _t('schedule.event.free') | lower }}</div>
-            {% endif %}
-        </div>
-        <div class="wsb-table__col {{ "with-badge" if event.type.badge }}">
-            {% if event.type.badge %}
-                <img class="wsb-table__img" src="{{ event.type.badge }}">
-            {% endif %}
-            <a href="{{ event.url }}" class="wsb-table__link">
-                {{ event.title }}
-            </a>
-        </div>
-        <div class="wsb-table__col">
-            {% if event.free %}
-                <div class="wsb-free">{{ _t('schedule.event.free') | lower }}</div>
-            {% endif %}
-            {% if event.state.closed() %}
-                <button class="wsb-table__btn" disabled>{{ _t('schedule.event.soldOut') }}</button>
-            {% else %}
-                <a href="{% if config.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
-                    class="wsb-table__btn">
-                    {{ _t('schedule.event.register') }}
-                </a>
-            {% endif %}
-        </div>
-    </div>
+<div class="wsb-table__row" data-event-obj data-event-type="{{ event.type.id }}"
+     data-event-location="{{ event.location.countryCode }}"
+     data-event-language="{{ event.language.spoken | join(',') }}"
+     data-event-trainer="{{ event.nameOfTrainers() | join(',') }}">
+  {% from "./row/schedule.njk" import renderSchedule %}
+  {% from "./row/location.njk" import renderLocation %}
+  {% from "./row/trainers.njk" import renderTrainers %}
+  {% from "./row/title.njk" import renderTitle %}
+  {% from "./row/register.njk" import renderRegisterButton %}
+  {% for col in config.cols %}
+    {% if col === 'schedule' %}
+      {{ renderSchedule(event, config, _t, _f) }}
+    {% elif col === 'location' %}
+      {{ renderLocation(event, config, _t, _f) }}
+    {% elif col === 'trainers' %}
+      {{ renderTrainers(event, config, _t, _f) }}
+    {% elif col === 'title' %}
+      {{ renderTitle(event, config, _t, _f) }}
+    {% else %}
+      {{ renderRegisterButton(event, config, _t, _f) }}
+    {% endif %}
+  {% endfor %}
+</div>
 {% endmacro %}

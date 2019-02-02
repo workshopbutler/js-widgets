@@ -1,5 +1,6 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import transport from '../common/Transport';
+import IPlainObject from '../interfaces/IPlainObject';
 import Trainer from '../models/Trainer';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
@@ -8,7 +9,6 @@ import Filters, {default as TrainerListFilters} from './blocks/TrainerListFilter
 import TrainerListConfig from './config/TrainerListConfig';
 import getTemplate from './helpers/_templates';
 import Widget from './Widget';
-import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the list of trainers
@@ -84,8 +84,8 @@ export default class TrainerList extends Widget<TrainerListConfig> {
 
     const url = this.getUrl();
     transport.get(url, {},
-      (data: PlainObject[]) => {
-        self.trainers = data.map((trainer: PlainObject) => {
+      (data: IPlainObject[]) => {
+        self.trainers = data.map((trainer: IPlainObject) => {
           return new Trainer(trainer, self.config);
         });
         self.render();

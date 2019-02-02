@@ -1,5 +1,5 @@
-import PlainObject = JQuery.PlainObject;
-import IError from "./IError";
+import IError from './IError';
+import IPlainObject from './IPlainObject';
 
 export default interface IApiResponse {
     /**
@@ -10,10 +10,10 @@ export default interface IApiResponse {
     /**
      * Headers
      */
-    headers: PlainObject;
+    headers: IPlainObject;
 
     /**
      * Response body
      */
-    response: PlainObject | IError;
+    response: IPlainObject | IError;
 }

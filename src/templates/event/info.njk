@@ -1,62 +1,65 @@
 {% macro info(event, config, _t, _f) %}
+  <div class="wsb-info-block">
     <div class="wsb-info">
-        <div class="wsb-info__title">{{ _t('event.info.date') }}:</div>
-        {% if event.schedule.atOneDay() %}
-            {{ _f(event.schedule, 'full_long') }} {{ _f(event.schedule, 'timezone_short') }}
-        {% else %}
-            {{ _f(event.schedule, 'start_long') }}
-            —<br>{{ _f(event.schedule, 'end_long') }} {{ _f(event.schedule, 'timezone_short') }}
-        {% endif %}
+      <div class="wsb-info__title">{{ _t('event.info.date') }}:</div>
+      {% if event.schedule.atOneDay() %}
+        {{ _f(event.schedule, 'full_long') }} {{ _f(event.schedule, 'timezone_short') }}
+      {% else %}
+        {{ _f(event.schedule, 'start_long') }}
+        —<br>{{ _f(event.schedule, 'end_long') }} {{ _f(event.schedule, 'timezone_short') }}
+      {% endif %}
     </div>
     <div class="wsb-info">
-        <div class="wsb-info__title">{{ _t('event.info.loc') }}:</div>
-        {{ _f(event.location) }}
-        <div class="wsb-info__footer">{{ _f(event.language) }}</div>
+      <div class="wsb-info__title">{{ _t('event.info.loc') }}:</div>
+      {{ _f(event.location) }}
+      <div class="wsb-info__footer">{{ _f(event.language) }}</div>
     </div>
-    {% if event.tickets.nonEmpty() %}
-        <div class="wsb-tickets wsb-info">
-            {% if event.free %}
-                {% from "./freeTicket.njk" import freeTicket %}
-                {{ freeTicket(event.tickets.free, _t, _f) }}
+  </div>
+  {% if event.tickets.nonEmpty() %}
+    <div class="wsb-info wsb-tickets">
+      {% if event.free %}
+        {% from "./freeTicket.njk" import freeTicket %}
+        {{ freeTicket(event.tickets.free, _t, _f) }}
+      {% else %}
+        {% from "./paidTicket.njk" import paidTicket %}
+        {% for ticket in event.tickets.paid %}
+          {{ paidTicket(ticket, config, _t, _f) }}
+        {% endfor %}
+      {% endif %}
+    </div>
+  {% endif %}
+  {% if config.trainers %}
+    <div class="wsb-trainers">
+      {% for trainer in event.trainers %}
+        <div class="wsb-trainer">
+          <div class="wsb-profile">
+            {% set photo = "background-image: url(" + trainer.photo + ");" %}
+            {% if trainer.url %}
+              <a class="wsb-profile_img" href="{{ trainer.url }}" style="{{ photo }}"></a>
             {% else %}
-                {% from "./paidTicket.njk" import paidTicket %}
-                {% for ticket in event.tickets.paid %}
-                    {{ paidTicket(ticket, config, _t, _f) }}
-                {% endfor %}
+              <div class="wsb-profile_img" style="{{ photo }}"></div>
             {% endif %}
+            <div class="wsb-profile__name">
+              <div>
+                {% if trainer.url %}
+                  <a href="{{ trainer.url }}">{{ trainer.fullName() }}</a>
+                {% else %}
+                  {{ trainer.fullName() }}
+                {% endif %}
+              </div>
+              <div class="wsb-profile__rating">
+                {% from "../common/rating.njk" import render_rating_stars %}
+                {% if trainer.publicStats.rating > 0 %}
+                  {{ render_rating_stars(trainer.publicStats.rating, false) }}
+                  {{ _f(trainer.publicStats.rating) }}
+                  <span>{{ _t('trainer.experience.rating.review', {count: trainer.publicStats.numberOfEvaluations }) }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
         </div>
-    {% endif %}
-    {% if config.trainers %}
-        <div class="wsb-trainers">
-            {% for trainer in event.trainers %}
-                <div class="wsb-trainer">
-                    <div class="wsb-profile">
-                        {% if trainer.url %}
-                            {% set photo = "background-image: url(" + trainer.photo + ");" %}
-                            <a class="wsb-profile_img" href="{{ trainer.url }}" style="{{ photo }}"></a>
-                        {% else %}
-                            <div class="wsb-profile_img"><img src="{{ trainer.photo }}"/></div>
-                        {% endif %}
-                        <div class="wsb-profile__name">
-                            <div>
-                                {% if trainer.url %}
-                                    <a href="{{ trainer.url }}">{{ trainer.fullName() }}</a>
-                                {% else %}
-                                    {{ trainer.fullName() }}
-                                {% endif %}
-                            </div>
-                            <div class="wsb-profile__rating">
-                                {% from "../common/rating.njk" import render_rating_stars %}
-                                {% if trainer.publicStats.rating > 0 %}
-                                    {{ render_rating_stars(trainer.publicStats.rating, false) }}
-                                    {{ _f(trainer.publicStats.rating) }} <span>{{ _t('trainer.experience.rating.review', {count: trainer.publicStats.numberOfEvaluations }) }}</span>
-                                {% endif  %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 
 {% endmacro %}

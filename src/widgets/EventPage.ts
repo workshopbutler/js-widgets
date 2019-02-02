@@ -2,6 +2,7 @@ import {renderString as nunjucksRenderString} from 'nunjucks';
 import {logError} from '../common/Error';
 import {getQueryParam} from '../common/helpers/_urlParser';
 import transport from '../common/Transport';
+import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
@@ -10,7 +11,6 @@ import EventPageConfig from './config/EventPageConfig';
 import WidgetFactory from './Factory';
 import getTemplate from './helpers/_templates';
 import Widget from './Widget';
-import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the event details
@@ -102,7 +102,7 @@ export default class EventPage extends Widget<EventPageConfig> {
     const url = this.getUrl(eventId);
 
     transport.get(url, {},
-      (data: PlainObject) => {
+      (data: IPlainObject) => {
         self.event = new Event(data, self.config);
         self.renderWidget();
       });

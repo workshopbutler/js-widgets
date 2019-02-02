@@ -1,5 +1,6 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import transport from '../common/Transport';
+import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
@@ -8,7 +9,6 @@ import RegistrationForm from './blocks/RegistrationForm';
 import RegistrationPageConfig from './config/RegistrationPageConfig';
 import FormHelper from './helpers/_form';
 import getTemplate from './helpers/_templates';
-import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the registration form page
@@ -109,7 +109,7 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
     const url = this.getUrl(eventId);
 
     transport.get(url, {},
-      (data: PlainObject[]) => {
+      (data: IPlainObject[]) => {
         self.event = new Event(data, self.config);
         self.renderRegistrationForm();
       });

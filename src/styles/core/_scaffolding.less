@@ -30,12 +30,17 @@
   select,
   textarea {
     font-family: inherit;
-    font-size: inherit;
-    line-height: inherit
+    font-size: 1em;
+    line-height: inherit;
+
+    @media @phone {
+      font-size: 2em;
+      height: 3em;
+    }
   }
 
   a {
-    color: @dark-blue;
+    color: @alfred;
     text-decoration: none;
     box-shadow: none !important;
     .transition(color .15s ease);

@@ -28,28 +28,46 @@
     margin-bottom: 30px;
     margin-right: 12px;
 
-    &:hover .wsb-tile-button {
-      .transform(translate(0, -70px));
+    @media @desktop, @desktop-small {
+      &:hover .wsb-tile-button {
+        .transform(translate(0, -70px));
 
-      &:before {
-        opacity: 1;
+        &:before {
+          opacity: 1;
+        }
       }
+    }
+
+    @media @tablet {
+      flex: 0 1 48%;
+      min-height: 18em;
+      margin-right: 2% !important;
+      margin-bottom: 20px;
+    }
+
+    /* Smartphones (portrait and landscape) ----------- */
+    @media @phone {
+      flex: 0 1 100%;
+      margin-right: 0 !important;
+      min-height: 24em;
     }
   }
 
   .wsb-tile-title {
     display: block;
-    font-size: 26px;
-    line-height: 36px;
     font-weight: bold;
     text-decoration: none !important;
     box-shadow: none !important;
     .transition(all .15s ease);
-    margin-bottom: 13px;
 
     &:hover {
       opacity: .85;
     }
+
+    @media @desktop {
+      font-size: 1.3em;
+    }
+
   }
 
   .wsb-tile .wsb-free {
@@ -59,15 +77,15 @@
   }
 
   .wsb-tile-info {
-    font-size: 16px;
-    line-height: 23px;
+    margin-bottom: 0.25em;
+
+    @media @phone, @tablet {
+      font-size: 0.65em;
+    }
   }
 
   .wsb-tile-content {
-    font-size: 16px;
-    line-height: 26px;
-    max-height: 182px;
-    margin-top: 15px;
+    margin-top: 1.5em;
     display: flex;
     justify-content: space-between;
 
@@ -75,8 +93,13 @@
       margin: 0;
       display: flex;
 
+      @media @phone {
+        font-size: 2em;
+      }
+
       a {
         margin-right: 0.4em;
+
         &:last-child {
           margin-right: 0;
         }
@@ -93,6 +116,10 @@
       margin-right: 13px;
       height: 35px;
       border-radius: 10px;
+
+      @media @phone {
+        height: 2em;
+      }
     }
 
   }
@@ -114,6 +141,14 @@
       top: -50px;
       .transition(all .15s ease);
     }
+
+    @media @tablet {
+      bottom: 0;
+    }
+    /* Smartphones (portrait and landscape) ----------- */
+    @media @phone {
+      display: none;
+    }
   }
 
   .wsb-tile-btn {
@@ -123,30 +158,12 @@
     right: 0;
     left: 0;
     top: 0;
-    font-size: 22px;
-    line-height: 66px;
+    font-size: 1.5em;
+    line-height: 3em;
     font-weight: bold;
     border-radius: 0;
     width: 100%;
+
   }
 
-  @media screen and (max-width: 1200px) {
-    .wsb-tile {
-      flex: 0 1 48%;
-      min-height: 17em;
-      margin-right: 2% !important;
-      margin-bottom: 20px;
-    }
-
-    .wsb-tile-content {
-      max-height: 130px;
-    }
-  }
-
-  @media screen and (max-width: 767px) {
-    .wsb-tile {
-      flex: 0 1 100%;
-      margin-right: 0 !important;
-    }
-  }
 }

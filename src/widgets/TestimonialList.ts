@@ -1,5 +1,6 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import transport from '../common/Transport';
+import IPlainObject from '../interfaces/IPlainObject';
 import Trainer from '../models/Trainer';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
@@ -7,7 +8,6 @@ import Formatter from '../view/Formatter';
 import TestimonialListConfig from './config/TestimonialListConfig';
 import getTemplate from './helpers/_templates';
 import Widget from './Widget';
-import PlainObject = JQuery.PlainObject;
 
 /**
  * Logic for the list of trainer's testimonials
@@ -80,7 +80,7 @@ export default class TestimonialList extends Widget<TestimonialListConfig> {
     const self = this;
     const url = this.getUrl(trainerId);
     transport.get(url, {},
-      (data: PlainObject) => {
+      (data: IPlainObject) => {
         self.trainer = new Trainer(data, self.config);
         self.render();
       });

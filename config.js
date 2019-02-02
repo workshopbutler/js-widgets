@@ -14,7 +14,7 @@ const environments = {
 
 const options = {
   apiKey: process.env.API_KEY,
-  theme: 'alfred',
+  theme: 'gatsby',
   apiVersion: '2018-09-14'
 };
 

@@ -295,6 +295,7 @@
     "when": "When",
     "where": "Where",
     "what": "What",
+    "who": "Who",
     "event": {
       "register": "Register",
       "soldOut": "Sold Out",

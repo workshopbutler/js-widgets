@@ -1,0 +1,16 @@
+{% macro renderTrainers(event, config, _t, _f) %}
+  <div class="wsb-table__col wsb-table__col-trainers {{ "without-name" if not config.trainerName }}">
+    {% for trainer in event.trainers %}
+      <div class="wsb-trainer">
+        {% if trainer.url %}
+          <a href="{{ trainer.url }}">
+            <img class="wsb-photo" src="{{ trainer.photo }}"/>
+          </a>
+          <a class="wsb-name" href="{{ trainer.url }}">{% if config.trainerName %} {{ trainer.fullName() }} {% endif %}</a>
+        {% else %}
+          <img class="wsb-photo" src="{{ trainer.photo }}"/>{% if config.trainerName %} {{ trainer.fullName() }} {% endif %}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endmacro %}

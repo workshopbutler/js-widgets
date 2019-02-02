@@ -1,6 +1,6 @@
 import {logError} from '../../common/Error';
+import IPlainObject from '../../interfaces/IPlainObject';
 import WidgetConfig from './WidgetConfig';
-import PlainObject = JQuery.PlainObject;
 
 /**
  * Contains @TestimonialList widget configuration options
@@ -9,9 +9,9 @@ export default class TestimonialListConfig extends WidgetConfig {
 
   /**
    * Returns the config if the options are correct
-   * @param options {PlainObject} Widget's options
+   * @param options {IPlainObject} Widget's options
    */
-  static create(options: PlainObject): TestimonialListConfig | null {
+  static create(options: IPlainObject): TestimonialListConfig | null {
     if (TestimonialListConfig.validate(options)) {
       return new TestimonialListConfig(options);
     } else {
@@ -21,9 +21,9 @@ export default class TestimonialListConfig extends WidgetConfig {
 
   /**
    * Returns true if the options can be used to create the widget's config
-   * @param options {PlainObject} Widget's config
+   * @param options {IPlainObject} Widget's config
    */
-  protected static validate(options: PlainObject): boolean {
+  protected static validate(options: IPlainObject): boolean {
     let valid = true;
     if (!options.trainerId || typeof options.trainerId !== 'number') {
       logError('Attribute [trainerId] is not set correctly');
@@ -37,7 +37,7 @@ export default class TestimonialListConfig extends WidgetConfig {
    */
   readonly trainerId: number;
 
-  protected constructor(options: PlainObject) {
+  protected constructor(options: IPlainObject) {
     super(options);
     this.trainerId = options.trainerId;
   }

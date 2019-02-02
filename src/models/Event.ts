@@ -1,3 +1,4 @@
+import IPlainObject from '../interfaces/IPlainObject';
 import EventState from './EventState';
 import Form from './form/Form';
 import FreeTicketType from './FreeTicketType';
@@ -9,7 +10,6 @@ import Schedule from './Schedule';
 import Tickets from './Tickets';
 import Trainer from './Trainer';
 import Type from './Type';
-import PlainObject = JQuery.PlainObject;
 
 export default class Event {
   readonly id: number;
@@ -36,7 +36,7 @@ export default class Event {
    * @param attrs {object}
    * @param options {object}
    */
-  constructor(attrs: PlainObject, options: any) {
+  constructor(attrs: IPlainObject, options: any) {
     this.id = attrs.id;
     this.hashedId = attrs.hashed_id;
     this.title = attrs.title;
@@ -75,8 +75,8 @@ export default class Event {
       return free ?
         new Tickets([], new FreeTicketType(freeTicketType)) :
         new Tickets(paidTicketTypes.map((type) =>
-            new PaidTicketType(type, this.schedule.defaultTimezone())
-          )
+            new PaidTicketType(type, this.schedule.defaultTimezone()),
+          ),
         );
     } else {
       return null;
