@@ -46,6 +46,7 @@
     "dev": "NODE_ENV=dev webpack-dev-server --mode development",
     "watch": "NODE_ENV=watch webpack-dev-server --mode development",
     "build": "NODE_ENV=build ./node_modules/.bin/webpack --mode production",
+    "build-wordpress": "NODE_ENV=build-wordpress ./node_modules/.bin/webpack --mode production",
     "check-style": "node ./node_modules/.bin/stylelint  \"frontend/css/**/*.less\"  --fix",
     "check-types": "tsc"
   },

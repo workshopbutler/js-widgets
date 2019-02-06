@@ -7,43 +7,43 @@ import fr from '../locales/fr.json';
 import nl from '../locales/nl.json';
 
 export default class Localisation {
-    readonly locale: string;
+  readonly locale: string;
 
-    constructor(locale: string, language: string) {
-        this.locale = locale;
-        i18next.init({
-            lng: language,
-            debug: false,
-            fallbackLng: 'en',
-            resources: {
-                en: {
-                    translation: en
-                },
-                de: {
-                    translation: de
-                },
-                es: {
-                    translation: es
-                },
-                pt: {
-                    translation: pt
-                },
-                fr: {
-                    translation: fr
-                },
-                nl: {
-                    translation: nl
-                }
-            }
-        });
-    }
+  constructor(locale: string, language: string) {
+    this.locale = locale;
+    i18next.init({
+      lng: language,
+      debug: false,
+      fallbackLng: 'en',
+      resources: {
+        en: {
+          translation: en,
+        },
+        de: {
+          translation: de
+        },
+        es: {
+          translation: es
+        },
+        pt: {
+          translation: pt
+        },
+        fr: {
+          translation: fr
+        },
+        nl: {
+          translation: nl
+        }
+      }
+    });
+  }
 
-    /**
-     * Returns a translated term by its key
-     * @param key {string}
-     * @param options {any} Options for the key
-     */
-    translate(key: string, options: any = null): string {
-        return i18next.t(key, options)
-    }
+  /**
+   * Returns a translated term by its key
+   * @param key {string}
+   * @param options {any} Options for the key
+   */
+  translate(key: string, options: any = null): string {
+    return i18next.t(key, options);
+  }
 }

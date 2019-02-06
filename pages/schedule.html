@@ -28,7 +28,7 @@
         {
           type: 'Schedule',
           target: '#wsb-event-list',
-          theme: themeName,
+          theme: 'alfred',
           table: true,
           cols: ['schedule', 'location', 'trainers', 'title', 'register'],
           registration: true,
@@ -41,7 +41,7 @@
       ];
       const config = {
         apiKey: apiKey,
-        locale: 'de'
+        locale: 'en'
       };
 
       WorkshopButlerWidgets.launch(config, widgets);

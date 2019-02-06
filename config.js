@@ -1,4 +1,4 @@
-const isDev = (process.env.NODE_ENV !== "build");
+const isDev = (process.env.NODE_ENV !== "build" && process.env.NODE_ENV !== "build-wordpress");
 
 const environments = {
   dev: {
@@ -9,13 +9,16 @@ const environments = {
   },
   build: {
     backend: "https://api.workshopbutler.com/"
+  },
+  "build-wordpress": {
+    backend: "https://api.workshopbutler.com/"
   }
 };
 
 const options = {
   apiKey: process.env.API_KEY,
   theme: 'gatsby',
-  apiVersion: '2018-09-14'
+  apiVersion: '2018-09-14',
 };
 
 const mapping = {
@@ -29,5 +32,6 @@ module.exports = {
   src: isDev ? `.tmp/` : `dist/`,
   env: environments[process.env.NODE_ENV],
   entry: mapping,
-  options: options
+  options: options,
+  wordpress: process.env.NODE_ENV === "build-wordpress"
 };
