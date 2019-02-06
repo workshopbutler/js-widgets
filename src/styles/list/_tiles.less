@@ -15,7 +15,7 @@
   }
 
   .wsb-tile {
-    flex: 0 0 23em;
+    flex: 0 0 17em;
     position: relative;
     overflow: hidden;
     display: inline-block;
@@ -27,6 +27,10 @@
     text-align: left;
     margin-bottom: 30px;
     margin-right: 12px;
+
+    @media @desktop {
+      flex-basis: 20em;
+    }
 
     @media @desktop, @desktop-small {
       &:hover .wsb-tile-button {
@@ -49,25 +53,25 @@
     @media @phone {
       flex: 0 1 100%;
       margin-right: 0 !important;
-      min-height: 24em;
     }
   }
 
   .wsb-tile-title {
     display: block;
+    font-size: 1.3em;
     font-weight: bold;
     text-decoration: none !important;
     box-shadow: none !important;
+    margin-bottom: 0.6em;
     .transition(all .15s ease);
 
     &:hover {
       opacity: .85;
     }
 
-    @media @desktop {
-      font-size: 1.3em;
+    @media @phone {
+      font-size: 1.2em;
     }
-
   }
 
   .wsb-tile .wsb-free {
@@ -79,9 +83,6 @@
   .wsb-tile-info {
     margin-bottom: 0.25em;
 
-    @media @phone, @tablet {
-      font-size: 0.65em;
-    }
   }
 
   .wsb-tile-content {
@@ -91,11 +92,8 @@
 
     .wsb-trainer {
       margin: 0;
+      flex: 1 0 30%;
       display: flex;
-
-      @media @phone {
-        font-size: 2em;
-      }
 
       a {
         margin-right: 0.4em;
@@ -114,7 +112,8 @@
       display: block;
       float: left;
       margin-right: 13px;
-      height: 35px;
+      width: 2em;
+      height: 2em;
       border-radius: 10px;
 
       @media @phone {

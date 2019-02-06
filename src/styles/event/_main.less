@@ -23,21 +23,25 @@
     font-weight: 600;
     -webkit-font-smoothing: antialiased;
 
+    @media @phone {
+      font-size: 2em;
+    }
   }
 
   // info block
   @media @tablet {
     .wsb-info-block {
       display: flex;
+      flex-wrap: wrap;
     }
   }
 
   .wsb-info {
     margin-bottom: 2em;
-    overflow: hidden;
 
     @media @tablet {
       flex: 1 0 30%;
+      min-width: 7em;
     }
   }
 

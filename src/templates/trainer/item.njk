@@ -7,32 +7,30 @@
        data-trainer-badge="{{ trainer.nameOfBadges().join(',') }}"
        data-trainer-language="{{ trainer.languages.join(',') }}"
        data-trainer-trainer="{{ trainer.fullName() }}">
-    <div class="wsb-trainer-tile__box">
-      <a href="{{ trainer.url }}">
-        {% set photo = "background-image: url(" + trainer.photo + ");" %}
-        <div class="wsb-trainer-tile_img" style="{{ photo }}"></div>
-      </a>
+    <a href="{{ trainer.url }}">
+      {% set photo = "background-image: url(" + trainer.photo + ");" %}
+      <div class="wsb-trainer-tile_img" style="{{ photo }}"></div>
+    </a>
 
-      <div class="wsb-trainer-tile__info">
-        <a href="{{ trainer.url }}">
-          <div>{{ trainer.fullName() }}</div>
-        </a>
-        {% if trainer.country %}
+    <div class="wsb-trainer-tile__info">
+      <a href="{{ trainer.url }}">
+        <div>{{ trainer.fullName() }}</div>
+      </a>
+      {% if trainer.country %}
         <div class="wsb-trainer-tile__country">
           {{ _t('country.' + trainer.country) }}
         </div>
-        {% endif %}
-        <div>
+      {% endif %}
+      <div>
         {% if config.showBadges %}
-            {% for badge in trainer.badges %}
-              <img src="{{ badge.url }}" width="30px"/>
-            {% endfor %}
+          {% for badge in trainer.badges %}
+            <img src="{{ badge.url }}" width="30px"/>
+          {% endfor %}
         {% endif %}
         {% if config.showRating and trainer.publicStats.rating > 0 %}
-            <i class="fas fa-star"></i>
-            {{ _f(trainer.publicStats.rating) }}
+          <i class="fas fa-star"></i>
+          {{ _f(trainer.publicStats.rating) }}
         {% endif %}
-        </div>
       </div>
     </div>
   </div>

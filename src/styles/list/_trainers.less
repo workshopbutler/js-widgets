@@ -7,8 +7,9 @@
   }
 
   .wsb-trainer-tile {
-    flex: 0 0 200px;
-    display: inline-block;
+    flex: 0 0 196px;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     text-align: left;
@@ -22,12 +23,7 @@
     @media @phone {
       flex: 0 1 100%;
       margin-right: 0 !important;
-      min-height: 24em;
     }
-  }
-
-  .wsb-trainer-tile:nth-of-type(4n+1) {
-    margin-left: 0;
   }
 
   .wsb-trainer-tile__box {
@@ -41,19 +37,18 @@
     height: 180px;
 
     @media @phone {
-      height: 26em;
+      height: 16em;
     }
   }
 
   .wsb-trainer-tile__info {
     background-color: #fbfbfb;
-    padding: 1em 2em;
+    padding: 1em 1em;
     line-height: 2em;
-    height: 8em;
+    height: 100%;
 
-    @media @phone {
-      font-size: 2em;
-      height: 6em;
+    img {
+      width: 4em;
     }
   }
 

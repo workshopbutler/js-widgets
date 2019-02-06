@@ -3,78 +3,34 @@
 const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const WebpackShellPlugin = require('webpack-shell-plugin');
+
 
 const config = require('./config.js');
+const dest = path.resolve(__dirname, 'dist');
 
 let webpackConfig = {
   watch: config.isDev,
   entry: config.entry,
   context: path.resolve(__dirname, 'src'),
+  devServer: {
+    contentBase: dest,
+    watchContentBase: true
+  },
   output: {
     path: path.resolve(__dirname, config.src),
-    filename: `[name].${process.env.npm_package_version}.js`,
-    publicPath: "/",
-    sourceMapFilename: `[name].${process.env.npm_package_version}.js.map`
+    filename: config.isDev ? `[name].js` : `[name].${process.env.npm_package_version}.js`,
+    sourceMapFilename: config.isDev ? `[name].js.map` : `[name].${process.env.npm_package_version}.js.map`
   },
   externals: {
     jquery: 'jQuery'
   },
   devtool: config.isDev ? 'inline-source-map' : false,
-  plugins: [
-    new webpack.ProvidePlugin({
-      jQuery: 'jquery',
-      $: 'jquery',
-      nunjucks: 'nunjucks'
-    }),
-    new webpack.DefinePlugin({
-      BACKEND_URL: JSON.stringify(config.env.backend),
-      API_VERSION: JSON.stringify(config.options.apiVersion),
-      WIDGET_VERSION: JSON.stringify(process.env.npm_package_version)
-    }),
-    new MiniCssExtractPlugin({
-      filename: `[name].${process.env.npm_package_version}.min.css`
-    }),
-    new HtmlWebpackPlugin({
-      template: '../pages/schedule.html',
-      filename: 'schedule.html',
-      inject: 'head',
-      config: config.options
-    }),
-    new HtmlWebpackPlugin({
-      template: '../pages/event-page.html',
-      filename: 'event-page.html',
-      inject: 'head',
-      config: config.options
-    }),
-    new HtmlWebpackPlugin({
-      template: '../pages/registration.html',
-      filename: 'registration.html',
-      inject: 'head',
-      config: config.options
-    }),
-    new HtmlWebpackPlugin({
-      template: '../pages/testimonial-list.html',
-      filename: 'testimonial-list.html',
-      inject: 'head',
-      config: config.options
-    }),
-    new HtmlWebpackPlugin({
-      template: '../pages/trainer-list.html',
-      filename: 'trainer-list.html',
-      inject: 'head',
-      config: config.options
-    }),
-    new HtmlWebpackPlugin({
-      template: '../pages/trainer-page.html',
-      filename: 'trainer-page.html',
-      inject: 'head',
-      config: config.options
-    }),
-  ],
+  plugins: getPlugins(),
   module: {
     rules: [
       {
@@ -93,7 +49,8 @@ let webpackConfig = {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [
-          config.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          // config.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -133,22 +90,43 @@ let webpackConfig = {
   optimization: {
     noEmitOnErrors: true,
     minimizer: getMinimizer()
-  }
+  },
 };
 
-if (!config.isDev) {
-  webpackConfig.plugins.push(
-    new MinifyPlugin()
-  );
-}
+function getPlugins() {
+  let plugins = [
+    new CleanWebpackPlugin([
+      path.resolve(__dirname, 'dist'),
+    ]),
+    new webpack.ProvidePlugin({
+      jQuery: 'jquery',
+      $: 'jquery',
+      nunjucks: 'nunjucks'
+    }),
+    new webpack.DefinePlugin({
+      BACKEND_URL: JSON.stringify(config.env.backend),
+      API_VERSION: JSON.stringify(config.options.apiVersion),
+      WIDGET_VERSION: JSON.stringify(process.env.npm_package_version)
+    }),
+    new MiniCssExtractPlugin({
+      filename: config.isDev? `[name].css` : `[name].${process.env.npm_package_version}.min.css`
+    }),
+  ];
+  const hugoSrc = path.resolve(__dirname, 'site');
+  const hugoCmd = `hugo --buildDrafts --watch --source ${hugoSrc} --destination ${dest} --environment development`;
 
-if (config.isDev) {
-  webpackConfig.devServer = {
-    host: 'localhost',
-    port: 8081,
-    inline: true,
-    contentBase: path.join(__dirname, config.src),
+  if (config.isDev) {
+    plugins.push(new WebpackShellPlugin({
+        onBuildEnd: hugoCmd
+      })
+    )
   }
+
+  if (!config.isDev) {
+    plugins.push(new MinifyPlugin())
+  }
+
+  return plugins;
 }
 
 function getMinimizer() {

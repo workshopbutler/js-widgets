@@ -29,7 +29,7 @@ const mapping = {
 
 module.exports = {
   isDev,
-  src: isDev ? `.tmp/` : `dist/`,
+  src: isDev ? 'site/static/' : `dist/`,
   env: environments[process.env.NODE_ENV],
   entry: mapping,
   options: options,

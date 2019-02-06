@@ -1,0 +1,32 @@
+---
+title: "Trainer List"
+date: 2018-07-03T14:28:36+03:00
+draft: false
+url: "trainers"
+---
+
+<div id="wsb-trainer-list"></div>
+
+<script>
+  const apiKey = siteConfig.apiKey;
+  const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
+  document.addEventListener('wsbwidgetsloaded', function() {
+    const widgets = [
+      {
+        type: 'TrainerList',
+        target: '#wsb-trainer-list',
+        theme: themeName,
+        badges: true,
+        rating: true,
+        trainerPageUrl: '/trainer-profile',
+        filters: ['trainer', 'location', 'badge', 'language', 'rating'],
+      }
+    ];
+    const config = {
+      apiKey: apiKey,
+      locale: 'en'
+    };
+
+    WorkshopButlerWidgets.launch(config, widgets);
+  });
+</script>

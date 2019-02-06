@@ -5,14 +5,6 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-
-    @media @tablet {
-      font-size: 24px;
-    }
-
-    @media @phone {
-      font-size: 32px;
-    }
   }
 
   .wsb-trainer__header-row {
@@ -20,11 +12,17 @@
     display: flex;
     padding-bottom: 1em;
 
+    @media @phone {
+      flex-direction: column;
+    }
+
     img {
       height: 150px;
+      width: 150px;
 
-      @media @phone, @tablet {
-        height: 350px;
+      @media @phone {
+        height: 20em;
+        width: 20em;
       }
     }
   }
@@ -112,10 +110,6 @@
       color: @text-grey;
       display: block;
       font-size: 1em;
-
-      @media @phone {
-        font-size: 0.6em;
-      }
     }
 
     .wsb-descr__sub {
@@ -154,10 +148,6 @@
     float: right;
     color: @yellow;
     font-size: 1em;
-
-    @media @phone {
-      font-size: 2em;
-    }
 
     .fa-stack {
       width: 1.1em;

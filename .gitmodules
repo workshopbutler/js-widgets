@@ -1,0 +1,9 @@
+[submodule "site/themes/ananke"]
+	path = site/themes/ananke
+	url = https://github.com/budparr/gohugo-theme-ananke.git
+[submodule "site/themes/hugo-theme-cleanwhite"]
+	path = site/themes/hugo-theme-cleanwhite
+	url = https://github.com/zhaohuabing/hugo-theme-cleanwhite.git
+[submodule "site/themes/hugo-bingo"]
+	path = site/themes/hugo-bingo
+	url = https://github.com/gundamew/hugo-bingo.git

@@ -1,0 +1,30 @@
+---
+title: "Registration Page"
+date: 2018-07-03T14:28:36+03:00
+draft: false
+url: "registration"
+---
+
+<div id="wsb-registration-form"></div>
+
+<script>
+  const apiKey = siteConfig.apiKey;
+  const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
+    document.addEventListener('wsbwidgetsloaded', function() {
+        const widgets = [
+            {
+                type: 'RegistrationPage',
+                target: '#wsb-registration-form',
+                theme: themeName,
+                trainers: true
+            }
+        ];
+        const config = {
+            apiKey: apiKey,
+            locale: 'en'
+        };
+
+        WorkshopButlerWidgets.launch(config, widgets);
+    });
+
+</script>

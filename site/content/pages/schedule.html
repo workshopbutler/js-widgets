@@ -1,0 +1,36 @@
+---
+title: "Schedule 1"
+date: 2018-07-03T14:28:36+03:00
+draft: false
+url: "schedule"
+---
+
+
+<div id="wsb-event-list"></div>
+<script>
+  const apiKey = siteConfig.apiKey;
+  const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
+  document.addEventListener('wsbwidgetsloaded', function() {
+      const widgets = [
+        {
+          type: 'Schedule',
+          target: '#wsb-event-list',
+          theme: themeName,
+          table: false,
+          cols: ['schedule', 'location', 'trainers', 'title', 'register'],
+          registration: true,
+          eventPageUrl: '/event-page',
+          trainerPageUrl: '/trainer-page',
+          trainerName: false,
+          filters: ['location', 'type', 'language', 'trainer'],
+          registrationPageUrl: '/registration.html'
+        }
+      ];
+      const config = {
+        apiKey: apiKey,
+        locale: 'en'
+      };
+
+      WorkshopButlerWidgets.launch(config, widgets);
+  });
+</script>
