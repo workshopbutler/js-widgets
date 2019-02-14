@@ -37,7 +37,14 @@ url: "event-page"
     ];
     const config = {
       apiKey: apiKey,
-      locale: 'en'
+      locale: 'de',
+      dict: {
+        de: {
+          event: {
+            register: "Test Caption"
+          }
+        }
+      }
     };
 
     WorkshopButlerWidgets.launch(config, widgets);

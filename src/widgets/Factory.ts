@@ -3,11 +3,11 @@ import DefaultTemplates from '../templates/DefaultTemplates';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import FactoryConfig from './config/FactoryConfig';
-import TestimonialList from './TestimonialList';
 import EventPage from './EventPage';
 import RegistrationPage from './RegistrationPage';
 import Schedule from './Schedule';
 import SidebarEventList from './SidebarEventList';
+import TestimonialList from './TestimonialList';
 import TrainerList from './TrainerList';
 import TrainerProfile from './TrainerProfile';
 
@@ -42,7 +42,7 @@ export default class WidgetFactory {
   protected readonly loc: Localisation;
 
   constructor(config: FactoryConfig) {
-    this.loc = new Localisation(config.locale, config.language);
+    this.loc = new Localisation(config.locale, config.language, config.dict);
   }
 
   /**
