@@ -2,7 +2,7 @@
   {% set trainerName = trainer.firstName + " " + trainer.lastName %}
 
   <div class="wsb-trainer-tile" data-trainer-obj
-       data-trainer-location="{{ trainer.country }}"
+       data-trainer-location="{{ trainer.worksIn.join(',') }}"
        data-trainer-rating={{ trainer.publicStats.rating }}
        data-trainer-badge="{{ trainer.nameOfBadges().join(',') }}"
        data-trainer-language="{{ trainer.languages.join(',') }}"

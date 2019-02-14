@@ -89,7 +89,6 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
       }
     };
     switch (name) {
-      case 'location': return `[data-trainer-${name}="${value}"]`;
       case 'experience': return experienceFunction;
       case 'rating': return ratingFunction;
       default: return `[data-trainer-${name}*="${value}"]`;
@@ -164,12 +163,16 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
   }
 
   private getLocationFilterData(defaultName: string, trainers: Trainer[]) {
+    const countries = [];
     const self = this;
-    const unfiltered = trainers.map((trainer) => {
-      const countryName = self.loc.translate(`country.${trainer.country}`);
-      return new FilterValue(countryName, trainer.country);
-    });
-    return this.getFilterData(defaultName, unfiltered);
+    for (const trainer of trainers) {
+      for (const countryCode of trainer.worksIn) {
+        const countryName = this.loc.translate(`country.${countryCode}`);
+        const country = new FilterValue(countryName, countryCode);
+        countries.push(country);
+      }
+    }
+    return this.getFilterData(defaultName, countries);
   }
 
   private getTrainerFilterData(defaultName: string, trainers: Trainer[]) {

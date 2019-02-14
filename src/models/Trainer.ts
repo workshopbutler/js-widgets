@@ -35,7 +35,16 @@ export default class Trainer {
   readonly privateStats: Statistics;
   readonly recentPublicStats: Statistics;
   readonly recentPrivateStats: Statistics;
+
+  /**
+   * List of testimonials that the trainer has
+   */
   readonly testimonials: any[];
+
+  /**
+   * List of countries the trainer works in
+   */
+  readonly worksIn: string[];
 
   constructor(jsonData: any, options: any) {
     this.id = jsonData.id;
@@ -66,6 +75,8 @@ export default class Trainer {
     this.url = options.trainerPageUrl ? this.getTrainerUrl(options.trainerPageUrl) : undefined;
     this.languages = jsonData.languages ?
       jsonData.languages.map((language: string) => getLangCode(language)) : [];
+
+    this.worksIn = jsonData.countries ? jsonData.countries : [];
   }
 
   /**
