@@ -1,5 +1,6 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import transport from '../common/Transport';
+import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
@@ -7,7 +8,6 @@ import Formatter from '../view/Formatter';
 import SidebarEventListConfig from './config/SidebarEventListConfig';
 import getTemplate from './helpers/_templates';
 import Widget from './Widget';
-import IPlainObject from '../interfaces/IPlainObject';
 
 /**
  * Logic for the sidebar list of events
@@ -121,21 +121,17 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
     const self = this;
     $.when(getTemplate(self.config)).done((template) => {
       function renderTemplate(event: Event) {
-        return nunjucksRenderString(template, {event});
+        const localParams = Object.assign({ event }, self.getTemplateParams());
+        return nunjucksRenderString(template, localParams);
       }
 
-      const data = {
-        _f: (object: any, type: string | null) => {
-          return self.formatter.format(object, type);
-        },
-        _t: (key: string, options: any = null) => {
-          return self.loc.translate(key, options);
-        },
+      const uniqueParams = {
         events: self.events,
         template: renderTemplate,
       };
-      if (data.events.length) {
-        const content = self.templates.sidebarEventList.render(data);
+      const params = Object.assign(uniqueParams, self.getTemplateParams());
+      if (params.events.length) {
+        const content = self.templates.sidebarEventList.render(params);
         self.$list.html(content);
         if (self.config.hideIfEmpty) {
           self.$root.show();

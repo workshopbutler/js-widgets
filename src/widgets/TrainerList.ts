@@ -96,22 +96,17 @@ export default class TrainerList extends Widget<TrainerListConfig> {
     const self = this;
     $.when(getTemplate(self.config)).done((template) => {
       function renderTemplate(trainer: Trainer) {
-        return nunjucksRenderString(template, { trainer });
+        const localParams = Object.assign({ trainer }, self.getTemplateParams());
+        return nunjucksRenderString(template, localParams);
       }
 
-      const data = {
-        _f: (object: any, type: string | null) => {
-          return self.formatter.format(object, type);
-        },
-        _t: (key: string, options: any = null) => {
-          return self.loc.translate(key, options);
-        },
-        config: self.config,
+      const uniqueParams = {
         filters: self.filters.getFilters(self.trainers),
         template: template ? renderTemplate : null,
         trainers: self.trainers,
       };
-      const content = self.templates.trainerList.render(data);
+      const params = Object.assign(uniqueParams, self.getTemplateParams());
+      const content = self.templates.trainerList.render(params);
       self.$root.html(content);
     });
   }

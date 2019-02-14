@@ -1,43 +1,46 @@
-import Location from "../models/Location";
-import Localisation from "../utils/Localisation";
-import LocationFormatter from "./LocationFormatter";
-import Language from "../models/Language";
-import LanguageFormatter from "./LanguageFormatter";
-import EventState from "../models/EventState";
-import EventStateFormatter from "./EventStateFormatter";
-import Schedule from "../models/Schedule";
-import ScheduleFormatter from "./ScheduleFormatter";
-import TicketPrice from "../models/TicketPrice";
-import TicketPriceFormatter from "./TicketPriceFormatter";
-import ITicketType from "../interfaces/ITicketType";
-import TicketFormatter from "./TicketFormatter";
+import ITicketType from '../interfaces/ITicketType';
+import EventState from '../models/EventState';
+import Language from '../models/Language';
+import Location from '../models/Location';
+import Schedule from '../models/Schedule';
+import TicketPrice from '../models/TicketPrice';
+import Localisation from '../utils/Localisation';
+import EventStateFormatter from './EventStateFormatter';
+import LanguageFormatter from './LanguageFormatter';
+import LocationFormatter from './LocationFormatter';
+import ScheduleFormatter from './ScheduleFormatter';
+import TicketFormatter from './TicketFormatter';
+import TicketPriceFormatter from './TicketPriceFormatter';
 
+/**
+ * Produces string representations of various objects
+ */
 export default class Formatter {
     constructor(protected readonly loc: Localisation) {}
 
     format(object: any, type: string | null = null): string {
         if (object instanceof Schedule) {
-            return ScheduleFormatter.format(this.loc, <Schedule>object, type)
+            return ScheduleFormatter.format(this.loc, object as Schedule, type);
         }
         if (object instanceof TicketPrice) {
-            return TicketPriceFormatter.format(this.loc, <TicketPrice>object)
+            return TicketPriceFormatter.format(this.loc, object as TicketPrice);
         }
         if (object instanceof Language) {
-            return LanguageFormatter.format(this.loc, <Language>object);
+            return LanguageFormatter.format(this.loc, object as Language);
         }
-        if ((<ITicketType>object).withoutLimit !== undefined) {
-            return TicketFormatter.format(this.loc, <ITicketType>object, type);
+        if ((object as ITicketType).withoutLimit !== undefined) {
+            return TicketFormatter.format(this.loc, object as ITicketType, type);
         }
         if (object instanceof Location) {
-            return LocationFormatter.format(this.loc, <Location>object);
+            return LocationFormatter.format(this.loc, object as Location);
         }
         if (object instanceof EventState) {
-            return EventStateFormatter.format(this.loc, <EventState>object);
+            return EventStateFormatter.format(this.loc, object as EventState);
         }
         if (typeof object === 'number') {
             const opts = { maximumFractionDigits: 2, minimumFractionDigits: 0 };
             return Intl.NumberFormat(this.loc.locale, opts).format(object);
         }
-        return "";
+        return '';
     }
 }

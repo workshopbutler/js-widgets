@@ -111,19 +111,11 @@ export default class EventPage extends Widget<EventPageConfig> {
   private renderWidget() {
     const self = this;
     $.when(getTemplate(self.config)).done((template) => {
-      const data = {
-        _f: (object: any, type: string | null) => {
-          return self.formatter.format(object, type);
-        },
-        _t: (key: string, options: any = null) => {
-          return self.loc.translate(key, options);
-        },
-        config: self.config,
-        event: self.event,
-      };
+      const params = Object.assign( { event: self.event }, self.getTemplateParams());
+
       const content = template ?
-        nunjucksRenderString(template, data) :
-        self.templates.eventPage.render(data);
+        nunjucksRenderString(template, params) :
+        self.templates.eventPage.render(params);
 
       self.$root.html(content);
       self.updateHTML();

@@ -120,21 +120,16 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
 
     $.when(getTemplate(self.config)).done((template) => {
       self.updateHTML();
-      const data = {
-        _f: (object: any, type: string | null) => {
-          return self.formatter.format(object, type);
-        },
-        _t: (key: string, options: any = null) => {
-          return self.loc.translate(key, options);
-        },
-        config: self.config,
+      const uniqueParams = {
         countries: self.getCountries(),
         event: self.event,
         ticket: self.ticketId,
       };
+      const params = Object.assign( uniqueParams, self.getTemplateParams());
+
       const content = template ?
-        nunjucksRenderString(template, data) :
-        self.templates.registrationPage.render(data);
+        nunjucksRenderString(template, params) :
+        self.templates.registrationPage.render(params);
 
       self.$root.html(content);
       self.successMessage = self.$root.find('#wsb-success');

@@ -45,7 +45,6 @@ export default class Schedule extends Widget<ScheduleConfig> {
     });
   }
 
-  protected readonly formatter: Formatter;
   private readonly filters: Filters;
   private events: Event[];
 
@@ -64,7 +63,6 @@ export default class Schedule extends Widget<ScheduleConfig> {
                         config: ScheduleConfig) {
     super(selector, apiKey, templates, loc, config);
     this.events = [];
-    this.formatter = new Formatter(loc);
 
     this.filters = new Filters(selector, this.loc, config.filters);
     this.init();
@@ -98,22 +96,17 @@ export default class Schedule extends Widget<ScheduleConfig> {
     const self = this;
     $.when(getTemplate(self.config)).done((template) => {
       function renderTemplate(event: Event) {
-        return nunjucksRenderString(template, { event });
+        const localParams = Object.assign({ event }, self.getTemplateParams());
+        return nunjucksRenderString(template, localParams);
       }
 
-      const data = {
-        _f: (object: any, type: string | null) => {
-          return self.formatter.format(object, type);
-        },
-        _t: (key: string, options: any = null) => {
-          return self.loc.translate(key, options);
-        },
-        config: self.config,
+      const uniqueParams = {
         events: self.events,
         filters: self.filters.getFilters(self.events),
         template: template ? renderTemplate : null,
       };
-      const content = self.templates.schedule.render(data);
+      const params = Object.assign(uniqueParams, self.getTemplateParams());
+      const content = self.templates.schedule.render(params);
       self.$root.html(content);
     });
   }

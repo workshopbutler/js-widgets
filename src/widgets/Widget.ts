@@ -1,6 +1,8 @@
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import WidgetConfig from './config/WidgetConfig';
+import IPlainObject from '../interfaces/IPlainObject';
+import Formatter from '../view/Formatter';
 
 declare var WIDGET_VERSION: string;
 
@@ -10,6 +12,7 @@ export default abstract class Widget<T extends WidgetConfig> {
   protected readonly templates: ITemplates;
   protected readonly config: T;
   protected readonly loc: Localisation;
+  protected readonly formatter: Formatter;
 
   /**
    * Creates a new widget
@@ -29,6 +32,7 @@ export default abstract class Widget<T extends WidgetConfig> {
     this.templates = templates;
     this.loc = loc;
     this.config = config;
+    this.formatter = new Formatter(loc);
   }
 
   /**
@@ -36,5 +40,20 @@ export default abstract class Widget<T extends WidgetConfig> {
    */
   protected getWidgetStats(): string {
     return `j;${WIDGET_VERSION};${this.config.theme}`;
+  }
+
+  /**
+   * Returns parameters that could be used in templates
+   */
+  protected getTemplateParams(): IPlainObject {
+    return {
+      _f: (object: any, type: string | null) => {
+        return this.formatter.format(object, type);
+      },
+      _t: (key: string, options: any = null) => {
+        return this.loc.translate(key, options);
+      },
+      config: this.config,
+    };
   }
 }
