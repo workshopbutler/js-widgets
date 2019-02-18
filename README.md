@@ -23,14 +23,16 @@ If you have a WordPress website, we recommend using our [WordPress plugin](https
 2. Login to [Workshop Butler](https://workshopbutler.com), open *Account Settings* -> *API*, activate it and 
 copy an API key for your account
 3. Retrieve all dependences via `npm i`  
+4. Install [Hugo](https://gohugo.io) which is used as a template engine
 
 ## Launch and Build
 `API_KEY=[your API key] npm run watch`
 
-This command launches a webserver on `http://localhost:8081`. 
+This command launches a webserver on `http://localhost:8080`. 
 
-* Open `http://localhost:8081/schedule.html` for the list of all events
-* Open `http://localhost:8081/trainer-list.html` for the list of all trainers
+* Open `http://localhost:8080/schedule` for the list of all events
+* Open `http://localhost:8080/trainers` for the list of all trainers
+* Open `http://localhost:8080/testimonials` for the list of testimonials
 
 To compile a theme, use `npm run build`. The compiled files are in `dist/` directory.       
 
@@ -39,7 +41,7 @@ To compile a theme, use `npm run build`. The compiled files are in `dist/` direc
 
 Contains a version number, used in `widgets.[version].js`
 
-`config.js -> options -> theme`
+`site/config.yml -> [params] -> theme`
 
 Name of an active theme. For default themes, use these values: `alfred`, `dacota`, `britton`, `gatsby`, `hayes`.
 

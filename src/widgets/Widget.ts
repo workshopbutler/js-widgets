@@ -1,10 +1,10 @@
+import IPlainObject from '../interfaces/IPlainObject';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
-import WidgetConfig from './config/WidgetConfig';
-import IPlainObject from '../interfaces/IPlainObject';
 import Formatter from '../view/Formatter';
+import WidgetConfig from './config/WidgetConfig';
 
-declare var WIDGET_VERSION: string;
+declare const WIDGET_VERSION: string;
 
 export default abstract class Widget<T extends WidgetConfig> {
   protected readonly $root: JQuery;
