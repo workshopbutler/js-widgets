@@ -1,58 +1,62 @@
 {% macro formField(field, disabled, countries, _t, _f) %}
-    <div class="wsb-form__field {{ field.type }}">
-        {% if field.type !== "checkbox" %}
-            <label for="{{ field.name }}">
-                {{ _t('form.field.' + field.name) }}
-                {% if field.required %}
-                    <span class="wsb-form__required">*</span>
-                {% endif %}
-            </label>
+  <div class="wsb-form__field {{ field.type }}">
+    {% if field.type !== "checkbox" %}
+      <label for="{{ field.name }}">
+        {% if field.custom %}
+          {{ field.label }}
+        {% else %}
+          {{ _t('form.field.' + field.name) }}
         {% endif %}
-        {% if field.type === "textarea" %}
-            <textarea name="{{ field.name }}" data-control title="{{ field.label }}"
+        {% if field.required %}
+          <span class="wsb-form__required">*</span>
+        {% endif %}
+      </label>
+    {% endif %}
+    {% if field.type === "textarea" %}
+      <textarea name="{{ field.name }}" data-control title="{{ field.label }}"
                       {{ 'required' if field.required }} {{ 'disabled' if disabled }}
                       style="height : 90px ;" cols="30" rows="10"></textarea>
-        {% elif field.type === "select" %}
-            <select name="{{ field.name }}" title="{{ field.label }}"
+    {% elif field.type === "select" %}
+      <select name="{{ field.name }}" title="{{ field.label }}"
                     data-control {{ 'required' if field.required }} {{ 'disabled' if disabled }}
                 {% for option in field.options %}
                     <option value="{{ option.value }}">{{ option.label }}</option>
-                {% endfor %}
-            </select>
-        {% elif field.type === "country" %}
-            <select name="{{ field.name }}" title="{{ field.label }}"
+      {% endfor %}
+    </select>
+  {% elif field.type === "country" %}
+    <select name="{{ field.name }}" title="{{ field.label }}"
                     data-control {{ 'required' if field.required }} {{ 'disabled' if disabled }}>
-                <option value="" selected disabled>{{ _t('form.country') }}</option>
-                {% for code, name in countries %}
-                    <option value="{{ code }}">{{ name }}</option>
-                {% endfor %}
-            </select>
-        {% elif field.type === "checkbox" %}
-            <label class="wsb-label" for="{{ field.name }}">
-                <input name="{{ field.name }}" id="{{ field.name }}" type="checkbox" {{ 'disabled' if disabled }}
+      <option value="" selected disabled>{{ _t('form.country') }}</option>
+      {% for code, name in countries %}
+        <option value="{{ code }}">{{ name }}</option>
+      {% endfor %}
+    </select>
+  {% elif field.type === "checkbox" %}
+    <label class="wsb-label" for="{{ field.name }}">
+      <input name="{{ field.name }}" id="{{ field.name }}" type="checkbox" {{ 'disabled' if disabled }}
                         {{ 'required' if field.required }}
                        value="yes" data-control/>
-                {{ field.label | safe }}
-            </label>
-        {% elif field.type === "ticket" %}
-            {% for ticket in field.tickets.paid %}
-                {% if ticket.active() %}
-                    {% set name = _f(ticket.price) + ' - ' + ticket.name %}
-                    <label for="{{ ticket.id }}" class="wsb-label">
-                        <input id="{{ ticket.id }}" name="{{ field.name }}" title="{{ field.label }}" type="radio"
-                               data-control required value="{{ ticket.id }}" {{ 'disabled' if disabled }} />
-                        {{ name }}
-                    </label>
-                {% endif %}
-            {% endfor %}
-            {% if field.excludedTax %}
-                {{ _t("tax.excluded_all") }}
-            {% else %}
-                {{ _t("tax.included_all") }}
-            {% endif %}
-        {% else %}
-            <input name="{{ field.name }}" title="{{ field.label }}" {{ 'disabled' if disabled }}
+      {{ field.label | safe }}
+    </label>
+  {% elif field.type === "ticket" %}
+    {% for ticket in field.tickets.paid %}
+      {% if ticket.active() %}
+        {% set name = _f(ticket.price) + ' - ' + ticket.name %}
+        <label for="{{ ticket.id }}" class="wsb-label">
+          <input id="{{ ticket.id }}" name="{{ field.name }}" title="{{ field.label }}" type="radio"
+                               data-control required value="{{ ticket.id }}" {{ 'disabled' if disabled }}/>
+          {{ name }}
+        </label>
+      {% endif %}
+    {% endfor %}
+    {% if field.excludedTax %}
+      {{ _t("tax.excluded_all") }}
+    {% else %}
+      {{ _t("tax.included_all") }}
+    {% endif %}
+  {% else %}
+    <input name="{{ field.name }}" title="{{ field.label }}" {{ 'disabled' if disabled }}
                    type="{{ field.type }}" {{ 'required' if field.required }} data-control/>
-        {% endif %}
-    </div>
+  {% endif %}
+</div>
 {% endmacro %}

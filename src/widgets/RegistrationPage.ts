@@ -130,7 +130,6 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
       const content = template ?
         nunjucksRenderString(template, params) :
         self.templates.registrationPage.render(params);
-
       self.$root.html(content);
       self.successMessage = self.$root.find('#wsb-success');
       self.successMessage.hide();
