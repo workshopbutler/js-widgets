@@ -1,6 +1,6 @@
-import TicketPrice from "../models/TicketPrice";
-import ITicketType from "./ITicketType";
-import {DateTime} from "luxon";
+import {DateTime} from 'luxon';
+import TicketPrice from '../models/TicketPrice';
+import ITicketType from './ITicketType';
 
 export default interface IPaidTicketType extends ITicketType {
     readonly id: string;
@@ -37,5 +37,5 @@ export default interface IPaidTicketType extends ITicketType {
      * Returns true if no more seats left
      * @return {boolean}
      */
-    soldOut(): boolean
+    soldOut(): boolean;
 }

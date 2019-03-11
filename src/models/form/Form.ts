@@ -1,5 +1,5 @@
-import Section from "./Section";
-import Event from "../Event";
+import Event from '../Event';
+import Section from './Section';
 
 /**
  * Registration or evaluation form

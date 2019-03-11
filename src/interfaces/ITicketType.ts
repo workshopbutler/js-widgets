@@ -5,10 +5,10 @@ export default interface ITicketType {
      * Returns true if no more seats left
      * @return {boolean}
      */
-    soldOut(): boolean
+    soldOut(): boolean;
 
     /**
      * Returns true if there is no limitation for a number of tickets
      */
-    withoutLimit(): boolean
+    withoutLimit(): boolean;
 }

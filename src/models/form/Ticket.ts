@@ -1,5 +1,5 @@
-import Field from "./Field";
-import Tickets from "../Tickets";
+import Tickets from '../Tickets';
+import Field from './Field';
 
 /**
  * Form field with tickets' info, where visitors can select a ticket of their choice

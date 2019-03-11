@@ -1,5 +1,5 @@
-import Localisation from "../utils/Localisation";
-import EventState from "../models/EventState";
+import EventState from '../models/EventState';
+import Localisation from '../utils/Localisation';
 
 /**
  * Formats the event state

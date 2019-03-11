@@ -1,6 +1,6 @@
 import Trainer from '../../models/Trainer';
 import Localisation from '../../utils/Localisation';
-import {FilterValue} from './Filter';
+import FilterValue from './FilterValue';
 import {ListFilters} from './ListFilters';
 
 /**
@@ -16,7 +16,7 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
    * @param loc {Localisation} Localisation instance
    * @param visibleFilters {array} Configuration config
    */
-  constructor(selector: HTMLElement, loc: Localisation, visibleFilters: any[]) {
+  constructor(selector: HTMLElement, loc: Localisation, visibleFilters: string[]) {
     super();
     this.$root = $(selector);
     this.loc = loc;
@@ -54,7 +54,7 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
     let trainers = this.$root.find('[data-trainer-obj]').hide();
     this.$root.find('[data-filter]').each((index, el) => {
       const filterName = $(el).data('name');
-      const value = $(el).val();
+      const value = $(el).val() as string;
       const filter = this.getFilter(filterName, value);
       if (value !== 'all') {
         trainers = trainers.filter(filter);
@@ -71,9 +71,9 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
   /**
    * Returns a correct filter based on its name
    * @param name {string} Name of the filter
-   * @param value {any} Value of the filter
+   * @param value {string} Value of the filter
    */
-  private getFilter(name: string, value: any) {
+  private getFilter(name: string, value: string) {
     const ratingFunction = (index: number, el: HTMLElement) => {
       return $(el).data('trainer-rating') > value;
     };
@@ -130,7 +130,7 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
     ];
     const unfiltered = ratings.map((rating) => {
       const name = self.loc.translate(`rating.${rating.name}`);
-      return new FilterValue(name, rating.value);
+      return new FilterValue(name, rating.value.toString());
     });
     return this.getFilterData(defaultName, unfiltered);
   }
@@ -164,7 +164,6 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
 
   private getLocationFilterData(defaultName: string, trainers: Trainer[]) {
     const countries = [];
-    const self = this;
     for (const trainer of trainers) {
       for (const countryCode of trainer.worksIn) {
         const countryName = this.loc.translate(`country.${countryCode}`);

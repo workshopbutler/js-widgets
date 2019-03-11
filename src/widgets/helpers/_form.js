@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 export default class FormHelper {
 
@@ -21,21 +21,21 @@ export default class FormHelper {
 
     _assignEvents() {
         this.$controls
-            .on('blur', this._onBlurControl.bind(this))
-            .on('input change', this._onInputControl.bind(this))
+            .on("blur", this._onBlurControl.bind(this))
+            .on("input change", this._onInputControl.bind(this));
     }
 
-    _onBlurControl(e){
+    _onBlurControl(e) {
         const $el = $(e.currentTarget);
         this._isValidControl($el);
     }
 
-    _onInputControl(e){
+    _onInputControl(e) {
         const $control = $(e.currentTarget);
         this._removeError($control);
     }
 
-    _isValidControl($control){
+    _isValidControl($control) {
         const validation = this._validateControl($control);
 
         if (validation.isValid) {
@@ -53,27 +53,28 @@ export default class FormHelper {
      * @returns {Object} = isValid(Boolean), message(String)
      * @private
      */
-    _validateControl($control){
-        const name = $control.attr('name');
+    _validateControl($control) {
+        const name = $control.attr("name");
         const rules = this.rules[name];
         const valueControl = this.getControlValue($control);
         let valid;
 
-        for (let rule in rules){
+        for (let rule in rules) {
             valid = this[`${rule}Validator`](valueControl, $control);
 
-            if (!valid) return {
+            if (!valid) { return {
                 isValid: false,
-                message: this.messages[rule]
+                message: this.messages[rule],
             };
+            }
         }
 
         return {
-            isValid: true
+            isValid: true,
         };
     }
 
-    isValidFormData(){
+    isValidFormData() {
         const self = this;
         let valid = true;
 
@@ -92,12 +93,12 @@ export default class FormHelper {
      * @param {jQuery} $control
      * @private
      */
-    _showPreviousError(condition, $control = null){
+    _showPreviousError(condition, $control = null) {
         if (this.$inputWithError) {
             this.$inputWithError
                 .parent()
-                .toggleClass('b-error_state_high', !condition)
-                .toggleClass('b-error_state_error', condition)
+                .toggleClass("b-error_state_high", !condition)
+                .toggleClass("b-error_state_error", condition);
         }
         this.$inputWithError = $control;
     }
@@ -110,7 +111,7 @@ export default class FormHelper {
      */
     _setError($control, errorText, showBubble = true) {
         const $parent = $control.parent();
-        const $error = $parent.find('.b-error');
+        const $error = $parent.find(".b-error");
 
         if ($error.length) {
             $error.text(errorText);
@@ -120,22 +121,22 @@ export default class FormHelper {
                 .appendTo($parent);
         }
 
-        $parent.addClass('b-error_show');
+        $parent.addClass("b-error_show");
 
         this.errors.push({
-            name: $control.attr('name'),
-            error: errorText
-        })
+            name: $control.attr("name"),
+            error: errorText,
+        });
     }
 
-    _removeError($control){
+    _removeError($control) {
         const $parent = $control.parent();
 
-        $parent.removeClass('b-error_show');
+        $parent.removeClass("b-error_show");
 
-        this.errors = this.errors.filter(function (item) {
-            return item.name !== $control.attr('name')
-        })
+        this.errors = this.errors.filter(function(item) {
+            return item.name !== $control.attr("name");
+        });
     }
 
     /**
@@ -149,42 +150,41 @@ export default class FormHelper {
         errors.forEach((item) => {
             const $currentControl = this.$controls.filter('[name="' + item.name + '"]').first();
 
-            if (!$currentControl.length) return;
+            if (!$currentControl.length) { return; }
             this._setError($currentControl, item.error, false);
-        })
+        });
     }
 
     removeErrors() {
         this.$controls.each((index, el) => {
             const $el = $(el);
-            this._removeError($el)
-        })
+            this._removeError($el);
+        });
     }
 
-
     // Helper for form
-    getFormData(){
+    getFormData() {
         let formData = {};
 
         this.$controls.each((index, el) => {
             const $el = $(el);
-            const name = $el.attr('name');
+            const name = $el.attr("name");
             if (name && formData[name] === undefined) {
-                formData[name] = this.getControlValue($el)
+                formData[name] = this.getControlValue($el);
             }
         });
 
         return formData;
     }
 
-    setFormData(formData){
+    setFormData(formData) {
         const $controls = this.$controls;
 
-        for( let field in formData){
-            if (formData.hasOwnProperty(field)){
+        for ( let field in formData) {
+            if (formData.hasOwnProperty(field)) {
                 let $control = $controls.filter(`[name="${field}"]`).first();
 
-                if (!$control.length) return;
+                if (!$control.length) { return; }
 
                 this.setControlValue($control, formData[field]);
             }
@@ -199,11 +199,11 @@ export default class FormHelper {
     getErrorsFull(errors) {
         const self = this;
         const arrErrors = errors || this.errors;
-        let errorTxt = '';
+        let errorTxt = "";
 
         arrErrors.forEach((item) => {
             const $control = self.$controls.filter(`[name="${item.name}"]`).first();
-            const name = $control.length? $control.attr('title'): item.name;
+            const name = $control.length ? $control.attr("title") : item.name;
 
             errorTxt += `<b>${name}</b>: ${item.error}  <br>`;
         });
@@ -214,8 +214,8 @@ export default class FormHelper {
     clearForm() {
         this.$controls.each((index, el) => {
             const $el = $(el);
-            if (!$el.attr("disabled"))  $el.val('');
-        })
+            if (!$el.attr("disabled")) {  $el.val(""); }
+        });
     }
 
     /**
@@ -223,10 +223,10 @@ export default class FormHelper {
      * @param {jQuery} $control
      * @param {String|Number|Boolean} value
      */
-    setControlValue($control, value){
-        if ($control.is(':checkbox')){
-            $control.prop('checked', value)
-        } else{
+    setControlValue($control, value) {
+        if ($control.is(":checkbox")) {
+            $control.prop("checked", value);
+        } else {
             $control.val(value);
         }
     }
@@ -236,12 +236,12 @@ export default class FormHelper {
      * @param {jQuery} $control
      * @returns {String|Boolean}
      */
-    getControlValue($control){
+    getControlValue($control) {
         let value = null;
 
-        if ($control.is(':checkbox')) {
-            value = $control.prop('checked');
-        } else if ($control.is(':radio') && $control.prop('checked')) {
+        if ($control.is(":checkbox")) {
+            value = $control.prop("checked");
+        } else if ($control.is(":radio") && $control.prop("checked")) {
             return $control.val();
         } else {
             value = $control.val();

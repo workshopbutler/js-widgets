@@ -10,7 +10,7 @@ export default class FactoryConfig {
    * Creates a new FactoryConfig from raw data if possible
    * @param data {IPlainObject} Configuration data
    */
-  static create(data: any): FactoryConfig | null {
+  static create(data: IPlainObject): FactoryConfig | null {
     if (data.apiKey && typeof data.apiKey === 'string') {
       const locale = data.locale ? data.locale : null;
       const dict = data.dict ? data.dict : null;

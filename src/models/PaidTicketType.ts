@@ -63,7 +63,7 @@ export default class PaidTicketType implements IPaidTicketType {
      */
     ended(): boolean {
         return this.state.ended;
-    };
+    }
 
     /**
      * All paid ticket types have a limitation for a number of tickets

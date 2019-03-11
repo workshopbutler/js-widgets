@@ -1,3 +1,4 @@
+import IPlainObject from '../interfaces/IPlainObject';
 import getLangCode from '../utils/language';
 import SocialLinks from './SocialLinks';
 import Statistics from './Statistics';
@@ -7,7 +8,7 @@ import Statistics from './Statistics';
  */
 export default class Trainer {
 
-  protected static getCountry(jsonData: any): string | null {
+  protected static getCountry(jsonData: IPlainObject): string | null {
     if (jsonData.country) {
       return jsonData.country;
     } else if (jsonData.address && jsonData.address.country) {
@@ -17,7 +18,6 @@ export default class Trainer {
     }
   }
 
-  options: any;
   readonly id: number;
   readonly firstName: string;
   readonly lastName: string;

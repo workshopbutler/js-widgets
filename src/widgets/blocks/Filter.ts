@@ -1,3 +1,5 @@
+import FilterValue from './FilterValue';
+
 export class Filter {
     readonly name: string;
     readonly values: FilterValue[];
@@ -7,15 +9,5 @@ export class Filter {
         this.name = name;
         this.values = values;
         this.visible = visible;
-    }
-}
-
-export class FilterValue {
-    readonly name: string;
-    readonly value: any;
-
-    constructor(name: string, value: any) {
-        this.name = name;
-        this.value = value;
     }
 }

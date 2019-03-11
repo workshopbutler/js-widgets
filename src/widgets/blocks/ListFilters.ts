@@ -1,4 +1,5 @@
-import {Filter, FilterValue} from './Filter';
+import {Filter} from './Filter';
+import FilterValue from './FilterValue';
 
 export abstract class ListFilters<T> {
 

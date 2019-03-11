@@ -20,7 +20,7 @@ export default class Formatter {
 
     format(object: any, type: string | null = null): string {
         if (object instanceof Schedule) {
-            return ScheduleFormatter.format(this.loc, object as Schedule, type);
+            return ScheduleFormatter.format(this.loc.locale, object as Schedule, type);
         }
         if (object instanceof TicketPrice) {
             return TicketPriceFormatter.format(this.loc, object as TicketPrice);

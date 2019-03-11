@@ -1,14 +1,13 @@
-import Localisation from "../utils/Localisation";
-import {DateTime} from "luxon";
+import {DateTime} from 'luxon';
 
 /**
  * Formats a DateTime object
  */
 export default class DateTimeFormatter {
-    static format(loc: Localisation, dateTime: DateTime, withTime: boolean = false): string {
-        const thisYear = DateTime.local().setZone(dateTime.zoneName).year == dateTime.year;
+    static format(locale: string, dateTime: DateTime, withTime: boolean = false): string {
+        const thisYear = DateTime.local().setZone(dateTime.zoneName).year === dateTime.year;
         const dateFormat = this.getDateFormat(withTime, thisYear);
-        return dateTime.setLocale(loc.locale).toLocaleString(dateFormat);
+        return dateTime.setLocale(locale).toLocaleString(dateFormat);
     }
 
     /**

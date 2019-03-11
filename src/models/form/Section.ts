@@ -1,22 +1,13 @@
-import Field, {FieldType} from "./Field";
-import Select from "./Select";
-import Country from "./Country";
-import Event from "../Event";
-import Ticket from "./Ticket";
+import Event from '../Event';
+import Country from './Country';
+import Field, {FieldType} from './Field';
+import Select from './Select';
+import Ticket from './Ticket';
 
 /**
  * Form section, which contains a number of fields
  */
 export default class Section {
-    readonly fields: Field[];
-
-    constructor(readonly name: string, data: any, event: Event) {
-        this.fields = data.map(
-            (fieldData: any) => Section.createAnyField(fieldData, event)
-        ).filter(
-            (field: Field | null) => field instanceof Field
-        );
-    }
 
     /**
      * Creates all fields, including tickets
@@ -35,6 +26,15 @@ export default class Section {
                 }
             default: return new Field(fieldData);
         }
+    }
+    readonly fields: Field[];
+
+    constructor(readonly name: string, data: any, event: Event) {
+        this.fields = data.map(
+            (fieldData: any) => Section.createAnyField(fieldData, event),
+        ).filter(
+            (field: Field | null) => field instanceof Field,
+        );
     }
 
 }

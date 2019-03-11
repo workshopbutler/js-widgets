@@ -1,6 +1,8 @@
 /**
  * Represents the raw votes
  */
+import IPlainObject from '../interfaces/IPlainObject';
+
 export default class Votes {
     /**
      * Number of voters, who gave '0'
@@ -77,9 +79,9 @@ export default class Votes {
      * @param {any} votes All votes
      * @return {number}
      */
-    private getValue(id: string, votes: any): number {
+    private getValue(id: string, votes: IPlainObject): number {
         if (votes && votes[id]) {
-            return parseInt(votes[id]);
+            return parseInt(votes[id], 10);
         } else {
             return 0;
         }
