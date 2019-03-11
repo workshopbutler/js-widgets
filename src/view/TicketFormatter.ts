@@ -1,8 +1,8 @@
-import Localisation from "../utils/Localisation";
-import IPaidTicketType from "../interfaces/IPaidTicketType";
-import DateTimeFormatter from "./DateTimeFormatter";
-import ITicketType from "../interfaces/ITicketType";
-import PaidTicketType from "../models/PaidTicketType";
+import IPaidTicketType from '../interfaces/IPaidTicketType';
+import ITicketType from '../interfaces/ITicketType';
+import PaidTicketType from '../models/PaidTicketType';
+import Localisation from '../utils/Localisation';
+import DateTimeFormatter from './DateTimeFormatter';
 
 /**
  * Formats a ticket
@@ -12,35 +12,36 @@ export default class TicketFormatter {
         switch (type) {
             case 'desc':
                 if (ticket instanceof PaidTicketType) {
-                    return this.formatDescription(loc, <PaidTicketType>ticket);
+                    return this.formatDescription(loc, ticket as PaidTicketType);
                 } else {
                     return '';
                 }
             default:
-                return this.formatState(loc, ticket)
+                return this.formatState(loc, ticket);
         }
     }
 
     protected static formatState(loc: Localisation, ticket: ITicketType): string {
         if (ticket.soldOut()) {
             return loc.translate('event.ticket.soldOut');
-        } else if (ticket instanceof PaidTicketType && (<PaidTicketType>ticket).ended()) {
+        } else if (ticket instanceof PaidTicketType && (ticket as PaidTicketType).ended()) {
             return loc.translate('event.ticket.ended');
         } else {
             if (ticket.withoutLimit()) {
                 return '';
             } else {
-                return loc.translate('event.ticket.left',{ count: ticket.numberOfTicketsLeft})
+                return loc.translate('event.ticket.left', { count: ticket.numberOfTicketsLeft});
             }
         }
     }
     protected static formatDescription(loc: Localisation, ticket: IPaidTicketType): string {
         if (ticket.ended()) {
-            return loc.translate('event.ticket.endedOn', { date: DateTimeFormatter.format(loc, ticket.end)});
+            return loc.translate('event.ticket.endedOn', {
+              date: DateTimeFormatter.format(loc.locale, ticket.end)});
         }
         if (ticket.active()) {
-            return loc.translate('event.ticket.endsOn', { date: DateTimeFormatter.format(loc, ticket.end)});
+            return loc.translate('event.ticket.endsOn', { date: DateTimeFormatter.format(loc.locale, ticket.end)});
         }
-        return loc.translate('event.ticket.onSaleFrom', { date: DateTimeFormatter.format(loc, ticket.start)});
+        return loc.translate('event.ticket.onSaleFrom', { date: DateTimeFormatter.format(loc.locale, ticket.start)});
     }
 }

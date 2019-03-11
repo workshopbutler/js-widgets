@@ -1,4 +1,4 @@
-import getLangCode from "../utils/language";
+import getLangCode from '../utils/language';
 
 /**
  * Language(-s) of the workshop

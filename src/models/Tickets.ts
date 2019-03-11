@@ -1,5 +1,5 @@
-import IFreeTicketType from "../interfaces/IFreeTicketType";
-import IPaidTicketType from "../interfaces/IPaidTicketType";
+import IFreeTicketType from '../interfaces/IFreeTicketType';
+import IPaidTicketType from '../interfaces/IPaidTicketType';
 
 /**
  * Workshop tickets, either free or paid, depending on the type of the workshop
@@ -32,7 +32,7 @@ export default class Tickets {
     getActiveTicketId() {
         const active = this.getActiveTicket();
         if (active) {
-            return active.id
+            return active.id;
         } else {
             return null;
         }
@@ -49,11 +49,11 @@ export default class Tickets {
 
     /**
      * Returns number of all tickets left, for all valid and future types, or null if there is no limitation
-     * @return {any}
+     * @return {number?}
      */
     getNumberOfSeatsLeft() {
-        function sum(total: number, number: number) {
-            return total + number;
+        function sum(total: number, addition: number) {
+            return total + addition;
         }
 
         if (this.free) {
@@ -63,22 +63,10 @@ export default class Tickets {
                 return null;
             }
         } else {
-            const active = this.getActive().map(event => event.numberOfTicketsLeft);
-            const future = this.getFuture().map(event => event.numberOfTicketsLeft);
+            const active = this.getActive().map((event) => event.numberOfTicketsLeft);
+            const future = this.getFuture().map((event) => event.numberOfTicketsLeft);
             return active.reduce(sum, 0) + future.reduce(sum, 0);
         }
-    }
-
-    /**
-     * Returns active paid types, which a user can register to
-     * @return {IPaidTicketType[]}
-     */
-    protected getActive() {
-        return this.paid.filter(ticket => ticket.active());
-    }
-
-    protected getFuture() {
-        return this.paid.filter(ticket => ticket.inFuture());
     }
 
     /**
@@ -86,5 +74,17 @@ export default class Tickets {
      */
     nonEmpty() {
         return !this.isEmpty();
+    }
+
+    /**
+     * Returns active paid types, which a user can register to
+     * @return {IPaidTicketType[]}
+     */
+    protected getActive() {
+        return this.paid.filter((ticket) => ticket.active());
+    }
+
+    protected getFuture() {
+        return this.paid.filter((ticket) => ticket.inFuture());
     }
 }

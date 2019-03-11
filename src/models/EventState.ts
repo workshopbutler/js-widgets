@@ -1,4 +1,4 @@
-import Event from "./Event";
+import Event from './Event';
 
 export default class EventState {
 
@@ -58,7 +58,7 @@ export default class EventState {
                         soldOut = false;
                     }
                 });
-                return soldOut ? 'event.state.soldOut': null;
+                return soldOut ? 'event.state.soldOut' : null;
             } else {
                 return null;
             }

@@ -1,4 +1,4 @@
-import Field from "./Field";
+import Field from './Field';
 
 /**
  * Form field with the list of countries

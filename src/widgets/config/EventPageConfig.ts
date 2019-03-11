@@ -68,7 +68,7 @@ export default class EventPageConfig extends WidgetConfig {
    */
   readonly numberOfTickets: boolean;
 
-  protected constructor(options: any) {
+  protected constructor(options: IPlainObject) {
     super(options);
     this.trainers = options.trainers !== undefined ? options.trainers : false;
     this.trainerPageUrl = options.trainerPageUrl ? options.trainerPageUrl : undefined;

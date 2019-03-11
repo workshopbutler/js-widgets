@@ -1,4 +1,7 @@
 import IPlainObject from '../interfaces/IPlainObject';
+import ScheduleFormatter from '../view/ScheduleFormatter';
+import DefaultSettings from '../widgets/config/DefaultSettings';
+import Category from './Category';
 import EventState from './EventState';
 import Form from './form/Form';
 import FreeTicketType from './FreeTicketType';
@@ -33,6 +36,11 @@ export default class Event {
   readonly state: EventState;
 
   /**
+   * Category of the event
+   */
+  readonly category?: Category;
+
+  /**
    * @param attrs {object}
    * @param options {object}
    */
@@ -50,9 +58,9 @@ export default class Event {
     this.soldOut = attrs.sold_out;
     this.schedule = new Schedule(attrs.schedule);
     this.location = new Location(attrs.location);
-
-    this.url = `${options.eventPageUrl}?id=${this.hashedId}`;
+    this.category = attrs.category ? new Category(attrs.category) : undefined;
     this.tickets = this.getTickets(this.free, attrs.free_ticket_type, attrs.paid_ticket_types);
+    this.url = this.buildUrl(options);
     this.registrationPage = new RegistrationPage(attrs.registration_page,
       options.registrationPageUrl, this.hashedId);
     this.registrationForm = attrs.registration_form ?
@@ -68,6 +76,22 @@ export default class Event {
    */
   nameOfTrainers(): string[] {
     return this.trainers.map((trainer) => trainer.fullName());
+  }
+
+  protected buildUrl(options: IPlainObject): string {
+    const pattern = options.eventPagePattern ? options.eventPagePattern : DefaultSettings.eventPagePattern;
+    const categoryName = this.category ? this.category.name : '';
+    const dates = this.replaceSpaces(ScheduleFormatter.format('en', this.schedule, 'full_short'));
+    const queryParams = pattern.replace('{{id}}', this.hashedId).
+      replace('{{title}}', this.replaceSpaces(this.title)).
+      replace('{{dates}}', dates).
+      replace('{{category}}', this.replaceSpaces(categoryName));
+    return encodeURI(`${options.eventPageUrl}?${queryParams}`);
+  }
+
+  protected replaceSpaces(value: string): string {
+    const regex = /\ /gi;
+    return value.replace(regex, '_');
   }
 
   private getTickets(free: boolean, freeTicketType: any, paidTicketTypes: any[]): Tickets | null {

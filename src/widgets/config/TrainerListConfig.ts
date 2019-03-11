@@ -1,4 +1,5 @@
 import {logError} from '../../common/Error';
+import IPlainObject from '../../interfaces/IPlainObject';
 import WidgetConfig from './WidgetConfig';
 
 /**
@@ -8,9 +9,9 @@ export default class TrainerListConfig extends WidgetConfig {
 
   /**
    * Returns the config if the options are correct
-   * @param options {any} Widget's options
+   * @param options {IPlainObject} Widget's options
    */
-  static create(options: any): TrainerListConfig | null {
+  static create(options: IPlainObject): TrainerListConfig | null {
     if (TrainerListConfig.validate(options)) {
       return new TrainerListConfig(options);
     } else {
@@ -20,9 +21,9 @@ export default class TrainerListConfig extends WidgetConfig {
 
   /**
    * Returns true if the options can be used to create the widget's config
-   * @param options {any} Widget's config
+   * @param options {IPlainObject} Widget's config
    */
-  protected static validate(options: any): boolean {
+  protected static validate(options: IPlainObject): boolean {
     let valid = true;
     if (!options.trainerPageUrl || typeof options.trainerPageUrl !== 'string') {
       logError('Attribute [trainerPageUrl] is not set correctly');
@@ -55,7 +56,7 @@ export default class TrainerListConfig extends WidgetConfig {
    */
   readonly showRating: boolean;
 
-  protected constructor(options: any) {
+  protected constructor(options: IPlainObject) {
     super(options);
     this.trainerPageUrl = options.trainerPageUrl;
     this.filters = options.filters;

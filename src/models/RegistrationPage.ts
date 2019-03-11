@@ -1,19 +1,9 @@
 /**
  * Contains the logic for the event registration
  */
-export default class RegistrationPage {
-    readonly external: boolean;
-    readonly url?: string;
+import IPlainObject from '../interfaces/IPlainObject';
 
-    constructor(attrs: any, registrationUrl: string | null = null, eventId: string) {
-        if (attrs) {
-            this.external = attrs.custom;
-            this.url = attrs.url;
-        }
-        if (!this.external && registrationUrl) {
-            this.url = RegistrationPage.getInternalUrl(registrationUrl, eventId);
-        }
-    }
+export default class RegistrationPage {
 
     /**
      * Returns a correctly formed url for a registration page of the event
@@ -22,6 +12,18 @@ export default class RegistrationPage {
      */
     protected static getInternalUrl(registrationPageUrl: string, eventId: string): string {
         return registrationPageUrl + `?id=${eventId}`;
+    }
+    readonly external: boolean;
+    readonly url?: string;
+
+    constructor(attrs: IPlainObject, registrationUrl: string | null = null, eventId: string) {
+        if (attrs) {
+            this.external = attrs.custom;
+            this.url = attrs.url;
+        }
+        if (!this.external && registrationUrl) {
+            this.url = RegistrationPage.getInternalUrl(registrationUrl, eventId);
+        }
     }
 
 }

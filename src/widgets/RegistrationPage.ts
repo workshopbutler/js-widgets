@@ -22,7 +22,7 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
    * @param loc {Localisation} Localisation instance
    * @param options {object} Configuration config
    */
-  static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
+  static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: IPlainObject) {
     const $elems = $(selector);
     if (!$elems.length) {
       return;

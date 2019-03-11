@@ -1,6 +1,7 @@
 import * as JQuery from 'jquery';
 import {logError} from '../../common/Error';
 import transport from '../../common/Transport';
+import IPlainObject from '../../interfaces/IPlainObject';
 import Event from '../../models/Event';
 import {ITemplates} from '../../templates/ITemplates';
 import Localisation from '../../utils/Localisation';
@@ -64,7 +65,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
       $(e.target as HTMLElement).prop('disabled', true).addClass('h-busy');
 
       transport.post(url, formData,
-        (data: any) => {
+        (data: IPlainObject) => {
           self.formHelper.clearForm();
           self.successMessage.show();
           self.form.hide();
@@ -77,7 +78,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
   /**
    * Contains localised form errors
    */
-  protected getErrorMessages(): any {
+  protected getErrorMessages(): IPlainObject {
     return {
       date: this.loc.translate('form.error.date'),
       digits: this.loc.translate('form.error.digits'),
@@ -114,7 +115,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
    * @param data {object}
    * @return {*}
    */
-  private prepareFormData(data: any): any {
+  private prepareFormData(data: IPlainObject): IPlainObject {
     data.event_id = Number(this.event.id);
     for (const item in data) {
       if (!data[item]) {

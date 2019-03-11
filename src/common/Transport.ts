@@ -82,9 +82,9 @@ class Transport {
     frameWindow = this.iframe.contentWindow;
 
     const self = this;
-    this.iframe.onload = function () {
+    this.iframe.onload = function() {
       if (self.messageStack.length > 0) {
-        self.messageStack.forEach(function (value) {
+        self.messageStack.forEach((value) => {
           frameWindow.postMessage(value, BACKEND_URL);
         });
 

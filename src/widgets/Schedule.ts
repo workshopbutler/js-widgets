@@ -23,7 +23,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
    * @param loc {Localisation} Localisation instance
    * @param options {object} Configuration config
    */
-  static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
+  static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: IPlainObject) {
     const $elems = $(selector);
     if (!$elems.length) {
       logError("Page element, referenced in 'target' attribute, is not found");
@@ -39,7 +39,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
       let data = $element.data('wsb.widget.event.list');
 
       if (!data) {
-        data = new Schedule(el, apiKey, templates, loc, options);
+        data = new Schedule(el, apiKey, templates, loc, config);
         $element.data('wsb.widget.event.list', data);
       }
     });
@@ -121,7 +121,11 @@ export default class Schedule extends Widget<ScheduleConfig> {
     if (this.config.categoryId) {
       categoryId = `&categoryId=${this.config.categoryId}`;
     }
-    const query = `future=true&public=true&fields=${fields}${categoryId}`;
+    let expand = '';
+    if (this.config.expand.length > 0) {
+      expand = `&expand=${this.config.expand.toString()}`;
+    }
+    const query = `future=true&public=true&fields=${fields}${categoryId}${expand}`;
     return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}`;
   }
 

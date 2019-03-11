@@ -1,5 +1,6 @@
 import {logError} from '../../common/Error';
 import IPlainObject from '../../interfaces/IPlainObject';
+import DefaultSettings from './DefaultSettings';
 import WidgetConfig from './WidgetConfig';
 
 /**
@@ -45,11 +46,21 @@ export default class SidebarEventListConfig extends WidgetConfig {
   readonly excludeId?: number;
 
   /**
+   * Pattern for the event page url
+   */
+  readonly eventPagePattern: string;
+
+  /**
+   * A list of 'expand' attributes, sent to API
+   */
+  readonly expand: string[];
+
+  /**
    * Category ID to filter the events
    */
   readonly categoryId?: number;
 
-  protected constructor(options: any) {
+  protected constructor(options: IPlainObject) {
     super(options);
     this.eventPageUrl = options.eventPageUrl;
     this.hideIfEmpty = options.hideIfEmpty !== undefined ? options.hideIfEmpty : false;
@@ -62,5 +73,14 @@ export default class SidebarEventListConfig extends WidgetConfig {
     this.excludeId = options.excludeId !== undefined ? options.excludeId : undefined;
 
     this.categoryId = options.categoryId;
+
+    this.eventPagePattern = options.eventPagePattern !== undefined ?
+      options.eventPagePattern :
+      DefaultSettings.eventPagePattern;
+    if (this.eventPagePattern.indexOf('{{category}}') >= 0) {
+      this.expand = ['category'];
+    } else {
+      this.expand = [];
+    }
   }
 }

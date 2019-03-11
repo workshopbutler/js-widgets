@@ -1,5 +1,5 @@
-import Localisation from "../utils/Localisation";
-import Language from "../models/Language";
+import Language from '../models/Language';
+import Localisation from '../utils/Localisation';
 
 /**
  * Formats the language
@@ -9,7 +9,7 @@ export default class LanguageFormatter {
         const prefix = language.spoken.length > 1 ?
             loc.translate('event.info.twoLangs', { first: language.spoken[0], second: language.spoken[1]}) :
             loc.translate('event.info.oneLang', { lang: language.spoken[0]}) ;
-        let suffix = language.materials ?
+        const suffix = language.materials ?
             loc.translate('event.info.materials', { lang: language.materials }) : '.';
         return prefix + suffix;
     }

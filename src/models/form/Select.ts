@@ -1,12 +1,5 @@
-import Field from "./Field";
-
-/**
- * Select option
- */
-class Option {
-    constructor(readonly label: string, readonly value: string) {
-    }
-}
+import Field from './Field';
+import Option from './Option';
 
 /**
  * Select field

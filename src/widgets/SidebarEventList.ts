@@ -21,7 +21,7 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
    * @param loc {Localisation} Localisation instance
    * @param options {object} Configuration config
    */
-  static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
+  static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: IPlainObject) {
     const $elems = $(selector);
     if (!$elems.length) {
       return;
@@ -87,7 +87,7 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
         (data: IPlainObject[]) => {
           const events = data.filter((event: IPlainObject) => event.hashed_id !== self.config.excludeId);
           const length = self.config.length ? self.config.length : 3;
-          self.events = events.slice(0, length).map((event: any) => {
+          self.events = events.slice(0, length).map((event: IPlainObject) => {
             return new Event(event, self.config);
           });
           self.renderUpcomingEventList();
@@ -170,6 +170,9 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
     }
     if (this.config.categoryId) {
       url += `&categoryId=${this.config.categoryId}`;
+    }
+    if (this.config.expand.length > 0) {
+      url += `&expand=${this.config.expand.toString()}`;
     }
     return url;
   }
