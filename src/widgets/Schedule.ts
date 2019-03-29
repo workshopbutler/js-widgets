@@ -1,11 +1,11 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import {logError} from '../common/Error';
 import transport from '../common/Transport';
+import Formatter from '../formatters/plain/Formatter';
 import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
-import Formatter from '../view/Formatter';
 import Filters from './blocks/EventListFilters';
 import ScheduleConfig from './config/ScheduleConfig';
 import getTemplate from './helpers/_templates';

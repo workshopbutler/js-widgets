@@ -1,10 +1,10 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import transport from '../common/Transport';
+import Formatter from '../formatters/plain/Formatter';
 import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
-import Formatter from '../view/Formatter';
 import SidebarEventListConfig from './config/SidebarEventListConfig';
 import getTemplate from './helpers/_templates';
 import Widget from './Widget';

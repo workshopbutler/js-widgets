@@ -1,7 +1,7 @@
+import Formatter from '../formatters/plain/Formatter';
 import IPlainObject from '../interfaces/IPlainObject';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
-import Formatter from '../view/Formatter';
 import WidgetConfig from './config/WidgetConfig';
 
 declare const WIDGET_VERSION: string;

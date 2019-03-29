@@ -3,5 +3,5 @@
  * @param msg {string}
  */
 export function logError(msg: string): void {
-    console.log(`Workshop Butler ERROR: ${msg}`);
+  console.log(`Workshop Butler ERROR: ${msg}`); // tslint:disable-line no-console
 }

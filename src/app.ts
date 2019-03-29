@@ -1,4 +1,4 @@
-import {getQueryParam} from './common/helpers/_urlParser';
+import getQueryParam from './common/helpers/UrlParser';
 import WidgetFactory from './widgets/Factory';
 
 $(() => {

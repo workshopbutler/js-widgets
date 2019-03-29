@@ -1,7 +1,7 @@
-import IPaidTicketType from '../interfaces/IPaidTicketType';
-import ITicketType from '../interfaces/ITicketType';
-import PaidTicketType from '../models/PaidTicketType';
-import Localisation from '../utils/Localisation';
+import IPaidTicketType from '../../interfaces/IPaidTicketType';
+import ITicketType from '../../interfaces/ITicketType';
+import PaidTicketType from '../../models/PaidTicketType';
+import Localisation from '../../utils/Localisation';
 import DateTimeFormatter from './DateTimeFormatter';
 
 /**

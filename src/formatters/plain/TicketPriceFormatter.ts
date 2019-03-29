@@ -1,5 +1,5 @@
-import TicketPrice from '../models/TicketPrice';
-import Localisation from '../utils/Localisation';
+import TicketPrice from '../../models/TicketPrice';
+import Localisation from '../../utils/Localisation';
 
 /**
  * Formats the ticket price

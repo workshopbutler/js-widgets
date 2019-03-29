@@ -1,4 +1,5 @@
 import {logError} from '../../common/Error';
+import {absoluteURL, safeHref} from '../../common/helpers/UrlParser';
 import IPlainObject from '../../interfaces/IPlainObject';
 import WidgetConfig from './WidgetConfig';
 
@@ -48,6 +49,11 @@ export default class EventPageConfig extends WidgetConfig {
   readonly registrationPageUrl?: string;
 
   /**
+   * URL for this page, taken from 'window' object if it exists
+   */
+  readonly eventPageUrl?: string;
+
+  /**
    * List of additional widgets, rendered on the page. Default themes support one SidebarEventList widget
    * on #upcoming-events
    */
@@ -71,12 +77,13 @@ export default class EventPageConfig extends WidgetConfig {
   protected constructor(options: IPlainObject) {
     super(options);
     this.trainers = options.trainers !== undefined ? options.trainers : false;
-    this.trainerPageUrl = options.trainerPageUrl ? options.trainerPageUrl : undefined;
-    this.registrationPageUrl = options.registrationPageUrl ? options.registrationPageUrl : undefined;
+    this.trainerPageUrl = options.trainerPageUrl ? absoluteURL(options.trainerPageUrl) : undefined;
+    this.registrationPageUrl = options.registrationPageUrl ? absoluteURL(options.registrationPageUrl) : undefined;
     this.widgets = options.widgets !== undefined ? options.widgets : [];
     this.expiredTickets = options.expiredTickets !== undefined ? options.expiredTickets : true;
     this.numberOfTickets = options.numberOfTickets !== undefined ? options.numberOfTickets : true;
     this.showFutureEvents = options.futureEvents !== undefined ? options.futureEvents : true;
+    this.eventPageUrl = safeHref();
   }
 
 }

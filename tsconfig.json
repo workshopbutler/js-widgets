@@ -14,11 +14,12 @@
     "noEmit": true,
     "target": "es6"
   },
-  "include": [
-    "./src/**/*",
-    "./typings.d.ts"
-  ],
   "exclude": [
-    "node_modules"
+    "./node_modules/*"
+  ],
+  "include": [
+    "src/**/*",
+    "test/**/*",
+    "typings.d.ts"
   ]
 }

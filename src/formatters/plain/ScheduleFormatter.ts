@@ -1,6 +1,6 @@
 import {DateTime} from 'luxon';
-import Timezones from '../common/Timezones';
-import Schedule from '../models/Schedule';
+import Timezones from '../../common/Timezones';
+import Schedule from '../../models/Schedule';
 import DateTimeFormatter from './DateTimeFormatter';
 
 /**

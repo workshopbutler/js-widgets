@@ -1,4 +1,5 @@
 import {DateTime, Info} from 'luxon';
+import IPlainObject from '../interfaces/IPlainObject';
 
 /**
  * Represents a schedule for a workshop
@@ -11,9 +12,9 @@ export default class Schedule {
     readonly totalHours: number;
 
     /**
-     * @param attrs {any} JSON representation of the schedule
+     * @param attrs {IPlainObject} JSON representation of the schedule
      */
-    constructor(attrs: any) {
+    constructor(attrs: IPlainObject) {
         // check if the browser support IANA-specified zones
         if (attrs.timezone && Info.features().zones && DateTime.local().setZone(attrs.timezon).isValid) {
             this.timezone = attrs.timezone;

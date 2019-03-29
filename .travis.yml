@@ -13,6 +13,8 @@ install:
 
 script:
   - npm run build
+  - npm run check-types
+  - npm test
 
 after_success:
   - mkdir -p .latest .all
