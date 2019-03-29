@@ -43,7 +43,6 @@
     "ts-loader": "^5.3.3",
     "ts-node": "^8.0.3",
     "tslint": "^5.12.0",
-    "typescript": "^2.9.2",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.28.1",
@@ -53,12 +52,12 @@
   },
   "scripts": {
     "dev": "NODE_ENV=dev webpack-dev-server --mode development",
-    "test": "mocha -r ts-node/register --reporter spec test/**/*.test.ts",
+    "test": "mocha --require ts-node/register 'test/**/*.ts'",
     "watch": "NODE_ENV=watch webpack-dev-server --mode development",
-    "build": "NODE_ENV=build ./node_modules/.bin/webpack --mode production",
-    "build-wordpress": "NODE_ENV=build-wordpress ./node_modules/.bin/webpack --mode production",
-    "check-style": "node ./node_modules/.bin/stylelint  \"frontend/css/**/*.less\"",
-    "fix-style": "node ./node_modules/.bin/stylelint  \"frontend/css/**/*.less\"  --fix",
+    "build": "NODE_ENV=build webpack --mode production",
+    "build-wordpress": "NODE_ENV=build-wordpress webpack --mode production",
+    "check-style": "stylelint  \"frontend/css/**/*.less\"",
+    "fix-style": "stylelint  \"frontend/css/**/*.less\"  --fix",
     "lint-types": "tslint --project . --fix",
     "check-types": "tsc"
   },
@@ -71,7 +70,7 @@
     "nunjucks-loader": "^3.0.0",
     "postcss-loader": "^2.1.6",
     "stylelint": "^9.10.1",
-    "typescript": "^2.9.2",
+    "typescript": "^3.4.1",
     "urijs": "^1.19.1",
     "zepto": "^1.2.0"
   }
