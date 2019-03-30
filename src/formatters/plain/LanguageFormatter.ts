@@ -1,5 +1,5 @@
-import Language from '../models/Language';
-import Localisation from '../utils/Localisation';
+import Language from '../../models/Language';
+import Localisation from '../../utils/Localisation';
 
 /**
  * Formats the language

@@ -1,12 +1,13 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import {logError} from '../common/Error';
-import {getQueryParam} from '../common/helpers/_urlParser';
+import stripHTML from '../common/helpers/StripHtml';
+import getQueryParam from '../common/helpers/UrlParser';
 import transport from '../common/Transport';
+import Formatter from '../formatters/plain/Formatter';
 import IPlainObject from '../interfaces/IPlainObject';
 import Trainer from '../models/Trainer';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
-import Formatter from '../view/Formatter';
 import TrainerProfileConfig from './config/TrainerProfileConfig';
 import WidgetFactory from './Factory';
 import getTemplate from './helpers/_templates';
@@ -24,7 +25,7 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
    * @param loc {Localisation} Localisation instance
    * @param options {object} Configuration config
    */
-  static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
+  static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: IPlainObject) {
     const $elems = $(selector);
     if (!$elems.length) {
       return;
@@ -78,6 +79,7 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
    */
   protected updateHTML() {
     this.updateTitle();
+    this.updateDescription();
   }
 
   /**
@@ -85,6 +87,17 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
    */
   protected updateTitle() {
     document.title = this.trainer.fullName();
+  }
+
+  /**
+   * Changes the description of the page
+   */
+  protected updateDescription() {
+    const description = stripHTML(this.trainer.bio).substring(0, 140);
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute('content', description);
+    }
   }
 
   private init() {

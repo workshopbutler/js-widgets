@@ -1,5 +1,5 @@
+import ScheduleFormatter from '../formatters/plain/ScheduleFormatter';
 import IPlainObject from '../interfaces/IPlainObject';
-import ScheduleFormatter from '../view/ScheduleFormatter';
 import DefaultSettings from '../widgets/config/DefaultSettings';
 import Category from './Category';
 import EventState from './EventState';

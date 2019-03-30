@@ -46,7 +46,7 @@ export default class Trainer {
    */
   readonly worksIn: string[];
 
-  constructor(jsonData: any, options: any) {
+  constructor(jsonData: IPlainObject, options: any) {
     this.id = jsonData.id;
     this.firstName = jsonData.first_name;
     this.lastName = jsonData.last_name;

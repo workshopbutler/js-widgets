@@ -1,12 +1,14 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import {logError} from '../common/Error';
-import {getQueryParam} from '../common/helpers/_urlParser';
+import stripHTML from '../common/helpers/StripHtml';
+import getQueryParam from '../common/helpers/UrlParser';
 import transport from '../common/Transport';
+import EventFormatter from '../formatters/jsonld/EventFormatter';
+import Formatter from '../formatters/plain/Formatter';
 import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
-import Formatter from '../view/Formatter';
 import EventPageConfig from './config/EventPageConfig';
 import WidgetFactory from './Factory';
 import getTemplate from './helpers/_templates';
@@ -78,6 +80,7 @@ export default class EventPage extends Widget<EventPageConfig> {
    */
   protected updateHTML() {
     this.updateTitle();
+    this.updateDescription();
   }
 
   /**
@@ -85,6 +88,25 @@ export default class EventPage extends Widget<EventPageConfig> {
    */
   protected updateTitle() {
     document.title = this.event.title;
+  }
+
+  /**
+   * Changes the description of the page
+   */
+  protected updateDescription() {
+    const description = stripHTML(this.event.description).substring(0, 140);
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute('content', description);
+    }
+  }
+
+  /**
+   * Adds JSON-LD markup to the page
+   */
+  protected addJsonLD() {
+    const jsonLd = EventFormatter.format(this.event);
+    $('head').append(`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`);
   }
 
   private init() {
@@ -104,6 +126,8 @@ export default class EventPage extends Widget<EventPageConfig> {
     transport.get(url, {},
       (data: IPlainObject) => {
         self.event = new Event(data, self.config);
+        self.updateHTML();
+        self.addJsonLD();
         self.renderWidget();
       });
   }
@@ -118,7 +142,6 @@ export default class EventPage extends Widget<EventPageConfig> {
         self.templates.eventPage.render(params);
 
       self.$root.html(content);
-      self.updateHTML();
       if (self.config.widgets) {
         WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
       }

@@ -1,5 +1,5 @@
-import Location from '../models/Location';
-import Localisation from '../utils/Localisation';
+import Location from '../../models/Location';
+import Localisation from '../../utils/Localisation';
 
 /**
  * Format a location
