@@ -1,5 +1,6 @@
 {
   "filter": {
+    "categories": "Toutes les catégories",
     "locations": "Tous les lieux",
     "languages": "Toutes les langues",
     "types": "Tous les types",
