@@ -97,7 +97,7 @@ export default class ScheduleConfig extends WidgetConfig {
     this.eventPagePattern = options.eventPagePattern !== undefined ?
       options.eventPagePattern :
       DefaultSettings.eventPagePattern;
-    if (this.eventPagePattern.indexOf('{{category}}') >= 0) {
+    if (this.eventPagePattern.indexOf('{{category}}') >= 0 || this.filters.indexOf('category') >= 0) {
       this.expand = ['category'];
     } else {
       this.expand = [];

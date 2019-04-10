@@ -2,7 +2,8 @@
 <div class="wsb-table__row" data-event-obj data-event-type="{{ event.type.id }}"
      data-event-location="{{ event.location.countryCode }}"
      data-event-language="{{ event.language.spoken | join(',') }}"
-     data-event-trainer="{{ event.nameOfTrainers() | join(',') }}">
+     data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
+     {% if event.category %} data-event-category="{{ event.category.id }}" {% endif %}>
   {% from "./row/schedule.njk" import renderSchedule %}
   {% from "./row/location.njk" import renderLocation %}
   {% from "./row/trainers.njk" import renderTrainers %}
