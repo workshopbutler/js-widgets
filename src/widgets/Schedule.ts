@@ -86,6 +86,11 @@ export default class Schedule extends Widget<ScheduleConfig> {
     transport.get(url, {},
       (data: IPlainObject[]) => {
         var events = data;
+        if (self.config.sortdesc) {
+          events = events.sort(function(a: IPlainObject, b: IPlainObject){
+            return (a.schedule.start < b.schedule.start)?1:0;
+          });
+        }
         if (self.config.length && self.config.length >= 0) {
           events = events.slice(0, self.config.length);
         }
@@ -129,7 +134,8 @@ export default class Schedule extends Widget<ScheduleConfig> {
     if (this.config.expand.length > 0) {
       expand = `&expand=${this.config.expand.toString()}`;
     }
-    const query = `future=true&public=true&fields=${fields}${categoryId}${expand}`;
+    const future = this.config.future;
+    const query = `future=${future}&public=true&fields=${fields}${categoryId}${expand}`;
     return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}`;
   }
 
