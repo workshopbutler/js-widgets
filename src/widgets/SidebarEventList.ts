@@ -158,7 +158,11 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
       fields += ',' + this.config.fields.join(',');
     }
     const future = this.config.future;
-    let url = `events?api_key=${this.apiKey}&future=${future}&public=true&fields=${fields}&t=${this.getWidgetStats()}`;
+    let sort = '+start_date'
+    if (!future) {
+      sort = '-start_date';
+    }
+    let url = `events?api_key=${this.apiKey}&future=${future}&sort=${sort}&public=true&fields=${fields}&t=${this.getWidgetStats()}`;
     if (country) {
       url += `&countryCode=${country}`;
     }

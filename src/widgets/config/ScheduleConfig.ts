@@ -88,6 +88,10 @@ export default class ScheduleConfig extends WidgetConfig {
    */
   readonly length: number;
 
+  /**
+   * Show only future events (default) or ones from the past
+   */
+  readonly future: boolean;
 
   protected constructor(options: IPlainObject) {
     super(options);
@@ -109,6 +113,7 @@ export default class ScheduleConfig extends WidgetConfig {
       this.expand = [];
     }
     this.length = options.length !== undefined ? options.length : undefined;
+    this.future = options.future !== undefined ? options.future : true;
   }
 
 }

@@ -129,7 +129,12 @@ export default class Schedule extends Widget<ScheduleConfig> {
     if (this.config.expand.length > 0) {
       expand = `&expand=${this.config.expand.toString()}`;
     }
-    const query = `future=true&public=true&fields=${fields}${categoryId}${expand}`;
+    const future = this.config.future;
+    let sort = '+start_date'
+    if (!future) {
+      sort = '-start_date';
+    }
+    const query = `future=${future}&sort=${sort}&public=true&fields=${fields}${categoryId}${expand}`;
     return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}`;
   }
 
