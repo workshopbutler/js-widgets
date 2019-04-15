@@ -85,7 +85,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
     const url = this.getUrl();
     transport.get(url, {},
       (data: IPlainObject[]) => {
-        var events = data;
+        let events = data;
         if (self.config.length && self.config.length >= 0) {
           events = events.slice(0, self.config.length);
         }
