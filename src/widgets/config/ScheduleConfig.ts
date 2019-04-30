@@ -93,6 +93,11 @@ export default class ScheduleConfig extends WidgetConfig {
    */
   readonly future: boolean;
 
+  /**
+   * Filter events by trainerId
+   */
+  readonly trainerId?: number;
+
   protected constructor(options: IPlainObject) {
     super(options);
     this.eventPageUrl = options.eventPageUrl;
@@ -114,6 +119,7 @@ export default class ScheduleConfig extends WidgetConfig {
     }
     this.length = options.length !== undefined ? options.length : undefined;
     this.future = options.future !== undefined ? options.future : true;
+    this.trainerId = options.trainerId !== undefined ? options.trainerId : undefined;
   }
 
 }

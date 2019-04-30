@@ -125,6 +125,10 @@ export default class Schedule extends Widget<ScheduleConfig> {
     if (this.config.categoryId) {
       categoryId = `&categoryId=${this.config.categoryId}`;
     }
+    let trainerId = '';
+    if (this.config.trainerId) {
+      trainerId = `&trainerId=${this.config.trainerId}`;
+    }
     let expand = '';
     if (this.config.expand.length > 0) {
       expand = `&expand=${this.config.expand.toString()}`;
@@ -134,7 +138,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
     if (!future) {
       sort = '-start_date';
     }
-    const query = `future=${future}&sort=${sort}&public=true&fields=${fields}${categoryId}${expand}`;
+    const query = `future=${future}&sort=${sort}&public=true&fields=${fields}${categoryId}${trainerId}${expand}`;
     return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}`;
   }
 
