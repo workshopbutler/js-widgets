@@ -23,8 +23,8 @@ let webpackConfig = {
   },
   output: {
     path: path.resolve(__dirname, config.src),
-    filename: config.isDev ? `[name].js` : `[name].${process.env.npm_package_version}.js`,
-    sourceMapFilename: config.isDev ? `[name].js.map` : `[name].${process.env.npm_package_version}.js.map`
+    filename: config.isDev ? `[name].js` : `[name].${getVersion()}.js`,
+    sourceMapFilename: config.isDev ? `[name].js.map` : `[name].${getVersion()}.js.map`
   },
   externals: {
     jquery: 'jQuery'
@@ -106,10 +106,10 @@ function getPlugins() {
     new webpack.DefinePlugin({
       BACKEND_URL: JSON.stringify(config.env.backend),
       API_VERSION: JSON.stringify(config.options.apiVersion),
-      WIDGET_VERSION: JSON.stringify(process.env.npm_package_version)
+      WIDGET_VERSION: JSON.stringify(getVersion())
     }),
     new MiniCssExtractPlugin({
-      filename: config.isDev? `[name].css` : `[name].${process.env.npm_package_version}.min.css`
+      filename: config.isDev? `[name].css` : `[name].${getVersion()}.min.css`
     }),
   ];
   const hugoSrc = path.resolve(__dirname, 'site');
@@ -141,6 +141,14 @@ function getMinimizer() {
     minimizer.push(new OptimizeCSSAssetsPlugin({}));
   }
   return minimizer;
+}
+
+function getVersion() {
+  if (process.env.TRAVIS_TAG) {
+    return process.env.TRAVIS_TAG;
+  } else {
+    return process.env.npm_package_version;
+  }
 }
 
 module.exports = webpackConfig;
