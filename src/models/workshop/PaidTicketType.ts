@@ -1,6 +1,6 @@
 import {DateTime} from 'luxon';
-import IPaidTicketType from '../interfaces/IPaidTicketType';
-import IPlainObject from '../interfaces/IPlainObject';
+import IPaidTicketType from '../../interfaces/IPaidTicketType';
+import IPlainObject from '../../interfaces/IPlainObject';
 import TicketPrice from './TicketPrice';
 import {TicketTypeState} from './TicketTypeState';
 

@@ -1,18 +1,19 @@
 import ScheduleFormatter from '../formatters/plain/ScheduleFormatter';
 import IPlainObject from '../interfaces/IPlainObject';
 import DefaultSettings from '../widgets/config/DefaultSettings';
-import Category from './Category';
-import EventState from './EventState';
+import Category from './workshop/Category';
+import EventState from './workshop/EventState';
 import Form from './form/Form';
-import FreeTicketType from './FreeTicketType';
-import Language from './Language';
-import Location from './Location';
-import PaidTicketType from './PaidTicketType';
-import RegistrationPage from './RegistrationPage';
+import FreeTicketType from './workshop/FreeTicketType';
+import Language from './workshop/Language';
+import Location from './workshop/Location';
+import PaidTicketType from './workshop/PaidTicketType';
+import RegistrationPage from './workshop/RegistrationPage';
 import Schedule from './Schedule';
-import Tickets from './Tickets';
+import Tickets from './workshop/Tickets';
 import Trainer from './Trainer';
-import Type from './Type';
+import Type from './workshop/Type';
+import CoverImage from './workshop/CoverImage';
 
 export default class Event {
   readonly id: number;
@@ -36,38 +37,44 @@ export default class Event {
   readonly state: EventState;
 
   /**
+   * Cover image of the workshop
+   */
+  readonly coverImage: CoverImage;
+
+  /**
    * Category of the event
    */
   readonly category?: Category;
 
   /**
-   * @param attrs {object}
+   * @param json {object}
    * @param options {object}
    */
-  constructor(attrs: IPlainObject, options: any) {
-    this.id = attrs.id;
-    this.hashedId = attrs.hashed_id;
-    this.title = attrs.title;
-    this.type = attrs.type ? new Type(attrs.type) : Type.empty();
-    this.language = new Language(attrs.spoken_languages, attrs.materials_language);
-    this.rating = attrs.rating;
-    this.confirmed = attrs.confirmed;
-    this.free = attrs.free;
-    this.private = attrs.private;
-    this.description = attrs.description;
-    this.soldOut = attrs.sold_out;
-    this.schedule = new Schedule(attrs.schedule);
-    this.location = new Location(attrs.location);
-    this.category = attrs.category ? new Category(attrs.category) : undefined;
-    this.tickets = this.getTickets(this.free, attrs.free_ticket_type, attrs.paid_ticket_types);
+  constructor(json: IPlainObject, options: any) {
+    this.id = json.id;
+    this.hashedId = json.hashed_id;
+    this.title = json.title;
+    this.type = json.type ? new Type(json.type) : Type.empty();
+    this.language = new Language(json.spoken_languages, json.materials_language);
+    this.rating = json.rating;
+    this.confirmed = json.confirmed;
+    this.free = json.free;
+    this.private = json.private;
+    this.description = json.description;
+    this.soldOut = json.sold_out;
+    this.schedule = new Schedule(json.schedule);
+    this.location = new Location(json.location);
+    this.category = json.category ? new Category(json.category) : undefined;
+    this.tickets = this.getTickets(this.free, json.free_ticket_type, json.paid_ticket_types);
     this.url = this.buildUrl(options);
-    this.registrationPage = new RegistrationPage(attrs.registration_page,
+    this.registrationPage = new RegistrationPage(json.registration_page,
       options.registrationPageUrl, this.hashedId);
-    this.registrationForm = attrs.registration_form ?
-      new Form(attrs.instructions, attrs.registration_form, this) :
+    this.registrationForm = json.registration_form ?
+      new Form(json.instructions, json.registration_form, this) :
       undefined;
+    this.coverImage = json.cover_image ? new CoverImage(json.cover_image) : new CoverImage({});
 
-    this.trainers = this.getTrainers(attrs, options);
+    this.trainers = this.getTrainers(json, options);
     this.state = new EventState(this);
   }
 

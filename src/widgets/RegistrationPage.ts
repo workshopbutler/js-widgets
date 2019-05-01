@@ -7,8 +7,8 @@ import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import RegistrationForm from './blocks/RegistrationForm';
 import RegistrationPageConfig from './config/RegistrationPageConfig';
-import FormHelper from './helpers/_form';
-import getTemplate from './helpers/_templates';
+import FormHelper from './helpers/FormHelper';
+import getTemplate from './helpers/Templates';
 
 /**
  * Logic for the registration form page
@@ -136,9 +136,9 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
       self.form = self.$root.find('#wsb-form');
       self.assignEvents();
 
-      self.formHelper = new FormHelper({
-        $controls: self.$root.find('[data-control]'),
-      }, self.getErrorMessages());
+      self.formHelper = new FormHelper(
+        self.$root.find('[data-control]'),
+        self.getErrorMessages());
     });
   }
 

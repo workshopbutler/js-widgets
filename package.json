@@ -1,6 +1,6 @@
 {
   "name": "workshop_butler_widget",
-  "version": "1.5.0",
+  "version": "1.7.0",
   "description": "Workshop Butler JS Widgets",
   "author": "https://workshopbutler.com",
   "license": "ISC",
@@ -56,9 +56,10 @@
     "watch": "NODE_ENV=watch webpack-dev-server --mode development",
     "build": "NODE_ENV=build webpack --mode production",
     "build-wordpress": "NODE_ENV=build-wordpress webpack --mode production",
-    "check-style": "stylelint  \"frontend/css/**/*.less\"",
-    "fix-style": "stylelint  \"frontend/css/**/*.less\"  --fix",
-    "lint-types": "tslint --project . --fix",
+    "check-css-style": "stylelint  \"frontend/css/**/*.less\"",
+    "fix-css-style": "stylelint  \"frontend/css/**/*.less\"  --fix",
+    "check-ts-styles": "tslint --project .",
+    "fix-ts-styles": "tslint --project . --fix",
     "check-types": "tsc"
   },
   "dependencies": {

@@ -2,7 +2,7 @@ import * as chai from 'chai';
 import 'chai/register-should';
 import PaidTicketTypeFormatter from '../../../src/formatters/jsonld/PaidTicketTypeFormatter';
 import IPlainObject from '../../../src/interfaces/IPlainObject';
-import PaidTicketType from '../../../src/models/PaidTicketType';
+import PaidTicketType from '../../../src/models/workshop/PaidTicketType';
 
 const expect = chai.expect;
 

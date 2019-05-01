@@ -87,7 +87,7 @@ export default class ScheduleConfig extends WidgetConfig {
    * A list of 'expand' attributes, sent to API
    */
   readonly expand: string[];
-  
+
   /**
    * Maximum number of events to show
    */

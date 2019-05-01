@@ -1,5 +1,5 @@
 import {DateTime} from 'luxon';
-import TicketPrice from '../models/TicketPrice';
+import TicketPrice from '../models/workshop/TicketPrice';
 import ITicketType from './ITicketType';
 
 export default interface IPaidTicketType extends ITicketType {

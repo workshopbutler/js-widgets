@@ -1,4 +1,4 @@
-import TicketPrice from '../../models/TicketPrice';
+import TicketPrice from '../../models/workshop/TicketPrice';
 import Localisation from '../../utils/Localisation';
 
 /**

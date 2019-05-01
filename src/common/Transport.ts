@@ -82,6 +82,7 @@ class Transport {
     frameWindow = this.iframe.contentWindow;
 
     const self = this;
+    // tslint:disable-next-line
     this.iframe.onload = function() {
       if (self.messageStack.length > 0) {
         self.messageStack.forEach((value) => {
@@ -145,7 +146,7 @@ class Transport {
       return;
     }
     const event = (e.originalEvent as MessageEvent);
-    const backendUrlWithoutSlack = BACKEND_URL.replace(/\/$/, '');
+    const backendUrlWithoutSlack = this.updateLocalOrigin(BACKEND_URL).replace(/\/$/, '');
     const originWithoutSlack = event.origin.replace('\/$', '');
     if (originWithoutSlack !== backendUrlWithoutSlack) {
       return;
@@ -160,6 +161,18 @@ class Transport {
       return BACKEND_URL + url;
     } else {
       return BACKEND_URL + 'stub';
+    }
+  }
+
+  /**
+   * Replaces the URL on a development server otherwise the origin check fails
+   * @param url {string} Backend URL
+   */
+  private updateLocalOrigin(url: string): string {
+    if (url === 'http://127.0.0.1:9000/api-new/') {
+      return 'http://127.0.0.1:9000';
+    } else {
+      return url;
     }
   }
 }

@@ -86,6 +86,19 @@ describe('JSON-LD formatted Event', () => {
     const formattedWithTrainers = EventFormatter.format(new Event(withTrainers, options));
     expect(formattedWithTrainers.performer).to.have.length(2);
   });
+  it('should not include `image` array if there is no cover image', () => {
+    const withoutCoverImage = getEventJSON();
+    withoutCoverImage.cover_image = {
+      url: null,
+    };
+    const formattedWithoutImage = EventFormatter.format(new Event(withoutCoverImage, options));
+    formattedWithoutImage.should.not.have.property('image');
+  });
+  it('should have `image` array', () => {
+    expect(formatted.image).to.have.length(2);
+    expect(formatted.image[0]).to.equal('https://wsb.com');
+    expect(formatted.image[1]).to.equal('https://thumb.com');
+  });
 });
 
 function getEventJSON(): IPlainObject {
@@ -116,5 +129,9 @@ function getEventJSON(): IPlainObject {
     sold_out: false,
     spoken_languages: ['English, German'],
     title: '2-day workshop',
+    cover_image: {
+      url: 'https://wsb.com',
+      thumbnail: 'https://thumb.com',
+    },
   };
 }

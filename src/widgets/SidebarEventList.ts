@@ -6,7 +6,7 @@ import Event from '../models/Event';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import SidebarEventListConfig from './config/SidebarEventListConfig';
-import getTemplate from './helpers/_templates';
+import getTemplate from './helpers/Templates';
 import Widget from './Widget';
 
 /**
@@ -158,11 +158,12 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
       fields += ',' + this.config.fields.join(',');
     }
     const future = this.config.future;
-    let sort = '+start_date'
+    let sort = '+start_date';
     if (!future) {
       sort = '-start_date';
     }
-    let url = `events?api_key=${this.apiKey}&future=${future}&sort=${sort}&public=true&fields=${fields}&t=${this.getWidgetStats()}`;
+    let url = `events?api_key=${this.apiKey}&future=${future}&sort=${sort}&public=true&fields=${fields}&` +
+      `t=${this.getWidgetStats()}`;
     if (country) {
       url += `&countryCode=${country}`;
     }

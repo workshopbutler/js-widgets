@@ -1,4 +1,4 @@
-import IFreeTicketType from '../interfaces/IFreeTicketType';
+import IFreeTicketType from '../../interfaces/IFreeTicketType';
 
 /**
  * A default implementation of IFreeTicketType interface

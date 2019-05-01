@@ -1,8 +1,8 @@
+import IPlainObject from '../../interfaces/IPlainObject';
+
 /**
  * Type of workshop
  */
-import IPlainObject from '../interfaces/IPlainObject';
-
 export default class Type {
 
     /**

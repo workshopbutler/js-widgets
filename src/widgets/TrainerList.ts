@@ -7,7 +7,7 @@ import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import Filters, {default as TrainerListFilters} from './blocks/TrainerListFilters';
 import TrainerListConfig from './config/TrainerListConfig';
-import getTemplate from './helpers/_templates';
+import getTemplate from './helpers/Templates';
 import Widget from './Widget';
 
 /**

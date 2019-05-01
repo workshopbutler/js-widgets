@@ -1,4 +1,4 @@
-import Language from '../../models/Language';
+import Language from '../../models/workshop/Language';
 import Localisation from '../../utils/Localisation';
 
 /**

@@ -1,4 +1,4 @@
-import Tickets from '../Tickets';
+import Tickets from '../workshop/Tickets';
 import Field from './Field';
 
 /**

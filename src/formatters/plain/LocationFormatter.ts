@@ -1,4 +1,4 @@
-import Location from '../../models/Location';
+import Location from '../../models/workshop/Location';
 import Localisation from '../../utils/Localisation';
 
 /**

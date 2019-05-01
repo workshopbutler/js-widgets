@@ -4,6 +4,7 @@ import Trainer from '../../models/Trainer';
 import LocationFormatter from './LocationFormatter';
 import PaidTicketTypeFormatter from './PaidTicketTypeFormatter';
 import TrainerFormatter from './TrainerFormatter';
+import CoverImage from '../../models/workshop/CoverImage';
 
 /**
  * Formats event to a JSON-LD format
@@ -26,7 +27,19 @@ export default class EventFormatter {
     }
     json = this.addTickets(json, event);
     json = this.addTrainers(json, event.trainers);
+    json = this.addImage(json, event.coverImage);
     return json;
+  }
+
+  protected static addImage(jsonLd: IPlainObject, image: CoverImage): IPlainObject {
+    if (image.url) {
+      const images = [image.url];
+      if (image.thumbnail) {
+        images.push(image.thumbnail);
+      }
+      jsonLd.image = images;
+    }
+    return jsonLd;
   }
 
   protected static addTickets(jsonLd: IPlainObject, event: Event): IPlainObject {

@@ -6,7 +6,7 @@ import Event from '../../models/Event';
 import {ITemplates} from '../../templates/ITemplates';
 import Localisation from '../../utils/Localisation';
 import WidgetConfig from '../config/WidgetConfig';
-import FormHelper from '../helpers/_form';
+import FormHelper from '../helpers/FormHelper';
 import Widget from '../Widget';
 
 /**

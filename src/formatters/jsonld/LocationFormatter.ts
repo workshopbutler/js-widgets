@@ -1,5 +1,5 @@
 import {Place, PostalAddress} from 'schema-dts';
-import Location from '../../models/Location';
+import Location from '../../models/workshop/Location';
 
 /**
  * JSON-LD format a location

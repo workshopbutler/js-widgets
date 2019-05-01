@@ -1,5 +1,5 @@
-import IFreeTicketType from '../interfaces/IFreeTicketType';
-import IPaidTicketType from '../interfaces/IPaidTicketType';
+import IFreeTicketType from '../../interfaces/IFreeTicketType';
+import IPaidTicketType from '../../interfaces/IPaidTicketType';
 
 /**
  * Workshop tickets, either free or paid, depending on the type of the workshop

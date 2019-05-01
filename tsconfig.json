@@ -6,7 +6,7 @@
     "strictNullChecks": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "allowJs": true,
+    "allowJs": false,
     "isolatedModules": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

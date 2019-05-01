@@ -1,7 +1,6 @@
 import * as chai from 'chai';
-import * as mocha from 'mocha';
 import LocationFormatter from '../../../src/formatters/jsonld/LocationFormatter';
-import Location from '../../../src/models/Location';
+import Location from '../../../src/models/workshop/Location';
 
 const expect = chai.expect;
 describe('JSON-LD LocationFormatter', () => {

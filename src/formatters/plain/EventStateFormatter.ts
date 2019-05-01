@@ -1,4 +1,4 @@
-import EventState from '../../models/EventState';
+import EventState from '../../models/workshop/EventState';
 import Localisation from '../../utils/Localisation';
 
 /**

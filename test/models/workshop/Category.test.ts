@@ -1,6 +1,6 @@
 import * as chai from 'chai';
 import * as mocha from 'mocha';
-import Category from '../../src/models/Category';
+import Category from '../../../src/models/workshop/Category';
 
 const expect = chai.expect;
 describe('Category object', () => {

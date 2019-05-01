@@ -1,8 +1,8 @@
+import IPlainObject from '../../interfaces/IPlainObject';
+
 /**
  * Contains the logic for the event registration
  */
-import IPlainObject from '../interfaces/IPlainObject';
-
 export default class RegistrationPage {
 
     /**

@@ -11,7 +11,7 @@ import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import EventPageConfig from './config/EventPageConfig';
 import WidgetFactory from './Factory';
-import getTemplate from './helpers/_templates';
+import getTemplate from './helpers/Templates';
 import Widget from './Widget';
 
 /**

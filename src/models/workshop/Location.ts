@@ -1,7 +1,7 @@
 /**
  * Represents a location of an event
  */
-import IPlainObject from '../interfaces/IPlainObject';
+import IPlainObject from '../../interfaces/IPlainObject';
 
 export default class Location {
     readonly online: boolean;

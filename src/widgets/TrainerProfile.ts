@@ -10,7 +10,7 @@ import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import TrainerProfileConfig from './config/TrainerProfileConfig';
 import WidgetFactory from './Factory';
-import getTemplate from './helpers/_templates';
+import getTemplate from './helpers/Templates';
 import Widget from './Widget';
 
 /**

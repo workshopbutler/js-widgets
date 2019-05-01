@@ -6,7 +6,7 @@ import Trainer from '../models/Trainer';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import TestimonialListConfig from './config/TestimonialListConfig';
-import getTemplate from './helpers/_templates';
+import getTemplate from './helpers/Templates';
 import Widget from './Widget';
 
 /**

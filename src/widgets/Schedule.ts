@@ -1,14 +1,13 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
 import {logError} from '../common/Error';
 import transport from '../common/Transport';
-import Formatter from '../formatters/plain/Formatter';
 import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
 import Filters from './blocks/EventListFilters';
 import ScheduleConfig from './config/ScheduleConfig';
-import getTemplate from './helpers/_templates';
+import getTemplate from './helpers/Templates';
 import Widget from './Widget';
 
 /**
@@ -36,11 +35,11 @@ export default class Schedule extends Widget<ScheduleConfig> {
 
     return $elems.each((index, el) => {
       const $element = $(el);
-      let data = $element.data('wsb.widget.event.list');
+      let data = $element.data('wsb.widgets.event.list');
 
       if (!data) {
         data = new Schedule(el, apiKey, templates, loc, config);
-        $element.data('wsb.widget.event.list', data);
+        $element.data('wsb.widgets.event.list', data);
       }
     });
   }
@@ -117,7 +116,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
 
   private getUrl() {
     let fields = 'title,schedule,location,hashed_id,free,type,registration_page,' +
-      'spoken_languages,sold_out,facilitators,free_ticket_type,paid_ticket_types';
+      'spoken_languages,sold_out,facilitators,free_ticket_type,paid_ticket_types,cover_image';
     if (this.config.fields) {
       fields += ',' + this.config.fields.join(',');
     }
@@ -138,11 +137,12 @@ export default class Schedule extends Widget<ScheduleConfig> {
       expand = `&expand=${this.config.expand.toString()}`;
     }
     const future = this.config.future;
-    let sort = '+start_date'
+    let sort = '+start_date';
     if (!future) {
       sort = '-start_date';
     }
-    const query = `future=${future}&sort=${sort}&public=true&fields=${fields}${categoryId}${eventTypeId}${trainerId}${expand}`;
+    const query = `future=${future}&sort=${sort}&public=true&fields=${fields}${categoryId}` +
+      `${eventTypeId}${trainerId}${expand}`;
     return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}`;
   }
 
