@@ -14,7 +14,7 @@ install:
 script:
   - npm run build
   - npm run check-types
-  - npm run check-ts-style
+  - npm run check-ts-styles
   - npm test
 
 after_success:
