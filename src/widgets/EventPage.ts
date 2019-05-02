@@ -13,7 +13,6 @@ import EventPageConfig from './config/EventPageConfig';
 import WidgetFactory from './Factory';
 import getTemplate from './helpers/Templates';
 import Widget from './Widget';
-import { isUndefined } from 'util';
 
 /**
  * Logic for the event details
