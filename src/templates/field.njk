@@ -1,4 +1,4 @@
-{% macro formField(field, disabled, countries, _t, _f) %}
+{% macro formField(field, disabled, countries, config, _t, _f) %}
   <div id="wsb-form-field-{{field.name}}" class="wsb-form__field {{ field.type }}">
     {% if field.type !== "checkbox" %}
       <label for="{{ field.name }}">
@@ -26,9 +26,9 @@
   {% elif field.type === "country" %}
     <select name="{{ field.name }}" title="{{ field.label }}"
                     data-control {{ 'required' if field.required }} {{ 'disabled' if disabled }}>
-      <option value="" selected disabled>{{ _t('form.country') }}</option>
+      <option value="" {{ 'selected' if not config.countryDefault }} disabled>{{ _t('form.country') }}</option>
       {% for code, name in countries %}
-        <option value="{{ code }}">{{ name }}</option>
+        <option value="{{ code }}" {{ 'selected' if code == config.countryDefault }}>{{ name }}</option>
       {% endfor %}
     </select>
   {% elif field.type === "checkbox" %}
