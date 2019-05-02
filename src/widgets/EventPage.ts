@@ -13,6 +13,7 @@ import EventPageConfig from './config/EventPageConfig';
 import WidgetFactory from './Factory';
 import getTemplate from './helpers/Templates';
 import Widget from './Widget';
+import { isUndefined } from 'util';
 
 /**
  * Logic for the event details
@@ -80,6 +81,7 @@ export default class EventPage extends Widget<EventPageConfig> {
    */
   protected updateHTML() {
     this.updateTitle();
+    this.updateImage();
     this.updateDescription();
   }
 
@@ -88,6 +90,24 @@ export default class EventPage extends Widget<EventPageConfig> {
    */
   protected updateTitle() {
     document.title = this.event.title;
+    if (this.config.eventTitleElement) {
+      const titleEl = $(this.config.eventTitleElement);
+      if (titleEl && titleEl.html()) {
+        titleEl.html(this.event.title);
+      }
+    }
+  }
+
+  /**
+   * Changes the event image of the page
+   */
+  protected updateImage() {
+    if (this.config.eventImageElement) {
+      const imageEl = $(this.config.eventImageElement);
+      if (imageEl && imageEl.attr('src') != undefined && this.event.coverImage.url) {
+        imageEl.attr('src', this.event.coverImage.url);
+      }
+    }
   }
 
   /**

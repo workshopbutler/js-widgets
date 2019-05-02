@@ -74,6 +74,16 @@ export default class EventPageConfig extends WidgetConfig {
    */
   readonly numberOfTickets: boolean;
 
+  /**
+   * Jquery element selector for the event image
+   */
+  readonly eventImageElement: string;
+
+  /**
+   * Jquery element selector for the event title
+   */
+  readonly eventTitleElement: string;
+
   protected constructor(options: IPlainObject) {
     super(options);
     this.trainers = options.trainers !== undefined ? options.trainers : false;
@@ -83,6 +93,8 @@ export default class EventPageConfig extends WidgetConfig {
     this.expiredTickets = options.expiredTickets !== undefined ? options.expiredTickets : true;
     this.numberOfTickets = options.numberOfTickets !== undefined ? options.numberOfTickets : true;
     this.showFutureEvents = options.futureEvents !== undefined ? options.futureEvents : true;
+    this.eventImageElement = options.eventImageElement ? options.eventImageElement : undefined;
+    this.eventTitleElement = options.eventTitleElement ? options.eventTitleElement : undefined;
     this.eventPageUrl = safeHref();
   }
 
