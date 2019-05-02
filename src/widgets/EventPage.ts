@@ -104,8 +104,13 @@ export default class EventPage extends Widget<EventPageConfig> {
   protected updateImage() {
     if (this.config.eventImageElement) {
       const imageEl = $(this.config.eventImageElement);
-      if (imageEl && imageEl.attr('src') != undefined && this.event.coverImage.url) {
-        imageEl.attr('src', this.event.coverImage.url);
+      if (imageEl && this.event.coverImage.url) {
+        const imageUrl = this.event.coverImage.url;
+        ['data-src', 'data-image', 'src'].forEach(attr => {
+          if (imageEl.attr(attr) != undefined) {
+            imageEl.attr(attr, imageUrl);
+          }
+        });
       }
     }
   }
