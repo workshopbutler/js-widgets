@@ -109,6 +109,12 @@ export default class EventPage extends Widget<EventPageConfig> {
     $('head').append(`<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`);
   }
 
+  private preRender() {
+    if(this.config.preRenderCallback && typeof(this.config.preRenderCallback) == 'function') {
+      this.config.preRenderCallback(this.event);
+    }
+  }
+
   private init() {
     if (this.config.theme) {
       this.$root.addClass(this.config.theme);
@@ -128,6 +134,7 @@ export default class EventPage extends Widget<EventPageConfig> {
         self.event = new Event(data, self.config);
         self.updateHTML();
         self.addJsonLD();
+        self.preRender();
         self.renderWidget();
       });
   }
