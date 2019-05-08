@@ -110,7 +110,7 @@ export default class EventPage extends Widget<EventPageConfig> {
   }
 
   private preRender() {
-    if(this.config.preRenderCallback && typeof(this.config.preRenderCallback) == 'function') {
+    if (this.config.preRenderCallback && typeof(this.config.preRenderCallback) === 'function') {
       this.config.preRenderCallback(this.event);
     }
   }
