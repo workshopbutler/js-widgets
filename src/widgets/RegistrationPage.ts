@@ -121,7 +121,7 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
     $.when(getTemplate(self.config)).done((template) => {
       self.updateHTML();
       const uniqueParams = {
-        countries: self.getCountries(),
+        countries: self.getCountries(self.config),
         event: self.event,
         ticket: self.ticketId,
       };

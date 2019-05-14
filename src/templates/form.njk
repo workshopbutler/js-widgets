@@ -1,4 +1,4 @@
-{% macro registrationForm(event, countries, _t, _f) %}
+{% macro registrationForm(event, countries, config, _t, _f) %}
     <div class="wsb-congratulation" id="wsb-success">
         <h2 class="wsb-congratulation__title">
             {{ _t('registration.successTitle') }}
@@ -18,7 +18,7 @@
                 {% endif %}
                 <section>
                     {% for field in section.fields %}
-                        {{ formField(field, event.state.closed(), countries, _t, _f) }}
+                        {{ formField(field, event.state.closed(), countries, config, _t, _f) }}
                     {% endfor %}
                 </section>
             {% endfor %}

@@ -44,11 +44,25 @@ export default class RegistrationPageConfig extends WidgetConfig {
      */
     readonly numberOfTickets: boolean;
 
+    /**
+     * Array of country codes to use for the registration form
+     */
+    readonly countryOnlyFrom: string[];
+
+    /**
+     * Preselected default country
+     */
+    readonly countryDefault: string;
+
     protected constructor(options: IPlainObject) {
         super(options);
         this.eventPageUrl = options.eventPageUrl ? options.eventPageUrl : undefined;
         this.trainers = options.trainers ? options.trainers : false;
         this.expiredTickets = options.expiredTickets !== undefined ? options.expiredTickets : false;
         this.numberOfTickets = options.numberOfTickets !== undefined ? options.numberOfTickets : true;
+        if (options.country) {
+            this.countryOnlyFrom = options.country.onlyFrom !== undefined ? options.country.onlyFrom : undefined;
+            this.countryDefault = options.country.default !== undefined ? options.country.default : undefined;
+        }
     }
 }
