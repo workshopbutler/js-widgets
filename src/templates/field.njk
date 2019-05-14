@@ -1,5 +1,5 @@
 {% macro formField(field, disabled, countries, _t, _f) %}
-  <div class="wsb-form__field {{ field.type }}">
+  <div id="wsb-form-field-{{field.name}}" class="wsb-form__field {{ field.type }}">
     {% if field.type !== "checkbox" %}
       <label for="{{ field.name }}">
         {% if field.custom %}
