@@ -54,6 +54,11 @@ export default class RegistrationPageConfig extends WidgetConfig {
      */
     readonly countryDefault: string;
 
+    /**
+     * Redirect to successs page url instead of only showing success message
+     */
+    readonly successRedirectUrl: string;
+
     protected constructor(options: IPlainObject) {
         super(options);
         this.eventPageUrl = options.eventPageUrl ? options.eventPageUrl : undefined;
@@ -64,5 +69,6 @@ export default class RegistrationPageConfig extends WidgetConfig {
             this.countryOnlyFrom = options.country.onlyFrom !== undefined ? options.country.onlyFrom : undefined;
             this.countryDefault = options.country.default !== undefined ? options.country.default : undefined;
         }
+        this.successRedirectUrl = options.successRedirectUrl !== undefined ? options.successRedirectUrl : undefined;
     }
 }
