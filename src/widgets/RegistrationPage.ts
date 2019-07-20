@@ -132,6 +132,7 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
         self.templates.registrationPage.render(params);
       self.$root.html(content);
       self.successMessage = self.$root.find('#wsb-success');
+      self.successRedirectUrl = self.config.successRedirectUrl;
       self.successMessage.hide();
       self.form = self.$root.find('#wsb-form');
       self.assignEvents();

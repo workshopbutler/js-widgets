@@ -18,6 +18,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
   protected formHelper: FormHelper;
   protected successMessage: JQuery<HTMLElement>;
   protected form: JQuery<HTMLElement>;
+  protected successRedirectUrl: string;
 
   /**
    * Creates a new registration form
@@ -68,8 +69,12 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
       transport.post(url, formData,
         (data: IPlainObject) => {
           self.formHelper.clearForm();
-          self.successMessage.show();
-          self.form.hide();
+          if (self.successRedirectUrl && self.successRedirectUrl !== '') {
+            window.location.href = self.successRedirectUrl;
+          } else {
+            self.successMessage.show();
+            self.form.hide();
+          }
           self.$root.removeClass('h-busy');
           $(e.target as HTMLElement).removeProp('disabled').removeClass('h-busy');
         });
