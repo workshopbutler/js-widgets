@@ -112,7 +112,6 @@ function getPlugins() {
     new MiniCssExtractPlugin({
       filename: config.isDev? `[name].css` : `[name].${getVersion()}.min.css`
     }),
-    new BundleAnalyzerPlugin()
   ];
   const hugoSrc = path.resolve(__dirname, 'site');
   const hugoCmd = `hugo --buildDrafts --watch --source ${hugoSrc} --destination ${dest} --environment development`;
@@ -121,7 +120,8 @@ function getPlugins() {
     plugins.push(new WebpackShellPlugin({
         onBuildEnd: hugoCmd
       })
-    )
+    );
+    plugins.push(new BundleAnalyzerPlugin());
   }
 
   if (!config.isDev) {
