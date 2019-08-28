@@ -8,6 +8,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 
 const config = require('./config.js');
@@ -111,6 +112,7 @@ function getPlugins() {
     new MiniCssExtractPlugin({
       filename: config.isDev? `[name].css` : `[name].${getVersion()}.min.css`
     }),
+    new BundleAnalyzerPlugin()
   ];
   const hugoSrc = path.resolve(__dirname, 'site');
   const hugoCmd = `hugo --buildDrafts --watch --source ${hugoSrc} --destination ${dest} --environment development`;
