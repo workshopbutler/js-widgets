@@ -17,7 +17,6 @@
       margin: 0;
       padding: 0;
       border: 0;
-      font: inherit;
       vertical-align: baseline;
     }
 
@@ -25,6 +24,7 @@
       font-weight: bold;
       padding: 20px 0;
     }
+
     h1 {
       font-size: 32px;
     }
@@ -52,6 +52,21 @@
       list-style: none;
     }
 
+    sub, sup {
+      position: relative;
+      font-size: 75%;
+      line-height: 0;
+      vertical-align: baseline;
+    }
+
+    sup {
+      top: -0.5em;
+    }
+
+    sub {
+      top: 0.5em;
+    }
+
     blockquote, q {
       quotes: none;
     }
@@ -65,6 +80,10 @@
     table {
       border-collapse: collapse;
       border-spacing: 0;
+    }
+
+    em, i {
+      font-style: italic;
     }
 
     strong, b {

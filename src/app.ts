@@ -6,5 +6,11 @@ $(() => {
     getQueryParam,
     launch: WidgetFactory.launch,
   };
-  document.dispatchEvent(new Event('wsbwidgetsloaded'));
+  const event = document.createEvent('HTMLEvents');
+  event.initEvent('wsbwidgetsloaded', true, true);
+  if ((document as any).fireEvent) {
+    (document as any).fireEvent(event);
+  } else {
+    document.dispatchEvent(event);
+  }
 });

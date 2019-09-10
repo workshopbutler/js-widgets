@@ -36,7 +36,6 @@ export default class Schedule extends Widget<ScheduleConfig> {
     return $elems.each((index, el) => {
       const $element = $(el);
       let data = $element.data('wsb.widgets.event.list');
-
       if (!data) {
         data = new Schedule(el, apiKey, templates, loc, config);
         $element.data('wsb.widgets.event.list', data);
