@@ -35,28 +35,48 @@
     line-height: 1.72;
   }
 
+  .wsb-author {
+    grid-area: author;
+  }
+
+  .wsb-descr {
+    grid-area: descr;
+    grid-row-start: 1;
+    grid-row-end: span 3;
+  }
+
+  .wsb-workshop {
+    grid-area: workshop;
+
+  }
+
   // body layout
   .wsb-body {
     padding-top: 31px;
-    .clearfix();
+    display: grid;
+    grid-template-columns: 66% 4% 30%;
+    grid-template-rows: auto;
+    grid-template-areas: "descr . author"
+                         ". . workshop";
+
+    @media screen and ( max-width: 63em ), @phone {
+      display: block;
+    }
   }
 
   .wsb-left-col {
     margin-bottom: 40px;
     overflow: hidden;
-    width: 66%;
-    float: left;
+    width: 100%;
 
     @media screen and ( max-width: 63em ), @phone {
-      float: none;
       width: 100%;
       margin-right: 0;
     }
   }
 
   .wsb-right-col {
-    float: right;
-    width: 30%;
+    width: 100%;
   }
 
   @media screen and ( max-width: 72em ) {
@@ -71,7 +91,6 @@
     }
 
     .wsb-right-col {
-      float: none;
       width: auto;
       margin-left: 0;
       margin-bottom: 30px;
