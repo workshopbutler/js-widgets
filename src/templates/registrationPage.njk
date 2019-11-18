@@ -4,7 +4,7 @@
             <h1>{{ event.title }}</h1>
         </div>
         <div class="wsb-body wsb-center">
-            <div class="wsb-right-col ">
+            <div class="wsb-right-col">
                 {% from "./event/info.njk" import info %}
                 {{ info(event, config, _t, _f) }}
             </div>
