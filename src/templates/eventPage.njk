@@ -4,7 +4,7 @@
       <h1>{{ event.title }}</h1>
     </div>
     <div class="wsb-body wsb-center">
-      <div class="wsb-right-col">
+      <div class="wsb-right-col wsb-author">
         <div>
           {% if event.state.closed() %}
             <button class="wsb-sidebar__register" disabled>{{ _f(event.state) }}</button>
@@ -16,12 +16,12 @@
         {% from "./event/info.njk" import info %}
         {{ info(event, config, _t, _f) }}
       </div>
-      <div class="wsb-left-col">
+      <div class="wsb-left-col wsb-descr">
         {% if event.description %}
           <div class="wsb-desc">{{ event.description | safe }}</div>
         {% endif %}
       </div>
-      <div class="wsb-right-col">
+      <div class="wsb-right-col wsb-workshop">
         {% from "./event/share.njk" import shareEvent %}
         {{ shareEvent(event, _t, _f) }}
         {% if config.showFutureEvents %}
