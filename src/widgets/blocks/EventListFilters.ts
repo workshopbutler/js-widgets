@@ -116,8 +116,9 @@ export default class EventListFilters extends ListFilters<Event> {
     const unfiltered = events.filter((event) => event.category !== undefined)
       .map((event) => {
         if (event.category) {
-          const selected = this.parseSearchPath('category', event.category.id.toString());
-          return new FilterValue(event.category.name, event.category.id.toString(), selected);
+          const categoryId = event.category.id.toString();
+          const selected = this.parseSearchPath('category', categoryId);
+          return new FilterValue(event.category.name, categoryId, selected);
         } else {
           return new FilterValue('', '');
         }
@@ -127,8 +128,9 @@ export default class EventListFilters extends ListFilters<Event> {
 
   private getTypeFilterData(defaultName: string, events: Event[]): FilterValue[] {
     const unfiltered = events.map((event) => {
-      const selected = this.parseSearchPath('type', event.type.id.toString());
-      return new FilterValue(event.type.name, event.type.id.toString(), selected);
+      const typeId = event.type.id.toString();
+      const selected = this.parseSearchPath('type', typeId);
+      return new FilterValue(event.type.name, typeId, selected);
     });
     return this.getFilterData(defaultName, unfiltered);
   }
@@ -162,6 +164,11 @@ export default class EventListFilters extends ListFilters<Event> {
   private parseSearchPath(type: string, value: string): boolean {
     const createURL = this.generateUrl();
     const findValue = createURL.searchParams.getAll(type);
-    return findValue[0] === value;
+
+    if (findValue.length === 1) {
+      return findValue[0] === value;
+    }
+
+    return false;
   }
 }
