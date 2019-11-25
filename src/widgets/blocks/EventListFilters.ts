@@ -2,6 +2,11 @@ import Event from '../../models/Event';
 import Localisation from '../../utils/Localisation';
 import FilterValue from './FilterValue';
 import {ListFilters} from './ListFilters';
+import {
+  deleteQueryFromPath,
+  isHasValueInPath,
+  updatePathWithQuery,
+} from '../../common/helpers/UrlParser';
 
 /**
  * Manages the logic for event list filters
@@ -50,7 +55,7 @@ export default class EventListFilters extends ListFilters<Event> {
    * @param e {Event}
    * @public
    */
-  public filterEvents(e?: Event) {
+   public filterEvents(e?: Event) {
     let events = this.$root.find('[data-event-obj]').hide();
     this.$root.find('[data-filter]').each((index, el) => {
       const filterName = $(el).data('name');
@@ -58,9 +63,9 @@ export default class EventListFilters extends ListFilters<Event> {
       const filter = (filterName === 'type' || filterName === 'location' || filterName === 'category') ?
         `[data-event-${filterName}="${value}"]` :
         `[data-event-${filterName}*="${value}"]`;
-      this.deletePath(`${filterName}`);
+      deleteQueryFromPath(`${filterName}`);
       if (value !== 'all') {
-        this.updatePath(`${filterName}`, `${value}`);
+        updatePathWithQuery(`${filterName}`, `${value}`);
         events = events.filter(filter);
       }
     });
@@ -78,7 +83,7 @@ export default class EventListFilters extends ListFilters<Event> {
       const eventLanguages = event.language.spoken;
       for (const eventLanguage of eventLanguages) {
         const languageName = this.loc.translate(`language.${eventLanguage}`);
-        const selected = this.parseSearchPath('language', eventLanguage);
+        const selected = isHasValueInPath('language', eventLanguage);
         const language = new FilterValue(languageName, eventLanguage, selected);
         languages.push(language);
       }
@@ -91,7 +96,7 @@ export default class EventListFilters extends ListFilters<Event> {
     const unfiltered = events.map((event) => {
       const countryCode = event.location.countryCode;
       const countryName = self.loc.translate(`country.${countryCode}`);
-      const selected = this.parseSearchPath('location', countryCode);
+      const selected = isHasValueInPath('location', countryCode);
       return new FilterValue(countryName, event.location.countryCode, selected);
     });
 
@@ -104,7 +109,7 @@ export default class EventListFilters extends ListFilters<Event> {
       const eventTrainers = event.trainers;
       for (const eventTrainer of eventTrainers) {
         const trainerName = `${eventTrainer.firstName} ${eventTrainer.lastName}`;
-        const selected = this.parseSearchPath('trainers', trainerName);
+        const selected = isHasValueInPath('trainers', trainerName);
         const trainer = new FilterValue(trainerName, trainerName, selected);
         trainers.push(trainer);
       }
@@ -117,7 +122,7 @@ export default class EventListFilters extends ListFilters<Event> {
       .map((event) => {
         if (event.category) {
           const categoryId = event.category.id.toString();
-          const selected = this.parseSearchPath('category', categoryId);
+          const selected = isHasValueInPath('category', categoryId);
           return new FilterValue(event.category.name, categoryId, selected);
         } else {
           return new FilterValue('', '');
@@ -129,46 +134,9 @@ export default class EventListFilters extends ListFilters<Event> {
   private getTypeFilterData(defaultName: string, events: Event[]): FilterValue[] {
     const unfiltered = events.map((event) => {
       const typeId = event.type.id.toString();
-      const selected = this.parseSearchPath('type', typeId);
+      const selected = isHasValueInPath('type', typeId);
       return new FilterValue(event.type.name, typeId, selected);
     });
     return this.getFilterData(defaultName, unfiltered);
-  }
-
-  private updatePath(key: string, value: string): void {
-    if (history.pushState) {
-      const newUrl = this.generateUrl();
-      newUrl.searchParams.append(key, value);
-      const urls = `${newUrl.protocol}//${newUrl.host}${newUrl.pathname}${newUrl.search}`;
-      window.history.pushState({path: urls},'', urls);
-    }
-  }
-
-  private deletePath(key: string): void {
-    if (history.pushState) {
-      const newUrl = this.generateUrl();
-      newUrl.searchParams.delete(key);
-      const urls = `${newUrl.protocol}//${newUrl.host}${newUrl.pathname}${newUrl.search}`;
-      window.history.pushState({path: urls},'', urls);
-    }
-  }
-
-  private generateUrl(): any {
-    const {
-      location,
-    } = window;
-    const path: string = location.protocol + '//' + location.host + location.pathname + location.search;
-    return new URL(path);
-  }
-
-  private parseSearchPath(type: string, value: string): boolean {
-    const createURL = this.generateUrl();
-    const findValue = createURL.searchParams.getAll(type);
-
-    if (findValue.length === 1) {
-      return findValue[0] === value;
-    }
-
-    return false;
   }
 }
