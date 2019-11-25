@@ -2,6 +2,11 @@ import Event from '../../models/Event';
 import Localisation from '../../utils/Localisation';
 import FilterValue from './FilterValue';
 import {ListFilters} from './ListFilters';
+import {
+  deleteQueryFromPath,
+  isHasValueInPath,
+  updatePathWithQuery,
+} from '../../common/helpers/UrlParser';
 
 /**
  * Manages the logic for event list filters
@@ -22,6 +27,32 @@ export default class EventListFilters extends ListFilters<Event> {
     this.loc = loc;
     this.filters = visibleFilters;
     this.assignEvents();
+  }
+
+  /**
+   * Filters the events in the table
+   * @param e {Event}
+   */
+  filterEvents(e?: Event) {
+    let events = this.$root.find('[data-event-obj]').hide();
+    this.$root.find('[data-filter]').each((index, el) => {
+      const filterName = $(el).data('name');
+      const value = $(el).val();
+      const filter = (filterName === 'type' || filterName === 'location' || filterName === 'category') ?
+        `[data-event-${filterName}="${value}"]` :
+        `[data-event-${filterName}*="${value}"]`;
+      deleteQueryFromPath(`${filterName}`);
+      if (value !== 'all') {
+        updatePathWithQuery(`${filterName}`, `${value}`);
+        events = events.filter(filter);
+      }
+    });
+    if (events.length) {
+      this.$root.find('[data-empty-list]').hide();
+      events.show();
+    } else {
+      this.$root.find('[data-empty-list]').show();
+    }
   }
 
   protected getFilterValues(name: string, events: Event[]): FilterValue[] {
@@ -45,38 +76,14 @@ export default class EventListFilters extends ListFilters<Event> {
     this.$root.on('change', '[data-filter]', this.filterEvents.bind(this));
   }
 
-  /**
-   * Filters the events in the table
-   * @param e {Event}
-   * @private
-   */
-  private filterEvents(e: Event) {
-    let events = this.$root.find('[data-event-obj]').hide();
-    this.$root.find('[data-filter]').each((index, el) => {
-      const filterName = $(el).data('name');
-      const value = $(el).val();
-      const filter = (filterName === 'type' || filterName === 'location' || filterName === 'category') ?
-        `[data-event-${filterName}="${value}"]` :
-        `[data-event-${filterName}*="${value}"]`;
-      if (value !== 'all') {
-        events = events.filter(filter);
-      }
-    });
-    if (events.length) {
-      this.$root.find('[data-empty-list]').hide();
-      events.show();
-    } else {
-      this.$root.find('[data-empty-list]').show();
-    }
-  }
-
   private getLanguageFilterData(defaultName: string, events: Event[]): FilterValue[] {
     const languages = [];
     for (const event of events) {
       const eventLanguages = event.language.spoken;
       for (const eventLanguage of eventLanguages) {
         const languageName = this.loc.translate(`language.${eventLanguage}`);
-        const language = new FilterValue(languageName, eventLanguage);
+        const selected = isHasValueInPath('language', eventLanguage);
+        const language = new FilterValue(languageName, eventLanguage, selected);
         languages.push(language);
       }
     }
@@ -86,9 +93,12 @@ export default class EventListFilters extends ListFilters<Event> {
   private getLocationFilterData(defaultName: string, events: Event[]): FilterValue[] {
     const self = this;
     const unfiltered = events.map((event) => {
-      const countryName = self.loc.translate(`country.${event.location.countryCode}`);
-      return new FilterValue(countryName, event.location.countryCode);
+      const countryCode = event.location.countryCode;
+      const countryName = self.loc.translate(`country.${countryCode}`);
+      const selected = isHasValueInPath('location', countryCode);
+      return new FilterValue(countryName, event.location.countryCode, selected);
     });
+
     return this.getFilterData(defaultName, unfiltered);
   }
 
@@ -98,7 +108,8 @@ export default class EventListFilters extends ListFilters<Event> {
       const eventTrainers = event.trainers;
       for (const eventTrainer of eventTrainers) {
         const trainerName = `${eventTrainer.firstName} ${eventTrainer.lastName}`;
-        const trainer = new FilterValue(trainerName, trainerName);
+        const selected = isHasValueInPath('trainers', trainerName);
+        const trainer = new FilterValue(trainerName, trainerName, selected);
         trainers.push(trainer);
       }
     }
@@ -109,7 +120,9 @@ export default class EventListFilters extends ListFilters<Event> {
     const unfiltered = events.filter((event) => event.category !== undefined)
       .map((event) => {
         if (event.category) {
-          return new FilterValue(event.category.name, event.category.id.toString());
+          const categoryId = event.category.id.toString();
+          const selected = isHasValueInPath('category', categoryId);
+          return new FilterValue(event.category.name, categoryId, selected);
         } else {
           return new FilterValue('', '');
         }
@@ -119,9 +132,10 @@ export default class EventListFilters extends ListFilters<Event> {
 
   private getTypeFilterData(defaultName: string, events: Event[]): FilterValue[] {
     const unfiltered = events.map((event) => {
-      return new FilterValue(event.type.name, event.type.id.toString());
+      const typeId = event.type.id.toString();
+      const selected = isHasValueInPath('type', typeId);
+      return new FilterValue(event.type.name, typeId, selected);
     });
     return this.getFilterData(defaultName, unfiltered);
   }
-
 }

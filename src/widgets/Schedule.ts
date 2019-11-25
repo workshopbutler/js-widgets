@@ -9,6 +9,7 @@ import Filters from './blocks/EventListFilters';
 import ScheduleConfig from './config/ScheduleConfig';
 import getTemplate from './helpers/Templates';
 import Widget from './Widget';
+import EventListFilters from './blocks/EventListFilters';
 
 /**
  * Logic for the list of events
@@ -101,7 +102,6 @@ export default class Schedule extends Widget<ScheduleConfig> {
         const localParams = Object.assign({ event }, self.getTemplateParams());
         return nunjucksRenderString(template, localParams);
       }
-
       const uniqueParams = {
         events: self.events,
         filters: self.filters.getFilters(self.events),
@@ -109,7 +109,9 @@ export default class Schedule extends Widget<ScheduleConfig> {
       };
       const params = Object.assign(uniqueParams, self.getTemplateParams());
       const content = self.templates.schedule.render(params);
-      self.$root.html(content);
+      self.$root.html(content).promise().done(() => {
+        this.filters.filterEvents();
+      });
     });
   }
 
