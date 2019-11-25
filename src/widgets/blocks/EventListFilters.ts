@@ -29,33 +29,11 @@ export default class EventListFilters extends ListFilters<Event> {
     this.assignEvents();
   }
 
-  protected getFilterValues(name: string, events: Event[]): FilterValue[] {
-    switch (name) {
-      case 'category':
-        return this.getCategoryFilterData(this.loc.translate('filter.categories'), events);
-      case 'language':
-        return this.getLanguageFilterData(this.loc.translate('filter.languages'), events);
-      case 'type':
-        return this.getTypeFilterData(this.loc.translate('filter.types'), events);
-      case 'location':
-        return this.getLocationFilterData(this.loc.translate('filter.locations'), events);
-      case 'trainer':
-        return this.getTrainerFilterData(this.loc.translate('filter.trainers'), events);
-      default:
-        return [];
-    }
-  }
-
-  private assignEvents() {
-    this.$root.on('change', '[data-filter]', this.filterEvents.bind(this));
-  }
-
   /**
    * Filters the events in the table
    * @param e {Event}
-   * @public
    */
-   public filterEvents(e?: Event) {
+  filterEvents(e?: Event) {
     let events = this.$root.find('[data-event-obj]').hide();
     this.$root.find('[data-filter]').each((index, el) => {
       const filterName = $(el).data('name');
@@ -75,6 +53,27 @@ export default class EventListFilters extends ListFilters<Event> {
     } else {
       this.$root.find('[data-empty-list]').show();
     }
+  }
+
+  protected getFilterValues(name: string, events: Event[]): FilterValue[] {
+    switch (name) {
+      case 'category':
+        return this.getCategoryFilterData(this.loc.translate('filter.categories'), events);
+      case 'language':
+        return this.getLanguageFilterData(this.loc.translate('filter.languages'), events);
+      case 'type':
+        return this.getTypeFilterData(this.loc.translate('filter.types'), events);
+      case 'location':
+        return this.getLocationFilterData(this.loc.translate('filter.locations'), events);
+      case 'trainer':
+        return this.getTrainerFilterData(this.loc.translate('filter.trainers'), events);
+      default:
+        return [];
+    }
+  }
+
+  private assignEvents() {
+    this.$root.on('change', '[data-filter]', this.filterEvents.bind(this));
   }
 
   private getLanguageFilterData(defaultName: string, events: Event[]): FilterValue[] {
