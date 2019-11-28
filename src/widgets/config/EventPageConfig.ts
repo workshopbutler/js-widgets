@@ -1,6 +1,7 @@
 import {logError} from '../../common/Error';
 import {absoluteURL, safeHref} from '../../common/helpers/UrlParser';
 import IPlainObject from '../../interfaces/IPlainObject';
+import Event from '../../models/Event';
 import WidgetConfig from './WidgetConfig';
 
 /**
@@ -74,6 +75,11 @@ export default class EventPageConfig extends WidgetConfig {
    */
   readonly numberOfTickets: boolean;
 
+  /**
+   * Callback function to parse event data into markup
+   */
+  readonly preRenderCallback: (event: Event) => void;
+
   protected constructor(options: IPlainObject) {
     super(options);
     this.trainers = options.trainers !== undefined ? options.trainers : false;
@@ -83,6 +89,7 @@ export default class EventPageConfig extends WidgetConfig {
     this.expiredTickets = options.expiredTickets !== undefined ? options.expiredTickets : true;
     this.numberOfTickets = options.numberOfTickets !== undefined ? options.numberOfTickets : true;
     this.showFutureEvents = options.futureEvents !== undefined ? options.futureEvents : true;
+    this.preRenderCallback = typeof(options.preRenderCallback) === 'function' ? options.preRenderCallback : undefined;
     this.eventPageUrl = safeHref();
   }
 
