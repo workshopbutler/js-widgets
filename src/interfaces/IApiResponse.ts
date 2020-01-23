@@ -1,5 +1,6 @@
 import IError from './IError';
 import IPlainObject from './IPlainObject';
+import ISuccess from './ISuccess';
 
 export default interface IApiResponse {
     /**
@@ -15,5 +16,5 @@ export default interface IApiResponse {
     /**
      * Response body
      */
-    response: IPlainObject | IError;
+    response: ISuccess | IError;
 }

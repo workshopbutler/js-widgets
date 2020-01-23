@@ -1,22 +1,13 @@
 import IPlainObject from '../interfaces/IPlainObject';
 import getLangCode from '../utils/language';
-import SocialLinks from './SocialLinks';
-import Statistics from './Statistics';
+import SocialLinks from './trainer/SocialLinks';
+import Testimonial from './trainer/Testimonial';
+import TrainerStats from './trainer/TrainerStats';
 
 /**
  * A trainer
  */
 export default class Trainer {
-
-  protected static getCountry(jsonData: IPlainObject): string | null {
-    if (jsonData.country) {
-      return jsonData.country;
-    } else if (jsonData.address && jsonData.address.country) {
-      return jsonData.address.country;
-    } else {
-      return null;
-    }
-  }
 
   readonly id: number;
   readonly firstName: string;
@@ -27,14 +18,9 @@ export default class Trainer {
   readonly url?: string;
   readonly country: string | null;
   readonly languages: string[];
-  readonly yearsOfExperience: number;
-  readonly numberOfEvents: number;
   readonly badges: any[];
   readonly socialLinks: SocialLinks;
-  readonly publicStats: Statistics;
-  readonly privateStats: Statistics;
-  readonly recentPublicStats: Statistics;
-  readonly recentPrivateStats: Statistics;
+  readonly stats: TrainerStats;
 
   /**
    * List of testimonials that the trainer has
@@ -46,37 +32,24 @@ export default class Trainer {
    */
   readonly worksIn: string[];
 
-  constructor(jsonData: IPlainObject, options: any) {
-    this.id = jsonData.id;
-    this.firstName = jsonData.first_name;
-    this.lastName = jsonData.last_name;
-    this.photo = jsonData.photo;
-    this.bio = jsonData.bio;
-    this.email = jsonData.email_address;
-    this.yearsOfExperience = jsonData.years_of_experience;
-    this.numberOfEvents = jsonData.number_of_events;
-    this.badges = jsonData.badges;
-    this.socialLinks = {
-      blog: jsonData.blog,
-      facebook: jsonData.facebook_url,
-      googlePlus: jsonData.google_plus_url,
-      linkedIn: jsonData.linkedin_url,
-      twitter: `https://twitter.com/${jsonData.twitter_handle}`,
-      website: jsonData.website,
-    };
+  constructor(json: IPlainObject, options: any) {
+    this.id = json.id;
+    this.firstName = json.first_name;
+    this.lastName = json.last_name;
+    this.photo = json.avatar;
+    this.bio = json.bio;
+    this.email = json.email_address;
+    this.badges = json.badges;
+    this.socialLinks = SocialLinks.fromJSON(json.social_links);
+    this.stats = TrainerStats.fromJSON(json.statistics);
+    this.testimonials = json.testimonials.map((testimonial: IPlainObject) => Testimonial.fromJSON(testimonial));
 
-    this.publicStats = this.getStatistics(jsonData, true, false);
-    this.privateStats = this.getStatistics(jsonData, false, false);
-    this.recentPublicStats = this.getStatistics(jsonData, true, true);
-    this.recentPrivateStats = this.getStatistics(jsonData, false, true);
-    this.testimonials = jsonData.endorsements;
-
-    this.country = Trainer.getCountry(jsonData);
+    this.country = json.address.country;
     this.url = options.trainerPageUrl ? this.getTrainerUrl(options.trainerPageUrl) : undefined;
-    this.languages = jsonData.languages ?
-      jsonData.languages.map((language: string) => getLangCode(language)) : [];
+    this.languages = json.languages ?
+      json.languages.map((language: string) => getLangCode(language)) : [];
 
-    this.worksIn = jsonData.countries ? jsonData.countries : [];
+    this.worksIn = json.countries ? json.countries : [];
   }
 
   /**
@@ -98,35 +71,4 @@ export default class Trainer {
     return `${baseUrl}?id=${this.id}&name=${this.fullName()}`;
   }
 
-  /**
-   * Returns a specific type of statistics
-   * @param jsonData JSON data from Workshop Butler API
-   * @param {boolean} publicWorkshops True if the statistics is from public workshops
-   * @param {boolean} recentWorkshops True if the statistic is from recent workshops
-   * @return {Statistics}
-   */
-  private getStatistics(jsonData: any, publicWorkshops: boolean, recentWorkshops: boolean): Statistics {
-    if (jsonData.statistics) {
-      const stats = jsonData.statistics;
-      if (publicWorkshops) {
-        if (recentWorkshops) {
-          return new Statistics(stats.recent_number_of_public_evaluations, stats.recent_public_median,
-            stats.recent_public_nps, stats.recent_public_rating, stats.recent_public_impressions);
-        } else {
-          return new Statistics(stats.number_of_public_evaluations, stats.public_median,
-            stats.public_nps, stats.public_rating, stats.public_impressions);
-        }
-      } else {
-        if (recentWorkshops) {
-          return new Statistics(stats.recent_number_of_private_evaluations, stats.recent_private_median,
-            stats.recent_private_nps, stats.recent_private_rating, stats.recent_private_impressions);
-        } else {
-          return new Statistics(stats.number_of_private_evaluations, stats.private_median,
-            stats.private_nps, stats.private_rating, stats.private_impressions);
-        }
-      }
-    } else {
-      return new Statistics(0, 0, 0, 0, {});
-    }
-  }
 }

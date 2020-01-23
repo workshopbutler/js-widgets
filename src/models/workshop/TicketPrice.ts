@@ -1,14 +1,17 @@
+import IPlainObject from '../../interfaces/IPlainObject';
+
 /**
  * Price for a workshop ticket
  */
 export default class TicketPrice {
-    readonly amount: number;
-    readonly currency: string;
-    readonly sign: string;
 
-    constructor(jsonData: any) {
-        this.amount = jsonData.amount;
-        this.currency = jsonData.currency;
-        this.sign = jsonData.sign;
-    }
+  static fromJSON(json: IPlainObject): TicketPrice {
+    const amount = json.amount / 100;
+    return new TicketPrice(amount, json.currency, json.sign);
+  }
+
+  constructor(readonly amount: number,
+              readonly currency: string,
+              readonly sign: string) {
+  }
 }

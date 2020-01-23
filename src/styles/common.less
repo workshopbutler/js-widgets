@@ -35,63 +35,63 @@
     line-height: 1.72;
   }
 
-  .wsb-author {
-    grid-area: author;
-  }
-
-  .wsb-descr {
-    grid-area: descr;
-    grid-row-start: 1;
-    grid-row-end: span 3;
-  }
-
-  .wsb-workshop {
-    grid-area: workshop;
-
-  }
-
   // body layout
   .wsb-body {
     padding-top: 31px;
+    display: -ms-grid;
     display: grid;
+    -ms-grid-columns: 66% 4% 30%;
     grid-template-columns: 66% 4% 30%;
+    -ms-grid-rows: auto;
     grid-template-rows: auto;
-    grid-template-areas: "descr . author"
-                         ". . workshop";
+    grid-template-areas: "descr . first"
+                         "descr . second";
 
-    @media screen and ( max-width: 63em ), @phone {
-      display: block;
+    &.wsb-trainer-profile {
+      grid-template-areas: "header header header"
+                           "descr . first"
+                           "descr . second";
+    }
+
+    @media @phone {
+      display: flex;
+      flex-direction: column;
     }
   }
 
-  .wsb-left-col {
-    margin-bottom: 40px;
-    overflow: hidden;
-    width: 100%;
+  .wsb-description {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 1;
+    grid-area: descr;
+    -ms-grid-row: 1;
+    grid-row-start: 1;
+    -ms-grid-row-span: 3;
+    grid-row-end: span 3;
+  }
 
-    @media screen and ( max-width: 63em ), @phone {
+  .wsb-toolbar {
+    width: 100%;
+    &.wsb-first {
+      -ms-grid-row: 1;
+      -ms-grid-column: 3;
+      grid-area: first;
+    }
+    &.wsb-second {
+      -ms-grid-row: 2;
+      -ms-grid-column: 3;
+      grid-area: second;
+    }
+  }
+
+  @media @phone {
+    .wsb-description {
       width: 100%;
       margin-right: 0;
     }
-  }
 
-  .wsb-right-col {
-    width: 100%;
-  }
-
-  @media screen and ( max-width: 72em ) {
-    .wsb-center {
-      width: auto;
-    }
-  }
-
-  @media screen and ( max-width: 63em ), @phone {
-    .wsb-left-col {
-      margin-right: 0;
-    }
-
-    .wsb-right-col {
-      width: auto;
+    .wsb-toolbar {
+      width: 100%;
       margin-left: 0;
       margin-bottom: 30px;
     }

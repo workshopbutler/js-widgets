@@ -125,7 +125,7 @@ export default class EventPage extends Widget<EventPageConfig> {
 
     transport.get(url, {},
       (data: IPlainObject) => {
-        self.event = new Event(data, self.config);
+        self.event = new Event(data.data, self.config);
         self.updateHTML();
         self.addJsonLD();
         self.renderWidget();

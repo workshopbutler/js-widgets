@@ -1,5 +1,7 @@
 @import "../core/settings";
 
+@left-column: 13em;
+
 .wsb-content {
 
   select {
@@ -33,9 +35,11 @@
     .transition(all .15s ease);
 
     &[type=radio], &[type=checkbox] {
-      width: 2em;
+      width: 1.1em;
       height: 1.1em;
       display: inline-block;
+      margin-left: 0;
+      margin-right: 0.5em;
     }
 
     &:focus {
@@ -55,14 +59,6 @@
       color: #999;
       opacity: 1
     }
-    &:invalid:not(:focus) {
-      border-color: @red;
-
-      &[type='radio'] {
-        color: @red;
-      }
-    }
-
   }
 
   textarea {
@@ -88,8 +84,8 @@
   }
 
   .wsb-form__section-title {
-    text-transform: uppercase;
-    color: @grey;
+    font-size: @h3;
+    font-weight: bold;
     padding-top: 21px;
     margin-bottom: 18px;
   }
@@ -99,37 +95,61 @@
   }
 
   section {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
+    padding: 2em 0;
+    border-bottom: 1px solid @grey;
 
-  .wsb-form__field {
-    flex: 0 1 46%;
-    margin-bottom: 21px;
-    position: relative;
-    min-width: 20em;
-
-    &.textarea, &.ticket, &.checkbox {
-      flex: 1 0 100%;
+    &:last-of-type {
+      border-bottom: none;
     }
 
     @media @phone, screen and (max-width: 600px) {
-      flex: 0 1 100%;
-      min-width: 7em;
+      border-bottom: none;
+      padding: 0.5em 0;
     }
   }
 
-  label {
-    font-size: 0.9em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    display: inline-block;
+  .wsb-form__field {
+    flex: 1 1 46%;
+    width: 100%;
+    margin-bottom: 21px;
+    line-height: 1.2em;
+    min-width: 20em;
+    max-width: 40em;
+    display: flex;
+    align-items: center;
+
+    &.textarea, &.checkbox {
+      flex: 1 0 100%;
+    }
+    @media @phone, screen and (max-width: 600px) {
+      flex: 0 1 100%;
+      min-width: 7em;
+      flex-direction: column;
+      align-items: flex-start;
+
+      &.checkbox {
+        flex-direction: row;
+        align-items: flex-start;
+        .wsb-label {
+          display: none;
+        }
+      }
+    }
+
+    &.ticket {
+      align-items: flex-start;
+    }
   }
-  label.wsb-label {
-    font-weight: normal;
+
+  .wsb-label {
+    flex: 0 0 @left-column;
+
+    @media @phone, screen and (max-width: 600px) {
+      flex: 0 0 2em;
+    }
+  }
+  .wsb-checkbox {
     cursor: pointer;
-    display: block;
   }
 
   textarea,
@@ -148,76 +168,34 @@
   select {
     padding: 0;
   }
-
-  // checkbox
-  label.wsb-form__checkbox {
+  .wsb-form__tickets {
+    width: 100%;
     display: block;
-    position: relative;
-    padding-left: 27px !important;
-    margin-bottom: 7px;
-    font-weight: 400;
-    cursor: pointer;
-
-    &:first-child {
-      margin-top: 10px;
-    }
-
   }
 
-  .wsb-form__checkbox-real {
-    position: absolute;
-    left: -20px;
-    top: 0;
-    visibility: hidden;
+  .wsb-form__ticket {
+    @padding-size: 0.75em;
+    padding: @padding-size;
+    margin-left: -@padding-size;
 
-    &:checked ~ .wsb-form__checkbox-img {
-      border-color: #4a90e2;
-
-      &::after {
-        display: block;
-      }
+    label, input {
+      cursor: pointer;
     }
 
-    &:disabled ~ .wsb-form__checkbox-img {
-      border-color: @icon-grey;
+    &.wsb-active {
+      background-color: @background-grey;
     }
   }
 
-  .wsb-form__checkbox-img {
-    position: absolute;
-    left: 0;
-    top: 2px;
-    width: 16px;
-    height: 16px;
-    border-radius: 2px;
-    border: 1px solid #777;
-    cursor: pointer;
-    .transition(all 0.15s ease);
-
-    background: #fff;
-
-    &::after {
-      content: "";
-      position: absolute;
-      display: none;
-      left: 3px;
-      top: 4px;
-      width: 9px;
-      height: 6px;
-      background: url(../images/icon-check.png) no-repeat;
-      -webkit-background-size: cover;
-      background-size: cover;
-    }
-
-    &:hover {
-      border-color: #aaa;
-    }
+  .wsb-form__tax {
+    padding-top: 1em;
   }
 
   .wsb-form__btn {
     display: inline-block;
     width: 50%;
     min-width: 300px;
+    margin-left: @left-column;
     padding: 15px 0;
     text-decoration: none !important;
     color: #fff !important;
@@ -242,6 +220,7 @@
 
     @media @phone, screen and (max-width: 600px) {
       width: 100%;
+      margin-left: 0;
     }
   }
 

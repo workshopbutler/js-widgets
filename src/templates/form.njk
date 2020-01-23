@@ -13,13 +13,13 @@
             <div class="wsb-form__instructions">{{ event.registrationForm.instructions }}</div>
             {% from "./field.njk" import formField %}
             {% for section in event.registrationForm.sections %}
-                {% if section.name %}
-                    <div class="wsb-form__section-title">{{ _t('form.section.' + section.name.toLowerCase()) }}</div>
-                {% endif %}
                 <section>
-                    {% for field in section.fields %}
-                        {{ formField(field, event.state.closed(), countries, config, _t, _f) }}
-                    {% endfor %}
+                  {% if section.name %}
+                    <div class="wsb-form__section-title">{{ _t('form.section.' + section.name.toLowerCase()) }}</div>
+                  {% endif %}
+                  {% for field in section.fields %}
+                    {{ formField(field, event.state.closed(), countries, config, _t, _f) }}
+                  {% endfor %}
                 </section>
             {% endfor %}
             <div class="wsb-form__error" data-form-major-error></div>

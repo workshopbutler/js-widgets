@@ -37,45 +37,20 @@ export function absoluteURL(url: string): string {
   return url;
 }
 
-export function createURL(): URL {
-  const {location} = window;
-  const path: string = location.protocol + '//' + location.host + location.pathname + location.search;
-  return new URL(path);
-}
-
-/**
- * Converts the given new URL() to the string with qyery params
- * @param url {new URL}
- */
-export function generateUrlWithQueryToString(url: URL): string {
-  return `${url.protocol}//${url.host}${url.pathname}${url.search}`;
-}
-
 export function updatePathWithQuery(key: string, value: string): void {
   if (history.pushState) {
-    const url = createURL();
-    url.searchParams.append(key, value);
-    const result = generateUrlWithQueryToString(url);
-    window.history.pushState({path: result}, '', result);
+    const url = new URI().addSearch(key, value).toString();
+    window.history.pushState({path: url}, '', url);
   }
 }
 
 export function deleteQueryFromPath(key: string): void {
   if (history.pushState) {
-    const url = createURL();
-    url.searchParams.delete(key);
-    const result = generateUrlWithQueryToString(url);
-    window.history.pushState({path: result}, '', result);
+    const url = new URI().removeSearch(key).toString();
+    window.history.pushState({path: url}, '', url);
   }
 }
 
 export function isHasValueInPath(type: string, value: string): boolean {
-  const url = createURL();
-  const findValue = url.searchParams.getAll(type);
-
-  if (findValue.length === 1) {
-    return findValue[0] === value;
-  }
-
-  return false;
+  return new URI().hasQuery(type, value);
 }

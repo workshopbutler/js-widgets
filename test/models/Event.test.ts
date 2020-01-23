@@ -6,7 +6,9 @@ const expect = chai.expect;
 describe('Event object', () => {
   it('should produce a correct cover image', () => {
     const json = {
-      spoken_languages: [],
+      language: {
+        spoken: [],
+      },
       schedule: {
         start: '2019-01-01',
         end: '2019-01-02',
@@ -26,7 +28,9 @@ describe('Event object', () => {
   });
   it('should produce a correct empty cover image', () => {
     const json = {
-      spoken_languages: [],
+      language: {
+        spoken: [],
+      },
       schedule: {
         start: '2019-01-01',
         end: '2019-01-02',

@@ -8,6 +8,7 @@ import Localisation from '../utils/Localisation';
 import SidebarEventListConfig from './config/SidebarEventListConfig';
 import getTemplate from './helpers/Templates';
 import Widget from './Widget';
+import ISuccess from '../interfaces/ISuccess';
 
 /**
  * Logic for the sidebar list of events
@@ -84,8 +85,8 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
     $.when(this.getVisitorCountry()).done((country) => {
       const url = this.getUrl(country);
       transport.get(url, {},
-        (data: IPlainObject[]) => {
-          const events = data.filter((event: IPlainObject) => event.hashed_id !== self.config.excludeId);
+        (resp: ISuccess) => {
+          const events = resp.data.filter((event: IPlainObject) => event.hashed_id !== self.config.excludeId);
           const length = self.config.length ? self.config.length : 3;
           self.events = events.slice(0, length).map((event: IPlainObject) => {
             return new Event(event, self.config);
@@ -157,12 +158,12 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
     if (this.config.fields) {
       fields += ',' + this.config.fields.join(',');
     }
-    const future = this.config.future;
+    const dates = this.config.future ? 'future' : 'past';
     let sort = '+start_date';
-    if (!future) {
+    if (!this.config.future) {
       sort = '-start_date';
     }
-    let url = `events?api_key=${this.apiKey}&future=${future}&sort=${sort}&public=true&fields=${fields}&` +
+    let url = `events?api_key=${this.apiKey}&dates=${dates}&sort=${sort}&public=true&fields=${fields}&` +
       `t=${this.getWidgetStats()}`;
     if (country) {
       url += `&countryCode=${country}`;

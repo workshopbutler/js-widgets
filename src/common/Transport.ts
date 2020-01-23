@@ -2,6 +2,7 @@ import * as JQuery from 'jquery';
 import IApiResponse from '../interfaces/IApiResponse';
 import IError from '../interfaces/IError';
 import {logError} from './Error';
+import ISuccess from '../interfaces/ISuccess';
 
 declare var BACKEND_URL: string;
 declare var API_VERSION: string;
@@ -26,8 +27,11 @@ class Transport {
    * @param {Function} callbackSuccess
    * @param {Function} callbackError
    */
-  get(url: string, data: object, callbackSuccess: (response: any) => void, callbackError?: (error: IError) => void) {
-    const withVersion = `${url}&version=${API_VERSION}`;
+  get(url: string,
+      data: object,
+      callbackSuccess: (response: ISuccess) => void,
+      callbackError?: (error: IError) => void) {
+    const withVersion = `${url}&api_version=${API_VERSION}`;
     const settings = {
       crossDomain: true,
       data: $.extend(true, {}, data),
@@ -43,7 +47,7 @@ class Transport {
           callbackError(error);
         }
       } else {
-        callbackSuccess(response.response);
+        callbackSuccess(response.response as ISuccess);
       }
     });
   }

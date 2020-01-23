@@ -1,14 +1,14 @@
 <div class="wsb-content">
     <div class="wsb-page wsb-event-page">
-        <div class="wsb-header wsb-center">
+        <div class="wsb-header">
             <h1>{{ event.title }}</h1>
         </div>
-        <div class="wsb-body wsb-center">
-            <div class="wsb-right-col">
+        <div class="wsb-body">
+            <div class="wsb-toolbar wsb-first">
                 {% from "./event/info.njk" import info %}
                 {{ info(event, config, _t, _f) }}
             </div>
-            <div class="wsb-left-col">
+            <div class="wsb-description">
                 {% from "./form.njk" import registrationForm %}
                 {% if event.registrationForm %}
                     {{ registrationForm(event, countries, config, _t, _f) }}

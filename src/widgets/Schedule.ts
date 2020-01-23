@@ -9,7 +9,7 @@ import Filters from './blocks/EventListFilters';
 import ScheduleConfig from './config/ScheduleConfig';
 import getTemplate from './helpers/Templates';
 import Widget from './Widget';
-import EventListFilters from './blocks/EventListFilters';
+import ISuccess from '../interfaces/ISuccess';
 
 /**
  * Logic for the list of events
@@ -83,8 +83,8 @@ export default class Schedule extends Widget<ScheduleConfig> {
 
     const url = this.getUrl();
     transport.get(url, {},
-      (data: IPlainObject[]) => {
-        let events = data;
+      (data: ISuccess) => {
+        let events = data.data;
         if (self.config.length && self.config.length >= 0) {
           events = events.slice(0, self.config.length);
         }
@@ -99,9 +99,10 @@ export default class Schedule extends Widget<ScheduleConfig> {
     const self = this;
     $.when(getTemplate(self.config)).done((template) => {
       function renderTemplate(event: Event) {
-        const localParams = Object.assign({ event }, self.getTemplateParams());
+        const localParams = Object.assign({event}, self.getTemplateParams());
         return nunjucksRenderString(template, localParams);
       }
+
       const uniqueParams = {
         events: self.events,
         filters: self.filters.getFilters(self.events),
@@ -137,12 +138,12 @@ export default class Schedule extends Widget<ScheduleConfig> {
     if (this.config.expand.length > 0) {
       expand = `&expand=${this.config.expand.toString()}`;
     }
-    const future = this.config.future;
+    const dates = this.config.future ? 'future' : 'past';
     let sort = '+start_date';
-    if (!future) {
+    if (!this.config.future) {
       sort = '-start_date';
     }
-    const query = `future=${future}&sort=${sort}&public=true&fields=${fields}${categoryId}` +
+    const query = `dates=${dates}&sort=${sort}&public=true&fields=${fields}${categoryId}` +
       `${eventTypeId}${trainerId}${expand}`;
     return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}`;
   }

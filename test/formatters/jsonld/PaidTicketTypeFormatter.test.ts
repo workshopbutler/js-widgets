@@ -1,14 +1,17 @@
 import * as chai from 'chai';
 import 'chai/register-should';
 import PaidTicketTypeFormatter from '../../../src/formatters/jsonld/PaidTicketTypeFormatter';
-import IPlainObject from '../../../src/interfaces/IPlainObject';
 import PaidTicketType from '../../../src/models/workshop/PaidTicketType';
+import {DateTime} from 'luxon';
+import TicketPrice from '../../../src/models/workshop/TicketPrice';
 
 const expect = chai.expect;
 
 describe('JSON-LD formatted PaidTicketType', () => {
-  const defaultTypeJson: IPlainObject = getTypeJson();
-  const defaultType = new PaidTicketType(defaultTypeJson, 'UTC');
+  const start = DateTime.fromFormat('2018-01-01', 'yyyy-MM-dd', {zone: 'UTC'});
+  const end = DateTime.local().plus({days: 6});
+  const price = new TicketPrice(100, 'EUR', '€');
+  const defaultType = new PaidTicketType('long1', 'Regular', 10, 5, start, end, true, price);
 
   it('should have a correct type', () => {
     const json = PaidTicketTypeFormatter.format(defaultType);
@@ -19,23 +22,18 @@ describe('JSON-LD formatted PaidTicketType', () => {
     expect(json.availability).to.eq('https://schema.org/InStock');
   });
   it('should be SoldOut if the tickets are sold out', () => {
-    const soldOutJson = getTypeJson();
-    soldOutJson.state.sold_out = true;
-    soldOutJson.left = 0;
-    const json = PaidTicketTypeFormatter.format(new PaidTicketType(soldOutJson, 'UTC'));
+    const type = new PaidTicketType('', '', 10, 0, start, end, true, price);
+    const json = PaidTicketTypeFormatter.format(type);
     expect(json.availability).to.eq('https://schema.org/SoldOut');
   });
   it('should be SoldOut if the tickets sale ended', () => {
-    const endedJson = getTypeJson();
-    endedJson.state.ended = true;
-    const json = PaidTicketTypeFormatter.format(new PaidTicketType(endedJson, 'UTC'));
+    const type = new PaidTicketType('', '', 10, 0, start, start, true, price);
+    const json = PaidTicketTypeFormatter.format(type);
     expect(json.availability).to.eq('https://schema.org/SoldOut');
   });
   it('should be empty if the tickets sale has not started yet', () => {
-    const inFutureJson = getTypeJson();
-    inFutureJson.state.in_future = true;
-    inFutureJson.state.active = false;
-    const json = PaidTicketTypeFormatter.format(new PaidTicketType(inFutureJson, 'UTC'));
+    const type = new PaidTicketType('', '', 10, 0, end, end, true, price);
+    const json = PaidTicketTypeFormatter.format(type);
     json.should.not.have.property('availability');
   });
   it('should have a price and currency', () => {
@@ -55,17 +53,8 @@ describe('JSON-LD formatted PaidTicketType', () => {
     const json = PaidTicketTypeFormatter.format(defaultType, 'https://workshopbutler.com/buy');
     expect(json.url).to.eq('https://workshopbutler.com/buy?ticket=long1');
   });
-  it('should have a correcly formed url if it exists', () => {
+  it('should have a correctly formed url if it exists', () => {
     const json = PaidTicketTypeFormatter.format(defaultType, 'https://workshopbutler.com/buy?id=4');
     expect(json.url).to.eq('https://workshopbutler.com/buy?id=4&ticket=long1');
   });
 });
-
-function getTypeJson(): IPlainObject {
-  return {
-    amount: 10, end: '2018-03-01', id: 'long1', left: 5, name: 'Regular',
-    price: {amount: 100, currency: 'EUR', sign: '€'}, start: '2018-01-01',
-    state: {sold_out: false, ended: false, started: true, in_future: false, valid: true},
-    with_vat: false,
-  };
-}

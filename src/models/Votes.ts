@@ -1,8 +1,8 @@
+import IPlainObject from '../interfaces/IPlainObject';
+
 /**
  * Represents the raw votes
  */
-import IPlainObject from '../interfaces/IPlainObject';
-
 export default class Votes {
     /**
      * Number of voters, who gave '0'

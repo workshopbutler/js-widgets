@@ -38,6 +38,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
   }
 
   protected assignEvents() {
+    this.initActiveTicketSelection();
     if (this.event.state.open()) {
       this.$root.on('submit', this.onFormSubmittion.bind(this));
     }
@@ -67,7 +68,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
       $(e.target as HTMLElement).prop('disabled', true).addClass('h-busy');
 
       transport.post(url, formData,
-        (data: IPlainObject) => {
+        () => {
           self.formHelper.clearForm();
           if (self.successRedirectUrl && self.successRedirectUrl !== '') {
             window.location.href = self.successRedirectUrl;
@@ -115,6 +116,29 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
       [code, this.loc.translate('country.' + code)] as [string, string],
     );
     return countries.sort((a, b) => a[1].localeCompare(b[1]));
+  }
+
+  private initActiveTicketSelection() {
+    const tickets = this.$root.find('#wsb-tickets input');
+    tickets.on('change', () => {
+      this.toggleTicket(tickets, false);
+      this.toggleTicket(tickets.filter(':checked'), true);
+    });
+    if (this.event.tickets && this.event.tickets.selectedTicketId) {
+      const activeTicket = tickets.filter(`#${this.event.tickets.selectedTicketId}`);
+      this.toggleTicket(activeTicket, true);
+    }
+  }
+
+  private toggleTicket(tickets: JQuery<HTMLElement>, on: boolean) {
+    const name = 'wsb-active';
+    if (on) {
+      tickets.prop('checked', 'true');
+      tickets.parent().addClass(name);
+    } else {
+      tickets.removeProp('checked');
+      tickets.parent().removeClass(name);
+    }
   }
 
   /**

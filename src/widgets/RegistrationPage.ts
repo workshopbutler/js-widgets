@@ -109,8 +109,8 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
     const url = this.getUrl(eventId);
 
     transport.get(url, {},
-      (data: IPlainObject[]) => {
-        self.event = new Event(data, self.config);
+      (data: IPlainObject) => {
+        self.event = new Event(data.data, self.config);
         self.renderRegistrationForm();
       });
   }
@@ -131,6 +131,7 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
         nunjucksRenderString(template, params) :
         self.templates.registrationPage.render(params);
       self.$root.html(content);
+
       self.successMessage = self.$root.find('#wsb-success');
       self.successRedirectUrl = self.config.successRedirectUrl;
       self.successMessage.hide();

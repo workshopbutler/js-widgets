@@ -9,6 +9,7 @@ import Filters, {default as TrainerListFilters} from './blocks/TrainerListFilter
 import TrainerListConfig from './config/TrainerListConfig';
 import getTemplate from './helpers/Templates';
 import Widget from './Widget';
+import ISuccess from '../interfaces/ISuccess';
 
 /**
  * Logic for the list of trainers
@@ -84,8 +85,8 @@ export default class TrainerList extends Widget<TrainerListConfig> {
 
     const url = this.getUrl();
     transport.get(url, {},
-      (data: IPlainObject[]) => {
-        self.trainers = data.map((trainer: IPlainObject) => {
+      (resp: ISuccess) => {
+        self.trainers = resp.data.map((trainer: IPlainObject) => {
           return new Trainer(trainer, self.config);
         });
         self.render();

@@ -127,7 +127,12 @@ function getEventJSON(): IPlainObject {
       total_hours: 16,
     },
     sold_out: false,
-    spoken_languages: ['English, German'],
+    language: {
+      spoken: ['English, German'],
+    },
+    tickets: {
+
+    },
     title: '2-day workshop',
     cover_image: {
       url: 'https://wsb.com',

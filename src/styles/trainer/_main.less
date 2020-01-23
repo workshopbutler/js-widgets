@@ -1,13 +1,16 @@
-.wsb-content {
+.wsb-content .wsb-trainer-profile {
 
   .wsb-trainer__header {
     background-color: @light-grey;
-    flex-direction: column;
     margin-bottom: 15px;
+
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 3;
+    grid-area: header;
   }
 
   .wsb-trainer__header-row {
-    flex: 0 0 100%;
     display: flex;
     padding-bottom: 1em;
 
@@ -20,8 +23,8 @@
       width: 150px;
 
       @media @phone {
-        height: 20em;
-        width: 20em;
+        width: 100%;
+        height: auto;
       }
     }
   }
@@ -29,6 +32,25 @@
   .wsb-trainer__header-col {
     flex: 1 0 20%;
     padding: 0 1em;
+  }
+
+  .wsb-description {
+    -ms-grid-row: 2;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 1;
+    grid-row-start: auto;
+    grid-row-end: span auto;
+  }
+
+  .wsb-toolbar {
+    &.wsb-first {
+      -ms-grid-row: 2;
+      -ms-grid-column: 3;
+    }
+    &.wsb-second {
+      -ms-grid-row: 3;
+      -ms-grid-column: 3;
+    }
   }
 
   .wsb-trainer-buttons {

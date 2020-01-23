@@ -21,7 +21,6 @@ export default class Event {
   readonly type: Type;
   readonly title: string;
   readonly language: Language;
-  readonly rating: number;
   readonly confirmed: boolean;
   readonly private: boolean;
   readonly free: boolean;
@@ -55,24 +54,21 @@ export default class Event {
     this.hashedId = json.hashed_id;
     this.title = json.title;
     this.type = json.type ? new Type(json.type) : Type.empty();
-    this.language = new Language(json.spoken_languages, json.materials_language);
-    this.rating = json.rating;
+    this.language = Language.fromJSON(json.language);
     this.confirmed = json.confirmed;
     this.free = json.free;
     this.private = json.private;
     this.description = json.description;
     this.soldOut = json.sold_out;
     this.schedule = new Schedule(json.schedule);
-    this.location = new Location(json.location);
+    this.location = Location.fromJSON(json.location);
     this.category = json.category ? new Category(json.category) : undefined;
-    this.tickets = this.getTickets(this.free, json.free_ticket_type, json.paid_ticket_types);
+    this.tickets = this.getTickets(this.free, json.tickets);
     this.url = this.buildUrl(options);
     this.registrationPage = new RegistrationPage(json.registration_page,
       options.registrationPageUrl, this.hashedId);
-    this.registrationForm = json.registration_form ?
-      new Form(json.instructions, json.registration_form, this) :
-      undefined;
-    this.coverImage = json.cover_image ? new CoverImage(json.cover_image) : new CoverImage({});
+    this.registrationForm = Form.fromJSON(json.form, this);
+    this.coverImage = CoverImage.fromJSON(json.cover_image);
 
     this.trainers = this.getTrainers(json, options);
     this.state = new EventState(this);
@@ -101,12 +97,12 @@ export default class Event {
     return value.replace(regex, '_');
   }
 
-  private getTickets(free: boolean, freeTicketType: any, paidTicketTypes: any[]): Tickets | null {
-    if (freeTicketType || paidTicketTypes) {
+  private getTickets(free: boolean, tickets: IPlainObject): Tickets | null {
+    if (tickets.free || tickets.paid) {
       return free ?
-        new Tickets([], new FreeTicketType(freeTicketType)) :
-        new Tickets(paidTicketTypes.map((type) =>
-            new PaidTicketType(type, this.schedule.defaultTimezone()),
+        new Tickets([], FreeTicketType.fromJSON(tickets.free)) :
+        new Tickets(tickets.paid.map((ticket: IPlainObject) =>
+            PaidTicketType.fromJSON(ticket, this.schedule.defaultTimezone()),
           ),
         );
     } else {
@@ -115,7 +111,7 @@ export default class Event {
   }
 
   private getTrainers(attrs: any, options: any): Trainer[] {
-    const trainers: any[] = attrs.facilitators;
+    const trainers: any[] = attrs.trainers;
     if (trainers) {
       return trainers.map((trainer) => new Trainer(trainer, options));
     } else {

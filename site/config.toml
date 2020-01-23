@@ -5,4 +5,4 @@ theme = "ananke"
 
 [params]
   custom_css = ['styles.css']
-  theme = 'alfred'
+  theme = 'dacota'

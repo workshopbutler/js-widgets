@@ -6,6 +6,7 @@ import es from '../locales/es.json';
 import fr from '../locales/fr.json';
 import nl from '../locales/nl.json';
 import pt from '../locales/pt.json';
+import no from '../locales/no.json';
 
 /**
  * Controls the translation of message tokens to actual strings
@@ -37,6 +38,9 @@ export default class Localisation {
         },
         fr: {
           translation: dict.fr ? this.deepCopy(fr, dict.fr) : fr,
+        },
+        no: {
+          translation: dict.no ? this.deepCopy(no, dict.no) : no,
         },
         nl: {
           translation: dict.nl ? this.deepCopy(nl, dict.nl) : nl,

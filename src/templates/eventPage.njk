@@ -1,10 +1,10 @@
 <div class="wsb-content">
   <div class="wsb-page wsb-event-page">
-    <div class="wsb-header wsb-center">
+    <div class="wsb-header">
       <h1>{{ event.title }}</h1>
     </div>
-    <div class="wsb-body wsb-center">
-      <div class="wsb-right-col wsb-author">
+    <div class="wsb-body">
+      <div class="wsb-toolbar wsb-first">
         <div>
           {% if event.state.closed() %}
             <button class="wsb-sidebar__register" disabled>{{ _f(event.state) }}</button>
@@ -16,12 +16,12 @@
         {% from "./event/info.njk" import info %}
         {{ info(event, config, _t, _f) }}
       </div>
-      <div class="wsb-left-col wsb-descr">
+      <div class="wsb-description">
         {% if event.description %}
           <div class="wsb-desc">{{ event.description | safe }}</div>
         {% endif %}
       </div>
-      <div class="wsb-right-col wsb-workshop">
+      <div class="wsb-toolbar wsb-second">
         {% from "./event/share.njk" import shareEvent %}
         {{ shareEvent(event, _t, _f) }}
         {% if config.showFutureEvents %}

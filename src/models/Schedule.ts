@@ -24,8 +24,8 @@ export default class Schedule {
     this.hoursPerDay = attrs.hours_per_day;
     this.totalHours = attrs.total_hours;
 
-    this.start = DateTime.fromFormat(attrs.start, 'yyyy-MM-dd HH:mm', {zone: this.defaultTimezone()});
-    this.end = DateTime.fromFormat(attrs.end, 'yyyy-MM-dd HH:mm', {zone: this.defaultTimezone()});
+    this.start = DateTime.fromISO(attrs.start, {zone: this.defaultTimezone()});
+    this.end = DateTime.fromISO(attrs.end, {zone: this.defaultTimezone()});
   }
 
   /**

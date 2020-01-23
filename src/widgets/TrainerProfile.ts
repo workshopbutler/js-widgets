@@ -12,6 +12,7 @@ import TrainerProfileConfig from './config/TrainerProfileConfig';
 import WidgetFactory from './Factory';
 import getTemplate from './helpers/Templates';
 import Widget from './Widget';
+import ISuccess from '../interfaces/ISuccess';
 
 /**
  * Logic for the trainer details
@@ -115,8 +116,8 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
     const self = this;
     const url = this.getUrl(trainerId);
     transport.get(url, {},
-      (data: IPlainObject) => {
-        self.trainer = new Trainer(data, self.config);
+      (resp: ISuccess) => {
+        self.trainer = new Trainer(resp.data, self.config);
         self.render();
       });
   }

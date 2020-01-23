@@ -108,7 +108,7 @@ export default class EventListFilters extends ListFilters<Event> {
       const eventTrainers = event.trainers;
       for (const eventTrainer of eventTrainers) {
         const trainerName = `${eventTrainer.firstName} ${eventTrainer.lastName}`;
-        const selected = isHasValueInPath('trainers', trainerName);
+        const selected = isHasValueInPath('trainer', trainerName);
         const trainer = new FilterValue(trainerName, trainerName, selected);
         trainers.push(trainer);
       }
