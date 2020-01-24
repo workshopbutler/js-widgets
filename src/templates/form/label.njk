@@ -1,0 +1,20 @@
+{% macro label(field, config, _t, _f) %}
+
+  {% if field.type !== "checkbox" %}
+    {% if field.name !== "promo_code" %}
+      <label for="{{ field.name }}" class="wsb-label">
+        {% if field.custom %}
+          {{ field.label }}
+        {% else %}
+          {{ _t('form.field.' + field.name) }}
+        {% endif %}
+        {% if field.required %}
+          <span class="wsb-form__required">*</span>
+        {% endif %}
+      </label>
+    {% endif %}
+  {% else %}
+    <label for="{{ field.name }}" class="wsb-label"></label>
+  {% endif %}
+
+{% endmacro %}

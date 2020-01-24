@@ -7,13 +7,13 @@ import Form from './form/Form';
 import FreeTicketType from './workshop/FreeTicketType';
 import Language from './workshop/Language';
 import Location from './workshop/Location';
-import PaidTicketType from './workshop/PaidTicketType';
 import RegistrationPage from './workshop/RegistrationPage';
 import Schedule from './Schedule';
-import Tickets from './workshop/Tickets';
 import Trainer from './Trainer';
 import Type from './workshop/Type';
 import CoverImage from './workshop/CoverImage';
+import IFreeTicketType from '../interfaces/IFreeTicketType';
+import PaidTickets from './workshop/PaidTickets';
 
 export default class Event {
   readonly id: number;
@@ -27,7 +27,7 @@ export default class Event {
   readonly soldOut: boolean;
   readonly url: string;
   readonly registrationPage: RegistrationPage;
-  readonly tickets: Tickets | null;
+  readonly tickets?: IFreeTicketType | PaidTickets;
   readonly trainers: Trainer[];
   readonly description: string;
   readonly schedule: Schedule;
@@ -78,7 +78,17 @@ export default class Event {
    * Returns the list of trainer's names
    */
   nameOfTrainers(): string[] {
-    return this.trainers.map((trainer) => trainer.fullName());
+    return this.trainers.map(trainer => trainer.fullName());
+  }
+
+  withTickets(): boolean {
+    if (this.tickets instanceof FreeTicketType) {
+      return !this.tickets.withUnlimitedSeats();
+    }
+    if (this.tickets instanceof PaidTickets) {
+      return this.tickets.types.length > 0;
+    }
+    return false;
   }
 
   protected buildUrl(options: IPlainObject): string {
@@ -97,23 +107,20 @@ export default class Event {
     return value.replace(regex, '_');
   }
 
-  private getTickets(free: boolean, tickets: IPlainObject): Tickets | null {
+  private getTickets(free: boolean, tickets: IPlainObject): IFreeTicketType | PaidTickets | undefined {
     if (tickets.free || tickets.paid) {
       return free ?
-        new Tickets([], FreeTicketType.fromJSON(tickets.free)) :
-        new Tickets(tickets.paid.map((ticket: IPlainObject) =>
-            PaidTicketType.fromJSON(ticket, this.schedule.defaultTimezone()),
-          ),
-        );
+        FreeTicketType.fromJSON(tickets.free) :
+        PaidTickets.fromJSON(tickets.paid, this.schedule.defaultTimezone());
     } else {
-      return null;
+      return undefined;
     }
   }
 
   private getTrainers(attrs: any, options: any): Trainer[] {
     const trainers: any[] = attrs.trainers;
     if (trainers) {
-      return trainers.map((trainer) => new Trainer(trainer, options));
+      return trainers.map(trainer => new Trainer(trainer, options));
     } else {
       return [];
     }

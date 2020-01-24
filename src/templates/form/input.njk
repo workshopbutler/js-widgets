@@ -1,0 +1,16 @@
+{% macro input(field, disabled, config, _t, _f) %}
+
+  {% if field.name === "promo_code" %}
+    <div class="wsb-promo-block">
+      <a href="#" class="wsb-promo-link" data-promo-link>I have a promo code</a>
+      <input class="wsb-promo-code" data-promo-code
+          name="{{ field.name }}" title="{{ field.label }}" {{ 'disabled' if disabled }}
+             type="{{ field.type }}" {{ 'required' if field.required }} data-control/>
+    </div>
+  {% else %}
+    <input name="{{ field.name }}" title="{{ field.label }}" {{ 'disabled' if disabled }}
+           type="{{ field.type }}" {{ 'required' if field.required }} data-control/>
+  {% endif %}
+
+
+{% endmacro %}

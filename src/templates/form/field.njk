@@ -1,0 +1,35 @@
+{% macro formField(field, disabled, countries, config, _t, _f) %}
+  {% from "./ticket.njk" import ticket %}
+  {% from "./checkbox.njk" import checkbox %}
+  {% from "./input.njk" import input %}
+  {% from "./label.njk" import label %}
+  <div id="wsb-form-field-{{ field.name }}" class="wsb-form__field {{ field.type }}">
+    {{ label(field, config, _t, _f) }}
+    {% if field.type === "textarea" %}
+      <textarea name="{{ field.name }}" data-control title="{{ field.label }}"
+                      {{ 'required' if field.required }} {{ 'disabled' if disabled }}
+                      style="height : 90px ;" cols="30" rows="10"></textarea>
+    {% elif field.type === "select" %}
+      <select name="{{ field.name }}" title="{{ field.label }}"
+              data-control {{ 'required' if field.required }} {{ 'disabled' if disabled }}>
+        {% for option in field.options %}
+          <option value="{{ option.value }}">{{ option.label }}</option>
+        {% endfor %}
+      </select>
+    {% elif field.type === "country" %}
+      <select name="{{ field.name }}" title="{{ field.label }}"
+              data-control {{ 'required' if field.required }} {{ 'disabled' if disabled }}>
+        <option value="" {{ 'selected' if not config.countryDefault }} disabled>{{ _t('form.country') }}</option>
+        {% for code, name in countries %}
+          <option value="{{ code }}" {{ 'selected' if code == config.countryDefault }}>{{ name }}</option>
+        {% endfor %}
+      </select>
+    {% elif field.type === "checkbox" %}
+      {{ checkbox(field, disabled, config, _t, _f) }}
+    {% elif field.type === "ticket" %}
+      {{ ticket(field, disabled, config, _t, _f) }}
+    {% else %}
+      {{ input(field, disabled, config, _t, _f) }}
+    {% endif %}
+  </div>
+{% endmacro %}

@@ -6,11 +6,11 @@ const expect = chai.expect;
 describe('JSON-LD LocationFormatter', () => {
 
   it('should produce null if the location is online', () => {
-    const location = new Location({ online: true, country_code: '00', city: null });
+    const location = new Location(true, '00');
     expect(LocationFormatter.format(location)).eq(null);
   });
   it('should produce a correct JSON for the address', () => {
-    const location = new Location({ online: false, country_code: 'DE', city: 'Berlin' });
+    const location = new Location(false, 'DE', 'Berlin');
     const json = {
       '@type': 'Place',
       'address': {

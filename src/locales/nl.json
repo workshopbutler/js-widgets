@@ -427,11 +427,10 @@
 
     },
     "section": {
-      "home address": "Thuisadres",
-      "billing address": "Facturatie adres",
-      "work info": "Werkinfo",
-      "billing info": "Betaal informatie",
-      "additional information": "Extra informatie",
+      "address": "Thuisadres",
+      "work": "Werkinfo",
+      "billing": "Betaal informatie",
+      "other": "Extra informatie",
       "ticket": "Ticket"
     }
   },

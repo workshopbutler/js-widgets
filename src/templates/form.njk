@@ -11,15 +11,17 @@
     <form action="#" class="wsb-form" id="wsb-form">
         <div class="wsb-form__body">
             <div class="wsb-form__instructions">{{ event.registrationForm.instructions }}</div>
-            {% from "./field.njk" import formField %}
+            {% from "./form/field.njk" import formField %}
             {% for section in event.registrationForm.sections %}
-                <section>
-                  {% if section.name %}
-                    <div class="wsb-form__section-title">{{ _t('form.section.' + section.name.toLowerCase()) }}</div>
+                <section {{ 'class=wsb-ticket-section' if section.id == 'ticket' }}>
+                  {% if section.id != 'footer' and section.id != 'general' %}
+                    <div class="wsb-form__section-title">{{ _t('form.section.' + section.id) }}</div>
                   {% endif %}
                   {% for field in section.fields %}
                     {{ formField(field, event.state.closed(), countries, config, _t, _f) }}
                   {% endfor %}
+                  {% if section.id == 'ticket' %}
+                  {% endif %}
                 </section>
             {% endfor %}
             <div class="wsb-form__error" data-form-major-error></div>

@@ -88,16 +88,14 @@ export default class Schedule extends Widget<ScheduleConfig> {
         if (self.config.length && self.config.length >= 0) {
           events = events.slice(0, self.config.length);
         }
-        self.events = events.map((event: IPlainObject) => {
-          return new Event(event, self.config);
-        });
+        self.events = events.map((event: IPlainObject) => new Event(event, self.config));
         self.render();
       });
   }
 
   private render() {
     const self = this;
-    $.when(getTemplate(self.config)).done((template) => {
+    $.when(getTemplate(self.config)).done(template => {
       function renderTemplate(event: Event) {
         const localParams = Object.assign({event}, self.getTemplateParams());
         return nunjucksRenderString(template, localParams);

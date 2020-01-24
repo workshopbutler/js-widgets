@@ -426,11 +426,10 @@
       }
     },
     "section": {
-      "home address": "Endereço Residencial",
-      "billing address": "Endereço de Cobrança",
-      "work info": "Info de Trabalho",
-      "billing info": "Informação de pagamento",
-      "additional information": "Informação Adicional",
+      "address": "Endereço Residencial",
+      "work": "Info de Trabalho",
+      "billing": "Informação de pagamento",
+      "other": "Informação Adicional",
       "ticket": "Bilhete"
     }
   },

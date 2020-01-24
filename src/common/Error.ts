@@ -3,5 +3,6 @@
  * @param msg {string}
  */
 export function logError(msg: string): void {
-  console.log(`Workshop Butler ERROR: ${msg}`); // tslint:disable-line no-console
+  // eslint-disable-next-line no-console
+  console.log(`Workshop Butler ERROR: ${msg}`);
 }

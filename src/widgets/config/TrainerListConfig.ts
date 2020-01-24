@@ -63,12 +63,12 @@ export default class TrainerListConfig extends WidgetConfig {
     if (options.badges !== undefined) {
       this.showBadges = options.badges;
     } else {
-      this.showBadges = this.filters.indexOf('badge') >= 0;
+      this.showBadges = this.filters.includes('badge');
     }
     if (options.rating !== undefined) {
       this.showRating = options.rating;
     } else {
-      this.showRating = this.filters.indexOf('rating') >= 0;
+      this.showRating = this.filters.includes('rating');
     }
   }
 

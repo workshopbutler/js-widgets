@@ -5,8 +5,22 @@
         </div>
         <div class="wsb-body">
             <div class="wsb-toolbar wsb-first">
-                {% from "./event/info.njk" import info %}
-                {{ info(event, config, _t, _f) }}
+              <div class="wsb-info-block">
+                <div class="wsb-info">
+                  <div class="wsb-info__title">{{ _t('event.info.date') }}:</div>
+                  {% if event.schedule.atOneDay() %}
+                    {{ _f(event.schedule, 'full_long') }} {{ _f(event.schedule, 'timezone_short') }}
+                  {% else %}
+                    {{ _f(event.schedule, 'start_long') }}
+                    —<br>{{ _f(event.schedule, 'end_long') }} {{ _f(event.schedule, 'timezone_short') }}
+                  {% endif %}
+                </div>
+                <div class="wsb-info">
+                  <div class="wsb-info__title">{{ _t('event.info.loc') }}:</div>
+                  {{ _f(event.location) }}
+                  <div class="wsb-info__footer">{{ _f(event.language) }}</div>
+                </div>
+              </div>
             </div>
             <div class="wsb-description">
                 {% from "./form.njk" import registrationForm %}

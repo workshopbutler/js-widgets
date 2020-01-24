@@ -7,68 +7,68 @@ import WidgetConfig from './WidgetConfig';
  */
 export default class RegistrationPageConfig extends WidgetConfig {
 
-    /**
+  /**
      * Returns the config if the options are correct
      * @param options {IPlainObject} Widget's options
      */
-    static create(options: IPlainObject): RegistrationPageConfig | null {
-        if (RegistrationPageConfig.validate(options)) {
-            return new RegistrationPageConfig(options);
-        } else {
-            return null;
-        }
+  static create(options: IPlainObject): RegistrationPageConfig | null {
+    if (RegistrationPageConfig.validate(options)) {
+      return new RegistrationPageConfig(options);
+    } else {
+      return null;
     }
+  }
 
-    /**
+  /**
      * Returns true if the options can be used to create the widget's config
      * @param options {IPlainObject} Widget's config
      */
-    protected static validate(options: IPlainObject): boolean {
-        let valid = true;
-        if (options.eventPageUrl && typeof options.eventPageUrl !== 'string') {
-            logError('Attribute [eventPageUrl] must be string');
-            valid = false;
-        }
-        return valid;
+  protected static validate(options: IPlainObject): boolean {
+    let valid = true;
+    if (options.eventPageUrl && typeof options.eventPageUrl !== 'string') {
+      logError('Attribute [eventPageUrl] must be string');
+      valid = false;
     }
-    readonly eventPageUrl?: string;
-    readonly trainers: boolean;
+    return valid;
+  }
+  readonly eventPageUrl?: string;
+  readonly trainers: boolean;
 
-    /**
+  /**
      * When true, expired tickets are shown
      */
-    readonly expiredTickets: boolean;
+  readonly expiredTickets: boolean;
 
-    /**
+  /**
      * When true, the number of left tickets for each ticket type is shown
      */
-    readonly numberOfTickets: boolean;
+  readonly numberOfTickets: boolean;
 
-    /**
+  /**
      * Array of country codes to use for the registration form
      */
-    readonly countryOnlyFrom: string[];
+  readonly countryOnlyFrom: string[];
 
-    /**
+  /**
      * Preselected default country
      */
-    readonly countryDefault: string;
+  readonly countryDefault: string;
 
-    /**
+  /**
      * Redirect to successs page url instead of only showing success message
      */
-    readonly successRedirectUrl: string;
+  readonly successRedirectUrl: string;
 
-    protected constructor(options: IPlainObject) {
-        super(options);
-        this.eventPageUrl = options.eventPageUrl ? options.eventPageUrl : undefined;
-        this.trainers = options.trainers ? options.trainers : false;
-        this.expiredTickets = options.expiredTickets !== undefined ? options.expiredTickets : false;
-        this.numberOfTickets = options.numberOfTickets !== undefined ? options.numberOfTickets : true;
-        if (options.country) {
-            this.countryOnlyFrom = options.country.onlyFrom !== undefined ? options.country.onlyFrom : undefined;
-            this.countryDefault = options.country.default !== undefined ? options.country.default : undefined;
-        }
-        this.successRedirectUrl = options.successRedirectUrl !== undefined ? options.successRedirectUrl : undefined;
+  protected constructor(options: IPlainObject) {
+    super(options);
+    this.eventPageUrl = options.eventPageUrl ? options.eventPageUrl : undefined;
+    this.trainers = false;
+    this.expiredTickets = options.expiredTickets !== undefined ? options.expiredTickets : false;
+    this.numberOfTickets = options.numberOfTickets !== undefined ? options.numberOfTickets : true;
+    if (options.country) {
+      this.countryOnlyFrom = options.country.onlyFrom !== undefined ? options.country.onlyFrom : undefined;
+      this.countryDefault = options.country.default !== undefined ? options.country.default : undefined;
     }
+    this.successRedirectUrl = options.successRedirectUrl !== undefined ? options.successRedirectUrl : undefined;
+  }
 }

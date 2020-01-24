@@ -64,7 +64,7 @@ export default class Trainer {
    * Returns the list of badge's name
    */
   nameOfBadges(): string[] {
-    return this.badges.map((badge) => badge.name);
+    return this.badges.map(badge => badge.name);
   }
 
   private getTrainerUrl(baseUrl: string): string {

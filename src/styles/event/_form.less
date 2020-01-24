@@ -1,6 +1,6 @@
 @import "../core/settings";
 
-@left-column: 13em;
+@left-column: 8em;
 
 .wsb-content {
 
@@ -86,7 +86,6 @@
   .wsb-form__section-title {
     font-size: @h3;
     font-weight: bold;
-    padding-top: 21px;
     margin-bottom: 18px;
   }
 
@@ -100,6 +99,9 @@
 
     &:last-of-type {
       border-bottom: none;
+    }
+    &:first-of-type {
+      padding-top: 0;
     }
 
     @media @phone, screen and (max-width: 600px) {
@@ -136,7 +138,7 @@
       }
     }
 
-    &.ticket {
+    &.ticket, &.textarea {
       align-items: flex-start;
     }
   }
@@ -167,6 +169,18 @@
 
   select {
     padding: 0;
+
+    @media @phone {
+      padding: 0 0.5em;
+    }
+  }
+
+  .wsb-ticket-section {
+    @media @phone {
+      background-color: @background-grey;
+      padding: 0.5em 0.5em;
+      margin-bottom: 1em;
+    }
   }
   .wsb-form__tickets {
     width: 100%;
@@ -185,10 +199,31 @@
     &.wsb-active {
       background-color: @background-grey;
     }
+
+    @media @phone {
+      margin-left: 0;
+    }
   }
 
+  .wsb-promo-link {
+    padding-bottom: 0.5em;
+    display: block;
+    color: @text-grey !important;
+    text-decoration: underline;
+  }
+  .wsb-promo-code {
+    display: none;
+  }
+  .wsb-promo-block {
+    padding-left: @left-column;
+
+    @media @phone {
+      padding-left: 0;
+    }
+  }
   .wsb-form__tax {
-    padding-top: 1em;
+    font-style: italic;
+    font-size: 0.75em;
   }
 
   .wsb-form__btn {

@@ -4,14 +4,14 @@ import IError from '../interfaces/IError';
 import {logError} from './Error';
 import ISuccess from '../interfaces/ISuccess';
 
-declare var BACKEND_URL: string;
-declare var API_VERSION: string;
+declare let BACKEND_URL: string;
+declare let API_VERSION: string;
 
 /**
  * Performs cross-site AJAX requests
  */
 class Transport {
-  isFrameLoaded: boolean = false;
+  isFrameLoaded = false;
   callbacks: any = {};
   private iframe: HTMLIFrameElement;
   private messageStack: object[] = [];
@@ -89,7 +89,7 @@ class Transport {
     // tslint:disable-next-line
     this.iframe.onload = function() {
       if (self.messageStack.length > 0) {
-        self.messageStack.forEach((value) => {
+        self.messageStack.forEach(value => {
           frameWindow.postMessage(value, BACKEND_URL);
         });
 

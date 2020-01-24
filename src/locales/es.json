@@ -426,11 +426,10 @@
       }
     },
     "section": {
-      "home address": "Direccion de casa",
-      "billing address": "Dirección de envio",
-      "billing info": "Información de facturación",
-      "work info": "Información de trabajo",
-      "additional information": "Información adicional",
+      "address": "Direccion de casa",
+      "billing": "Información de facturación",
+      "work": "Información de trabajo",
+      "other": "Información adicional",
       "ticket": "Entrada"
     }
   },

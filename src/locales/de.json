@@ -426,11 +426,10 @@
       }
     },
     "section": {
-      "home address": "Heimatadresse",
-      "billing address": "Rechnungsadresse",
-      "billing info": "Rechnungsinfo",
-      "work info": "Arbeitsinfo",
-      "additional information": "zusätzliche Information",
+      "address": "Heimatadresse",
+      "billing": "Rechnungsinfo",
+      "work": "Arbeitsinfo",
+      "other": "zusätzliche Information",
       "ticket": "Ticket"
     }
   },

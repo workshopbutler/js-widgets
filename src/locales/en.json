@@ -413,12 +413,11 @@
       }
     },
     "section": {
-      "home address": "Home Address",
-      "billing address": "Billing Address",
-      "billing info": "Billing Info",
-      "work info": "Work Info",
-      "additional information": "Additional Information",
-      "ticket": "Ticket"
+      "address": "Home Address",
+      "billing": "Billing Info",
+      "work": "Work Info",
+      "other": "Additional Information",
+      "ticket": "Choose your ticket"
     }
   },
   "registration": {

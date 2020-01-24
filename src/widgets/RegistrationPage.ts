@@ -63,16 +63,14 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
     super(selector, apiKey, templates, loc, config);
     this.formatter = new Formatter(loc);
     this.ticketId = '';
-    let id: string = '';
+    let id = '';
 
-    const self = this;
-
-    window.location.search.substr(1).split('&').forEach((el) => {
+    window.location.search.substr(1).split('&').forEach(el => {
       const param = el.split('=', 2);
       if (param.length === 2 && param[0] === 'id') {
         id = param[1];
       } else if (param.length === 2 && param[0] === 'ticket') {
-        self.ticketId = param[1];
+        this.ticketId = param[1];
       }
     });
     this.init();
@@ -105,42 +103,39 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
    * @private
    */
   private loadContent(eventId: string) {
-    const self = this;
     const url = this.getUrl(eventId);
 
     transport.get(url, {},
       (data: IPlainObject) => {
-        self.event = new Event(data.data, self.config);
-        self.renderRegistrationForm();
+        this.event = new Event(data.data, this.config);
+        this.renderRegistrationForm();
       });
   }
 
   private renderRegistrationForm() {
-    const self = this;
-
-    $.when(getTemplate(self.config)).done((template) => {
-      self.updateHTML();
+    $.when(getTemplate(this.config)).done(template => {
+      this.updateHTML();
       const uniqueParams = {
-        countries: self.getCountries(self.config),
-        event: self.event,
-        ticket: self.ticketId,
+        countries: this.getCountries(this.config),
+        event: this.event,
+        ticket: this.ticketId,
       };
-      const params = Object.assign( uniqueParams, self.getTemplateParams());
+      const params = Object.assign( uniqueParams, this.getTemplateParams());
 
       const content = template ?
         nunjucksRenderString(template, params) :
-        self.templates.registrationPage.render(params);
-      self.$root.html(content);
+        this.templates.registrationPage.render(params);
+      this.$root.html(content);
 
-      self.successMessage = self.$root.find('#wsb-success');
-      self.successRedirectUrl = self.config.successRedirectUrl;
-      self.successMessage.hide();
-      self.form = self.$root.find('#wsb-form');
-      self.assignEvents();
+      this.successMessage = this.$root.find('#wsb-success');
+      this.successRedirectUrl = this.config.successRedirectUrl;
+      this.successMessage.hide();
+      this.form = this.$root.find('#wsb-form');
+      this.assignEvents();
 
-      self.formHelper = new FormHelper(
-        self.$root.find('[data-control]'),
-        self.getErrorMessages());
+      this.formHelper = new FormHelper(
+        this.$root.find('[data-control]'),
+        this.getErrorMessages());
     });
   }
 

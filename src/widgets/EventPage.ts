@@ -120,30 +120,28 @@ export default class EventPage extends Widget<EventPageConfig> {
    * @param eventId {number}
    */
   private loadContent(eventId: string) {
-    const self = this;
     const url = this.getUrl(eventId);
 
     transport.get(url, {},
       (data: IPlainObject) => {
-        self.event = new Event(data.data, self.config);
-        self.updateHTML();
-        self.addJsonLD();
-        self.renderWidget();
+        this.event = new Event(data.data, this.config);
+        this.updateHTML();
+        this.addJsonLD();
+        this.renderWidget();
       });
   }
 
   private renderWidget() {
-    const self = this;
-    $.when(getTemplate(self.config)).done((template) => {
-      const params = Object.assign( { event: self.event }, self.getTemplateParams());
+    $.when(getTemplate(this.config)).done(template => {
+      const params = Object.assign( { event: this.event }, this.getTemplateParams());
 
       const content = template ?
         nunjucksRenderString(template, params) :
-        self.templates.eventPage.render(params);
+        this.templates.eventPage.render(params);
 
-      self.$root.html(content);
-      if (self.config.widgets) {
-        WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
+      this.$root.html(content);
+      if (this.config.widgets) {
+        WidgetFactory.launch({apiKey: this.apiKey}, this.config.widgets);
       }
     });
   }

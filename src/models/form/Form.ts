@@ -20,9 +20,6 @@ export default class Form {
    * @param event {Event} Form's event
    */
   constructor(readonly instructions: string | undefined, sections: any[], event: Event) {
-
-    this.sections = sections.map((sectionData: any) => {
-      return new Section(sectionData.label, sectionData.fields, event);
-    });
+    this.sections = sections.map((json: any) => new Section(json.id, json.label, json.fields, event));
   }
 }

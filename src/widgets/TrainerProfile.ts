@@ -124,18 +124,18 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
 
   private render() {
     const self = this;
-    $.when(getTemplate(self.config)).done((template) => {
-        const params = Object.assign( { trainer: self.trainer }, self.getTemplateParams());
-        const content = template ?
-          nunjucksRenderString(template, params) :
-          self.templates.trainerProfile.render(params);
+    $.when(getTemplate(self.config)).done(template => {
+      const params = Object.assign( { trainer: self.trainer }, self.getTemplateParams());
+      const content = template ?
+        nunjucksRenderString(template, params) :
+        self.templates.trainerProfile.render(params);
 
-        self.$root.html(content);
-        self.updateHTML();
-        if (self.config.widgets) {
-          WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
-        }
-      });
+      self.$root.html(content);
+      self.updateHTML();
+      if (self.config.widgets) {
+        WidgetFactory.launch({apiKey: self.apiKey}, self.config.widgets);
+      }
+    });
   }
 
   private getUrl(trainerId: number) {

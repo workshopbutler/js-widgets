@@ -10,7 +10,7 @@ export default function getTemplate(options: IPlainObject) {
   if (options.template) {
     defer.resolve($(options.template).html());
   } else if (options.templateUrl) {
-    $.get(options.templateUrl, (data) => {
+    $.get(options.templateUrl, data => {
       defer.resolve(data);
     });
   } else {

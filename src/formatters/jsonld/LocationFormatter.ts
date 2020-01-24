@@ -16,7 +16,7 @@ export default class LocationFormatter {
       };
       return {
         '@type': 'Place',
-        'address': address,
+        address,
       };
     }
   }

@@ -15,14 +15,14 @@
       <div class="wsb-info__footer">{{ _f(event.language) }}</div>
     </div>
   </div>
-  {% if event.tickets.nonEmpty() %}
+  {% if event.withTickets() %}
     <div class="wsb-info wsb-tickets">
       {% if event.free %}
         {% from "./freeTicket.njk" import freeTicket %}
         {{ freeTicket(event.tickets.free, _t, _f) }}
       {% else %}
         {% from "./paidTicket.njk" import paidTicket %}
-        {% for ticket in event.tickets.paid %}
+        {% for ticket in event.tickets.types %}
           {{ paidTicket(ticket, config, _t, _f) }}
         {% endfor %}
       {% endif %}

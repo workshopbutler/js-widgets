@@ -4,6 +4,7 @@ import WidgetFactory from './widgets/Factory';
 $(() => {
   (window as any).WorkshopButlerWidgets = {
     getQueryParam,
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     launch: WidgetFactory.launch,
   };
   const event = document.createEvent('HTMLEvents');

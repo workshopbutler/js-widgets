@@ -1,0 +1,10 @@
+{% macro checkbox(field, disabled, config, _t, _f) %}
+
+<input name="{{ field.name }}" id="{{ field.name }}" type="checkbox" {{ 'disabled' if disabled }}
+  {{ 'required' if field.required }}
+       value="yes" data-control/>
+<label class="wsb-checkbox" for="{{ field.name }}">
+  {{ field.label | safe }}
+</label>
+
+{% endmacro %}

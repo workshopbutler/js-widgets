@@ -57,18 +57,18 @@ export default class EventListFilters extends ListFilters<Event> {
 
   protected getFilterValues(name: string, events: Event[]): FilterValue[] {
     switch (name) {
-      case 'category':
-        return this.getCategoryFilterData(this.loc.translate('filter.categories'), events);
-      case 'language':
-        return this.getLanguageFilterData(this.loc.translate('filter.languages'), events);
-      case 'type':
-        return this.getTypeFilterData(this.loc.translate('filter.types'), events);
-      case 'location':
-        return this.getLocationFilterData(this.loc.translate('filter.locations'), events);
-      case 'trainer':
-        return this.getTrainerFilterData(this.loc.translate('filter.trainers'), events);
-      default:
-        return [];
+    case 'category':
+      return this.getCategoryFilterData(this.loc.translate('filter.categories'), events);
+    case 'language':
+      return this.getLanguageFilterData(this.loc.translate('filter.languages'), events);
+    case 'type':
+      return this.getTypeFilterData(this.loc.translate('filter.types'), events);
+    case 'location':
+      return this.getLocationFilterData(this.loc.translate('filter.locations'), events);
+    case 'trainer':
+      return this.getTrainerFilterData(this.loc.translate('filter.trainers'), events);
+    default:
+      return [];
     }
   }
 
@@ -92,7 +92,7 @@ export default class EventListFilters extends ListFilters<Event> {
 
   private getLocationFilterData(defaultName: string, events: Event[]): FilterValue[] {
     const self = this;
-    const unfiltered = events.map((event) => {
+    const unfiltered = events.map(event => {
       const countryCode = event.location.countryCode;
       const countryName = self.loc.translate(`country.${countryCode}`);
       const selected = isHasValueInPath('location', countryCode);
@@ -117,8 +117,8 @@ export default class EventListFilters extends ListFilters<Event> {
   }
 
   private getCategoryFilterData(defaultName: string, events: Event[]): FilterValue[] {
-    const unfiltered = events.filter((event) => event.category !== undefined)
-      .map((event) => {
+    const unfiltered = events.filter(event => event.category !== undefined)
+      .map(event => {
         if (event.category) {
           const categoryId = event.category.id.toString();
           const selected = isHasValueInPath('category', categoryId);
@@ -131,7 +131,7 @@ export default class EventListFilters extends ListFilters<Event> {
   }
 
   private getTypeFilterData(defaultName: string, events: Event[]): FilterValue[] {
-    const unfiltered = events.map((event) => {
+    const unfiltered = events.map(event => {
       const typeId = event.type.id.toString();
       const selected = isHasValueInPath('type', typeId);
       return new FilterValue(event.type.name, typeId, selected);

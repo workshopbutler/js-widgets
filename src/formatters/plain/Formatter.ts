@@ -16,31 +16,32 @@ import TicketPriceFormatter from './TicketPriceFormatter';
  * Produces string representations of various objects
  */
 export default class Formatter {
-    constructor(protected readonly loc: Localisation) {}
+  constructor(protected readonly loc: Localisation) {
+  }
 
-    format(object: any, type: string | null = null): string {
-        if (object instanceof Schedule) {
-            return ScheduleFormatter.format(this.loc.locale, object as Schedule, type);
-        }
-        if (object instanceof TicketPrice) {
-            return TicketPriceFormatter.format(this.loc, object as TicketPrice);
-        }
-        if (object instanceof Language) {
-            return LanguageFormatter.format(this.loc, object as Language);
-        }
-        if ((object as ITicketType).withoutLimit !== undefined) {
-            return TicketFormatter.format(this.loc, object as ITicketType, type);
-        }
-        if (object instanceof Location) {
-            return LocationFormatter.format(this.loc, object as Location);
-        }
-        if (object instanceof EventState) {
-            return EventStateFormatter.format(this.loc, object as EventState);
-        }
-        if (typeof object === 'number') {
-            const opts = { maximumFractionDigits: 2, minimumFractionDigits: 0 };
-            return Intl.NumberFormat(this.loc.locale, opts).format(object);
-        }
-        return '';
+  format(object: any, type: string | null = null): string {
+    if (object instanceof Schedule) {
+      return ScheduleFormatter.format(this.loc.locale, object, type);
     }
+    if (object instanceof TicketPrice) {
+      return TicketPriceFormatter.format(this.loc, object);
+    }
+    if (object instanceof Language) {
+      return LanguageFormatter.format(this.loc, object);
+    }
+    if ((object as ITicketType).withoutLimit !== undefined) {
+      return TicketFormatter.format(this.loc, object as ITicketType, type);
+    }
+    if (object instanceof Location) {
+      return LocationFormatter.format(this.loc, object);
+    }
+    if (object instanceof EventState) {
+      return EventStateFormatter.format(this.loc, object);
+    }
+    if (typeof object === 'number') {
+      const opts = {maximumFractionDigits: 2, minimumFractionDigits: 0};
+      return Intl.NumberFormat(this.loc.locale, opts).format(object);
+    }
+    return '';
+  }
 }

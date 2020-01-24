@@ -9,6 +9,7 @@ import WidgetConfig from '../config/WidgetConfig';
 import FormHelper from '../helpers/FormHelper';
 import Widget from '../Widget';
 import RegistrationPageConfig from '../config/RegistrationPageConfig';
+import PaidTickets from '../../models/workshop/PaidTickets';
 
 /**
  * Logic for the registrationPage form page
@@ -40,8 +41,9 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
   protected assignEvents() {
     this.initActiveTicketSelection();
     if (this.event.state.open()) {
-      this.$root.on('submit', this.onFormSubmittion.bind(this));
+      this.$root.on('submit', this.onFormSubmition.bind(this));
     }
+    this.initPromoActivation();
   }
 
   /**
@@ -49,7 +51,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
    * @param e {Event}
    * @private
    */
-  protected onFormSubmittion(e: JQuery.TriggeredEvent) {
+  protected onFormSubmition(e: JQuery.TriggeredEvent) {
     e.preventDefault();
     if (this.event.state.closed()) {
       logError('Widget configured incorrectly. Registration button shouldn\'t be active when the registration ' +
@@ -59,24 +61,23 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
         return;
       }
 
-      const self = this;
       const formData = this.prepareFormData(this.formHelper.getFormData());
 
       const url = `attendees/register?api_key=${this.apiKey}&t=${this.getWidgetStats()}`;
 
-      self.$root.addClass('h-busy');
+      this.$root.addClass('h-busy');
       $(e.target as HTMLElement).prop('disabled', true).addClass('h-busy');
 
       transport.post(url, formData,
         () => {
-          self.formHelper.clearForm();
-          if (self.successRedirectUrl && self.successRedirectUrl !== '') {
-            window.location.href = self.successRedirectUrl;
+          this.formHelper.clearForm();
+          if (this.successRedirectUrl && this.successRedirectUrl !== '') {
+            window.location.href = this.successRedirectUrl;
           } else {
-            self.successMessage.show();
-            self.form.hide();
+            this.successMessage.show();
+            this.form.hide();
           }
-          self.$root.removeClass('h-busy');
+          this.$root.removeClass('h-busy');
           $(e.target as HTMLElement).removeProp('disabled').removeClass('h-busy');
         });
     }
@@ -96,7 +97,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
     };
   }
 
-  protected getCountries(config: RegistrationPageConfig): Array<[string, string]> {
+  protected getCountries(config: RegistrationPageConfig): [string, string][] {
     const defaultCodes = ['AF', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM', 'AW', 'AU',
       'AT', 'AZ', 'AX', 'BS', 'BH', 'BD', 'BB', 'BY', 'BZ', 'BE', 'BJ', 'BM', 'BT', 'BA', 'BW', 'BN', 'BO',
       'BQ', 'BV', 'BR', 'BG', 'BF', 'BI', 'CV', 'CM', 'CA', 'CF', 'TD', 'CL', 'CN', 'CX', 'CC', 'CD', 'CG', 'CK',
@@ -112,7 +113,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
       'CH', 'SY', 'TJ', 'TW', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC', 'TV', 'UG', 'UA',
       'AE', 'GB', 'US', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VG', 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW'];
     const codes = config.countryOnlyFrom ? config.countryOnlyFrom : defaultCodes;
-    const countries = codes.map((code) =>
+    const countries = codes.map(code =>
       [code, this.loc.translate('country.' + code)] as [string, string],
     );
     return countries.sort((a, b) => a[1].localeCompare(b[1]));
@@ -124,10 +125,17 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
       this.toggleTicket(tickets, false);
       this.toggleTicket(tickets.filter(':checked'), true);
     });
-    if (this.event.tickets && this.event.tickets.selectedTicketId) {
+    if (this.event.tickets instanceof PaidTickets) {
       const activeTicket = tickets.filter(`#${this.event.tickets.selectedTicketId}`);
       this.toggleTicket(activeTicket, true);
     }
+  }
+
+  private initPromoActivation() {
+    this.$root.find('[data-promo-link]').on('click', e => {
+      e.preventDefault();
+      this.$root.find('[data-promo-code]').toggle();
+    });
   }
 
   private toggleTicket(tickets: JQuery<HTMLElement>, on: boolean) {
@@ -147,6 +155,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
    * @return {*}
    */
   private prepareFormData(data: IPlainObject): IPlainObject {
+    // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
     data.event_id = Number(this.event.id);
     for (const item in data) {
       if (!data[item]) {

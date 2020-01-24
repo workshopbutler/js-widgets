@@ -47,12 +47,8 @@ export default abstract class Widget<T extends WidgetConfig> {
    */
   protected getTemplateParams(): IPlainObject {
     return {
-      _f: (object: any, type: string | null) => {
-        return this.formatter.format(object, type);
-      },
-      _t: (key: string, options: any = null) => {
-        return this.loc.translate(key, options);
-      },
+      _f: (object: any, type: string | null) => this.formatter.format(object, type),
+      _t: (key: string, options: any = null) => this.loc.translate(key, options),
       config: this.config,
     };
   }

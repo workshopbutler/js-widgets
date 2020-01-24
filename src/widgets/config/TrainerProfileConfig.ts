@@ -22,6 +22,7 @@ export default class TrainerProfileConfig extends WidgetConfig {
    * Returns true if the options can be used to create the widget's config
    * @param options {IPlainObject} Widget's config
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected static validate(options: IPlainObject): boolean {
     return true;
   }

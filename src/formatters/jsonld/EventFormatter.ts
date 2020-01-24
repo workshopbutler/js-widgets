@@ -5,6 +5,7 @@ import LocationFormatter from './LocationFormatter';
 import PaidTicketTypeFormatter from './PaidTicketTypeFormatter';
 import TrainerFormatter from './TrainerFormatter';
 import CoverImage from '../../models/workshop/CoverImage';
+import PaidTickets from '../../models/workshop/PaidTickets';
 
 /**
  * Formats event to a JSON-LD format
@@ -43,12 +44,14 @@ export default class EventFormatter {
   }
 
   protected static addTickets(jsonLd: IPlainObject, event: Event): IPlainObject {
-    if (!event.free && event.tickets && event.tickets.nonEmpty()) {
+    if (event.tickets instanceof PaidTickets) {
       const offers = [];
-      for (const ticketType of event.tickets.paid) {
+      for (const ticketType of event.tickets.types) {
         offers.push(PaidTicketTypeFormatter.format(ticketType, event.registrationPage.url));
       }
-      jsonLd.offers = offers;
+      if (offers.length > 0) {
+        jsonLd.offers = offers;
+      }
     }
     return jsonLd;
   }

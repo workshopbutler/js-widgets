@@ -44,7 +44,16 @@ export default class Tickets {
     }
   }
 
-  getActiveTicket() {
+
+  /**
+   * Returns true if the event has tickets to buy/acquire
+   */
+  nonEmpty() {
+    return !this.isEmpty();
+  }
+
+
+  protected getActiveTicket() {
     const active = this.getActive();
     if (active.length) {
       return active[0];
@@ -54,43 +63,11 @@ export default class Tickets {
   }
 
   /**
-   * Returns number of all tickets left, for all valid and future types, or null if there is no limitation
-   * @return {number?}
-   */
-  getNumberOfSeatsLeft() {
-    function sum(total: number, addition: number) {
-      return total + addition;
-    }
-
-    if (this.free) {
-      if (this.free.numberOfTicketsLeft >= 0) {
-        return this.free.numberOfTicketsLeft;
-      } else {
-        return null;
-      }
-    } else {
-      const active = this.getActive().map((event) => event.numberOfTicketsLeft);
-      const future = this.getFuture().map((event) => event.numberOfTicketsLeft);
-      return active.reduce(sum, 0) + future.reduce(sum, 0);
-    }
-  }
-
-  /**
-   * Returns true if the event has tickets to buy/acquire
-   */
-  nonEmpty() {
-    return !this.isEmpty();
-  }
-
-  /**
    * Returns active paid types, which a user can register to
    * @return {IPaidTicketType[]}
    */
   protected getActive() {
-    return this.paid.filter((ticket) => ticket.active());
+    return this.paid.filter(ticket => ticket.active());
   }
 
-  protected getFuture() {
-    return this.paid.filter((ticket) => ticket.inFuture());
-  }
 }

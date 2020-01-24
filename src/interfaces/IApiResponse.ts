@@ -3,18 +3,18 @@ import IPlainObject from './IPlainObject';
 import ISuccess from './ISuccess';
 
 export default interface IApiResponse {
-    /**
+  /**
      * Status
      */
-    status: number;
+  status: number;
 
-    /**
+  /**
      * Headers
      */
-    headers: IPlainObject;
+  headers: IPlainObject;
 
-    /**
+  /**
      * Response body
      */
-    response: ISuccess | IError;
+  response: ISuccess | IError;
 }

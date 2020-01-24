@@ -57,7 +57,7 @@ export default class WidgetFactory {
   createWidget(config: any, index: number, apiKey: string, templates: ITemplates) {
     const supportedWidgets = ['Schedule', 'EventPage', 'RegistrationPage', 'TrainerProfile',
       'TrainerList', 'SidebarEventList', 'TestimonialList'];
-    if (!config.type || supportedWidgets.indexOf(config.type) < 0) {
+    if (!config.type || !supportedWidgets.includes(config.type)) {
       logError(`Unknown widget type at the index ${index}`);
       return false;
     }
@@ -66,33 +66,33 @@ export default class WidgetFactory {
       return false;
     }
     switch (config.type) {
-      case 'Schedule':
-        if (config.table && templates instanceof DefaultTemplates) {
-          (templates as DefaultTemplates).changeScheduleLayout(true);
-        }
-        Schedule.plugin(config.target, apiKey, templates, this.loc, config);
-        return true;
-      case 'TestimonialList':
-        TestimonialList.plugin(config.target, apiKey, templates, this.loc, config);
-        return true;
-      case 'EventPage':
-        EventPage.plugin(config.target, apiKey, templates, this.loc, config);
-        return true;
-      case 'RegistrationPage':
-        RegistrationPage.plugin(config.target, apiKey, templates, this.loc, config);
-        return true;
-      case 'TrainerProfile':
-        TrainerProfile.plugin(config.target, apiKey, templates, this.loc, config);
-        return true;
-      case 'TrainerList':
-        TrainerList.plugin(config.target, apiKey, templates, this.loc, config);
-        return true;
-      case 'SidebarEventList':
-        SidebarEventList.plugin(config.target, apiKey, templates, this.loc, config);
-        return true;
-      default:
-        logError(`Unknown widget type at the index ${index}`);
-        return false;
+    case 'Schedule':
+      if (config.table && templates instanceof DefaultTemplates) {
+        (templates).changeScheduleLayout(true);
+      }
+      Schedule.plugin(config.target, apiKey, templates, this.loc, config);
+      return true;
+    case 'TestimonialList':
+      TestimonialList.plugin(config.target, apiKey, templates, this.loc, config);
+      return true;
+    case 'EventPage':
+      EventPage.plugin(config.target, apiKey, templates, this.loc, config);
+      return true;
+    case 'RegistrationPage':
+      RegistrationPage.plugin(config.target, apiKey, templates, this.loc, config);
+      return true;
+    case 'TrainerProfile':
+      TrainerProfile.plugin(config.target, apiKey, templates, this.loc, config);
+      return true;
+    case 'TrainerList':
+      TrainerList.plugin(config.target, apiKey, templates, this.loc, config);
+      return true;
+    case 'SidebarEventList':
+      SidebarEventList.plugin(config.target, apiKey, templates, this.loc, config);
+      return true;
+    default:
+      logError(`Unknown widget type at the index ${index}`);
+      return false;
     }
   }
 

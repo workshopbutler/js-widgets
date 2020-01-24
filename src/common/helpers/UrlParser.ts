@@ -6,7 +6,7 @@ import URI from 'urijs';
  */
 export default function getQueryParam(name: string) {
   let value = null;
-  window.location.search.substr(1).split('&').forEach((el) => {
+  window.location.search.substr(1).split('&').forEach(el => {
     const param = el.split('=', 2);
     if (param.length === 2 && param[0] === name) {
       value = param[1];

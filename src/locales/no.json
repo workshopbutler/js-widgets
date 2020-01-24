@@ -413,11 +413,10 @@
       }
     },
     "section": {
-      "home address": "Hjemmeadresse",
-      "billing address": "Fakturaadresse",
-      "billing info": "Faktureringsinfo",
-      "work info": "Arbeid info",
-      "additional information": "Tilleggsinformasjon",
+      "address": "Hjemmeadresse",
+      "billing": "Faktureringsinfo",
+      "work": "Arbeid info",
+      "other": "Tilleggsinformasjon",
       "ticket": "Billett"
     }
   },

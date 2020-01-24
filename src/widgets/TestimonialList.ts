@@ -88,7 +88,7 @@ export default class TestimonialList extends Widget<TestimonialListConfig> {
 
   private render() {
     const self = this;
-    $.when(getTemplate(self.config)).done((template) => {
+    $.when(getTemplate(self.config)).done(template => {
       const params = Object.assign({ trainer: self.trainer }, self.getTemplateParams());
       const content = template ?
         nunjucksRenderString(template, params) :

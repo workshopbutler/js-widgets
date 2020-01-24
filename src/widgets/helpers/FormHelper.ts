@@ -3,7 +3,6 @@ import IPlainObject from '../../interfaces/IPlainObject';
 export default class FormHelper {
 
   protected errors: IPlainObject[];
-  protected $inputWithError?: JQuery;
 
   /**
    * Validate given controls
@@ -17,33 +16,15 @@ export default class FormHelper {
   }
 
   isValidFormData() {
-    const self = this;
     let valid = true;
 
     this.removeErrors();
     this.$controls.each((index, control) => {
-      const isValidControl = self.isValidControl($(control));
+      const isValidControl = this.isValidControl($(control));
       valid = valid && isValidControl;
     });
 
     return valid;
-  }
-
-  /**
-   * Set errors
-   * @param {Array} errors - [{name: "email", error: "empty"}, {name: "password", error: "empty"}]
-   */
-  setErrors(errors: IPlainObject[]) {
-    this.$inputWithError = undefined;
-
-    errors.forEach((item: IPlainObject) => {
-      const $currentControl = this.$controls.filter('[name="' + item.name + '"]').first();
-
-      if (!$currentControl.length) {
-        return;
-      }
-      this.setError($currentControl, item.error, false);
-    });
   }
 
   removeErrors() {
@@ -78,19 +59,6 @@ export default class FormHelper {
   }
 
   /**
-   * Universal assign value
-   * @param {jQuery} $control
-   * @param {String|Number|Boolean} value
-   */
-  protected setControlValue($control: JQuery<HTMLElement>, value: string | number | string[]) {
-    if ($control.is(':checkbox')) {
-      $control.prop('checked', value);
-    } else {
-      $control.val(value);
-    }
-  }
-
-  /**
    * Universal get value helper
    * @param {jQuery} $control
    * @returns {String|Boolean}
@@ -114,9 +82,7 @@ export default class FormHelper {
 
     $parent.removeClass('b-error_show');
 
-    this.errors = this.errors.filter((item) => {
-      return item.name !== $control.attr('name');
-    });
+    this.errors = this.errors.filter(item => item.name !== $control.attr('name'));
   }
 
   /**
@@ -149,31 +115,4 @@ export default class FormHelper {
 
     return validation.isValid;
   }
-
-  /**
-   * Set error for control
-   * @param {jQuery} $control
-   * @param {String} errorText
-   * @param {Boolean} showBubble
-   */
-  protected setError($control: JQuery<HTMLElement>, errorText: string, showBubble: boolean = true) {
-    const $parent = $control.parent();
-    const $error = $parent.find('.b-error');
-
-    if ($error.length) {
-      $error.text(errorText);
-    } else {
-      $('<div class="b-error" />')
-        .text(errorText)
-        .appendTo($parent);
-    }
-
-    $parent.addClass('b-error_show');
-
-    this.errors.push({
-      name: $control.attr('name'),
-      error: errorText,
-    });
-  }
-
 }

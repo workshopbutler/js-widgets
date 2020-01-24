@@ -26,35 +26,35 @@ export default class ScheduleFormatter {
    * @param part {string} Defines which part of the schedule to format
    * @return {string}
    */
-  protected static formatSchedule(locale: string, schedule: Schedule, part: string = 'full_long'): string {
+  protected static formatSchedule(locale: string, schedule: Schedule, part = 'full_long'): string {
     // Start/end time for events were added in the same version the timezone was added.
     // So if the timezone exist, we can show time. Otherwise, only the dates.
     const withTime = schedule.timezone != null;
     switch (part) {
-      case 'start_long':
-        return DateTimeFormatter.format(locale, schedule.start, withTime);
-      case 'start_short':
-        return DateTimeFormatter.format(locale, schedule.start);
-      case 'end_long':
-        return DateTimeFormatter.format(locale, schedule.end, withTime);
-      case 'end_short':
-        return DateTimeFormatter.format(locale, schedule.end);
-      case 'timezone_long':
-        return schedule.timezone ? schedule.start.offsetNameLong : '';
-      case 'timezone_short':
-        return schedule.timezone ?
-          Timezones.shortName(schedule.start.offsetNameLong) || schedule.start.offsetNameShort :
-          '';
-      case 'full_short':
+    case 'start_long':
+      return DateTimeFormatter.format(locale, schedule.start, withTime);
+    case 'start_short':
+      return DateTimeFormatter.format(locale, schedule.start);
+    case 'end_long':
+      return DateTimeFormatter.format(locale, schedule.end, withTime);
+    case 'end_short':
+      return DateTimeFormatter.format(locale, schedule.end);
+    case 'timezone_long':
+      return schedule.timezone ? schedule.start.offsetNameLong : '';
+    case 'timezone_short':
+      return schedule.timezone ?
+        Timezones.shortName(schedule.start.offsetNameLong) || schedule.start.offsetNameShort :
+        '';
+    case 'full_short':
+      return ScheduleFormatter.formatFullDate(locale, schedule);
+    case 'full_long':
+      if (!schedule.timezone) {
         return ScheduleFormatter.formatFullDate(locale, schedule);
-      case 'full_long':
-        if (!schedule.timezone) {
-          return ScheduleFormatter.formatFullDate(locale, schedule);
-        } else {
-          return ScheduleFormatter.formatFullDateTime(locale, schedule);
-        }
-      default:
-        return '';
+      } else {
+        return ScheduleFormatter.formatFullDateTime(locale, schedule);
+      }
+    default:
+      return '';
     }
   }
 

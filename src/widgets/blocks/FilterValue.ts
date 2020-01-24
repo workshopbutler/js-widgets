@@ -6,7 +6,7 @@ export default class FilterValue {
   readonly value: string;
   readonly selected?: boolean;
 
-  constructor(name: string, value: string, selected: boolean = false) {
+  constructor(name: string, value: string, selected = false) {
     this.name = name;
     this.value = value;
     this.selected = selected;

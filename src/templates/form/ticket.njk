@@ -1,0 +1,24 @@
+{% macro ticket(field, disabled, config, _t, _f) %}
+
+<div class="wsb-form__tickets" id="wsb-tickets">
+  {% for ticket in field.tickets.types %}
+    {% if ticket.active() %}
+      <div class="wsb-form__ticket">
+        {% set price = _f(ticket.price) %}
+        <input id="{{ ticket.id }}" name="{{ field.name }}" title="{{ field.label }}" type="radio"
+               data-control required value="{{ ticket.id }}" {{ 'disabled' if disabled }}
+        />
+        <label for="{{ ticket.id }}" class="wsb-label"><strong>{{ price }}</strong> {{ ticket.name }}</label>
+      </div>
+    {% endif %}
+  {% endfor %}
+  <div class="wsb-form__tax">
+    {% if field.excludedTax %}
+      {{ _t("tax.excluded_all") }} 25%
+    {% else %}
+      {{ _t("tax.included_all") }}
+    {% endif %}
+  </div>
+</div>
+
+{% endmacro %}

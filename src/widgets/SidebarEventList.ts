@@ -80,18 +80,14 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
    * Loads events and renders the table
    */
   private loadContent() {
-    const self = this;
-
-    $.when(this.getVisitorCountry()).done((country) => {
+    $.when(this.getVisitorCountry()).done(country => {
       const url = this.getUrl(country);
       transport.get(url, {},
         (resp: ISuccess) => {
-          const events = resp.data.filter((event: IPlainObject) => event.hashed_id !== self.config.excludeId);
-          const length = self.config.length ? self.config.length : 3;
-          self.events = events.slice(0, length).map((event: IPlainObject) => {
-            return new Event(event, self.config);
-          });
-          self.renderUpcomingEventList();
+          const events = resp.data.filter((event: IPlainObject) => event.hashed_id !== this.config.excludeId);
+          const length = this.config.length ? this.config.length : 3;
+          this.events = events.slice(0, length).map((event: IPlainObject) => new Event(event, this.config));
+          this.renderUpcomingEventList();
         });
     });
   }
@@ -103,9 +99,8 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
   private getVisitorCountry() {
     const defer = $.Deferred();
 
-    const self = this;
     if (this.config.country && this.config.country === 'detect') {
-      transport.get(`/utils/country?api_key=${self.apiKey}`, {},
+      transport.get(`/utils/country?api_key=${this.apiKey}`, {},
         (data: any) => {
           defer.resolve(data.response.country);
         },
@@ -119,29 +114,28 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
   }
 
   private renderUpcomingEventList() {
-    const self = this;
-    $.when(getTemplate(self.config)).done((template) => {
+    $.when(getTemplate(this.config)).done(template => {
       function renderTemplate(event: Event) {
-        const localParams = Object.assign({ event }, self.getTemplateParams());
+        const localParams = Object.assign({ event }, this.getTemplateParams());
         return nunjucksRenderString(template, localParams);
       }
 
       const uniqueParams = {
-        events: self.events,
+        events: this.events,
         template: renderTemplate,
       };
-      const params = Object.assign(uniqueParams, self.getTemplateParams());
+      const params = Object.assign(uniqueParams, this.getTemplateParams());
       if (params.events.length) {
-        const content = self.templates.sidebarEventList.render(params);
-        self.$list.html(content);
-        if (self.config.hideIfEmpty) {
-          self.$root.show();
+        const content = this.templates.sidebarEventList.render(params);
+        this.$list.html(content);
+        if (this.config.hideIfEmpty) {
+          this.$root.show();
         }
       } else {
-        if (self.config.hideIfEmpty) {
-          self.$root.hide();
+        if (this.config.hideIfEmpty) {
+          this.$root.hide();
         } else {
-          self.$list.html(self.loc.translate('sidebar.noEvents'));
+          this.$list.html(this.loc.translate('sidebar.noEvents'));
         }
       }
     });

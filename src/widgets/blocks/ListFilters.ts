@@ -14,15 +14,14 @@ export abstract class ListFilters<T> {
    */
   getFilters(objects: T[]): Filter[] {
     const filters: Filter[] = [];
-    const self = this;
-    this.filters.forEach((name) => {
-      const values = self.getFilterValues(name, objects);
+    this.filters.forEach(name => {
+      const values = this.getFilterValues(name, objects);
       if (values.length) {
         const filterValue = new Filter(name, values, true);
         filters.push(filterValue);
       }
     });
-    return filters.filter((filter) => filter.visible);
+    return filters.filter(filter => filter.visible);
   }
 
   protected abstract getFilterValues(name: string, objects: T[]): FilterValue[];
@@ -35,16 +34,17 @@ export abstract class ListFilters<T> {
    */
   protected getFilterData(defaultName: string, values: FilterValue[]): FilterValue[] {
     function onlyUnique(object: FilterValue, index: number, self: FilterValue[]) {
-      return self.findIndex((value) => object.value === value.value) === index;
+      return self.findIndex(value => object.value === value.value) === index;
     }
 
     function onlyDefined(object: FilterValue) {
       return object.value !== undefined;
     }
 
-    const filtered = values.filter(onlyDefined).filter(onlyUnique).sort((left, right) => {
-      return left.name.localeCompare(right.name);
-    });
+    const filtered = values
+      .filter(onlyDefined)
+      .filter(onlyUnique)
+      .sort((left, right) => left.name.localeCompare(right.name));
 
     // there is no value in rendering a filter when you cannot select more than 1 option
     if (!filtered.length) {

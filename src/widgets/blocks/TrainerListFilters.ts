@@ -26,18 +26,18 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
 
   protected getFilterValues(name: string, trainers: Trainer[]): FilterValue[] {
     switch (name) {
-      case 'language':
-        return this.getLanguageFilterData(this.loc.translate('filter.languages'), trainers);
-      case 'location':
-        return this.getLocationFilterData(this.loc.translate('filter.locations'), trainers);
-      case 'trainer':
-        return this.getTrainerFilterData(this.loc.translate('filter.trainers'), trainers);
-      case 'rating':
-        return this.getRatingFilterData(this.loc.translate('filter.rating'), trainers);
-      case 'badge':
-        return this.getBadgeFilterData(this.loc.translate('filter.badge'), trainers);
-      default:
-        return [];
+    case 'language':
+      return this.getLanguageFilterData(this.loc.translate('filter.languages'), trainers);
+    case 'location':
+      return this.getLocationFilterData(this.loc.translate('filter.locations'), trainers);
+    case 'trainer':
+      return this.getTrainerFilterData(this.loc.translate('filter.trainers'), trainers);
+    case 'rating':
+      return this.getRatingFilterData(this.loc.translate('filter.rating'), trainers);
+    case 'badge':
+      return this.getBadgeFilterData(this.loc.translate('filter.badge'), trainers);
+    default:
+      return [];
     }
   }
 
@@ -47,10 +47,9 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
 
   /**
    * Filters the trainers in the table
-   * @param e {Event}
    * @private
    */
-  private filterEvents(e: Event) {
+  private filterEvents() {
     let trainers = this.$root.find('[data-trainer-obj]').hide();
     this.$root.find('[data-filter]').each((index, el) => {
       const filterName = $(el).data('name');
@@ -74,24 +73,22 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
    * @param value {string} Value of the filter
    */
   private getFilter(name: string, value: string) {
-    const ratingFunction = (index: number, el: HTMLElement) => {
-      return $(el).data('trainer-rating') > value;
-    };
+    const ratingFunction = (index: number, el: HTMLElement) => $(el).data('trainer-rating') > value;
     const experienceFunction = (index: number, el: HTMLElement) => {
       const exp = $(el).data('trainer-exp');
       switch (value) {
-        case 'one': return exp < 1;
-        case 'three': return exp <= 3 && exp >= 1;
-        case 'five': return exp > 3 && exp <= 5;
-        case 'seven': return exp > 5 && exp <= 7;
-        case 'more': return exp > 7;
-        default: return false;
+      case 'one': return exp < 1;
+      case 'three': return exp <= 3 && exp >= 1;
+      case 'five': return exp > 3 && exp <= 5;
+      case 'seven': return exp > 5 && exp <= 7;
+      case 'more': return exp > 7;
+      default: return false;
       }
     };
     switch (name) {
-      case 'experience': return experienceFunction;
-      case 'rating': return ratingFunction;
-      default: return `[data-trainer-${name}*="${value}"]`;
+    case 'experience': return experienceFunction;
+    case 'rating': return ratingFunction;
+    default: return `[data-trainer-${name}*="${value}"]`;
     }
   }
 
@@ -101,10 +98,9 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
    * @param trainers {Trainer[]} List of trainers
    */
   private getExperienceFilterData(defaultName: string, trainers: Trainer[]) {
-    const self = this;
     const experience = ['one', 'three', 'five', 'seven', 'more'];
-    const unfiltered = experience.map((value) => {
-      const name = self.loc.translate(`experience.${value}`);
+    const unfiltered = experience.map(value => {
+      const name = this.loc.translate(`experience.${value}`);
       return new FilterValue(name, value);
     });
     return this.getFilterData(defaultName, unfiltered);
@@ -116,7 +112,6 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
    * @param trainers {Trainer[]} List of trainers
    */
   private getRatingFilterData(defaultName: string, trainers: Trainer[]) {
-    const self = this;
     const ratings = [
       {name: 'one', value: 1},
       {name: 'two', value: 2},
@@ -128,8 +123,8 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
       {name: 'eight', value: 8},
       {name: 'nine', value: 9},
     ];
-    const unfiltered = ratings.map((rating) => {
-      const name = self.loc.translate(`rating.${rating.name}`);
+    const unfiltered = ratings.map(rating => {
+      const name = this.loc.translate(`rating.${rating.name}`);
       return new FilterValue(name, rating.value.toString());
     });
     return this.getFilterData(defaultName, unfiltered);
@@ -175,7 +170,7 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
   }
 
   private getTrainerFilterData(defaultName: string, trainers: Trainer[]) {
-    const preparedData = trainers.map((trainer) => {
+    const preparedData = trainers.map(trainer => {
       const trainerName = `${trainer.firstName} ${trainer.lastName}`;
       return {
         name: trainerName,
