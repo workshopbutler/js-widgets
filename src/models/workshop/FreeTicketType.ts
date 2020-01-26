@@ -1,10 +1,9 @@
-import IFreeTicketType from '../../interfaces/IFreeTicketType';
 import IPlainObject from '../../interfaces/IPlainObject';
 
 /**
- * A default implementation of IFreeTicketType interface
+ * Free ticket type
  */
-export default class FreeTicketType implements IFreeTicketType {
+export default class FreeTicketType {
 
   static fromJSON(json: IPlainObject): FreeTicketType {
     return new FreeTicketType(json.total, json.left, json.unlimited);

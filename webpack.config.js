@@ -9,7 +9,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
+const CopyPlugin = require('copy-webpack-plugin');
 
 const config = require('./config.js');
 const dest = path.resolve(__dirname, 'dist');
@@ -112,6 +112,12 @@ function getPlugins() {
     new MiniCssExtractPlugin({
       filename: config.isDev? `[name].css` : `[name].${getVersion()}.min.css`
     }),
+    new CopyPlugin([
+      {
+        from: 'locales/*.json',
+        to: `[name].${getVersion()}.json`
+      }
+    ])
   ];
   const hugoSrc = path.resolve(__dirname, 'site');
   const hugoCmd = `hugo --buildDrafts --watch --source ${hugoSrc} --destination ${dest} --environment development`;

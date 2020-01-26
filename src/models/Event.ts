@@ -12,7 +12,6 @@ import Schedule from './Schedule';
 import Trainer from './Trainer';
 import Type from './workshop/Type';
 import CoverImage from './workshop/CoverImage';
-import IFreeTicketType from '../interfaces/IFreeTicketType';
 import PaidTickets from './workshop/PaidTickets';
 
 export default class Event {
@@ -27,7 +26,7 @@ export default class Event {
   readonly soldOut: boolean;
   readonly url: string;
   readonly registrationPage: RegistrationPage;
-  readonly tickets?: IFreeTicketType | PaidTickets;
+  readonly tickets?: FreeTicketType | PaidTickets;
   readonly trainers: Trainer[];
   readonly description: string;
   readonly schedule: Schedule;
@@ -107,7 +106,7 @@ export default class Event {
     return value.replace(regex, '_');
   }
 
-  private getTickets(free: boolean, tickets: IPlainObject): IFreeTicketType | PaidTickets | undefined {
+  private getTickets(free: boolean, tickets: IPlainObject): FreeTicketType | PaidTickets | undefined {
     if (tickets.free || tickets.paid) {
       return free ?
         FreeTicketType.fromJSON(tickets.free) :

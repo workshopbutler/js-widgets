@@ -13,8 +13,8 @@
     {% endif %}
   {% endfor %}
   <div class="wsb-form__tax">
-    {% if field.excludedTax %}
-      {{ _t("tax.excluded_all") }} 25%
+    {% if field.tickets.excludedTax %}
+      {{ _t("tax.excluded_all") }} {% if field.tickets.tax %} {{ field.tickets.tax }}% {% endif %}
     {% else %}
       {{ _t("tax.included_all") }}
     {% endif %}

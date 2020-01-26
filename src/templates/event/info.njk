@@ -19,7 +19,7 @@
     <div class="wsb-info wsb-tickets">
       {% if event.free %}
         {% from "./freeTicket.njk" import freeTicket %}
-        {{ freeTicket(event.tickets.free, _t, _f) }}
+        {{ freeTicket(event.tickets, _t, _f) }}
       {% else %}
         {% from "./paidTicket.njk" import paidTicket %}
         {% for ticket in event.tickets.types %}

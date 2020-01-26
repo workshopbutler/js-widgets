@@ -4,11 +4,11 @@ import PaidTicketType from './PaidTicketType';
 
 export default class PaidTickets {
 
-  static fromJSON(json: IPlainObject[], timezone: string): PaidTickets {
-    const types = json.map((ticket: IPlainObject) =>
+  static fromJSON(json: IPlainObject, timezone: string): PaidTickets {
+    const types = json.types.map((ticket: IPlainObject) =>
       PaidTicketType.fromJSON(ticket, timezone),
     );
-    return new PaidTickets(types);
+    return new PaidTickets(types, json.vat_excluded, json.vat_amount);
   }
 
   /**
@@ -31,9 +31,10 @@ export default class PaidTickets {
    */
   readonly types: IPaidTicketType[];
 
-  constructor(types: IPaidTicketType[]) {
+  constructor(types: IPaidTicketType[], excludedTax: boolean, tax?: number) {
     this.types = types;
-    this.excludedTax = types.filter(value => value.excludedTax).length > 0;
+    this.excludedTax = excludedTax;
+    this.tax = 25;
     this.selectedTicketId = this.getActiveTicketId();
   }
 
