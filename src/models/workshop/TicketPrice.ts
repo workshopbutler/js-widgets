@@ -14,4 +14,12 @@ export default class TicketPrice {
               readonly currency: string,
               readonly sign: string) {
   }
+
+  /**
+   * Returns a new ticket price object with the given amount
+   * @param amount {number} New ticket amount
+   */
+  withAmount(amount: number): TicketPrice {
+    return new TicketPrice(amount, this.currency, this.sign);
+  }
 }

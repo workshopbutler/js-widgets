@@ -1,0 +1,16 @@
+{% macro ticketSection(section, disabled, config, _t, _f) %}
+  <section class="wsb-ticket-section">
+    <div class="wsb-form__section-title">{{ _t('form.section.' + section.id) }}</div>
+    {% from "./field.njk" import formField %}
+    {% for field in section.fields %}
+      {{ formField(field, disabled, [], config, _t, _f) }}
+    {% endfor %}
+    {% if section.showSummary() %}
+      <div class="wsb-form__field ticket">
+        <label class="wsb-label">Summary</label>
+        <div class="wsb-form__summary" data-summary>
+        </div>
+      </div>
+    {% endif %}
+  </section>
+{% endmacro %}

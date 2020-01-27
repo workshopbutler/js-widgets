@@ -52,9 +52,11 @@
     &::-webkit-input-placeholder {
       color: #999
     }
+
     &:-ms-input-placeholder {
       color: #999
     }
+
     &::-moz-placeholder {
       color: #999;
       opacity: 1
@@ -100,6 +102,7 @@
     &:last-of-type {
       border-bottom: none;
     }
+
     &:first-of-type {
       padding-top: 0;
     }
@@ -123,6 +126,7 @@
     &.textarea, &.checkbox {
       flex: 1 0 100%;
     }
+
     @media @phone, screen and (max-width: 600px) {
       flex: 0 1 100%;
       min-width: 7em;
@@ -132,14 +136,22 @@
       &.checkbox {
         flex-direction: row;
         align-items: flex-start;
+
         .wsb-label {
           display: none;
         }
+      }
+      &.ticket > .wsb-label {
+        display: none;
       }
     }
 
     &.ticket, &.textarea {
       align-items: flex-start;
+    }
+
+    &.ticket .wsb-label {
+      padding-top: @label-padding;
     }
   }
 
@@ -150,6 +162,7 @@
       flex: 0 0 2em;
     }
   }
+
   .wsb-checkbox {
     cursor: pointer;
   }
@@ -182,22 +195,46 @@
       margin-bottom: 1em;
     }
   }
+
   .wsb-form__tickets {
     width: 100%;
     display: block;
   }
 
+  @left-padding: 0.75em;
+  @label-padding: 0.9em;
+
   .wsb-form__ticket {
-    @padding-size: 0.75em;
-    padding: @padding-size;
-    margin-left: -@padding-size;
+    padding: @left-padding;
+    margin-left: -@left-padding;
 
     label, input {
       cursor: pointer;
     }
 
+
     &.wsb-active {
       background-color: @background-grey;
+    }
+
+    @media @phone {
+      margin-left: 0;
+    }
+  }
+
+  .wsb-form__summary {
+    background-color: @background-grey;
+    margin-left: -@left-padding;
+    padding: @label-padding @left-padding;
+    width: 100%;
+
+    p {
+      margin-top: 0.1em;
+    }
+
+    span {
+      min-width: 8em;
+      display: inline-block;
     }
 
     @media @phone {
@@ -211,9 +248,11 @@
     color: @text-grey !important;
     text-decoration: underline;
   }
+
   .wsb-promo-code {
     display: none;
   }
+
   .wsb-promo-block {
     padding-left: @left-column;
 
@@ -221,6 +260,7 @@
       padding-left: 0;
     }
   }
+
   .wsb-form__tax {
     font-style: italic;
     font-size: 0.75em;

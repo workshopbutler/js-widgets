@@ -13,8 +13,10 @@ export default class PaidTicketTypeFormatter {
       '@type': 'Offer',
       'price': ticketType.price.amount,
       'priceCurrency': ticketType.price.currency,
-      'validFrom': ticketType.start.toISO({ suppressMilliseconds: true, suppressSeconds: true }),
     };
+    if (ticketType.start) {
+      json.validFrom = ticketType.start.toISO({ suppressMilliseconds: true, suppressSeconds: true });
+    }
     const availability = this.availability(ticketType);
     if (availability) {
       json.availability = availability;

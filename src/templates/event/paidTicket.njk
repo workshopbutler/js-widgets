@@ -1,21 +1,24 @@
 {% macro paidTicket(ticket, config, _t, _f) %}
-    {% set visible = config.expiredTickets or ticket.active() or ticket.inFuture() %}
-    {% if visible %}
+  {% set visible = config.expiredTickets or ticket.active() or ticket.inFuture() %}
+  {% if visible %}
     <div class="wsb-ticket {% if not ticket.active() %} state-closed {% endif %}">
-        <div class="wsb-ticket__val">
-            {{ _f(ticket.price) }}
-        </div>
-        <div class="wsb-ticket__name">
-            {{ ticket.name }}
-        </div>
+      <div class="wsb-ticket__val">
+        {{ _f(ticket.price) }}
+      </div>
+      <div class="wsb-ticket__name">
+        {{ ticket.name }}
+      </div>
+      {% set ticketDescr = _f(ticket, 'desc') %}
+      {% if ticketDescr %}
         <div class="wsb-ticket__desc">
-            {{ _f(ticket, 'desc') }}
+          {{ ticketDescr }}
         </div>
-        {% if not ticket.ended() and config.numberOfTickets %}
-            <div class="wsb-ticket__footer">
-                {{ _f(ticket, 'state') }}
-            </div>
-        {% endif %}
+      {% endif %}
+      {% if not ticket.ended() and config.numberOfTickets %}
+        <div class="wsb-ticket__footer">
+          {{ _f(ticket, 'state') }}
+        </div>
+      {% endif %}
     </div>
-    {% endif %}
+  {% endif %}
 {% endmacro %}

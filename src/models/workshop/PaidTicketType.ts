@@ -19,8 +19,8 @@ export default class PaidTicketType implements IPaidTicketType {
   readonly name: string;
   readonly numberOfTickets: number;
   readonly numberOfTicketsLeft: number;
-  readonly start: DateTime;
-  readonly end: DateTime;
+  readonly start?: DateTime;
+  readonly end?: DateTime;
 
   /**
    * True when a sales tax is NOT included in the price
@@ -32,8 +32,8 @@ export default class PaidTicketType implements IPaidTicketType {
               name: string,
               total: number,
               left: number,
-              start: DateTime,
-              end: DateTime,
+              start: DateTime | undefined,
+              end: DateTime | undefined,
               excludedTax: boolean,
               price: TicketPrice) {
     this.id = id;
@@ -59,7 +59,7 @@ export default class PaidTicketType implements IPaidTicketType {
    * @return {boolean}
    */
   inFuture(): boolean {
-    return this.start > DateTime.local();
+    return this.start ? this.start > DateTime.local() : false;
   }
 
   /**
@@ -75,7 +75,7 @@ export default class PaidTicketType implements IPaidTicketType {
    * @return {boolean}
    */
   ended(): boolean {
-    return this.end < DateTime.local();
+    return this.end ? this.end < DateTime.local() : false;
   }
 
   /**

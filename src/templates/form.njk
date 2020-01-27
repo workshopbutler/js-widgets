@@ -1,37 +1,40 @@
 {% macro registrationForm(event, countries, config, _t, _f) %}
-    <div class="wsb-congratulation" id="wsb-success">
-        <h2 class="wsb-congratulation__title">
-            {{ _t('registration.successTitle') }}
-        </h2>
-        <div class="wsb-congratulation__p">
-            {{ _t('registration.successMsg') }}
-        </div>
+  <div class="wsb-congratulation" id="wsb-success">
+    <h2 class="wsb-congratulation__title">
+      {{ _t('registration.successTitle') }}
+    </h2>
+    <div class="wsb-congratulation__p">
+      {{ _t('registration.successMsg') }}
     </div>
+  </div>
 
-    <form action="#" class="wsb-form" id="wsb-form">
-        <div class="wsb-form__body">
-            <div class="wsb-form__instructions">{{ event.registrationForm.instructions }}</div>
-            {% from "./form/field.njk" import formField %}
-            {% for section in event.registrationForm.sections %}
-                <section {{ 'class=wsb-ticket-section' if section.id == 'ticket' }}>
-                  {% if section.id != 'footer' and section.id != 'general' %}
-                    <div class="wsb-form__section-title">{{ _t('form.section.' + section.id) }}</div>
-                  {% endif %}
-                  {% for field in section.fields %}
-                    {{ formField(field, event.state.closed(), countries, config, _t, _f) }}
-                  {% endfor %}
-                  {% if section.id == 'ticket' %}
-                  {% endif %}
-                </section>
-            {% endfor %}
-            <div class="wsb-form__error" data-form-major-error></div>
-            {% if event.state.closed() %}
-                <button class="wsb-form__btn" disabled>{{ _f(event.state) }}</button>
-            {% else %}
-                <button type="submit" class="wsb-form__btn">
-                    {{ _t('event.form.button') }}
-                </button>
+  <form action="#" class="wsb-form" id="wsb-form">
+    <div class="wsb-form__body">
+      <div class="wsb-form__instructions">{{ event.registrationForm.instructions }}</div>
+      {% from "./form/field.njk" import formField %}
+      {% from "./form/ticketSection.njk" import ticketSection %}
+      {% for section in event.registrationForm.sections %}
+        {% if section.id == 'ticket' %}
+          {{ ticketSection(section, event.state.closed(), config, _t, _f) }}
+        {% else %}
+          <section>
+            {% if section.id != 'footer' %}
+              <div class="wsb-form__section-title">{{ _t('form.section.' + section.id) }}</div>
             {% endif %}
-        </div>
-    </form>
+            {% for field in section.fields %}
+              {{ formField(field, event.state.closed(), countries, config, _t, _f) }}
+            {% endfor %}
+          </section>
+        {% endif %}
+      {% endfor %}
+      <div class="wsb-form__error" data-form-major-error></div>
+      {% if event.state.closed() %}
+        <button class="wsb-form__btn" disabled>{{ _f(event.state) }}</button>
+      {% else %}
+        <button type="submit" class="wsb-form__btn">
+          {{ _t('event.form.button') }}
+        </button>
+      {% endif %}
+    </div>
+  </form>
 {% endmacro %}

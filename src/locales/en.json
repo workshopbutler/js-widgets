@@ -413,6 +413,7 @@
       }
     },
     "section": {
+      "general": "Personal Info",
       "address": "Home Address",
       "billing": "Billing Info",
       "work": "Work Info",

@@ -131,11 +131,13 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
       this.successRedirectUrl = this.config.successRedirectUrl;
       this.successMessage.hide();
       this.form = this.$root.find('#wsb-form');
+      this.summaryBlock = this.$root.find('[data-summary]');
       this.assignEvents();
 
       this.formHelper = new FormHelper(
         this.$root.find('[data-control]'),
         this.getErrorMessages());
+
     });
   }
 

@@ -10,6 +10,7 @@ import FormHelper from '../helpers/FormHelper';
 import Widget from '../Widget';
 import RegistrationPageConfig from '../config/RegistrationPageConfig';
 import PaidTickets from '../../models/workshop/PaidTickets';
+import TicketSummary from '../../models/form/TicketSummary';
 
 /**
  * Logic for the registrationPage form page
@@ -20,6 +21,8 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
   protected successMessage: JQuery<HTMLElement>;
   protected form: JQuery<HTMLElement>;
   protected successRedirectUrl: string;
+  protected summaryBlock: JQuery<HTMLElement>;
+  protected summary: TicketSummary;
 
   /**
    * Creates a new registration form
@@ -36,6 +39,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
                         config: T) {
     super(selector, apiKey, templates, loc, config);
     this.$root.find('#wsb-success').hide();
+    this.summary = new TicketSummary(loc, this.formatter);
   }
 
   protected assignEvents() {
@@ -44,6 +48,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
       this.$root.on('submit', this.onFormSubmition.bind(this));
     }
     this.initPromoActivation();
+    this.renderSummary();
   }
 
   /**
@@ -124,10 +129,21 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
     tickets.on('change', () => {
       this.toggleTicket(tickets, false);
       this.toggleTicket(tickets.filter(':checked'), true);
+      const ticketId = tickets.filter(':checked').val() as string;
+      if (this.event.tickets instanceof PaidTickets) {
+        this.event.tickets.activeTicketId = ticketId;
+        this.renderSummary();
+      }
     });
     if (this.event.tickets instanceof PaidTickets) {
-      const activeTicket = tickets.filter(`#${this.event.tickets.selectedTicketId}`);
+      const activeTicket = tickets.filter(`#${this.event.tickets.activeTicketId}`);
       this.toggleTicket(activeTicket, true);
+    }
+  }
+
+  private renderSummary() {
+    if (this.event.tickets instanceof PaidTickets) {
+      this.summaryBlock.html(this.summary.render(this.event.tickets));
     }
   }
 

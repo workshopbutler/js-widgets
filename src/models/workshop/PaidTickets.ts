@@ -12,11 +12,6 @@ export default class PaidTickets {
   }
 
   /**
-   * Returns the id of the first active paid ticket if it exists
-   */
-  readonly selectedTicketId: string | null;
-
-  /**
    * True when a sales tax is NOT included in the price
    */
   readonly excludedTax: boolean;
@@ -31,26 +26,35 @@ export default class PaidTickets {
    */
   readonly types: IPaidTicketType[];
 
+  /**
+   * Returns the id of the first active paid ticket if it exists
+   */
+  activeTicketId: string | null;
+
   constructor(types: IPaidTicketType[], excludedTax: boolean, tax?: number) {
     this.types = types;
     this.excludedTax = excludedTax;
-    this.tax = 25;
-    this.selectedTicketId = this.getActiveTicketId();
+    this.tax = tax ? tax : undefined;
+    this.activeTicketId = this.getActiveTicketId();
+  }
+
+  getActiveTicket(): PaidTicketType | undefined {
+    if (this.activeTicketId) {
+      return this.types.find(t => t.id === this.activeTicketId);
+    } else {
+      const active = this.getActive();
+      if (active.length) {
+        return active[0];
+      } else {
+        return undefined;
+      }
+    }
   }
 
   protected getActiveTicketId() {
     const active = this.getActiveTicket();
     if (active) {
       return active.id;
-    } else {
-      return null;
-    }
-  }
-
-  protected getActiveTicket() {
-    const active = this.getActive();
-    if (active.length) {
-      return active[0];
     } else {
       return null;
     }

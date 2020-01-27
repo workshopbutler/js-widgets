@@ -35,13 +35,16 @@ export default class TicketFormatter {
     }
   }
   protected static formatDescription(loc: Localisation, ticket: IPaidTicketType): string {
-    if (ticket.ended()) {
+    if (ticket.end && ticket.ended()) {
       return loc.translate('event.ticket.endedOn', {
         date: DateTimeFormatter.format(loc.locale, ticket.end)});
     }
-    if (ticket.active()) {
+    if (ticket.end && ticket.active()) {
       return loc.translate('event.ticket.endsOn', { date: DateTimeFormatter.format(loc.locale, ticket.end)});
     }
-    return loc.translate('event.ticket.onSaleFrom', { date: DateTimeFormatter.format(loc.locale, ticket.start)});
+    if (ticket.start && ticket.inFuture()) {
+      return loc.translate('event.ticket.onSaleFrom', { date: DateTimeFormatter.format(loc.locale, ticket.start)});
+    }
+    return '';
   }
 }

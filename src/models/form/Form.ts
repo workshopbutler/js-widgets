@@ -1,6 +1,7 @@
 import Event from '../Event';
 import Section from './Section';
 import IPlainObject from '../../interfaces/IPlainObject';
+import TicketSection from './TicketSection';
 
 /**
  * Registration or evaluation form
@@ -20,6 +21,12 @@ export default class Form {
    * @param event {Event} Form's event
    */
   constructor(readonly instructions: string | undefined, sections: any[], event: Event) {
-    this.sections = sections.map((json: any) => new Section(json.id, json.label, json.fields, event));
+    this.sections = sections.map((json: any) => {
+      if (json.id === TicketSection.ID) {
+        return new TicketSection(json.label, json.fields, event);
+      } else {
+        return new Section(json.id, json.label, json.fields, event);
+      }
+    });
   }
 }
