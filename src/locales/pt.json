@@ -291,7 +291,11 @@
     "SV": "sueco",
     "SR": "sérvio",
     "TR": "turco",
-    "VI": "vietnamita"
+    "VI": "vietnamita",
+    "KA": "georgiano",
+    "SK": "eslovaco",
+    "HU": "húngara",
+    "KO": "coreana"
   },
   "rating": {
     "one": "Mais de 1",
@@ -426,11 +430,22 @@
       }
     },
     "section": {
+      "general": "Informações pessoais",
       "address": "Endereço Residencial",
       "work": "Info de Trabalho",
       "billing": "Informação de pagamento",
       "other": "Informação Adicional",
-      "ticket": "Bilhete"
+      "ticket": "Escolha seu bilhete"
+    },
+    "summary": {
+      "caption": "Resumo",
+      "price": "Preço do bilhete",
+      "tax": "Tax",
+      "total": "Total",
+      "included": "incluído"
+    },
+    "promo": {
+      "caption": "Eu tenho um código promocional"
     }
   },
   "registration": {

@@ -291,7 +291,11 @@
     "SV": "Sueco",
     "SR": "Serbio",
     "TR": "Turco",
-    "VI": "Vietnamita"
+    "VI": "Vietnamita",
+    "KA": "Georgiano",
+    "SK": "Eslovaco",
+    "HU": "Húngaro",
+    "KO": "Coreano"
   },
   "rating": {
     "one": "Más de 1",
@@ -426,11 +430,22 @@
       }
     },
     "section": {
+      "general": "Información personal",
       "address": "Direccion de casa",
       "billing": "Información de facturación",
       "work": "Información de trabajo",
       "other": "Información adicional",
-      "ticket": "Entrada"
+      "ticket": "Elige su entrada"
+    },
+    "summary": {
+      "caption": "Resumen",
+      "price": "Precio de entrada",
+      "tax": "Impuesto",
+      "total": "Total",
+      "included": "includio"
+    },
+    "promo": {
+      "caption": "Tengo un código de promoción"
     }
   },
   "registration": {

@@ -2,7 +2,7 @@
 
   {% if field.name === "promo_code" %}
     <div class="wsb-promo-block">
-      <a href="#" class="wsb-promo-link" data-promo-link>I have a promo code</a>
+      <a href="#" class="wsb-promo-link" data-promo-link>{{ _t('form.promo.caption') }}</a>
       <input class="wsb-promo-code" data-promo-code
           name="{{ field.name }}" title="{{ field.label }}" {{ 'disabled' if disabled }}
              type="{{ field.type }}" {{ 'required' if field.required }} data-control/>

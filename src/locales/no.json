@@ -278,7 +278,12 @@
     "SV": "Svensk",
     "SR": "Serbisk",
     "TR": "Turkish",
-    "VI": "Vietnamesisk"
+    "VI": "Vietnamesisk",
+    "KA": "Georgisk",
+    "SK": "Slovakisk",
+    "HU": "Ungarsk",
+    "KO": "Koreansk"
+
   },
   "rating": {
     "one": "Mer enn 1",
@@ -413,11 +418,22 @@
       }
     },
     "section": {
+      "general": "Personlig informasjon",
       "address": "Hjemmeadresse",
       "billing": "Faktureringsinfo",
       "work": "Arbeid info",
       "other": "Tilleggsinformasjon",
-      "ticket": "Billett"
+      "ticket": "Velg din billett"
+    },
+    "summary": {
+      "caption": "Sammendrag",
+      "price": "Billettpris",
+      "tax": "Skatt",
+      "total": "Total",
+      "included": "inkludert"
+    },
+    "promo": {
+      "caption": "Jeg har en kampanjekode"
     }
   },
   "registration": {

@@ -291,7 +291,12 @@
     "SV": "Schwedisch",
     "SR": "Serbisch",
     "TR": "Türkisch",
-    "VI": "Vietnamesisch"
+    "VI": "Vietnamesisch",
+    "KA": "Georgisch",
+    "SK": "Slowakisch",
+    "HU": "Ungarisch",
+    "KO": "Koreanisch"
+
   },
   "rating": {
     "one": "Mehr als 1",
@@ -426,11 +431,22 @@
       }
     },
     "section": {
+      "general": "Persönliche Angaben",
       "address": "Heimatadresse",
       "billing": "Rechnungsinfo",
       "work": "Arbeitsinfo",
       "other": "zusätzliche Information",
-      "ticket": "Ticket"
+      "ticket": "Ticket auswählen"
+    },
+    "summary": {
+      "caption": "Summary",
+      "price": "Ticketpreis",
+      "tax": "Tax",
+      "total": "Total",
+      "included": "enthalten"
+    },
+    "promo": {
+      "caption": "Ich habe einen Gutscheincode"
     }
   },
   "registration": {

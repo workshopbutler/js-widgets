@@ -17,17 +17,17 @@ export default class TicketSummary {
     }
     const lines = [];
     const ticketPrice = TicketPriceFormatter.format(this.loc, ticket.price);
-    lines.push(this.renderLine('Ticket price', ticketPrice));
+    lines.push(this.renderLine(this.loc.translate('form.summary.price'), ticketPrice));
     if (tickets.excludedTax && tickets.tax) {
       const taxObject = ticket.price.withAmount(ticket.price.amount * tickets.tax / 100);
       const taxAmount = TicketPriceFormatter.format(this.loc, taxObject);
-      lines.push(this.renderLine('Tax', taxAmount));
+      lines.push(this.renderLine(this.loc.translate('form.summary.tax'), taxAmount));
     }
     if (!tickets.excludedTax) {
-      lines.push(this.renderLine('Tax', 'included'));
+      lines.push(this.renderLine(this.loc.translate('form.summary.tax'), this.loc.translate('form.summary.included')));
     }
     const finalPrice = TicketPriceFormatter.format(this.loc, this.getFinalPrice(ticket.price, tickets.tax));
-    const total = this.renderLine('Total', finalPrice);
+    const total = this.renderLine(this.loc.translate('form.summary.total'), finalPrice);
     return `${lines.join('')}<hr>${total}`;
   }
 

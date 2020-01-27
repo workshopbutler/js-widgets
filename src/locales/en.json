@@ -278,7 +278,11 @@
     "SV": "Swedish",
     "SR": "Serbian",
     "TR": "Turkish",
-    "VI": "Vietnamese"
+    "VI": "Vietnamese",
+    "KA": "Georgian",
+    "SK": "Slovakian",
+    "HU": "Hungarian",
+    "KO": "Korean"
   },
   "rating": {
     "one": "More than 1",
@@ -419,6 +423,16 @@
       "work": "Work Info",
       "other": "Additional Information",
       "ticket": "Choose your ticket"
+    },
+    "summary": {
+      "caption": "Summary",
+      "price": "Ticket price",
+      "tax": "Tax",
+      "total": "Total",
+      "included": "included"
+    },
+    "promo": {
+      "caption": "I have a promo code"
     }
   },
   "registration": {

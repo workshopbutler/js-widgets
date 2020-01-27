@@ -291,7 +291,11 @@
     "SV": "Zweeds",
     "SR": "Servisch",
     "TR": "Turks",
-    "VI": "Vietnamees"
+    "VI": "Vietnamees",
+    "KA": "Georgische",
+    "SK": "Slowaakse",
+    "HU": "Hongaarse",
+    "KO": "Koreaanse"
   },
   "rating": {
     "one": "Meer dan 1",
@@ -427,12 +431,24 @@
 
     },
     "section": {
+      "general": "Persoonlijke informatie",
       "address": "Thuisadres",
       "work": "Werkinfo",
       "billing": "Betaal informatie",
       "other": "Extra informatie",
-      "ticket": "Ticket"
+      "ticket": "Kies uw ticket"
+    },
+    "summary": {
+      "caption": "Samenvatting",
+      "price": "Ticketprijs",
+      "tax": "Tax",
+      "total": "Total",
+      "included": "inbegrepen"
+    },
+    "promo": {
+      "caption": "Ik heb een promotiecode"
     }
+
   },
   "registration": {
     "successTitle": "Bedankt voor de registratie",
