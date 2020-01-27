@@ -3,6 +3,19 @@ import 'chai/register-should';
 import EventFormatter from '../../../src/formatters/jsonld/EventFormatter';
 import IPlainObject from '../../../src/interfaces/IPlainObject';
 import Event from '../../../src/models/Event';
+import Schedule from '../../../src/models/Schedule';
+import Language from '../../../src/models/workshop/Language';
+import Location from '../../../src/models/workshop/Location';
+import RegistrationPage from '../../../src/models/workshop/RegistrationPage';
+import Trainer from '../../../src/models/Trainer';
+import WorkshopStats from '../../../src/models/trainer/WorkshopStats';
+import CombinedWorkshopStats from '../../../src/models/trainer/CombinedWorkshopStats';
+import TrainerStats from '../../../src/models/trainer/TrainerStats';
+import PaidTicketType from '../../../src/models/workshop/PaidTicketType';
+import {DateTime} from 'luxon';
+import TicketPrice from '../../../src/models/workshop/TicketPrice';
+import PaidTickets from '../../../src/models/workshop/PaidTickets';
+import CoverImage from '../../../src/models/workshop/CoverImage';
 
 const expect = chai.expect;
 describe('JSON-LD formatted Event', () => {
@@ -10,7 +23,14 @@ describe('JSON-LD formatted Event', () => {
   const options = {
     eventPageUrl: 'https://workshopbutler.com',
   };
-  const event = new Event(getEventJSON(), options);
+  const schedule = new Schedule({
+    start: '2018-01-01T12:00+01:00',
+    end: '2018-01-02T18:00+01:00',
+    timezone: 'Europe/Amsterdam'
+  });
+  const event = new Event(options, 1, 'xufd3', '2-day workshop', schedule, new Language([]),
+    new Location(false, '00'), new RegistrationPage({}, null, ''), []);
+  event.description = 'Test description';
   const formatted = EventFormatter.format(event);
 
   it('should have correct type, name, url and description', () => {
@@ -30,113 +50,55 @@ describe('JSON-LD formatted Event', () => {
     formatted.should.have.property('location');
   });
   it('should include a location attribute if the event is online', () => {
-    const location = {
-      city: null,
-      country_code: '00',
-      online: true,
-    };
-    const onlineEvent = getEventJSON();
-    onlineEvent.location = location;
-    const onlineFormatted = EventFormatter.format(new Event(onlineEvent, options));
+    event.location = new Location(true, '00');
+    const onlineFormatted = EventFormatter.format(event);
     onlineFormatted.should.not.have.property('location');
   });
   it('should not include `offers` attribute if the event has no tickets', () => {
     formatted.should.not.have.property('offers');
   });
   it('should not include `offers` attribute if the event is free', () => {
-    const freeEvent = getEventJSON();
-    freeEvent.free = true;
-    const freeFormatted = EventFormatter.format(new Event(freeEvent, options));
+    event.free = true;
+    const freeFormatted = EventFormatter.format(event);
     freeFormatted.should.not.have.property('offers');
   });
   it('should have several `offers` the event has several tickets types and is paid', () => {
-    const paidTickets = [
-      {
-        amount: 10, end: '2018-03-01', id: '1', left: 5, name: 'Regular',
-        price: {amount: 100, currency: 'EUR', sign: '€'}, start: '2018-01-01',
-        state: {sold_out: false, ended: false, started: true, in_future: false, valid: true},
-        with_vat: false,
-      },
-      {
-        amount: 10, end: '2018-01-01', id: '1', left: 5, name: 'Early Bird',
-        price: {amount: 50, currency: 'EUR', sign: '€'}, start: '2017-12-01',
-        state: {sold_out: false, ended: false, started: true, in_future: false, valid: true},
-        with_vat: false,
-      },
+    const types = [
+      new PaidTicketType('1', 'Regular', 10, 5,
+      DateTime.fromFormat('2018-01-01', 'yyyy-MM-dd'), DateTime.fromFormat('2018-01-03', 'yyyy-MM-dd'),
+      true, new TicketPrice(100, 'EUR', '€')),
+      new PaidTicketType('1', 'Early Bird', 10, 5,
+        DateTime.fromFormat('2017-12-01', 'yyyy-MM-dd'), DateTime.fromFormat('2018-01-01', 'yyyy-MM-dd'),
+        true, new TicketPrice(100, 'EUR', '€'))
     ];
-    const withTickets = getEventJSON();
-    withTickets.paid_ticket_types = paidTickets;
-    const formattedWithTickets = EventFormatter.format(new Event(withTickets, options));
+    event.tickets = new PaidTickets(types, true);
+    const formattedWithTickets = EventFormatter.format(event);
     expect(formattedWithTickets.offers).to.have.length(2);
   });
   it('should not include `performer` attribute if there is no trainers', () => {
-   formatted.should.not.have.property('performer');
+    formatted.should.not.have.property('performer');
   });
   it('should have `performer` for each trainer', () => {
-    const trainers = [
-      {
-        first_name: 'Bob', last_name: 'Lee',
-      },
-      {
-        first_name: 'Alice', last_name: 'Sunny',
-      },
-    ];
-    const withTrainers = getEventJSON();
-    withTrainers.facilitators = trainers;
-    const formattedWithTrainers = EventFormatter.format(new Event(withTrainers, options));
+    const workshopStats = new WorkshopStats(1, 1, 1, 1, {});
+    const combinedStats = new CombinedWorkshopStats(workshopStats, workshopStats, 0);
+    const stats = new TrainerStats(combinedStats, combinedStats);
+
+    const bob = new Trainer({}, 1, 'Bob', 'Lee', '', '', stats)
+    const alice = new Trainer({}, 2, 'Alice', 'Sunny', '', '', stats)
+    event.trainers = [bob, alice];
+    const formattedWithTrainers = EventFormatter.format(event);
     expect(formattedWithTrainers.performer).to.have.length(2);
   });
   it('should not include `image` array if there is no cover image', () => {
-    const withoutCoverImage = getEventJSON();
-    withoutCoverImage.cover_image = {
-      url: null,
-    };
-    const formattedWithoutImage = EventFormatter.format(new Event(withoutCoverImage, options));
-    formattedWithoutImage.should.not.have.property('image');
+    formatted.should.not.have.property('image');
   });
   it('should have `image` array', () => {
-    expect(formatted.image).to.have.length(2);
-    expect(formatted.image[0]).to.equal('https://wsb.com');
-    expect(formatted.image[1]).to.equal('https://thumb.com');
+    const coverImage = new CoverImage('https://wsb.com', 'https://thumb.com');
+    event.coverImage = coverImage;
+    const withCover = EventFormatter.format(event);
+    expect(withCover.image).to.have.length(2);
+    expect(withCover.image[0]).to.equal('https://wsb.com');
+    expect(withCover.image[1]).to.equal('https://thumb.com');
   });
 });
 
-function getEventJSON(): IPlainObject {
-  return {
-    confirmed: true,
-    description: 'Test description',
-    free: false,
-    hashed_id: 'xufd3',
-    id: 1,
-    location: {
-      city: 'Lisbon',
-      country_code: 'PT',
-      online: false,
-    },
-    private: false,
-    rating: 9.4,
-    registration_page: {
-      custom: true,
-      url: 'https://workshopbutler.com/buy',
-    },
-    schedule: {
-      end: '2018-01-02 18:00',
-      hours_per_day: 8,
-      start: '2018-01-01 12:00',
-      timezone: 'Europe/Berlin',
-      total_hours: 16,
-    },
-    sold_out: false,
-    language: {
-      spoken: ['English, German'],
-    },
-    tickets: {
-
-    },
-    title: '2-day workshop',
-    cover_image: {
-      url: 'https://wsb.com',
-      thumbnail: 'https://thumb.com',
-    },
-  };
-}

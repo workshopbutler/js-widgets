@@ -77,24 +77,22 @@ export default class TestimonialList extends Widget<TestimonialListConfig> {
    * @private
    */
   private loadContent(trainerId: number) {
-    const self = this;
     const url = this.getUrl(trainerId);
     transport.get(url, {},
       (resp: ISuccess) => {
-        self.trainer = new Trainer(resp.data, self.config);
-        self.render();
+        this.trainer = Trainer.fromJSON(resp.data, this.config);
+        this.render();
       });
   }
 
   private render() {
-    const self = this;
-    $.when(getTemplate(self.config)).done(template => {
-      const params = Object.assign({ trainer: self.trainer }, self.getTemplateParams());
+    $.when(getTemplate(this.config)).done(template => {
+      const params = Object.assign({ trainer: this.trainer }, this.getTemplateParams());
       const content = template ?
         nunjucksRenderString(template, params) :
-        self.templates.testimonialList.render(params);
+        this.templates.testimonialList.render(params);
 
-      self.$root.html(content);
+      this.$root.html(content);
     });
   }
 

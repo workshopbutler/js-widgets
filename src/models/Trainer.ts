@@ -9,48 +9,40 @@ import TrainerStats from './trainer/TrainerStats';
  */
 export default class Trainer {
 
-  readonly id: number;
-  readonly firstName: string;
-  readonly lastName: string;
-  readonly email: string;
-  readonly photo: string;
-  readonly bio: string;
-  readonly url?: string;
-  readonly country: string | null;
-  readonly languages: string[];
-  readonly badges: any[];
-  readonly socialLinks: SocialLinks;
-  readonly stats: TrainerStats;
-
-  /**
-   * List of testimonials that the trainer has
-   */
-  readonly testimonials: any[];
-
-  /**
-   * List of countries the trainer works in
-   */
-  readonly worksIn: string[];
-
-  constructor(json: IPlainObject, options: any) {
-    this.id = json.id;
-    this.firstName = json.first_name;
-    this.lastName = json.last_name;
-    this.photo = json.avatar;
-    this.bio = json.bio;
-    this.email = json.email_address;
-    this.badges = json.badges;
-    this.socialLinks = SocialLinks.fromJSON(json.social_links);
-    this.stats = TrainerStats.fromJSON(json.statistics);
-    this.testimonials = json.testimonials.map((testimonial: IPlainObject) => Testimonial.fromJSON(testimonial));
-
-    this.country = json.address.country;
-    this.url = options.trainerPageUrl ? this.getTrainerUrl(options.trainerPageUrl) : undefined;
-    this.languages = json.languages ?
+  static fromJSON(json: IPlainObject, options: IPlainObject): Trainer {
+    const stats = TrainerStats.fromJSON(json.statistics);
+    const socialLinks = SocialLinks.fromJSON(json.social_links);
+    const testimonials = json.testimonials.map((testimonial: IPlainObject) => Testimonial.fromJSON(testimonial));
+    const languages = json.languages ?
       json.languages.map((language: string) => getLangCode(language)) : [];
+    const worksIn = json.countries ? json.countries : [];
 
-    this.worksIn = json.countries ? json.countries : [];
+    return new Trainer(options, json.id, json.first_name, json.last_name, json.email_address,
+      json.bio, stats, languages, json.badges, socialLinks, testimonials, worksIn, json.avatar, json.address.country);
   }
+
+  /**
+   * Path to the trainer's page
+   */
+  readonly url?: string;
+
+  constructor(options: IPlainObject,
+              readonly id: number,
+              readonly firstName: string,
+              readonly lastName: string,
+              readonly email: string,
+              readonly bio: string,
+              readonly stats: TrainerStats,
+              readonly languages: string[] = [],
+              readonly badges: any[] = [],
+              readonly socialLinks: SocialLinks = new SocialLinks(),
+              readonly testimonials: any[] = [], // list of testimonials the trainer has
+              readonly worksIn: string[] = [], // List of countries the trainer works in
+              readonly photo?: string,
+              readonly country?: string) {
+    this.url = options.trainerPageUrl ? this.getTrainerUrl(options.trainerPageUrl) : undefined;
+  }
+
 
   /**
    * Returns the full name of the trainer

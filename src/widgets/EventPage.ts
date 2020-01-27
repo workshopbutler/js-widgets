@@ -94,7 +94,7 @@ export default class EventPage extends Widget<EventPageConfig> {
    * Changes the description of the page
    */
   protected updateDescription() {
-    const description = stripHTML(this.event.description).substring(0, 140);
+    const description = stripHTML(this.event.description ?? '').substring(0, 140);
     const meta = document.querySelector('meta[name="description"]');
     if (meta) {
       meta.setAttribute('content', description);
@@ -124,7 +124,7 @@ export default class EventPage extends Widget<EventPageConfig> {
 
     transport.get(url, {},
       (data: IPlainObject) => {
-        this.event = new Event(data.data, this.config);
+        this.event = Event.fromJSON(data.data, this.config);
         this.updateHTML();
         this.addJsonLD();
         this.renderWidget();

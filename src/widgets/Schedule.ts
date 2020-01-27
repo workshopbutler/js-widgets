@@ -79,36 +79,33 @@ export default class Schedule extends Widget<ScheduleConfig> {
    * @private
    */
   private loadContent() {
-    const self = this;
-
     const url = this.getUrl();
     transport.get(url, {},
       (data: ISuccess) => {
         let events = data.data;
-        if (self.config.length && self.config.length >= 0) {
-          events = events.slice(0, self.config.length);
+        if (this.config.length && this.config.length >= 0) {
+          events = events.slice(0, this.config.length);
         }
-        self.events = events.map((event: IPlainObject) => new Event(event, self.config));
-        self.render();
+        this.events = events.map((event: IPlainObject) => Event.fromJSON(event, this.config));
+        this.render();
       });
   }
 
   private render() {
-    const self = this;
-    $.when(getTemplate(self.config)).done(template => {
+    $.when(getTemplate(this.config)).done(template => {
       function renderTemplate(event: Event) {
-        const localParams = Object.assign({event}, self.getTemplateParams());
+        const localParams = Object.assign({event}, this.getTemplateParams());
         return nunjucksRenderString(template, localParams);
       }
 
       const uniqueParams = {
-        events: self.events,
-        filters: self.filters.getFilters(self.events),
+        events: this.events,
+        filters: this.filters.getFilters(this.events),
         template: template ? renderTemplate : null,
       };
-      const params = Object.assign(uniqueParams, self.getTemplateParams());
-      const content = self.templates.schedule.render(params);
-      self.$root.html(content).promise().done(() => {
+      const params = Object.assign(uniqueParams, this.getTemplateParams());
+      const content = this.templates.schedule.render(params);
+      this.$root.html(content).promise().done(() => {
         this.filters.filterEvents();
       });
     });

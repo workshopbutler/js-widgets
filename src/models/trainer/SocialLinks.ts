@@ -6,7 +6,11 @@ import IPlainObject from '../../interfaces/IPlainObject';
 export default class SocialLinks {
 
   static fromJSON(json: IPlainObject): SocialLinks {
-    return new SocialLinks(json.website, json.blog, json.twitter, json.linkedin, json.facebook);
+    if (json) {
+      return new SocialLinks(json.website, json.blog, json.twitter, json.linkedin, json.facebook);
+    } else {
+      return new SocialLinks();
+    }
   }
 
   constructor(readonly website?: string,

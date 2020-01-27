@@ -86,7 +86,7 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
         (resp: ISuccess) => {
           const events = resp.data.filter((event: IPlainObject) => event.hashed_id !== this.config.excludeId);
           const length = this.config.length ? this.config.length : 3;
-          this.events = events.slice(0, length).map((event: IPlainObject) => new Event(event, this.config));
+          this.events = events.slice(0, length).map((event: IPlainObject) => Event.fromJSON(event, this.config));
           this.renderUpcomingEventList();
         });
     });

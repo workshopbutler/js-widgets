@@ -84,7 +84,7 @@ export default class TrainerList extends Widget<TrainerListConfig> {
     const url = this.getUrl();
     transport.get(url, {},
       (resp: ISuccess) => {
-        this.trainers = resp.data.map((trainer: IPlainObject) => new Trainer(trainer, this.config));
+        this.trainers = resp.data.map((trainer: IPlainObject) => Trainer.fromJSON(trainer, this.config));
         this.render();
       });
   }

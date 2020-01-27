@@ -15,61 +15,72 @@ import CoverImage from './workshop/CoverImage';
 import PaidTickets from './workshop/PaidTickets';
 
 export default class Event {
-  readonly id: number;
-  readonly hashedId: string;
-  readonly type: Type;
-  readonly title: string;
-  readonly language: Language;
-  readonly confirmed: boolean;
+
+  static fromJSON(json: IPlainObject, options: IPlainObject): Event {
+    const schedule = new Schedule(json.schedule);
+    const location = Location.fromJSON(json.location);
+    const language = Language.fromJSON(json.language);
+    const trainers = Event.getTrainers(json, options);
+    const tickets = Event.getTickets(json.free, json.tickets, schedule.defaultTimezone());
+    const registrationPage = new RegistrationPage(json.registration_page, options.registrationPageUrl, json.hashed_id);
+    const type = json.type ? new Type(json.type) : Type.empty();
+    const coverImage = CoverImage.fromJSON(json.cover_image);
+    const category = json.category ? new Category(json.category) : undefined;
+    return new Event(options, json.id, json.hashed_id, json.title, schedule, language, location,
+      registrationPage, trainers, tickets, json.confirmed, json.free, json.private, json.sold_out, json.description,
+      type, category, coverImage, json.form
+    );
+  }
+
+  private static getTickets(free: boolean,
+                            tickets: IPlainObject,
+                            timezone: string): FreeTicketType | PaidTickets | undefined {
+    if (tickets.free || tickets.paid) {
+      return free ?
+        FreeTicketType.fromJSON(tickets.free) :
+        PaidTickets.fromJSON(tickets.paid, timezone);
+    } else {
+      return undefined;
+    }
+  }
+
+  private static getTrainers(attrs: any, options: any): Trainer[] {
+    const trainers: any[] = attrs.trainers;
+    if (trainers) {
+      return trainers.map(trainer => Trainer.fromJSON(trainer, options));
+    } else {
+      return [];
+    }
+  }
+
   readonly private: boolean;
-  readonly free: boolean;
-  readonly soldOut: boolean;
   readonly url: string;
-  readonly registrationPage: RegistrationPage;
-  readonly tickets?: FreeTicketType | PaidTickets;
-  readonly trainers: Trainer[];
-  readonly description: string;
-  readonly schedule: Schedule;
-  readonly location: Location;
   readonly registrationForm?: Form;
   readonly state: EventState;
 
-  /**
-   * Cover image of the workshop
-   */
-  readonly coverImage: CoverImage;
+  constructor(options: IPlainObject,
+              readonly id: number,
+              readonly hashedId: string,
+              public title: string,
+              public schedule: Schedule,
+              public language: Language,
+              public location: Location,
+              public registrationPage: RegistrationPage,
+              public trainers: Trainer[] = [],
+              public tickets?: FreeTicketType | PaidTickets,
+              public confirmed = false,
+              public free = false,
+              privat = false,
+              public soldOut = false,
+              public description?: string,
+              public type: Type = Type.empty(),
+              public category?: Category,
+              public coverImage: CoverImage = new CoverImage(),
+              formJSON?: IPlainObject) {
 
-  /**
-   * Category of the event
-   */
-  readonly category?: Category;
-
-  /**
-   * @param json {object}
-   * @param options {object}
-   */
-  constructor(json: IPlainObject, options: any) {
-    this.id = json.id;
-    this.hashedId = json.hashed_id;
-    this.title = json.title;
-    this.type = json.type ? new Type(json.type) : Type.empty();
-    this.language = Language.fromJSON(json.language);
-    this.confirmed = json.confirmed;
-    this.free = json.free;
-    this.private = json.private;
-    this.description = json.description;
-    this.soldOut = json.sold_out;
-    this.schedule = new Schedule(json.schedule);
-    this.location = Location.fromJSON(json.location);
-    this.category = json.category ? new Category(json.category) : undefined;
-    this.tickets = this.getTickets(this.free, json.tickets);
+    this.registrationForm = Form.fromJSON(formJSON, this);
+    this.private = privat;
     this.url = this.buildUrl(options);
-    this.registrationPage = new RegistrationPage(json.registration_page,
-      options.registrationPageUrl, this.hashedId);
-    this.registrationForm = Form.fromJSON(json.form, this);
-    this.coverImage = CoverImage.fromJSON(json.cover_image);
-
-    this.trainers = this.getTrainers(json, options);
     this.state = new EventState(this);
   }
 
@@ -94,10 +105,11 @@ export default class Event {
     const pattern = options.eventPagePattern ? options.eventPagePattern : DefaultSettings.eventPagePattern;
     const categoryName = this.category ? this.category.name : '';
     const dates = this.replaceSpaces(ScheduleFormatter.format('en', this.schedule, 'full_short'));
-    const queryParams = pattern.replace('{{id}}', this.hashedId).
-      replace('{{title}}', this.replaceSpaces(this.title)).
-      replace('{{dates}}', dates).
-      replace('{{category}}', this.replaceSpaces(categoryName));
+    const queryParams = pattern
+      .replace('{{id}}', this.hashedId)
+      .replace('{{title}}', this.replaceSpaces(this.title))
+      .replace('{{dates}}', dates)
+      .replace('{{category}}', this.replaceSpaces(categoryName));
     return encodeURI(`${options.eventPageUrl}?${queryParams}`);
   }
 
@@ -106,22 +118,4 @@ export default class Event {
     return value.replace(regex, '_');
   }
 
-  private getTickets(free: boolean, tickets: IPlainObject): FreeTicketType | PaidTickets | undefined {
-    if (tickets.free || tickets.paid) {
-      return free ?
-        FreeTicketType.fromJSON(tickets.free) :
-        PaidTickets.fromJSON(tickets.paid, this.schedule.defaultTimezone());
-    } else {
-      return undefined;
-    }
-  }
-
-  private getTrainers(attrs: any, options: any): Trainer[] {
-    const trainers: any[] = attrs.trainers;
-    if (trainers) {
-      return trainers.map(trainer => new Trainer(trainer, options));
-    } else {
-      return [];
-    }
-  }
 }

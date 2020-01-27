@@ -11,6 +11,7 @@ import PaidTickets from '../../models/workshop/PaidTickets';
  * Formats event to a JSON-LD format
  */
 export default class EventFormatter {
+
   static format(event: Event): IPlainObject {
     const timeOptions = {suppressMilliseconds: true, suppressSeconds: true};
     let json: IPlainObject = {

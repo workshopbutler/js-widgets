@@ -107,7 +107,7 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
 
     transport.get(url, {},
       (data: IPlainObject) => {
-        this.event = new Event(data.data, this.config);
+        this.event = Event.fromJSON(data.data, this.config);
         this.renderRegistrationForm();
       });
   }

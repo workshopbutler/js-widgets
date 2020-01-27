@@ -8,7 +8,7 @@ import TicketSection from './TicketSection';
  */
 export default class Form {
 
-  static fromJSON(json: IPlainObject, event: Event): Form | undefined {
+  static fromJSON(json: IPlainObject | undefined, event: Event): Form | undefined {
     return json ? new Form(json.instructions, json.sections, event) : undefined;
   }
 

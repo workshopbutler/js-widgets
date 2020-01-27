@@ -91,10 +91,9 @@ export default class EventListFilters extends ListFilters<Event> {
   }
 
   private getLocationFilterData(defaultName: string, events: Event[]): FilterValue[] {
-    const self = this;
     const unfiltered = events.map(event => {
       const countryCode = event.location.countryCode;
-      const countryName = self.loc.translate(`country.${countryCode}`);
+      const countryName = this.loc.translate(`country.${countryCode}`);
       const selected = isHasValueInPath('location', countryCode);
       return new FilterValue(countryName, event.location.countryCode, selected);
     });
