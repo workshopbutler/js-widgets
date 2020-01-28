@@ -93,8 +93,9 @@ export default class Schedule extends Widget<ScheduleConfig> {
 
   private render() {
     $.when(getTemplate(this.config)).done(template => {
+      const templateParams = this.getTemplateParams();
       function renderTemplate(event: Event) {
-        const localParams = Object.assign({event}, this.getTemplateParams());
+        const localParams = Object.assign({event}, templateParams);
         return nunjucksRenderString(template, localParams);
       }
 
@@ -103,7 +104,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
         filters: this.filters.getFilters(this.events),
         template: template ? renderTemplate : null,
       };
-      const params = Object.assign(uniqueParams, this.getTemplateParams());
+      const params = Object.assign(uniqueParams, templateParams);
       const content = this.templates.schedule.render(params);
       this.$root.html(content).promise().done(() => {
         this.filters.filterEvents();
@@ -140,7 +141,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
     }
     const query = `dates=${dates}&sort=${sort}&public=true&fields=${fields}${categoryId}` +
       `${eventTypeId}${trainerId}${expand}`;
-    return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}`;
+    return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}&per_page=-1`;
   }
 
 }

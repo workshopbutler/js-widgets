@@ -81,12 +81,12 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
    */
   private loadContent() {
     $.when(this.getVisitorCountry()).done(country => {
-      const url = this.getUrl(country);
+      const length = this.config.length ? this.config.length : 3;
+      const url = this.getUrl(country, length);
       transport.get(url, {},
         (resp: ISuccess) => {
           const events = resp.data.filter((event: IPlainObject) => event.hashed_id !== this.config.excludeId);
-          const length = this.config.length ? this.config.length : 3;
-          this.events = events.slice(0, length).map((event: IPlainObject) => Event.fromJSON(event, this.config));
+          this.events = events.map((event: IPlainObject) => Event.fromJSON(event, this.config));
           this.renderUpcomingEventList();
         });
     });
@@ -115,8 +115,9 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
 
   private renderUpcomingEventList() {
     $.when(getTemplate(this.config)).done(template => {
+      const templateParams = this.getTemplateParams();
       function renderTemplate(event: Event) {
-        const localParams = Object.assign({ event }, this.getTemplateParams());
+        const localParams = Object.assign({ event }, templateParams);
         return nunjucksRenderString(template, localParams);
       }
 
@@ -124,7 +125,7 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
         events: this.events,
         template: renderTemplate,
       };
-      const params = Object.assign(uniqueParams, this.getTemplateParams());
+      const params = Object.assign(uniqueParams, templateParams);
       if (params.events.length) {
         const content = this.templates.sidebarEventList.render(params);
         this.$list.html(content);
@@ -144,10 +145,11 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
   /**
    * Makes a request string
    * @param country {string|null}
+   * @param length {number} Number of events in the widget
    * @return {string}
    * @private
    */
-  private getUrl(country: string) {
+  private getUrl(country: string, length: number) {
     let fields = 'title,location,hashed_id,schedule,free,spoken_languages';
     if (this.config.fields) {
       fields += ',' + this.config.fields.join(',');
@@ -158,7 +160,7 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
       sort = '-start_date';
     }
     let url = `events?api_key=${this.apiKey}&dates=${dates}&sort=${sort}&public=true&fields=${fields}&` +
-      `t=${this.getWidgetStats()}`;
+      `t=${this.getWidgetStats()}&per_page=${length}`;
     if (country) {
       url += `&countryCode=${country}`;
     }

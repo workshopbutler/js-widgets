@@ -91,8 +91,9 @@ export default class TrainerList extends Widget<TrainerListConfig> {
 
   private render() {
     $.when(getTemplate(this.config)).done(template => {
+      const templateParams = this.getTemplateParams();
       function renderTemplate(trainer: Trainer) {
-        const localParams = Object.assign({ trainer }, this.getTemplateParams());
+        const localParams = Object.assign({ trainer }, templateParams);
         return nunjucksRenderString(template, localParams);
       }
 
@@ -101,14 +102,14 @@ export default class TrainerList extends Widget<TrainerListConfig> {
         template: template ? renderTemplate : null,
         trainers: this.trainers,
       };
-      const params = Object.assign(uniqueParams, this.getTemplateParams());
+      const params = Object.assign(uniqueParams, templateParams);
       const content = this.templates.trainerList.render(params);
       this.$root.html(content);
     });
   }
 
   private getUrl(): string {
-    return `facilitators?api_key=${this.apiKey}&t=${this.getWidgetStats()}`;
+    return `facilitators?api_key=${this.apiKey}&t=${this.getWidgetStats()}&per_page=-1`;
   }
 
 }
