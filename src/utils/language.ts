@@ -31,6 +31,9 @@ export default function getLangCode(language: string): string {
     ['Serbian', 'SR'],
     ['Turkish', 'TR'],
     ['Vietnamese', 'VI'],
+    ['Korean', 'KO'],
+    ['Georgian', 'KA'],
+    ['Slovakian', 'SK'],
   ]);
   const code = langs.get(language);
   return code ? code : language;

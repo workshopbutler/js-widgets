@@ -1,9 +1,7 @@
 {% macro drawTrainer(trainer, config, _t, _f) %}
-  {% set trainerName = trainer.firstName + " " + trainer.lastName %}
-
   <div class="wsb-trainer-tile" data-trainer-obj
        data-trainer-location="{{ trainer.worksIn.join(',') }}"
-       data-trainer-rating={{ trainer.publicStats.rating }}
+       data-trainer-rating="{{ trainer.stats.total.publicStats.rating }}"
        data-trainer-badge="{{ trainer.nameOfBadges().join(',') }}"
        data-trainer-language="{{ trainer.languages.join(',') }}"
        data-trainer-trainer="{{ trainer.fullName() }}">
@@ -27,9 +25,9 @@
             <img src="{{ badge.url }}" width="30px"/>
           {% endfor %}
         {% endif %}
-        {% if config.showRating and trainer.publicStats.rating > 0 %}
+        {% if config.showRating and trainer.stats.total.publicStats.rating > 0 %}
           <i class="fas fa-star"></i>
-          {{ _f(trainer.publicStats.rating) }}
+          {{ _f(trainer.stats.total.publicStats.rating) }}
         {% endif %}
       </div>
     </div>

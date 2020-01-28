@@ -24,6 +24,7 @@ url: "trainer-profile"
             target: '#upcoming-events',
             eventPageUrl: '/event-page',
             future: true,
+            theme: themeName,
             trainerId: WorkshopButlerWidgets.getQueryParam('id')
           },
           {
@@ -31,6 +32,7 @@ url: "trainer-profile"
             target: '#past-events',
             eventPageUrl: '/event-page',
             future: false,
+            theme: themeName,
             trainerId: WorkshopButlerWidgets.getQueryParam('id')
           }
         ]
