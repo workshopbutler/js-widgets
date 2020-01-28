@@ -31,9 +31,8 @@ export default class EventListFilters extends ListFilters<Event> {
 
   /**
    * Filters the events in the table
-   * @param e {Event}
    */
-  filterEvents(e?: Event) {
+  filterEvents() {
     let events = this.$root.find('[data-event-obj]').hide();
     this.$root.find('[data-filter]').each((index, el) => {
       const filterName = $(el).data('name');
@@ -104,8 +103,7 @@ export default class EventListFilters extends ListFilters<Event> {
   private getTrainerFilterData(defaultName: string, events: Event[]): FilterValue[] {
     const trainers: FilterValue[] = [];
     for (const event of events) {
-      const eventTrainers = event.trainers;
-      for (const eventTrainer of eventTrainers) {
+      for (const eventTrainer of event.trainers) {
         const trainerName = `${eventTrainer.firstName} ${eventTrainer.lastName}`;
         const selected = isHasValueInPath('trainer', trainerName);
         const trainer = new FilterValue(trainerName, trainerName, selected);

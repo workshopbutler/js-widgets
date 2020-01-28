@@ -85,8 +85,8 @@ class Transport {
     }
     frameWindow = this.iframe.contentWindow;
 
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
-    // tslint:disable-next-line
     this.iframe.onload = function() {
       if (self.messageStack.length > 0) {
         self.messageStack.forEach(value => {
@@ -123,6 +123,7 @@ class Transport {
   }
 
   private makeFrameRequest(method: string, url: string, data: any, callbackSuccess: (response: any) => void) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     const callbackId = 'cb' + (Math.random() * 100).toString().replace(/\./g, '');
 

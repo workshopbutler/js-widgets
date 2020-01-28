@@ -56,6 +56,7 @@ export default class FactoryConfig {
    * @param locale {string} Locale. Hopefully, in 'xx-xx' format
    */
   protected parseLocale(locale: string): void {
+    // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
     const parts = locale.match(/([a-zA-Z]{2})(-([a-zA-Z]{2}))?/);
     if (!parts || parts.length !== 4) {
       this.setDefaultLocale();

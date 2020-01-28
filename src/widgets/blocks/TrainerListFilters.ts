@@ -33,7 +33,7 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
     case 'trainer':
       return this.getTrainerFilterData(this.loc.translate('filter.trainers'), trainers);
     case 'rating':
-      return this.getRatingFilterData(this.loc.translate('filter.rating'), trainers);
+      return this.getRatingFilterData(this.loc.translate('filter.rating'));
     case 'badge':
       return this.getBadgeFilterData(this.loc.translate('filter.badge'), trainers);
     default:
@@ -95,9 +95,8 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
   /**
    * Returns the data for experience filter
    * @param defaultName {string} Name of the default filter
-   * @param trainers {Trainer[]} List of trainers
    */
-  private getExperienceFilterData(defaultName: string, trainers: Trainer[]) {
+  private getExperienceFilterData(defaultName: string) {
     const experience = ['one', 'three', 'five', 'seven', 'more'];
     const unfiltered = experience.map(value => {
       const name = this.loc.translate(`experience.${value}`);
@@ -109,9 +108,8 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
   /**
    * Returns the data for rating filter
    * @param defaultName {string} Name of the default filter
-   * @param trainers {Trainer[]} List of trainers
    */
-  private getRatingFilterData(defaultName: string, trainers: Trainer[]) {
+  private getRatingFilterData(defaultName: string) {
     const ratings = [
       {name: 'one', value: 1},
       {name: 'two', value: 2},
