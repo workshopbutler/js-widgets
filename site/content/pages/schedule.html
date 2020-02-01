@@ -15,7 +15,7 @@ url: "schedule"
           type: 'Schedule',
           target: '#wsb-event-list',
           theme: themeName,
-          table: true,
+          table: false,
           cols: ['schedule', 'location', 'trainers', 'title', 'register'],
           registration: true,
           eventPageUrl: '/event-page',
@@ -23,7 +23,12 @@ url: "schedule"
           trainerName: true,
           filters: ['location', 'type', 'language', 'trainer'],
           registrationPageUrl: '/registration',
-          eventPagePattern: 'id={{id}}&title={{title}}&dates={{dates}}'
+          eventPagePattern: 'id={{id}}&title={{title}}&dates={{dates}}',
+          func: {
+            printHashedId: function(event) {
+              return event.hashedId;
+            }
+          }
         }
       ];
       const config = {

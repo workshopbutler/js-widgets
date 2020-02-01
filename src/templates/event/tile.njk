@@ -1,51 +1,51 @@
 {% macro drawEvent(event, config, _t, _f) %}
-    <div class="wsb-tile" data-event-obj data-event-type="{{ event.type.id }}"
-         data-event-location="{{ event.location.countryCode }}"
-         data-event-language="{{ event.language.spoken | join(',') }}"
-         data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
-         {% if event.category %} data-event-category="{{ event.category.id }}" {% endif %}>
-        {% if event.free %}
-            <div class="wsb-free">{{ _t('event.free') }}</div>
+  <div class="wsb-tile" data-event-obj data-event-type="{{ event.type.id }}"
+       data-event-location="{{ event.location.countryCode }}"
+       data-event-language="{{ event.language.spoken | join(',') }}"
+       data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
+    {% if event.category %} data-event-category="{{ event.category.id }}" {% endif %}>
+    {% if event.free %}
+      <div class="wsb-free">{{ _t('event.free') }}</div>
+    {% endif %}
+    <a data-widget-go href="{{ event.url }}" class="wsb-tile-title">{{ event.title | truncate(60) }}</a>
+    <div class="wsb-tile-info">
+      {% if event.schedule.atOneDay() %}
+        {{ _f(event.schedule, 'full_long') }}
+        {% if event.location.online and event.schedule.timezone %}
+          {{ _f(event.schedule, 'timezone_short') }}
         {% endif %}
-        <a data-widget-go href="{{ event.url }}" class="wsb-tile-title">{{ event.title | truncate(60) }}</a>
-        <div class="wsb-tile-info">
-            {% if event.schedule.atOneDay() %}
-                {{ _f(event.schedule, 'full_long') }}
-                {% if event.location.online and event.schedule.timezone %}
-                    {{ _f(event.schedule, 'timezone_short') }}
-                {% endif %}
-            {% else %}
-                {{ _f(event.schedule, 'full_short') }}
-            {% endif %}
-        </div>
-        <div class="wsb-tile-info">
-            {{ _f(event.location) }}
-        </div>
-        <div class="wsb-tile-content">
-            {% for trainer in event.trainers %}
-                <div class="wsb-trainer">
-                    {% if trainer.url %}
-                        <a href="{{ trainer.url }}">
-                          <img class="wsb-photo" src="{{ trainer.photo }}"/>
-                        </a>
-                        <a class="wsb-name" href="{{ trainer.url }}"> {{ trainer.fullName() }}</a>
-                    {% else %}
-                        <img class="wsb-photo" src="{{ trainer.photo }}"/>{{ trainer.fullName() }}
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-        <div class="wsb-tile-button">
-            {% if event.state.closed() %}
-                <button disabled class="wsb-btn wsb-btn-primary wsb-tile-btn">
-                    {{ _t('schedule.event.soldOut') }}
-                </button>
-            {% else %}
-            <a href="{% if config.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
-               class="wsb-btn wsb-btn-primary wsb-tile-btn">
-                {{ _t('schedule.event.register') }}
-            </a>
-            {% endif %}
-        </div>
+      {% else %}
+        {{ _f(event.schedule, 'full_short') }}
+      {% endif %}
     </div>
+    <div class="wsb-tile-info">
+      {{ _f(event.location) }}
+    </div>
+    <div class="wsb-tile-content">
+      {% for trainer in event.trainers %}
+        <div class="wsb-trainer">
+          {% if trainer.url %}
+            <a href="{{ trainer.url }}">
+              <img class="wsb-photo" src="{{ trainer.photo }}"/>
+            </a>
+            <a class="wsb-name" href="{{ trainer.url }}"> {{ trainer.fullName() }}</a>
+          {% else %}
+            <img class="wsb-photo" src="{{ trainer.photo }}"/>{{ trainer.fullName() }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="wsb-tile-button">
+      {% if event.state.closed() %}
+        <button disabled class="wsb-btn wsb-btn-primary wsb-tile-btn">
+          {{ _t('schedule.event.soldOut') }}
+        </button>
+      {% else %}
+        <a href="{% if config.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
+           class="wsb-btn wsb-btn-primary wsb-tile-btn">
+          {{ _t('schedule.event.register') }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
 {% endmacro %}
