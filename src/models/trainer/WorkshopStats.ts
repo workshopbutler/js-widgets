@@ -16,11 +16,11 @@ export default class WorkshopStats {
   readonly rating: number;
   readonly votes: Votes;
 
-  constructor(numberOfEvaluations: number, median: number, nps: number, rating: number, votes: IPlainObject) {
+  constructor(numberOfEvaluations: number, median: number, nps: number, rating: number, votes: Votes) {
     this.evaluations = numberOfEvaluations;
     this.median = median;
     this.nps = nps;
     this.rating = rating;
-    this.votes = new Votes(votes);
+    this.votes = votes;
   }
 }
