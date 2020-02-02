@@ -5,11 +5,12 @@ import Trainer from '../../../src/models/Trainer';
 import TrainerStats from '../../../src/models/trainer/TrainerStats';
 import CombinedWorkshopStats from '../../../src/models/trainer/CombinedWorkshopStats';
 import WorkshopStats from '../../../src/models/trainer/WorkshopStats';
+import Votes from '../../../src/models/Votes';
 
 const expect = chai.expect;
 
 describe('JSON-LD formatted Trainer', () => {
-  const workshopStats = new WorkshopStats(1, 1, 1, 1, {});
+  const workshopStats = new WorkshopStats(1, 1, 1, 1, new Votes({}));
   const combinedStats = new CombinedWorkshopStats(workshopStats, workshopStats, 0);
   const stats = new TrainerStats(combinedStats, combinedStats);
   const bill = new Trainer({}, 1, 'Bill', 'Lucky', '', '', stats);
