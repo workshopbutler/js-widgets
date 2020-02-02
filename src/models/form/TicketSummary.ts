@@ -11,7 +11,7 @@ export default class TicketSummary {
   }
 
   render(tickets: PaidTickets): string {
-    const ticket = tickets.getActiveTicket();
+    const ticket = tickets.firstActiveTicket();
     if (!ticket) {
       return '';
     }

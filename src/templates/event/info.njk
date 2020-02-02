@@ -49,10 +49,10 @@
               </div>
               <div class="wsb-profile__rating">
                 {% from "../common/rating.njk" import render_rating_stars %}
-                {% if trainer.publicStats.rating > 0 %}
-                  {{ render_rating_stars(trainer.publicStats.rating, false) }}
-                  {{ _f(trainer.publicStats.rating) }}
-                  <span>{{ _t('trainer.experience.rating.review', {count: trainer.publicStats.numberOfEvaluations }) }}</span>
+                {% if trainer.stats.total.publicStats.rating > 0 %}
+                  {{ render_rating_stars(trainer.stats.total.publicStats.rating, false) }}
+                  {{ _f(trainer.stats.total.publicStats.rating) }}
+                  <span>{{ _t('trainer.experience.rating.review', {count: trainer.stats.total.publicStats.evaluations }) }}</span>
                 {% endif %}
               </div>
             </div>

@@ -19,14 +19,14 @@ export default class Formatter {
   constructor(protected readonly loc: Localisation) {
   }
 
-  format(object: any, type: string | null = null): string {
+  format(object: any, type: string | null = null): string | string[] {
     if (object instanceof Schedule) {
       return ScheduleFormatter.format(this.loc.locale, object, type);
     }
     if (object instanceof TicketPrice) {
       return TicketPriceFormatter.format(this.loc, object);
     }
-    if (object instanceof Language) {
+    if (object instanceof Language || type === 'language') {
       return LanguageFormatter.format(this.loc, object);
     }
     if ((object as ITicketType).withoutLimit !== undefined) {

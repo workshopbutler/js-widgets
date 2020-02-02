@@ -38,11 +38,27 @@ export default class PaidTickets {
     this.activeTicketId = this.getActiveTicketId();
   }
 
-  getActiveTicket(): PaidTicketType | undefined {
+  /**
+   * Returns active paid types, which a user can register to
+   * @return {IPaidTicketType[]}
+   */
+  active() {
+    return this.types.filter(ticket => ticket.active());
+  }
+
+  inFuture() {
+    return this.types.filter(ticket => ticket.inFuture());
+  }
+
+  ended() {
+    return this.types.filter(ticket => ticket.ended());
+  }
+
+  firstActiveTicket(): PaidTicketType | undefined {
     if (this.activeTicketId) {
       return this.types.find(t => t.id === this.activeTicketId);
     } else {
-      const active = this.getActive();
+      const active = this.active();
       if (active.length) {
         return active[0];
       } else {
@@ -52,7 +68,7 @@ export default class PaidTickets {
   }
 
   protected getActiveTicketId() {
-    const active = this.getActiveTicket();
+    const active = this.firstActiveTicket();
     if (active) {
       return active.id;
     } else {
@@ -60,11 +76,4 @@ export default class PaidTickets {
     }
   }
 
-  /**
-   * Returns active paid types, which a user can register to
-   * @return {IPaidTicketType[]}
-   */
-  protected getActive() {
-    return this.types.filter(ticket => ticket.active());
-  }
 }
