@@ -1,0 +1,31 @@
+---
+title: "Attendees"
+date: 2018-07-03T14:28:36+03:00
+draft: false
+url: "attendees"
+---
+
+<div id="wsb-endorsement-list"></div>
+
+<script>
+  const apiKey = siteConfig.apiKey;
+  const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
+  document.addEventListener('wsbwidgetsloaded', function() {
+    const widgets = [
+      {
+        type: 'AttendeeList',
+        target: '#wsb-endorsement-list',
+        free: false,
+        filters: ['location', 'search'],
+        theme: 'alfred',
+        length: 10,
+      }
+    ];
+    const config = {
+      apiKey: apiKey,
+      locale: 'en'
+    };
+
+    WorkshopButlerWidgets.launch(config, widgets);
+  });
+</script>

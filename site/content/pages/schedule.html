@@ -1,5 +1,5 @@
 ---
-title: "Schedule 1"
+title: "Schedule"
 date: 2018-07-03T14:28:36+03:00
 draft: false
 url: "schedule"
@@ -24,11 +24,6 @@ url: "schedule"
           filters: ['location', 'type', 'language', 'trainer'],
           registrationPageUrl: '/registration',
           eventPagePattern: 'id={{id}}&title={{title}}&dates={{dates}}',
-          func: {
-            printHashedId: function(event) {
-              return event.hashedId;
-            }
-          }
         }
       ];
       const config = {

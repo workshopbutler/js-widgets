@@ -7,7 +7,7 @@ import {ListFilters} from './ListFilters';
  * Manages the logic for trainer list filters
  */
 export default class TrainerListFilters extends ListFilters<Trainer> {
-  private $root: JQuery;
+  protected root: JQuery<HTMLElement>;
   private readonly loc: Localisation;
 
   /**
@@ -18,7 +18,7 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
    */
   constructor(selector: HTMLElement, loc: Localisation, visibleFilters: string[]) {
     super();
-    this.$root = $(selector);
+    this.root = $(selector);
     this.loc = loc;
     this.filters = visibleFilters;
     this.assignEvents();
@@ -26,23 +26,23 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
 
   protected getFilterValues(name: string, trainers: Trainer[]): FilterValue[] {
     switch (name) {
-    case 'language':
-      return this.getLanguageFilterData(this.loc.translate('filter.languages'), trainers);
-    case 'location':
-      return this.getLocationFilterData(this.loc.translate('filter.locations'), trainers);
-    case 'trainer':
-      return this.getTrainerFilterData(this.loc.translate('filter.trainers'), trainers);
-    case 'rating':
-      return this.getRatingFilterData(this.loc.translate('filter.rating'));
-    case 'badge':
-      return this.getBadgeFilterData(this.loc.translate('filter.badge'), trainers);
-    default:
-      return [];
+      case 'language':
+        return this.getLanguageFilterData(this.loc.translate('filter.languages'), trainers);
+      case 'location':
+        return this.getLocationFilterData(this.loc.translate('filter.locations'), trainers);
+      case 'trainer':
+        return this.getTrainerFilterData(this.loc.translate('filter.trainers'), trainers);
+      case 'rating':
+        return this.getRatingFilterData(this.loc.translate('filter.rating'));
+      case 'badge':
+        return this.getBadgeFilterData(this.loc.translate('filter.badge'), trainers);
+      default:
+        return [];
     }
   }
 
   private assignEvents() {
-    this.$root.on('change', '[data-filter]', this.filterEvents.bind(this));
+    this.root.on('change', '[data-filter]', this.filterEvents.bind(this));
   }
 
   /**
@@ -50,8 +50,8 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
    * @private
    */
   private filterEvents() {
-    let trainers = this.$root.find('[data-trainer-obj]').hide();
-    this.$root.find('[data-filter]').each((index, el) => {
+    let trainers = this.root.find('[data-trainer-obj]').hide();
+    this.root.find('[data-filter]').each((index, el) => {
       const filterName = $(el).data('name');
       const value = $(el).val() as string;
       const filter = this.getFilter(filterName, value);
@@ -60,10 +60,10 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
       }
     });
     if (trainers.length) {
-      this.$root.find('[data-empty-list]').hide();
+      this.root.find('[data-empty-list]').hide();
       trainers.show();
     } else {
-      this.$root.find('[data-empty-list]').show();
+      this.root.find('[data-empty-list]').show();
     }
   }
 
@@ -77,18 +77,27 @@ export default class TrainerListFilters extends ListFilters<Trainer> {
     const experienceFunction = (index: number, el: HTMLElement) => {
       const exp = $(el).data('trainer-exp');
       switch (value) {
-      case 'one': return exp < 1;
-      case 'three': return exp <= 3 && exp >= 1;
-      case 'five': return exp > 3 && exp <= 5;
-      case 'seven': return exp > 5 && exp <= 7;
-      case 'more': return exp > 7;
-      default: return false;
+        case 'one':
+          return exp < 1;
+        case 'three':
+          return exp <= 3 && exp >= 1;
+        case 'five':
+          return exp > 3 && exp <= 5;
+        case 'seven':
+          return exp > 5 && exp <= 7;
+        case 'more':
+          return exp > 7;
+        default:
+          return false;
       }
     };
     switch (name) {
-    case 'experience': return experienceFunction;
-    case 'rating': return ratingFunction;
-    default: return `[data-trainer-${name}*="${value}"]`;
+      case 'experience':
+        return experienceFunction;
+      case 'rating':
+        return ratingFunction;
+      default:
+        return `[data-trainer-${name}*="${value}"]`;
     }
   }
 

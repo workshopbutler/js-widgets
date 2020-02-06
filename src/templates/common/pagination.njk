@@ -1,0 +1,17 @@
+{% macro pagination(paginator) %}
+  <div class="wsb-pagination">
+    {% if paginator.show() %}
+      <ul class="wsb-pagination-block">
+        {% for button in paginator.buttons() %}
+          <li class="wsb-pagination-page {{ 'wsb-active' if button.active }}">
+            {% if button.link %}
+              <a href="#" data-page="{{ button.value }}">{{ button.title }}</a>
+            {% else %}
+              <span>{{ button.title }}</span>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+{% endmacro %}

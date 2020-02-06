@@ -33,6 +33,7 @@ module.exports = {
       "error",
       2,
       {
+        "SwitchCase": 1,
         "FunctionDeclaration": {
           "parameters": "first"
         },

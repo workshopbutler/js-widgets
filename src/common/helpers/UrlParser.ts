@@ -39,7 +39,7 @@ export function absoluteURL(url: string): string {
 
 export function updatePathWithQuery(key: string, value: string): void {
   if (history.pushState) {
-    const url = new URI().addSearch(key, value).toString();
+    const url = new URI().addSearch(key, value).normalizeSearch().toString();
     window.history.pushState({path: url}, '', url);
   }
 }
@@ -51,6 +51,6 @@ export function deleteQueryFromPath(key: string): void {
   }
 }
 
-export function isHasValueInPath(type: string, value: string): boolean {
+export function hasValueInPath(type: string, value?: string): boolean {
   return new URI().hasQuery(type, value);
 }

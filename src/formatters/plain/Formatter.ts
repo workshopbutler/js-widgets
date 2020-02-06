@@ -32,7 +32,7 @@ export default class Formatter {
     if ((object as ITicketType).withoutLimit !== undefined) {
       return TicketFormatter.format(this.loc, object as ITicketType, type);
     }
-    if (object instanceof Location) {
+    if (object instanceof Location || type === 'country') {
       return LocationFormatter.format(this.loc, object);
     }
     if (object instanceof EventState) {

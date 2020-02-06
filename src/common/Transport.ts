@@ -3,6 +3,7 @@ import IApiResponse from '../interfaces/IApiResponse';
 import IError from '../interfaces/IError';
 import {logError} from './Error';
 import ISuccess from '../interfaces/ISuccess';
+import IPlainObject from '../interfaces/IPlainObject';
 
 declare let BACKEND_URL: string;
 declare let API_VERSION: string;
@@ -47,7 +48,7 @@ class Transport {
           callbackError(error);
         }
       } else {
-        callbackSuccess(response.response as ISuccess);
+        callbackSuccess(this.convertResponse(response.response));
       }
     });
   }
@@ -62,6 +63,16 @@ class Transport {
 
   delete(url: string, data: any, callbackSuccess: (response: any) => void) {
     this.makeFrameRequest('DELETE', url, data, callbackSuccess);
+  }
+
+  private convertResponse(json: IPlainObject): ISuccess {
+    return {
+      version: json.version,
+      total: json.total,
+      perPage: json.per_page,
+      page: json.page,
+      data: json.data,
+    };
   }
 
   private sendToFrame(message: object) {

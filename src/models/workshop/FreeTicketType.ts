@@ -1,9 +1,10 @@
 import IPlainObject from '../../interfaces/IPlainObject';
+import ITicketType from '../../interfaces/ITicketType';
 
 /**
  * Free ticket type
  */
-export default class FreeTicketType {
+export default class FreeTicketType implements ITicketType {
 
   static fromJSON(json: IPlainObject): FreeTicketType {
     return new FreeTicketType(json.total, json.left, json.unlimited);

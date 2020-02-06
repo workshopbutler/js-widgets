@@ -1,11 +1,16 @@
 {% macro drawFilters(availableFilters) %}
-    {% from "./filter.njk" import filter %}
-    {% set anyFilter = availableFilters.length > 0 %}
-    {% if anyFilter %}
-        <div class="wsb-filters">
-            {% for item in availableFilters %}
-                {{ filter(item.name, item.values) }}
-            {% endfor %}
-        </div>
-    {% endif %}
+  {% from "./filter.njk" import filter %}
+  {% from "./search.njk" import search %}
+  {% set anyFilter = availableFilters.length > 0 %}
+  {% if anyFilter %}
+    <div class="wsb-filters">
+      {% for item in availableFilters %}
+        {% if item.name == 'search' %}
+          {{ search(item.value) }}
+        {% else %}
+          {{ filter(item.name, item.values) }}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 {% endmacro %}
