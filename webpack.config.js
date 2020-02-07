@@ -9,7 +9,6 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const CopyPlugin = require('copy-webpack-plugin');
 
 const config = require('./config.js');
 const dest = path.resolve(__dirname, 'dist');
@@ -24,7 +23,7 @@ let webpackConfig = {
   },
   output: {
     path: path.resolve(__dirname, config.src),
-    filename: config.isDev ? `[name].js` : `[name].${getVersion()}.js`,
+    filename: config.isDev ? `[name].js` : `[name].${getVersion()}.${config.options.lang}.js`,
     sourceMapFilename: config.isDev ? `[name].js.map` : `[name].${getVersion()}.js.map`
   },
   externals: {
@@ -34,6 +33,15 @@ let webpackConfig = {
   plugins: getPlugins(),
   module: {
     rules: [
+      {
+        test: /locales/,
+        loader: '@alienfast/i18next-loader',
+        query: {
+          include: [`**/${config.options.lang}.json`]
+        },
+        // options here
+        //query: { overrides: [ '../node_modules/lib/locales' ] }
+      },
       {
         test: /\.(njk|nunjucks)$/,
         loader: 'nunjucks-loader',
@@ -107,17 +115,12 @@ function getPlugins() {
     new webpack.DefinePlugin({
       BACKEND_URL: JSON.stringify(config.env.backend),
       API_VERSION: JSON.stringify(config.options.apiVersion),
-      WIDGET_VERSION: JSON.stringify(getVersion())
+      WIDGET_VERSION: JSON.stringify(getVersion()),
+      WIDGET_LANGUAGE: JSON.stringify(config.options.lang),
     }),
     new MiniCssExtractPlugin({
       filename: config.isDev? `[name].css` : `[name].${getVersion()}.min.css`
-    }),
-    new CopyPlugin([
-      {
-        from: 'locales/*.json',
-        to: `[name].${getVersion()}.json`
-      }
-    ])
+    })
   ];
   const hugoSrc = path.resolve(__dirname, 'site');
   const hugoCmd = `hugo --buildDrafts --watch --source ${hugoSrc} --destination ${dest} --environment development`;
@@ -127,7 +130,7 @@ function getPlugins() {
         onBuildEnd: hugoCmd
       })
     );
-    plugins.push(new BundleAnalyzerPlugin());
+    // plugins.push(new BundleAnalyzerPlugin());
   }
 
   if (!config.isDev) {

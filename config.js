@@ -19,6 +19,7 @@ const options = {
   apiKey: process.env.API_KEY,
   theme: 'alfred',
   apiVersion: '2020-01-23',
+  lang: process.env.LANG ? process.env.LANG : 'en',
 };
 
 const mapping = {

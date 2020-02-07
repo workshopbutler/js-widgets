@@ -1,12 +1,8 @@
 import i18next from 'i18next';
 import IPlainObject from '../interfaces/IPlainObject';
-import de from '../locales/de.json';
-import en from '../locales/en.json';
-import es from '../locales/es.json';
-import fr from '../locales/fr.json';
-import nl from '../locales/nl.json';
-import pt from '../locales/pt.json';
-import no from '../locales/no.json';
+import * as resources from '../locales';
+
+declare const WIDGET_LANGUAGE: string;
 
 /**
  * Controls the translation of message tokens to actual strings
@@ -18,37 +14,20 @@ export default class Localisation {
    * Initialises i18next locale
    * @param locale {string} Widget's locale
    * @param language {string} Widget's language
-   * @param dict {IPlainObject} User dictionary to replace some default values
+   * @param userDict {IPlainObject} User dictionary to replace some default values
    */
-  constructor(locale: string, language: string, dict: IPlainObject) {
+  constructor(locale: string, language: string, userDict: IPlainObject) {
+    const dict = (resources as any)[WIDGET_LANGUAGE];
+    const skinnyResource: IPlainObject = {};
+    skinnyResource[WIDGET_LANGUAGE] = {
+      translation: userDict[WIDGET_LANGUAGE] ? this.deepCopy(dict, userDict[WIDGET_LANGUAGE]) : dict,
+    };
     this.locale = locale;
     i18next.init({
       debug: false,
-      fallbackLng: 'en',
-      lng: language,
-      resources: {
-        de: {
-          translation: dict.de ? this.deepCopy(de, dict.de) : de,
-        },
-        en: {
-          translation: dict.en ? this.deepCopy(en, dict.en) : en,
-        },
-        es: {
-          translation: dict.es ? this.deepCopy(es, dict.es) : es,
-        },
-        fr: {
-          translation: dict.fr ? this.deepCopy(fr, dict.fr) : fr,
-        },
-        no: {
-          translation: dict.no ? this.deepCopy(no, dict.no) : no,
-        },
-        nl: {
-          translation: dict.nl ? this.deepCopy(nl, dict.nl) : nl,
-        },
-        pt: {
-          translation: dict.pt ? this.deepCopy(pt, dict.pt) : pt,
-        },
-      },
+      fallbackLng: WIDGET_LANGUAGE,
+      lng: WIDGET_LANGUAGE,
+      resources: skinnyResource,
     });
   }
 
