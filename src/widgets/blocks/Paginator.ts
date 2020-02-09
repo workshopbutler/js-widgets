@@ -2,6 +2,7 @@ import PaginatorButton from './PaginatorButton';
 import {deleteQueryFromPath, updatePathWithQuery} from '../../common/helpers/UrlParser';
 import URI from 'urijs';
 import {PAGINATOR_CLICKED} from './event-types';
+import Localisation from '../../utils/Localisation';
 
 /**
  * State of pagination
@@ -22,6 +23,7 @@ export default class Paginator {
   }
 
   constructor(root: JQuery<HTMLElement>,
+              protected readonly loc: Localisation,
               readonly total: number,
               readonly page: number,
               readonly perPage: number) {
@@ -38,7 +40,7 @@ export default class Paginator {
   buttons() {
     const buttons: PaginatorButton[] = [];
     if (this.isPrev()) {
-      buttons.push(new PaginatorButton('Previous', true, this.page - 1));
+      buttons.push(new PaginatorButton(this.loc.translate('pagination.prev'), true, this.page - 1));
     }
     const additionalBtn = this.total % this.perPage > 0 ? 1 : 0;
     const lastBtnNumber = Math.floor(this.total / this.perPage) + additionalBtn;
@@ -52,7 +54,7 @@ export default class Paginator {
       this.showMiddleOfPagination(buttons, lastBtnNumber);
     }
     if (this.isNext()) {
-      buttons.push(new PaginatorButton('Next', true, this.page + 1));
+      buttons.push(new PaginatorButton(this.loc.translate('pagination.next'), true, this.page + 1));
     }
     return buttons;
   }

@@ -145,7 +145,7 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
             value.event.type = this.types.get(value.event.type);
           }
         });
-        const paginator = new Paginator(this.$root, resp.total, resp.page, resp.perPage);
+        const paginator = new Paginator(this.$root, this.loc, resp.total, resp.page, resp.perPage);
         this.renderContent(attendees, paginator);
       });
   }

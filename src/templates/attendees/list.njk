@@ -28,5 +28,5 @@
   {% from '../common/pagination' import pagination %}
   {{ pagination(paginator) }}
 {% else %}
-  <div class="wsb-empty-list">No attendees found</div>
+  <div class="wsb-empty-list">{{ _t('attendees.empty')}}</div>
 {% endif %}

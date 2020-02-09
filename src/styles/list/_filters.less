@@ -4,6 +4,17 @@
     justify-content: space-between;
     flex-wrap: wrap;
   }
+  .wsb-filters-left {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .wsb-filters-right {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+
   .wsb-filter {
     flex: 0 0 24%;
     margin: 0 0 20px 0;
@@ -14,6 +25,11 @@
 
     @media @phone {
       flex: 0 0 49%;
+    }
+  }
+  .wsb-filters-left, .wsb-filters-right {
+    .wsb-filter {
+      margin-right: 1%;
     }
   }
 

@@ -1,5 +1,7 @@
 import IPlainObject from '../../interfaces/IPlainObject';
 
+export type FilterNames = string[] | [string[], string[]];
+
 export default abstract class WidgetConfig {
   readonly template?: string;
   readonly templateUrl?: string;

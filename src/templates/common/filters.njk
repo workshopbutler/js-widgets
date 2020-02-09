@@ -1,16 +1,29 @@
+{% macro renderListOfFilters(filters) %}
+  {% for item in filters %}
+    {% if item.name == 'search' %}
+      {{ search(item.value) }}
+    {% else %}
+      {{ filter(item.name, item.values) }}
+    {% endif %}
+  {% endfor %}
+{% endmacro %}
+
 {% macro drawFilters(availableFilters) %}
   {% from "./filter.njk" import filter %}
   {% from "./search.njk" import search %}
   {% set anyFilter = availableFilters.length > 0 %}
   {% if anyFilter %}
     <div class="wsb-filters">
-      {% for item in availableFilters %}
-        {% if item.name == 'search' %}
-          {{ search(item.value) }}
-        {% else %}
-          {{ filter(item.name, item.values) }}
-        {% endif %}
-      {% endfor %}
+      {% if availableFilters[0].name %}
+        {{ renderListOfFilters(availableFilters) }}
+      {% else %}
+        <div class="wsb-filters-left">
+          {{ renderListOfFilters(availableFilters[0]) }}
+        </div>
+        <div class="wsb-filters-right">
+          {{ renderListOfFilters(availableFilters[1]) }}
+        </div>
+      {% endif %}
     </div>
   {% endif %}
 {% endmacro %}

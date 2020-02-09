@@ -1,5 +1,5 @@
 import IPlainObject from '../../interfaces/IPlainObject';
-import WidgetConfig from './WidgetConfig';
+import WidgetConfig, {FilterNames} from './WidgetConfig';
 import {logError} from '../../common/Error';
 
 /**
@@ -43,7 +43,7 @@ export default class AttendeeListConfig extends WidgetConfig {
   /**
    * All active filters
    */
-  readonly filters: string[];
+  readonly filters: FilterNames;
 
   /**
    * True if only attendees from free events are needed, false otherwise
