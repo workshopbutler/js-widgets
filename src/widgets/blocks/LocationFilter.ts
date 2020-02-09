@@ -1,37 +1,31 @@
-import {SelectFilter} from './SelectFilter';
+import ListReactiveFilter from './ListReactiveFilter';
+import Localisation from '../../utils/Localisation';
 import FilterValue from './FilterValue';
-import Filter from './Filter';
+import getCountryCodes from '../../utils/countries';
 
-export abstract class ListFilters<T> {
+export default class LocationFilter extends ListReactiveFilter {
 
-  /**
-   * Name of the filters
-   */
-  protected filters: string[];
+  static NAME = 'location';
+  static QUERY = 'location';
+  protected static LOC_NAME = 'filter.locations';
 
-  /**
-   * Element root
-   */
-  protected root: JQuery<HTMLElement>;
+  readonly visible: boolean = true;
 
-  /**
-   * Returns non-empty filters
-   * @param objects {array} List of objects
-   */
-  getFilters(objects: T[]): Filter[] {
-    const filters: Filter[] = [];
-    this.filters.forEach(name => {
-      const values = this.getFilterValues(name, objects);
-      if (values.length) {
-        const filterValue = new SelectFilter(name, values, true);
-        filters.push(filterValue);
-      }
-    });
-    // here we try to accommodate both ajax and non-ajax filters
-    return filters.filter(filter => filter.visible);
+  constructor(root: JQuery<HTMLElement>, loc: Localisation) {
+    super(root, LocationFilter.LOC_NAME, LocationFilter.NAME, LocationFilter.QUERY, loc);
+    this.reactOnChange(root);
+    this.values = this.getFilterValues(this.loc.translate(this.localisationId));
   }
 
-  protected abstract getFilterValues(name: string, objects: T[]): FilterValue[];
+  private getFilterValues(defaultName: string): FilterValue[] {
+    const unfiltered = getCountryCodes().map(code => {
+      const countryName = this.loc.translate(`country.${code}`);
+      const selected = this.value === code;
+      return new FilterValue(countryName, code, selected);
+    });
+
+    return this.getFilterData(defaultName, unfiltered);
+  }
 
   /**
    * Returns unique, defined filter values

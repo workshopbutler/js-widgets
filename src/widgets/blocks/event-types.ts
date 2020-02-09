@@ -1,2 +1,3 @@
-export const SEARCH_CHANGED = Symbol('wsb.search.changed');
-export const PAGINATOR_CLICK = Symbol('wsb.paginator.click');
+export const PAGINATOR_CLICKED = Symbol('wsb.paginator.clicked');
+export const FILTER_CHANGED = Symbol('wsb.filter.changed');
+export const TYPES_LOADED = Symbol('wsb.types.loaded');

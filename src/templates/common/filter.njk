@@ -1,5 +1,5 @@
 {% macro filter(name, values) %}
-    <select class="wsb-filter" data-filter data-name="{{ name }}">
+    <select class="wsb-filter" data-filter data-filter-{{ name }} data-name="{{ name }}">
         {% for item in values %}
             {% if item.selected %}
               <option class="wsb-filter" value="{{ item.value }}" selected="true">{{ item.name }}</option>

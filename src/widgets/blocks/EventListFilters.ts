@@ -2,11 +2,8 @@ import Event from '../../models/Event';
 import Localisation from '../../utils/Localisation';
 import FilterValue from './FilterValue';
 import {ListFilters} from './ListFilters';
-import {
-  deleteQueryFromPath,
-  hasValueInPath,
-  updatePathWithQuery,
-} from '../../common/helpers/UrlParser';
+import {deleteQueryFromPath, hasValueInPath, updatePathWithQuery,} from '../../common/helpers/UrlParser';
+import Type from '../../models/workshop/Type';
 
 /**
  * Manages the logic for event list filters
@@ -129,10 +126,14 @@ export default class EventListFilters extends ListFilters<Event> {
 
   private getTypeFilterData(defaultName: string, events: Event[]): FilterValue[] {
     const unfiltered = events.map(event => {
-      const typeId = event.type.id.toString();
-      const selected = hasValueInPath('type', typeId);
-      return new FilterValue(event.type.name, typeId, selected);
-    });
-    return this.getFilterData(defaultName, unfiltered);
+      if (event.type && event.type instanceof Type) {
+        const typeId = event.type.id.toString();
+        const selected = hasValueInPath('type', typeId);
+        return new FilterValue(event.type.name, typeId, selected);
+      } else {
+        return undefined;
+      }
+    }).filter((value: FilterValue | undefined) => value !== undefined);
+    return this.getFilterData(defaultName, unfiltered as FilterValue[]);
   }
 }

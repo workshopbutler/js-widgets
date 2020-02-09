@@ -23,7 +23,7 @@ export default class Event {
     const trainers = Event.getTrainers(json, options);
     const tickets = Event.getTickets(json.free, json.tickets, schedule.defaultTimezone());
     const registrationPage = new RegistrationPage(json.registration_page, options.registrationPageUrl, json.hashed_id);
-    const type = json.type ? new Type(json.type) : Type.empty();
+    const type = json.type ? (typeof json.type === 'number' ? json.type : new Type(json.type)) : undefined;
     const coverImage = CoverImage.fromJSON(json.cover_image);
     const category = json.category ? new Category(json.category) : undefined;
     return new Event(options, json.id, json.hashed_id, json.title, schedule, language, location,
@@ -73,7 +73,7 @@ export default class Event {
               privat = false,
               public soldOut = false,
               public description?: string,
-              public type: Type = Type.empty(),
+              public type?: Type | number,
               public category?: Category,
               public coverImage: CoverImage = new CoverImage(),
               formJSON?: IPlainObject) {

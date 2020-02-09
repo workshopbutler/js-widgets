@@ -13,7 +13,8 @@ import AttendeeListFilters from './blocks/AttendeeListFilters';
 import PubSub from 'pubsub-js';
 import URI from 'urijs';
 import Paginator from './blocks/Paginator';
-import {PAGINATOR_CLICK, SEARCH_CHANGED} from './blocks/event-types';
+import {FILTER_CHANGED, PAGINATOR_CLICKED, TYPES_LOADED} from './blocks/event-types';
+import Type from '../models/workshop/Type';
 
 /**
  * Logic for the list of attendees
@@ -50,10 +51,10 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
   }
 
   protected readonly formatter: Formatter;
-  private readonly filters: AttendeeListFilters;
+  private filters: AttendeeListFilters;
+  private types: Map<number, Type> = new Map();
   private content: JQuery<HTMLElement>;
   private page = 1;
-  private search?: string;
 
   /**
    * Creates a new attendee list
@@ -71,24 +72,34 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
     super(selector, apiKey, templates, loc, config);
     this.formatter = new Formatter(loc);
     this.filters = new AttendeeListFilters(selector, this.loc, this.config.filters);
+    this.subscribe();
     this.renderPage();
     this.content = this.$root.find('[data-content]');
     this.init();
-    this.subscribe();
-    this.loadContent();
+
+    const uri = new URI('event-types')
+      .addQuery('sort', 'name')
+      .addQuery('api_key', this.apiKey)
+      .addQuery('t', this.getWidgetStats());
+
+    transport.get(uri.href(), {}, (response: ISuccess) => {
+      const types = response.data.map((value: IPlainObject) => {
+        const type = new Type(value);
+        this.types.set(type.id, type);
+        return type;
+      });
+      PubSub.publish(TYPES_LOADED, types );
+      this.loadContent();
+    });
   }
 
   private subscribe() {
-    PubSub.subscribe('attendee.list.reload', () => {
+    PubSub.subscribe(FILTER_CHANGED, (msg: string, data: IPlainObject) => {
       this.resetPagination();
       this.loadContent();
     });
-    PubSub.subscribe(PAGINATOR_CLICK, (msg: string, data: IPlainObject) => {
+    PubSub.subscribe(PAGINATOR_CLICKED, (msg: string, data: IPlainObject) => {
       this.page = data.page;
-      this.loadContent();
-    });
-    PubSub.subscribe(SEARCH_CHANGED, (msg: string, data: IPlainObject) => {
-      this.search = data.value;
       this.loadContent();
     });
   }
@@ -128,7 +139,12 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
     this.loading();
     transport.get(url, {},
       (resp: ISuccess) => {
-        const attendees = resp.data.map((x: IPlainObject) => Attendee.fromJSON(x, this.config));
+        const attendees: Attendee[] = resp.data.map((x: IPlainObject) => Attendee.fromJSON(x, this.config));
+        attendees.forEach((value: Attendee) => {
+          if (value.event?.type && typeof value.event.type === 'number') {
+            value.event.type = this.types.get(value.event.type);
+          }
+        });
         const paginator = new Paginator(this.$root, resp.total, resp.page, resp.perPage);
         this.renderContent(attendees, paginator);
       });
@@ -146,6 +162,7 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
   }
 
   private getUrl() {
+    const selectedValues = this.filters.getSelectedValues();
     const uri = new URI('attendees/participated');
     if (this.config.length) {
       uri.addQuery('per_page', this.config.length);
@@ -153,14 +170,16 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
     if (this.config.free !== undefined) {
       uri.addQuery('free', this.config.free);
     }
-    if (this.filters.selectedLocation) {
-      uri.addQuery('countries', this.filters.selectedLocation);
+    if (selectedValues.location && selectedValues.location !== 'all') {
+      uri.addQuery('countries', selectedValues.location);
     }
-    if (this.search) {
-      uri.addQuery('q', this.search);
-    } else {
-      uri.removeSearch('q');
+    if (selectedValues.type && selectedValues.type !== 'all') {
+      uri.addQuery('event.typeIds', selectedValues.type);
     }
+    if (selectedValues.search) {
+      uri.addQuery('q', selectedValues.search);
+    }
+
     return uri.addQuery('api_key', this.apiKey)
       .addQuery('t', this.getWidgetStats())
       .addQuery('page', this.page)

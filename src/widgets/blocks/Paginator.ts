@@ -1,7 +1,7 @@
 import PaginatorButton from './PaginatorButton';
 import {deleteQueryFromPath, updatePathWithQuery} from '../../common/helpers/UrlParser';
 import URI from 'urijs';
-import {PAGINATOR_CLICK} from './event-types';
+import {PAGINATOR_CLICKED} from './event-types';
 
 /**
  * State of pagination
@@ -9,6 +9,7 @@ import {PAGINATOR_CLICK} from './event-types';
 export default class Paginator {
 
   static QUERY = 'page';
+  protected static LENGTH = 4;
 
   static updateQuery(pageNumber: number) {
     deleteQueryFromPath(this.QUERY);
@@ -29,7 +30,7 @@ export default class Paginator {
       if (e.currentTarget) {
         const pageNumber = $(e.currentTarget).data('page') as number;
         Paginator.updateQuery(pageNumber);
-        PubSub.publish(PAGINATOR_CLICK, { page: pageNumber });
+        PubSub.publish(PAGINATOR_CLICKED, { page: pageNumber });
       }
     });
   }
@@ -40,12 +41,13 @@ export default class Paginator {
       buttons.push(new PaginatorButton('Previous', true, this.page - 1));
     }
     const additionalBtn = this.total % this.perPage > 0 ? 1 : 0;
-    const lastBtnNumber = Math.round(this.total / this.perPage) + additionalBtn;
-    const magicNumber = 4;
-    if (magicNumber - this.page > 0) {
-      this.showStartOfPagination(buttons, magicNumber, lastBtnNumber);
-    } else if (this.page + magicNumber > lastBtnNumber) {
-      this.showEndOfPagination(buttons, magicNumber, lastBtnNumber);
+    const lastBtnNumber = Math.floor(this.total / this.perPage) + additionalBtn;
+    if (lastBtnNumber <= Paginator.LENGTH) {
+      this.showShortPaginator(buttons, lastBtnNumber);
+    } else if (Paginator.LENGTH - this.page > 0) {
+      this.showStartOfPagination(buttons, Paginator.LENGTH, lastBtnNumber);
+    } else if (this.page + Paginator.LENGTH > lastBtnNumber) {
+      this.showEndOfPagination(buttons, Paginator.LENGTH, lastBtnNumber);
     } else {
       this.showMiddleOfPagination(buttons, lastBtnNumber);
     }
@@ -57,6 +59,12 @@ export default class Paginator {
 
   show() {
     return this.total > this.perPage;
+  }
+
+  protected showShortPaginator(buttons: PaginatorButton[], limit: number) {
+    for (let i = 1; i <= limit; i++) {
+      buttons.push(new PaginatorButton(`${i}`, i !== this.page, i));
+    }
   }
 
   protected showMiddleOfPagination(buttons: PaginatorButton[], lastBtnNumber: number) {
