@@ -39,8 +39,6 @@ let webpackConfig = {
         query: {
           include: [`**/${config.options.lang}.json`]
         },
-        // options here
-        //query: { overrides: [ '../node_modules/lib/locales' ] }
       },
       {
         test: /\.(njk|nunjucks)$/,
@@ -104,9 +102,6 @@ let webpackConfig = {
 
 function getPlugins() {
   let plugins = [
-    new CleanWebpackPlugin([
-      path.resolve(__dirname, 'dist'),
-    ]),
     new webpack.ProvidePlugin({
       jQuery: 'jquery',
       $: 'jquery',

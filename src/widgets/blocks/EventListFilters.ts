@@ -2,7 +2,7 @@ import Event from '../../models/Event';
 import Localisation from '../../utils/Localisation';
 import FilterValue from './FilterValue';
 import {ListFilters} from './ListFilters';
-import {deleteQueryFromPath, hasValueInPath, updatePathWithQuery,} from '../../common/helpers/UrlParser';
+import {deleteQueryFromPath, hasValueInPath, updatePathWithQuery} from '../../common/helpers/UrlParser';
 import Type from '../../models/workshop/Type';
 
 /**

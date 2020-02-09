@@ -17,18 +17,18 @@ export default class Section {
    */
   protected static createAnyField(fieldData: any, event: Event): Field | null {
     switch (fieldData.type) {
-    case FieldType.Select:
-      return new Select(fieldData);
-    case FieldType.Country:
-      return new Country(fieldData);
-    case FieldType.Ticket:
-      if (event.tickets instanceof PaidTickets) {
-        return event.soldOut ? null : new Ticket(fieldData, event.tickets);
-      } else {
-        return null;
-      }
-    default:
-      return new Field(fieldData);
+      case FieldType.Select:
+        return new Select(fieldData);
+      case FieldType.Country:
+        return new Country(fieldData);
+      case FieldType.Ticket:
+        if (event.tickets instanceof PaidTickets) {
+          return event.soldOut ? null : new Ticket(fieldData, event.tickets);
+        } else {
+          return null;
+        }
+      default:
+        return new Field(fieldData);
     }
   }
 

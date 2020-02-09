@@ -10,14 +10,14 @@ import DateTimeFormatter from './DateTimeFormatter';
 export default class TicketFormatter {
   static format(loc: Localisation, ticket: ITicketType, type: string | null): string {
     switch (type) {
-    case 'desc':
-      if (ticket instanceof PaidTicketType) {
-        return this.formatDescription(loc, ticket);
-      } else {
-        return '';
-      }
-    default:
-      return this.formatState(loc, ticket);
+      case 'desc':
+        if (ticket instanceof PaidTicketType) {
+          return this.formatDescription(loc, ticket);
+        } else {
+          return '';
+        }
+      default:
+        return this.formatState(loc, ticket);
     }
   }
 

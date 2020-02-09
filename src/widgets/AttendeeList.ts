@@ -94,7 +94,7 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
   }
 
   private subscribe() {
-    PubSub.subscribe(FILTER_CHANGED, (msg: string, data: IPlainObject) => {
+    PubSub.subscribe(FILTER_CHANGED, () => {
       this.resetPagination();
       this.loadContent();
     });
