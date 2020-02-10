@@ -15,6 +15,7 @@ import URI from 'urijs';
 import Paginator from './blocks/Paginator';
 import {FILTER_CHANGED, PAGINATOR_CLICKED, TYPES_LOADED} from './blocks/event-types';
 import Type from '../models/workshop/Type';
+import Event from '../models/Event';
 
 /**
  * Logic for the list of attendees
@@ -86,7 +87,7 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
       const types = response.data.map((value: IPlainObject) => new Type(value));
       const filteredTypes = this.filterTypes(types);
       filteredTypes.forEach((type: Type) => this.types.set(type.id, type));
-      PubSub.publish(TYPES_LOADED, filteredTypes );
+      PubSub.publish(TYPES_LOADED, filteredTypes);
       this.loadContent();
     });
   }
@@ -158,10 +159,18 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
 
   private renderContent(attendees: Attendee[], paginator: Paginator) {
     $.when(getTemplate(this.config)).done(template => {
-      const params = Object.assign({attendees, paginator}, this.getTemplateParams());
-      const content = template ?
-        nunjucksRenderString(template, params) :
-        this.templates.attendeesList.render(params);
+      const templateParams = this.getTemplateParams();
+
+      function renderTemplate(attendee: Attendee) {
+        const localParams = Object.assign({attendee}, templateParams);
+        return nunjucksRenderString(template, localParams);
+      }
+
+      const params = Object.assign({
+        attendees, paginator,
+        template: template ? renderTemplate : null,
+      }, templateParams);
+      const content = this.templates.attendeesList.render(params);
 
       this.content.html(content);
     });

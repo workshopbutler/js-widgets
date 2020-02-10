@@ -1,0 +1,23 @@
+{% macro optional(value) %}{{ [",", value] | join(" ") if value }}{% endmacro %}
+
+{% macro render_attendee(attendee, config, _t, _f) %}
+  <span class="wsb-cite">
+    <strong>{{ attendee.fullName() }}</strong>{% if attendee.countryCode %},
+      {{ _f(attendee.countryCode, 'country') }}{% endif %}{{ optional(attendee.city) }}{{ optional(attendee.company) }}
+  </span>
+  {% if attendee.event %}
+    {% if attendee.event.type %}
+      <p>
+        <strong>{{ attendee.event.type.name }}</strong>
+      </p>
+    {% endif %}
+    <p>
+      Participated in {{ attendee.event.title }} on {{ _f(attendee.event.schedule, 'full_short') }}
+    </p>
+  {% endif %}
+  {% if attendee.certificate %}
+    <p>
+      Certificate: #{{ attendee.certificate }}
+    </p>
+  {% endif %}
+{% endmacro %}

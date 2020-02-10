@@ -1,26 +1,12 @@
-{% macro optional(value) %}{{ [",", value] | join(" ") if value }}{% endmacro %}
+{% from "./attendee.njk" import render_attendee %}
 {% if attendees.length > 0 %}
   <div class="">
     {% for attendee in attendees %}
       <div class="wsb-attendee">
-        <span class="wsb-cite">
-            <strong>{{ attendee.fullName() }}</strong>{% if attendee.countryCode %},
-              {{ _f(attendee.countryCode, 'country') }}{% endif %}{{ optional(attendee.city) }}{{ optional(attendee.company) }}
-        </span>
-        {% if attendee.event %}
-          {% if attendee.event.type %}
-            <p>
-              <strong>{{ attendee.event.type.name }}</strong>
-            </p>
-          {% endif %}
-          <p>
-            Participated in {{ attendee.event.title }} on {{ _f(attendee.event.schedule, 'full_short') }}
-          </p>
-        {% endif %}
-        {% if attendee.certificate %}
-          <p>
-            Certificate: #{{ attendee.certificate }}
-          </p>
+        {% if template %}
+          {{ template(attendee, config, _t, _f) | safe }}
+        {% else %}
+          {{ render_attendee(attendee, config, _t, _f) }}
         {% endif %}
       </div>
     {% endfor %}
