@@ -2,6 +2,10 @@
   "attendees": {
     "empty": "No attendees found"
   },
+  "pagination": {
+    "next": "Next",
+    "prev": "Previous"
+  },
   "filter": {
     "categories": "All categories",
     "locations": "All locations",
@@ -286,10 +290,6 @@
     "SK": "Slovakian",
     "HU": "Hungarian",
     "KO": "Korean"
-  },
-  "pagination": {
-    "next": "Next",
-    "prev": "Previous"
   },
   "rating": {
     "one": "More than 1",

@@ -51,6 +51,11 @@ export default class AttendeeListConfig extends WidgetConfig {
   readonly free?: boolean;
 
   /**
+   * Types of events to select attendees from. If empty, all types are selected
+   */
+  readonly typeIds: number[];
+
+  /**
    * Number of records per page (min - 1, max - 100)
    */
   readonly length?: number;
@@ -60,5 +65,6 @@ export default class AttendeeListConfig extends WidgetConfig {
     this.free = options.free;
     this.length = options.length;
     this.filters = options.filters;
+    this.typeIds = options.types;
   }
 }

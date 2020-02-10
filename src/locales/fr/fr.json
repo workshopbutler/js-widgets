@@ -1,4 +1,11 @@
 {
+  "attendees": {
+    "empty": "Aucun élève trouvé"
+  },
+  "pagination": {
+    "next": "Prochain",
+    "prev": "Précédent"
+  },
   "filter": {
     "categories": "Toutes les catégories",
     "locations": "Tous les lieux",

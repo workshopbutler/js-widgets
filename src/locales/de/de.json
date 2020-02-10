@@ -1,4 +1,11 @@
 {
+  "attendees": {
+    "empty": "Keine Teilnehmer gefunden"
+  },
+  "pagination": {
+    "next": "Nächster",
+    "prev": "Bisherige"
+  },
   "filter": {
     "categories": "Alle Kategorien",
     "locations": "Alle Standorte",

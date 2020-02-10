@@ -1,4 +1,11 @@
 {
+  "attendees": {
+    "empty": "No se encontraron estudiantes"
+  },
+  "pagination": {
+    "next": "Próximo",
+    "prev": "Anterior"
+  },
   "filter": {
     "categories": "Todas las categorias",
     "locations": "Todas las localizaciones",

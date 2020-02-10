@@ -1,4 +1,11 @@
 {
+  "attendees": {
+    "empty": "Geen studenten gevonden"
+  },
+  "pagination": {
+    "next": "De volgende",
+    "prev": "Voorgaand"
+  },
   "filter": {
     "categories": "Alle categorieën",
     "locations": "Alle locaties",

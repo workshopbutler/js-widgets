@@ -1,4 +1,11 @@
 {
+  "attendees": {
+    "empty": "Ingen deltagere funnet"
+  },
+  "pagination": {
+    "next": "Neste",
+    "prev": "Tidligere"
+  },
   "filter": {
     "categories": "Alle kategorier",
     "locations": "Alle steder",

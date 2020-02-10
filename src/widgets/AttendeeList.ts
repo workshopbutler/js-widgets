@@ -83,14 +83,20 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
       .addQuery('t', this.getWidgetStats());
 
     transport.get(uri.href(), {}, (response: ISuccess) => {
-      const types = response.data.map((value: IPlainObject) => {
-        const type = new Type(value);
-        this.types.set(type.id, type);
-        return type;
-      });
-      PubSub.publish(TYPES_LOADED, types );
+      const types = response.data.map((value: IPlainObject) => new Type(value));
+      const filteredTypes = this.filterTypes(types);
+      filteredTypes.forEach((type: Type) => this.types.set(type.id, type));
+      PubSub.publish(TYPES_LOADED, filteredTypes );
       this.loadContent();
     });
+  }
+
+  protected filterTypes(types: Type[]): Type[] {
+    if (this.config.typeIds.length > 0) {
+      return types.filter((value: Type) => this.config.typeIds.includes(value.id));
+    } else {
+      return types;
+    }
   }
 
   private subscribe() {
@@ -173,8 +179,12 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
     if (selectedValues.location && selectedValues.location !== 'all') {
       uri.addQuery('countries', selectedValues.location);
     }
+    let typeIds = this.config.typeIds;
     if (selectedValues.type && selectedValues.type !== 'all') {
-      uri.addQuery('event.typeIds', selectedValues.type);
+      typeIds = [parseInt(selectedValues.type, 10)];
+    }
+    if (typeIds.length > 0) {
+      uri.addQuery('event.typeIds', typeIds.join(','));
     }
     if (selectedValues.search) {
       uri.addQuery('q', selectedValues.search);
