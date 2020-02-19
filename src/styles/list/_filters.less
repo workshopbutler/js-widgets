@@ -2,17 +2,26 @@
   .wsb-filters {
     display: flex;
     justify-content: space-between;
+    flex-wrap: nowrap;
+
+    @media @phone {
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+  }
+  .wsb-filters-left, .wsb-filters-right {
+    display: flex;
     flex-wrap: wrap;
+
+    @media @phone {
+      flex-direction: column;
+    }
   }
   .wsb-filters-left {
-    display: flex;
     justify-content: flex-start;
-    flex-wrap: wrap;
   }
   .wsb-filters-right {
-    display: flex;
     justify-content: flex-end;
-    flex-wrap: wrap;
   }
 
   .wsb-filter {
@@ -24,12 +33,16 @@
     }
 
     @media @phone {
-      flex: 0 0 49%;
+      flex: 1 0 48%;
     }
   }
   .wsb-filters-left, .wsb-filters-right {
     .wsb-filter {
       margin-right: 1em;
+
+      @media @phone {
+        margin: 0 0 20px 0;
+      }
     }
   }
 

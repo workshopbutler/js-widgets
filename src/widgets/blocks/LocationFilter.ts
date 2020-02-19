@@ -1,7 +1,7 @@
 import ListReactiveFilter from './ListReactiveFilter';
 import Localisation from '../../utils/Localisation';
 import FilterValue from './FilterValue';
-import getCountryCodes from '../../utils/countries';
+import {COUNTRIES_LOADED} from './event-types';
 
 export default class LocationFilter extends ListReactiveFilter {
 
@@ -14,26 +14,31 @@ export default class LocationFilter extends ListReactiveFilter {
   constructor(root: JQuery<HTMLElement>, loc: Localisation) {
     super(root, LocationFilter.LOC_NAME, LocationFilter.NAME, LocationFilter.QUERY, loc);
     this.reactOnChange(root);
-    this.values = this.getFilterValues(this.loc.translate(this.localisationId));
+
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const self = this;
+    PubSub.subscribe(COUNTRIES_LOADED, function(msg: string, countries: string[]) {
+      self.reactOnLoadedCountries(countries);
+    });
   }
 
-  private getFilterValues(defaultName: string): FilterValue[] {
-    const unfiltered = getCountryCodes().map(code => {
+  protected reactOnLoadedCountries(countries: string[]) {
+    this.values = [];
+    const unfiltered = countries.filter((code: string) => code.length === 2).map(code => {
       const countryName = this.loc.translate(`country.${code}`);
       const selected = this.value === code;
       return new FilterValue(countryName, code, selected);
     });
-
-    return this.getFilterData(defaultName, unfiltered);
+    this.values = this.getFilterData(unfiltered);
+    this.render();
   }
 
   /**
    * Returns unique, defined filter values
-   * @param {string} defaultName Name of default value
    * @param {FilterValue[]} values All available filter values
    * @return {FilterValue[]}
    */
-  protected getFilterData(defaultName: string, values: FilterValue[]): FilterValue[] {
+  protected getFilterData(values: FilterValue[]): FilterValue[] {
     function onlyUnique(object: FilterValue, index: number, self: FilterValue[]) {
       return self.findIndex(value => object.value === value.value) === index;
     }
@@ -51,8 +56,6 @@ export default class LocationFilter extends ListReactiveFilter {
     if (!filtered.length) {
       return [];
     }
-    const all = {value: 'all', name: defaultName};
-    filtered.unshift(all);
     return filtered;
   }
 }

@@ -19,7 +19,8 @@ let webpackConfig = {
   context: path.resolve(__dirname, 'src'),
   devServer: {
     contentBase: dest,
-    watchContentBase: true
+    watchContentBase: true,
+    disableHostCheck: true,
   },
   output: {
     path: path.resolve(__dirname, config.src),

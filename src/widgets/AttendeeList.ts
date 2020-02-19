@@ -13,9 +13,8 @@ import AttendeeListFilters from './blocks/AttendeeListFilters';
 import PubSub from 'pubsub-js';
 import URI from 'urijs';
 import Paginator from './blocks/Paginator';
-import {FILTER_CHANGED, PAGINATOR_CLICKED, TYPES_LOADED} from './blocks/event-types';
+import {COUNTRIES_LOADED, FILTER_CHANGED, PAGINATOR_CLICKED, TYPES_LOADED} from './blocks/event-types';
 import Type from '../models/workshop/Type';
-import Event from '../models/Event';
 
 /**
  * Logic for the list of attendees
@@ -92,6 +91,15 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
     });
   }
 
+  protected loadCountries() {
+    const uri = new URI('utils/countries/attendees')
+      .addQuery('api_key', this.apiKey)
+      .addQuery('t', this.getWidgetStats());
+
+    transport.get(uri.href(), {}, (response: ISuccess) => {
+      PubSub.publish(COUNTRIES_LOADED, response.data);
+    });
+  }
   protected filterTypes(types: Type[]): Type[] {
     if (this.config.typeIds.length > 0) {
       return types.filter((value: Type) => this.config.typeIds.includes(value.id));
@@ -126,6 +134,7 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
     }
     this.loading();
     this.page = Paginator.getPageFromQuery();
+    this.loadCountries();
   }
 
   private renderPage() {
