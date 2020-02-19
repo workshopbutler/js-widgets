@@ -93,6 +93,9 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
 
   protected loadCountries() {
     const uri = new URI('utils/countries/attendees')
+      .addQuery('event.confirmed', true)
+      .addQuery('status', 'participated')
+      .addQuery('event.dates', 'past')
       .addQuery('api_key', this.apiKey)
       .addQuery('t', this.getWidgetStats());
 
