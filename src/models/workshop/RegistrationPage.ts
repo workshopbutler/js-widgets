@@ -18,7 +18,7 @@ export default class RegistrationPage {
 
   constructor(attrs: IPlainObject, registrationUrl: string | null = null, eventId: string) {
     if (attrs) {
-      this.external = attrs.custom;
+      this.external = attrs.external;
       this.url = attrs.url;
     }
     if (!this.external && registrationUrl) {
