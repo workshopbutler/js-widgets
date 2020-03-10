@@ -10,7 +10,9 @@
 
   <form action="#" class="wsb-form" id="wsb-form">
     <div class="wsb-form__body">
-      <div class="wsb-form__instructions">{{ event.registrationForm.instructions }}</div>
+      {% if event.registrationForm.instructions %}
+        <div class="wsb-form__instructions">{{ event.registrationForm.instructions }}</div>
+      {% endif %}
       {% from "./form/field.njk" import formField %}
       {% from "./form/ticketSection.njk" import ticketSection %}
       {% for section in event.registrationForm.sections %}

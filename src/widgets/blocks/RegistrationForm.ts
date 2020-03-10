@@ -123,7 +123,7 @@ export default abstract class RegistrationForm<T extends WidgetConfig> extends W
       }
     });
     if (this.event.tickets instanceof PaidTickets) {
-      const activeTicket = tickets.filter(`#${this.event.tickets.activeTicketId}`);
+      const activeTicket = tickets.filter(`[id="${this.event.tickets.activeTicketId}"]`);
       this.toggleTicket(activeTicket, true);
     }
   }

@@ -1,6 +1,6 @@
 @import "../core/settings";
 
-@left-column: 8em;
+@left-column: 10em;
 
 .wsb-content {
 
@@ -40,6 +40,9 @@
       display: inline-block;
       margin-left: 0;
       margin-right: 0.5em;
+    }
+    &[type=checkbox] {
+      align-self: flex-start;
     }
 
     &:focus {
@@ -82,7 +85,13 @@
   }
 
   .wsb-form__instructions {
-    margin-bottom: 25px;
+    margin: @label-padding 0 0;
+    background-color: aliceblue;
+    padding: 1em;
+
+    @media @phone {
+      margin-bottom: @label-padding;
+    }
   }
 
   .wsb-form__section-title {
@@ -104,7 +113,7 @@
     }
 
     &:first-of-type {
-      padding-top: 0;
+      padding-top: 2em;
     }
 
     @media @phone, screen and (max-width: 600px) {
