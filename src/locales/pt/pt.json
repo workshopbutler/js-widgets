@@ -394,7 +394,8 @@
       "url": "URL inválida",
       "date": "Formato de data inválido. Deve ser aaaa-MM-dd",
       "number": "Formato de número longo inválido",
-      "digits": "Apenas dígitos"
+      "digits": "Apenas dígitos",
+      "attendee": "Já existe um participante com este endereço de email"
     },
     "field": {
       "first_name": "Primeiro Nome",
@@ -434,7 +435,8 @@
         "province": "Município/Estado",
         "country": "País",
         "postcode": "Código Postal"
-      }
+      },
+      "payment_type": "Forma de pagamento"
     },
     "section": {
       "general": "Informações pessoais",

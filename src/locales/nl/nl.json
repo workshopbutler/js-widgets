@@ -394,7 +394,8 @@
       "url": "Ongeldige url",
       "date": "Ongeldige datum, het moet in het volgende formaat yyyy-mm-dd",
       "number": "Het nummer is te lang en niet geldig",
-      "digits": "Alleen cijfers"
+      "digits": "Alleen cijfers",
+      "attendee": "Er bestaat al een deelnemer met dit e-mailadres"
     },
     "field": {
       "first_name": "Voornaam",
@@ -434,8 +435,8 @@
         "province": "Provincie / Staat",
         "postcode": "Postcode",
         "country": "Land"
-      }
-
+      },
+      "payment_type": "Betalingswijze"
     },
     "section": {
       "general": "Persoonlijke informatie",

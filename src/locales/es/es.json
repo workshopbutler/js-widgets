@@ -394,7 +394,8 @@
       "url": "URL invalida",
       "date": "Formato de fecha no válido. Debe ser aaaa-mm-dd",
       "number": "Formato de número largo no válido",
-      "digits": "Sólo dígitos"
+      "digits": "Sólo dígitos",
+      "attendee": "Ya existe un asistente con esta dirección de correo electrónico"
     },
     "field": {
       "first_name": "Nombre",
@@ -434,7 +435,8 @@
         "province": "Provincia / Estado",
         "country": "País",
         "postcode": "Código postal"
-      }
+      },
+      "payment_type": "Método de pago"
     },
     "section": {
       "general": "Información personal",

@@ -9,7 +9,7 @@ export default class FormHelper {
    * @param $controls {IPlainObject} Form inputs
    * @param messages {IPlainObject} Messages to show on errors
    */
-  constructor(protected readonly $controls: JQuery<HTMLElement>, protected readonly messages: IPlainObject) {
+  constructor(protected readonly $controls: JQuery<HTMLElement>, readonly messages: IPlainObject) {
     this.errors = [];
 
     this.assignEvents();

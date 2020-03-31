@@ -55,7 +55,7 @@ export default class RegistrationPageConfig extends WidgetConfig {
   readonly countryDefault: string;
 
   /**
-     * Redirect to successs page url instead of only showing success message
+     * Redirect to success page url instead of only showing success message
      */
   readonly successRedirectUrl: string;
 

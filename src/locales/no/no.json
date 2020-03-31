@@ -382,7 +382,8 @@
       "url": "Vennligst skriv inn en gyldig url",
       "date": "Vennligst oppgi en gyldig dato",
       "number": "Vennligst oppgi et gyldig nummer",
-      "digits": "Fyll inn bare tall"
+      "digits": "Fyll inn bare tall",
+      "attendee": "En deltaker med denne e-postadressen eksisterer allerede"
     },
     "field": {
       "first_name": "Fornavn",
@@ -422,7 +423,8 @@
         "province": "Fylke/Kommune",
         "country": "Land",
         "postcode": "Postnummer"
-      }
+      },
+      "payment_type": "Betalingsmetode"
     },
     "section": {
       "general": "Personlig informasjon",

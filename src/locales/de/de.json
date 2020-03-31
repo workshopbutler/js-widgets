@@ -395,7 +395,8 @@
       "url": "Bitte geben Sie eine gültige URL ein",
       "date": "Bitte geben Sie ein korrektes Datum ein (yyyy-MM-dd)",
       "number": "Bitte geben Sie eine Nummer ein",
-      "digits": "Bitte benutzen Sie nur Zahlen"
+      "digits": "Bitte benutzen Sie nur Zahlen",
+      "attendee": "Ein Teilnehmer mit dieser E-Mail-Adresse ist bereits vorhanden"
     },
     "field": {
       "first_name": "Vorname",
@@ -435,7 +436,8 @@
         "province": "Bundesland",
         "country": "Land",
         "postcode": "Postleitzahl"
-      }
+      },
+      "payment_type": "Bezahlverfahren"
     },
     "section": {
       "general": "Persönliche Angaben",
