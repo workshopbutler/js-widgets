@@ -154,7 +154,7 @@ class Transport {
       delete that.failureCallbacks[callbackId];
     };
 
-    const withVersion = `${url}&api_version=${API_VERSION}&callback=jswidgets`;
+    const withVersion = `${url}&api_version=${API_VERSION}`;
     this.sendToFrame({
       cb: callbackId,
       data: JSON.stringify(data),
@@ -171,8 +171,9 @@ class Transport {
     if (originWithoutSlack !== backendUrlWithoutSlack) {
       return;
     }
+
     if (event.data.cb) {
-      if (event.data.status >= 400 && typeof this.failureCallbacks[event.data.cb] === 'function') {
+      if (event.data.error && typeof this.failureCallbacks[event.data.cb] === 'function') {
         this.failureCallbacks[event.data.cb](event.data.response);
       } else if (typeof this.successCallbacks[event.data.cb] === 'function') {
         this.successCallbacks[event.data.cb](event.data.response);
@@ -184,7 +185,7 @@ class Transport {
     if (url) {
       return BACKEND_URL + url;
     } else {
-      return BACKEND_URL + 'stub';
+      return BACKEND_URL + 'iframe-transport';
     }
   }
 
