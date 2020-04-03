@@ -15,9 +15,18 @@
       {% endif %}
       {% from "./form/field.njk" import formField %}
       {% from "./form/ticketSection.njk" import ticketSection %}
+      {% from "./form/paymentSection.njk" import paymentSection %}
       {% for section in event.registrationForm.sections %}
         {% if section.id == 'ticket' %}
           {{ ticketSection(section, event.state.closed(), config, _t, _f) }}
+        {% elif section.id == 'payment' %}
+          <div class="wsb-form__payment-alert wsb-not-secure-alert">
+            This page is not secure. Card payments are turned off.
+          </div>
+          <div class="wsb-form__payment-alert wsb-no-payment-method">
+            No payment method is available. You cannot register to this event.
+          </div>
+          {{ paymentSection(section, event.state.closed(), config, _t, _f) }}
         {% else %}
           <section>
             {% if section.id != 'footer' %}
@@ -34,7 +43,7 @@
         <button class="wsb-form__btn" disabled>{{ _f(event.state) }}</button>
       {% else %}
         <button type="submit" class="wsb-form__btn">
-          {{ _t('event.form.button') }}
+          <i class="fa fa-spinner fa-spin" style="display: none;"></i> {{ _t('event.form.button') }}
         </button>
       {% endif %}
     </div>

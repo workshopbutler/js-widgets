@@ -394,7 +394,8 @@
       "url": "URL non valide",
       "date": "Format de date non valide. Il devrait être AAAA-MM-JJ",
       "number": "S'il vous plait, entrez un nombre valide",
-      "digits": "Entrer uniquement les chiffres"
+      "digits": "Entrer uniquement les chiffres",
+      "attendee": "Un participant avec cette adresse e-mail existe déjà"
     },
     "field": {
       "first_name": "Prénom",
@@ -434,7 +435,8 @@
         "province": "Province/état",
         "country": "Pays",
         "postcode": "Adresse postal"
-      }
+      },
+      "payment_type": "Mode de paiement"
     },
     "section": {
       "general": "Infos personnelles",

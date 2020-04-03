@@ -381,7 +381,8 @@
       "url": "Please enter a valid URL",
       "date": "Please enter a valid date",
       "number": "Please enter a valid number",
-      "digits": "Please enter only digits"
+      "digits": "Please enter only digits",
+      "attendee": "An attendee with this email address already exists"
     },
     "field": {
       "first_name": "First Name",
@@ -421,7 +422,8 @@
         "province": "Province/State",
         "country": "Country",
         "postcode": "Postcode"
-      }
+      },
+      "payment_type": "Payment method"
     },
     "section": {
       "general": "Personal Info",

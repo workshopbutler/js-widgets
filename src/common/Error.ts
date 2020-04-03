@@ -6,3 +6,8 @@ export function logError(msg: string): void {
   // eslint-disable-next-line no-console
   console.log(`Workshop Butler ERROR: ${msg}`);
 }
+
+export function logInfo(msg: string): void {
+  // eslint-disable-next-line no-console
+  console.log(`Workshop Butler INFO: ${msg}`);
+}

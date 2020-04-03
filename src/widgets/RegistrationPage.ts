@@ -5,15 +5,22 @@ import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
 import {ITemplates} from '../templates/ITemplates';
 import Localisation from '../utils/Localisation';
-import RegistrationForm from './blocks/RegistrationForm';
 import RegistrationPageConfig from './config/RegistrationPageConfig';
 import FormHelper from './helpers/FormHelper';
 import getTemplate from './helpers/Templates';
+import getCountryCodes from '../utils/countries';
+// @ts-ignore
+import SharedRegistrationForm from './helpers/SharedRegistrationForm';
+import PaymentConfig from './helpers/PaymentConfig';
+import Widget from './Widget';
+import RegistrationFormConfig from './helpers/RegistrationFormConfig';
 
 /**
  * Logic for the registration form page
  */
-export default class RegistrationPage extends RegistrationForm<RegistrationPageConfig> {
+export default class RegistrationPage extends Widget<RegistrationPageConfig> {
+
+  protected event: Event;
 
   /**
    * @param selector {string} JQuery selector
@@ -120,28 +127,64 @@ export default class RegistrationPage extends RegistrationForm<RegistrationPageC
         event: this.event,
         ticket: this.ticketId,
       };
-      const params = Object.assign( uniqueParams, this.getTemplateParams());
+      const params = Object.assign(uniqueParams, this.getTemplateParams());
 
       const content = template ?
         nunjucksRenderString(template, params) :
         this.templates.registrationPage.render(params);
       this.$root.html(content);
 
-      this.successMessage = this.$root.find('#wsb-success');
-      this.successRedirectUrl = this.config.successRedirectUrl;
-      this.successMessage.hide();
-      this.form = this.$root.find('#wsb-form');
-      this.summaryBlock = this.$root.find('[data-summary]');
-      this.assignEvents();
+      this.$root.data('widget.shared.registration.form', this.getForm());
 
-      this.formHelper = new FormHelper(
-        this.$root.find('[data-control]'),
-        this.getErrorMessages());
+      // this.summaryBlock = this.$root.find('[data-summary]');
 
     });
   }
 
+  private getForm() {
+    const formHelper = new FormHelper(
+      this.$root.find('[data-control]'),
+      this.getErrorMessages());
+
+    const paymentConfig = this.getPaymentConfig();
+    const formConfig = new RegistrationFormConfig(this.event.id, this.config.successRedirectUrl);
+    return new SharedRegistrationForm(this.$root.find('.wsb-body'), formHelper,
+      formConfig, paymentConfig);
+  }
+
+  private getPaymentConfig() {
+    const registerUrl = `attendees/register?api_key=${this.apiKey}&t=${this.getWidgetStats()}`;
+    const preRegisterUrl = `attendees/pre-register?api_key=${this.apiKey}&t=${this.getWidgetStats()}`;
+
+    return new PaymentConfig(this.event.payment?.active || false,
+      this.event.payment?.testMode() || false,
+      preRegisterUrl, registerUrl, this.event.payment?.stripePublicKey, this.event.payment?.stripeClientId);
+  }
+
   private getUrl(eventId: string) {
     return `events/${eventId}?api_key=${this.apiKey}&fields=trainer.rating&t=${this.getWidgetStats()}`;
+  }
+
+  private getCountries(config: RegistrationPageConfig): [string, string][] {
+    const codes = config.countryOnlyFrom ? config.countryOnlyFrom : getCountryCodes();
+    const countries = codes.map(code =>
+      [code, this.loc.translate('country.' + code)] as [string, string],
+    );
+    return countries.sort((a, b) => a[1].localeCompare(b[1]));
+  }
+
+  /**
+   * Contains localised form errors
+   */
+  protected getErrorMessages(): IPlainObject {
+    return {
+      'date': this.loc.translate('form.error.date'),
+      'digits': this.loc.translate('form.error.digits'),
+      'email': this.loc.translate('form.error.email'),
+      'nospace': this.loc.translate('form.error.number'),
+      'required': this.loc.translate('form.error.required'),
+      'url': this.loc.translate('form.error.url'),
+      'form.error.attendee.exist': this.loc.translate('form.error.attendee'),
+    };
   }
 }

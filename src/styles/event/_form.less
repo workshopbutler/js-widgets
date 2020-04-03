@@ -301,6 +301,10 @@
     &:hover {
       opacity: 0.9;
     }
+    &:disabled {
+      opacity: 0.5;
+      cursor: auto;
+    }
 
     @media @phone, screen and (max-width: 600px) {
       width: 100%;
@@ -312,6 +316,6 @@
     font-size: 1em;
     color: @red;
     padding-bottom: 1em;
+    margin-left: @left-column;
   }
-
 }

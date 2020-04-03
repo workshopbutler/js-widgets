@@ -1,4 +1,3 @@
-import * as JQuery from 'jquery';
 import IApiResponse from '../interfaces/IApiResponse';
 import IError from '../interfaces/IError';
 import {logError} from './Error';
@@ -13,12 +12,13 @@ declare let API_VERSION: string;
  */
 class Transport {
   isFrameLoaded = false;
-  callbacks: any = {};
+  successCallbacks: any = {};
+  failureCallbacks: any = {};
   private iframe: HTMLIFrameElement;
   private messageStack: object[] = [];
 
   constructor() {
-    $(window).on('message', this.addMessageListener.bind(this));
+    window.addEventListener('message', this.addMessageListener.bind(this), false);
   }
 
   /**
@@ -53,8 +53,8 @@ class Transport {
     });
   }
 
-  post(url: string, data: any, callbackSuccess: (response: any) => void) {
-    this.makeFrameRequest('POST', url, data, callbackSuccess);
+  post(url: string, data: any, callbackSuccess: (response: any) => void, callbackFailure?: (response: any) => void) {
+    this.makeFrameRequest('POST', url, data, callbackSuccess, callbackFailure);
   }
 
   put(url: string, data: any, callbackSuccess: (response: any) => void) {
@@ -133,20 +133,28 @@ class Transport {
     return iframe;
   }
 
-  private makeFrameRequest(method: string, url: string, data: any, callbackSuccess: (response: any) => void) {
+  private makeFrameRequest(method: string, url: string, data: any,
+                           callbackSuccess?: (response: any) => void,
+                           callbackFailure?: (response: any) => void) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const that = this;
     const callbackId = 'cb' + (Math.random() * 100).toString().replace(/\./g, '');
 
-    this.callbacks[callbackId] = (response: any) => {
+    this.successCallbacks[callbackId] = (response: any) => {
       if (callbackSuccess) {
         callbackSuccess(response);
       }
 
-      delete that.callbacks[callbackId];
+      delete that.successCallbacks[callbackId];
+    };
+    this.failureCallbacks[callbackId] = (response: any) => {
+      if (callbackFailure) {
+        callbackFailure(response);
+      }
+      delete that.failureCallbacks[callbackId];
     };
 
-    const withVersion = `${url}&version=${API_VERSION}`;
+    const withVersion = `${url}&api_version=${API_VERSION}`;
     this.sendToFrame({
       cb: callbackId,
       data: JSON.stringify(data),
@@ -157,18 +165,19 @@ class Transport {
     return false;
   }
 
-  private addMessageListener(e: JQuery.TriggeredEvent) {
-    if (!e.originalEvent) {
-      return;
-    }
-    const event = (e.originalEvent as MessageEvent);
+  private addMessageListener(event: MessageEvent) {
     const backendUrlWithoutSlack = this.updateLocalOrigin(BACKEND_URL).replace(/\/$/, '');
     const originWithoutSlack = event.origin.replace('\/$', '');
     if (originWithoutSlack !== backendUrlWithoutSlack) {
       return;
     }
-    if (event.data.cb && typeof this.callbacks[event.data.cb] === 'function') {
-      this.callbacks[event.data.cb](event.data);
+
+    if (event.data.cb) {
+      if (event.data.error && typeof this.failureCallbacks[event.data.cb] === 'function') {
+        this.failureCallbacks[event.data.cb](event.data.response);
+      } else if (typeof this.successCallbacks[event.data.cb] === 'function') {
+        this.successCallbacks[event.data.cb](event.data.response);
+      }
     }
   }
 
@@ -176,7 +185,7 @@ class Transport {
     if (url) {
       return BACKEND_URL + url;
     } else {
-      return BACKEND_URL + 'stub';
+      return BACKEND_URL + 'iframe-transport';
     }
   }
 

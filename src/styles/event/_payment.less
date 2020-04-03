@@ -1,0 +1,42 @@
+@import "../core/settings";
+
+.wsb-content {
+
+  .wsb-form__payment-alert {
+    background-color: @red;
+    color: white;
+    padding: 1em;
+  }
+  .wsb-not-secure-alert,
+  .wsb-no-payment-method {
+    display: none;
+  }
+
+  .wsb-form-not-secure .wsb-not-secure-alert {
+    display: block;
+  }
+  .wsb-form-without-payment .wsb-no-payment-method {
+    display: block;
+  }
+
+  .wsb-stripe-card-error {
+    padding-top: 1em;
+    color: @red;
+  }
+
+  .wsb-form__payment {
+    margin-bottom: 0;
+  }
+
+  .wsb-form__card {
+    border-radius: 2px;
+    height: 2em;
+    margin-bottom: 1em;
+    border: 1px solid #bbb;
+    padding: 5px 10px;
+  }
+  .wsb-form__payment-holder {
+    width: 100%;
+    display: block;
+  }
+}

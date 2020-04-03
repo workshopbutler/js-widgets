@@ -1,0 +1,17 @@
+{% macro paymentSection(section, disabled, config, _t, _f) %}
+  <section class="wsb-ticket-section" data-payment-section>
+    {% from "./field.njk" import formField %}
+    {% for field in section.fields %}
+      {{ formField(field, disabled, [], config, _t, _f) }}
+    {% endfor %}
+    <div class="wsb-form__field wsb-form__payment" data-card-section style="display:none;">
+      <label class="wsb-label"></label>
+      <div class="wsb-form__payment-holder">
+        <div class="form-control wsb-form__card">
+          <div id="stripe-placeholder"></div>
+        </div>
+        <div id="register-form-error" class="wsb-form__error"></div>
+      </div>
+    </div>
+  </section>
+{% endmacro %}
