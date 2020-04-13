@@ -33,6 +33,6 @@ export default class TicketSection extends Section {
   }
 
   showSummary(): boolean {
-    return !this.excludedTax || this.tax !== undefined;
+    return false;
   }
 }

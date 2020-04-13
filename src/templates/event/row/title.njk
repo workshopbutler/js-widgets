@@ -6,5 +6,8 @@
     <a href="{{ event.url }}" class="wsb-table__link">
       {{ event.title }}
     </a>
+    {% if event.free %}
+      <div class="wsb-free">{{ _t('schedule.event.free') | lower }}</div>
+    {% endif %}
   </div>
 {% endmacro %}
