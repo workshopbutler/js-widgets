@@ -93,7 +93,7 @@ export default class SharedRegistrationForm {
    * @private
    */
   lockIfNoPaymentMethod() {
-    if (this.cardPaymentEnabled || this.invoicePaymentEnabled) {
+    if (this.cardPaymentEnabled || this.invoicePaymentEnabled || this.paymentConfig.free) {
       return;
     }
     this.root.addClass('wsb-form-without-payment');

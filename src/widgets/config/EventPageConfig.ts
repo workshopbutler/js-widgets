@@ -2,6 +2,7 @@ import {logError} from '../../common/Error';
 import {absoluteURL, safeHref} from '../../common/helpers/UrlParser';
 import IPlainObject from '../../interfaces/IPlainObject';
 import WidgetConfig from './WidgetConfig';
+import CoverImageConfig from './CoverImageConfig';
 
 /**
  * Contains @EventPageConfig widget configuration options
@@ -74,6 +75,11 @@ export default class EventPageConfig extends WidgetConfig {
    */
   readonly numberOfTickets: boolean;
 
+  /**
+   * Configuration for cover image
+   */
+  readonly coverImage: CoverImageConfig;
+
   protected constructor(options: IPlainObject) {
     super(options);
     this.trainers = options.trainers !== undefined ? options.trainers : false;
@@ -83,6 +89,9 @@ export default class EventPageConfig extends WidgetConfig {
     this.expiredTickets = options.expiredTickets !== undefined ? options.expiredTickets : true;
     this.numberOfTickets = options.numberOfTickets !== undefined ? options.numberOfTickets : true;
     this.showFutureEvents = options.futureEvents !== undefined ? options.futureEvents : true;
+    this.coverImage = options.coverImage !== undefined ?
+      new CoverImageConfig(options.coverImage.show, options.coverImage.placeholder,
+        options.coverImage.width, options.coverImage.height) : new CoverImageConfig();
     this.eventPageUrl = safeHref();
   }
 

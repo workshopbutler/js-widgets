@@ -17,6 +17,9 @@
         {{ info(event, config, _t, _f) }}
       </div>
       <div class="wsb-description">
+        {% if config.coverImage.showInside() and event.coverImage %}
+          <img src="{{ event.coverImage.url }}" class="wsb-cover-image"/>
+        {% endif %}
         {% if event.description %}
           <div class="wsb-desc">{{ event.description | safe }}</div>
         {% endif %}

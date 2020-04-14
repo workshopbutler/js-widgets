@@ -5,6 +5,7 @@ draft: false
 url: "event-page"
 ---
 
+<div id="cover-image"></div>
 <div id="wsb-event-details"></div>
 
 <script>
@@ -21,6 +22,9 @@ url: "event-page"
         registrationPageUrl: '/registration',
         expiredTickets: true,
         numberOfTickets: true,
+        coverImage: {
+          show: true,
+        },
         widgets: [
           {
             type: 'SidebarEventList',

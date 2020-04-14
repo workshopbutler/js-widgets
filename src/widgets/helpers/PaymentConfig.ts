@@ -1,6 +1,11 @@
 export default class PaymentConfig {
 
   /**
+   * True if the event is free
+   */
+  readonly free: boolean;
+
+  /**
    * True if card payments are active
    */
   readonly active: boolean;
@@ -31,10 +36,11 @@ export default class PaymentConfig {
    */
   readonly registerUrl: string;
 
-  constructor(active: boolean, testMode: boolean,
+  constructor(active: boolean, free: boolean, testMode: boolean,
               preRegisterUrl: string, registerUrl: string,
               stripePublicKey?: string, stripeClientId?: string) {
     this.active = active;
+    this.free = free;
     this.stripePublicKey = stripePublicKey;
     this.stripeClientId = stripeClientId;
     this.testMode = testMode;

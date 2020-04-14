@@ -140,10 +140,21 @@ export default class EventPage extends Widget<EventPageConfig> {
         this.templates.eventPage.render(params);
 
       this.$root.html(content);
+      this.renderCoverImage();
       if (this.config.widgets) {
         WidgetFactory.launch({apiKey: this.apiKey}, this.config.widgets);
       }
     });
+  }
+
+  private renderCoverImage() {
+    if (this.event.coverImage && this.config.coverImage.showOutside()) {
+      let html = `<img src="${this.event.coverImage.url}"`;
+      html += this.config.coverImage.width ? ` width="${this.config.coverImage.width}" ` : '';
+      html += this.config.coverImage.height ? ` height="${this.config.coverImage.height}" ` : '';
+      html += '/>';
+      $(this.config.coverImage.placeholder as string).html(html);
+    }
   }
 
   private getUrl(eventId: string) {
