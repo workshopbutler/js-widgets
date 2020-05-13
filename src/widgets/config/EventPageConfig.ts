@@ -80,6 +80,11 @@ export default class EventPageConfig extends WidgetConfig {
    */
   readonly coverImage: CoverImageConfig;
 
+  /**
+   * When true, an additional registration button is shown after "Share event" block
+   */
+  readonly showAdditionalButton: boolean;
+
   protected constructor(options: IPlainObject) {
     super(options);
     this.trainers = options.trainers !== undefined ? options.trainers : false;
@@ -93,6 +98,7 @@ export default class EventPageConfig extends WidgetConfig {
       new CoverImageConfig(options.coverImage.show, options.coverImage.placeholder,
         options.coverImage.width, options.coverImage.height) : new CoverImageConfig();
     this.eventPageUrl = safeHref();
+    this.showAdditionalButton = options.showAdditionalButton !== undefined ? options.showAdditionalButton : false;
   }
 
 }

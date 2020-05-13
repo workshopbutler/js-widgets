@@ -103,6 +103,11 @@ export default class ScheduleConfig extends WidgetConfig {
    */
   readonly trainerId?: number;
 
+  /**
+   * When true, only featured events are shown
+   */
+  readonly onlyFeatured: boolean;
+
   protected constructor(options: IPlainObject) {
     super(options);
     this.eventPageUrl = options.eventPageUrl;
@@ -126,6 +131,7 @@ export default class ScheduleConfig extends WidgetConfig {
     this.length = options.length !== undefined ? options.length : undefined;
     this.future = options.future !== undefined ? options.future : true;
     this.trainerId = options.trainerId !== undefined ? options.trainerId : undefined;
+    this.onlyFeatured = options.onlyFeatured !== undefined ? options.onlyFeatured : false;
   }
 
 }

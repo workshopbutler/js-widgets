@@ -8,7 +8,7 @@
       <div class="wsb-free">{{ _t('event.free') }}</div>
     {% endif %}
     <a data-widget-go href="{{ event.url }}" class="wsb-tile-title">{{ event.title | truncate(60) }}</a>
-    <div class="wsb-tile-info">
+    <div class="wsb-tile-info wsb-tile-datetime">
       {% if event.schedule.atOneDay() %}
         {{ _f(event.schedule, 'full_long') }}
         {% if event.location.online and event.schedule.timezone %}
@@ -18,7 +18,7 @@
         {{ _f(event.schedule, 'full_short') }}
       {% endif %}
     </div>
-    <div class="wsb-tile-info">
+    <div class="wsb-tile-info wsb-tile-location">
       {{ _f(event.location) }}
     </div>
     <div class="wsb-tile-content">

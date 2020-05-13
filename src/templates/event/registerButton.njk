@@ -1,0 +1,10 @@
+{% macro registerButton(event, config, _t, _f) %}
+  <div>
+    {% if event.state.closed() %}
+      <button class="wsb-sidebar__register" disabled>{{ _f(event.state) }}</button>
+    {% else %}
+      <a href="{{ event.registrationPage.url }}" target="_blank"
+         class="wsb-sidebar__register">{{ _t('event.register') }}</a>
+    {% endif %}
+  </div>
+{% endmacro %}

@@ -82,7 +82,10 @@ export default class Schedule extends Widget<ScheduleConfig> {
     const url = this.getUrl();
     transport.get(url, {},
       (data: ISuccess) => {
-        let events = data.data;
+        let events: Event[] = data.data as Event[];
+        if (this.config.onlyFeatured) {
+          events = events.filter((event: Event) => event.featured);
+        }
         if (this.config.length && this.config.length >= 0) {
           events = events.slice(0, this.config.length);
         }

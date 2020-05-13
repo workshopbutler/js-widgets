@@ -24,11 +24,11 @@ url: "schedule"
           filters: ['location', 'type', 'language', 'trainer'],
           registrationPageUrl: '/registration',
           eventPagePattern: 'id={{id}}&title={{title}}&dates={{dates}}',
+          onlyFeatured: true,
         }
       ];
       const config = {
         apiKey: apiKey,
-        locale: 'en'
       };
       WorkshopButlerWidgets.launch(config, widgets);
   });

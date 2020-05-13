@@ -28,9 +28,10 @@ export default class Event {
     const coverImage = CoverImage.fromJSON(json.cover_image);
     const category = json.category ? new Category(json.category) : undefined;
     const payment = Payment.fromJSON(json.card_payment);
+    const featured = json.featured ? json.featured : false;
     return new Event(options, json.id, json.hashed_id, json.title, schedule, language, location,
       registrationPage, trainers, tickets, json.confirmed, json.free, json.private, json.sold_out, json.description,
-      type, category, coverImage, payment, json.form
+      type, category, coverImage, payment, featured, json.form
     );
   }
 
@@ -79,6 +80,7 @@ export default class Event {
               public category?: Category,
               public coverImage: CoverImage = new CoverImage(),
               public payment?: Payment,
+              public featured: boolean = false,
               formJSON?: IPlainObject) {
 
     this.registrationForm = Form.fromJSON(formJSON, this);
