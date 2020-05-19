@@ -158,7 +158,11 @@ export default class EventPage extends Widget<EventPageConfig> {
   }
 
   private getUrl(eventId: string) {
-    return `events/${eventId}?api_key=${this.apiKey}&expand=trainer.stats&t=${this.getWidgetStats()}`;
+    let expand = 'trainer.stats';
+    if (this.config.trainers.bio) {
+      expand += ',trainer.bio';
+    }
+    return `events/${eventId}?api_key=${this.apiKey}&expand=${expand}&t=${this.getWidgetStats()}`;
   }
 
 }

@@ -17,7 +17,10 @@ url: "event-page"
         type: 'EventPage',
         target: '#wsb-event-details',
         theme: themeName,
-        trainers: true,
+        trainers: {
+          show: true,
+          bio: true,
+        },
         trainerPageUrl: '/trainer-profile',
         registrationPageUrl: '/registration',
         expiredTickets: true,

@@ -3,6 +3,7 @@ import {absoluteURL, safeHref} from '../../common/helpers/UrlParser';
 import IPlainObject from '../../interfaces/IPlainObject';
 import WidgetConfig from './WidgetConfig';
 import CoverImageConfig from './CoverImageConfig';
+import TrainersConfig from './TrainersConfig';
 
 /**
  * Contains @EventPageConfig widget configuration options
@@ -35,9 +36,9 @@ export default class EventPageConfig extends WidgetConfig {
   }
 
   /**
-   * When true, the trainers who run the event are shown
+   * Trainers' configuration
    */
-  readonly trainers: boolean;
+  readonly trainers: TrainersConfig;
 
   /**
    * URL to the page with @TrainerProfile widget
@@ -87,7 +88,7 @@ export default class EventPageConfig extends WidgetConfig {
 
   protected constructor(options: IPlainObject) {
     super(options);
-    this.trainers = options.trainers !== undefined ? options.trainers : false;
+    this.trainers = new TrainersConfig(options.trainers);
     this.trainerPageUrl = options.trainerPageUrl ? absoluteURL(options.trainerPageUrl) : undefined;
     this.registrationPageUrl = options.registrationPageUrl ? absoluteURL(options.registrationPageUrl) : undefined;
     this.widgets = options.widgets !== undefined ? options.widgets : [];

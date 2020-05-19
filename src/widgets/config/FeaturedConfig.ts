@@ -8,12 +8,12 @@ export default class FeaturedConfig {
   /**
    * When true, featured events are highlighted
    */
-  highlight: boolean;
+  readonly highlight: boolean;
 
   /**
    * When true, featured events go first in the schedule
    */
-  onTop: boolean;
+  readonly onTop: boolean;
 
   constructor(options?: IPlainObject) {
     this.highlight = options?.highlight !== undefined ? options?.highlight : true;
