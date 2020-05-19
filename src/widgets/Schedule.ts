@@ -82,14 +82,17 @@ export default class Schedule extends Widget<ScheduleConfig> {
     const url = this.getUrl();
     transport.get(url, {},
       (data: ISuccess) => {
-        let events: Event[] = data.data as Event[];
+        let events = data.data.map((e: IPlainObject) => Event.fromJSON(e, this.config));
         if (this.config.onlyFeatured) {
           events = events.filter((event: Event) => event.featured);
+        }
+        if (this.config.featured.onTop) {
+          events = events.filter((e: Event) => e.featured).concat(events.filter((e: Event) => !e.featured));
         }
         if (this.config.length && this.config.length >= 0) {
           events = events.slice(0, this.config.length);
         }
-        this.events = events.map((event: IPlainObject) => Event.fromJSON(event, this.config));
+        this.events = events;
         this.render();
       });
   }
@@ -97,6 +100,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
   private render() {
     $.when(getTemplate(this.config)).done(template => {
       const templateParams = this.getTemplateParams();
+
       function renderTemplate(event: Event) {
         const localParams = Object.assign({event}, templateParams);
         return nunjucksRenderString(template, localParams);

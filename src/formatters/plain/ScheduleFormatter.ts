@@ -93,7 +93,7 @@ export default class ScheduleFormatter {
       if (startParts[i].value === endParts[i].value) {
         interval += startParts[i].value;
       } else {
-        interval += `${startParts[i].value}-${endParts[i].value}`;
+        interval += `${startParts[i].value}—${endParts[i].value}`;
       }
     }
     return interval;

@@ -6,9 +6,9 @@
           <a href="{{ trainer.url }}">
             <img class="wsb-photo" src="{{ trainer.photo }}"/>
           </a>
-          <a class="wsb-name" href="{{ trainer.url }}">{% if config.trainerName %} {{ trainer.fullName() }} {% endif %}</a>
+          <a class="wsb-name" href="{{ trainer.url }}">&nbsp;{% if config.trainerName %} {{ trainer.fullName() }} {% endif %}</a>
         {% else %}
-          <img class="wsb-photo" src="{{ trainer.photo }}"/>{% if config.trainerName %} {{ trainer.fullName() }} {% endif %}
+          <img class="wsb-photo" src="{{ trainer.photo }}"/>&nbsp;{% if config.trainerName %} {{ trainer.fullName() }} {% endif %}
         {% endif %}
       </div>
     {% endfor %}

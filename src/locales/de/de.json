@@ -302,8 +302,8 @@
     "KA": "Georgisch",
     "SK": "Slowakisch",
     "HU": "Ungarisch",
-    "KO": "Koreanisch"
-
+    "KO": "Koreanisch",
+    "HE": "Hebräisch"
   },
   "rating": {
     "one": "Mehr als 1",
@@ -335,6 +335,7 @@
     "register": "Jetzt registrieren",
     "soldOut": "Ausverkauft",
     "free": "Frei",
+    "featured": "Besondere",
     "info": {
       "date": "Datum",
       "loc": "Ort",

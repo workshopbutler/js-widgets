@@ -6,10 +6,6 @@
     border-bottom: 1px solid;
     .clearfix();
     display: flex;
-
-    @media @phone {
-      display: none;
-    }
   }
 
   .wsb-table__row {
@@ -17,12 +13,6 @@
     padding: 1em 0;
     border-bottom: 1px solid;
     display: flex;
-
-    @media @phone {
-      flex-wrap: wrap;
-      padding: 2em 0;
-      border-bottom: 3px solid;
-    }
   }
 
   .wsb-table__col {
@@ -36,26 +26,14 @@
 
     &.wsb-table__col-schedule {
       flex: 1 1 15%;
-
-      @media @phone {
-        flex: 0 0 100%;
-      }
     }
 
     &.wsb-table__col-location {
       flex: 1 1 14%;
-
-      @media @phone {
-        flex: 0 0 100%;
-      }
     }
 
     &.wsb-table__col-title {
       flex: 1 1 38%;
-
-      @media @phone {
-        flex: 0 0 100%;
-      }
     }
 
     &.wsb-table__col-trainers {
@@ -69,9 +47,6 @@
         }
       }
 
-      @media @phone {
-        flex: 0 0 100%;
-      }
     }
 
     &.wsb-table__col-register {
@@ -87,6 +62,7 @@
     .wsb-trainer {
       margin: 0 0.4em 0 0;
       display: inline-flex;
+      align-items: center;
 
       a {
         margin-right: 0.4em;
@@ -113,10 +89,8 @@
 
   }
 
-  .wsb-table .wsb-free {
-    display: block;
-    position: absolute;
-    margin-top: 0.4em;
+  .wsb-featured .wsb-table__link {
+    font-weight: bold;
   }
 
   .wsb-table__img {
@@ -155,33 +129,33 @@
     }
   }
 
-  @media screen and (max-width: 904px) {
-    .wsb-table .wsb-free {
-      padding: 0.2em 1em;
-      font-size: 12px;
-    }
-
-  }
-
-  @media screen and (max-width: 700px) {
-    .wsb-table .wsb-free {
-      display: none;
-
-      &.wsb-first {
-        display: inline-block;
-      }
-    }
-  }
-
-  @media screen and (max-width: 600px) {
+  @media @phone {
     .wsb-table__head {
       display: none;
     }
 
     .wsb-table__row {
-      padding-top: 9px;
-      padding-bottom: 15px;
-    }
+      flex-wrap: wrap;
+      padding: 12px 6px 12px 0;
 
+      .wsb-free,
+      .wsb-tag {
+        display: none;
+      }
+      .wsb-mobile {
+        display: inline-table;
+        margin-bottom: 5px;
+      }
+    }
+    .wsb-table__col {
+      &.wsb-table__col-schedule,
+      &.wsb-table__col-location,
+      &.wsb-table__col-register,
+      &.wsb-table__col-trainers,
+      &.wsb-table__col-title {
+        flex: 0 0 100%;
+        margin-left: 6px;
+      }
+    }
   }
 }

@@ -1,0 +1,7 @@
+{% macro tag(event, config, _t, _f, mobile) %}
+  {% if event.free %}
+    <span class="{% if mobile %} wsb-mobile {% endif %} wsb-free">{{ _t('event.free') }}</span>
+  {% elseif event.featured and config.featured.highlight %}
+    <span class="{% if mobile %} wsb-mobile {% endif %} wsb-tag">{{ _t('event.featured') }}</span>
+  {% endif %}
+{% endmacro %}

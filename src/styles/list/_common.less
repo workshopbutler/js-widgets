@@ -1,8 +1,18 @@
 .wsb-content {
-  .wsb-free {
+  .wsb-tag {
     text-transform: uppercase;
     font-size: 0.8em;
-    padding: 0.4em 1.3em;
+    padding: 0.25em 1.3em;
     color: white;
+    background-color: @yellow;
+  }
+  .wsb-free {
+    .wsb-tag;
+  }
+  .wsb-mobile {
+    display: none;
+  }
+  .wsb-featured {
+    background-color: fade(@yellow, 10%) !important;
   }
 }

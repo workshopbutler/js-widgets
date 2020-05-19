@@ -2,6 +2,7 @@ import {logError} from '../../common/Error';
 import IPlainObject from '../../interfaces/IPlainObject';
 import DefaultSettings from './DefaultSettings';
 import WidgetConfig from './WidgetConfig';
+import FeaturedConfig from './FeaturedConfig';
 
 /**
  * Contains @SidebarEventListConfig widget configuration options
@@ -43,7 +44,7 @@ export default class SidebarEventListConfig extends WidgetConfig {
   readonly eventType?: number;
   readonly future: boolean;
   readonly trainerId?: number;
-  readonly excludeId?: number;
+  readonly excludeId?: string;
 
   /**
    * Pattern for the event page url
@@ -59,6 +60,11 @@ export default class SidebarEventListConfig extends WidgetConfig {
    * Category ID to filter the events
    */
   readonly categoryId?: number;
+
+  /**
+   * Featured config
+   */
+  readonly featured: FeaturedConfig;
 
   protected constructor(options: IPlainObject) {
     super(options);
@@ -82,5 +88,6 @@ export default class SidebarEventListConfig extends WidgetConfig {
     } else {
       this.expand = [];
     }
+    this.featured = new FeaturedConfig(options.featured);
   }
 }

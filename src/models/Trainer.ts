@@ -17,7 +17,7 @@ export default class Trainer {
       json.languages.map((language: string) => getLangCode(language)) : [];
     const worksIn = json.countries ? json.countries : [];
 
-    return new Trainer(options, json.id, json.first_name, json.last_name, json.email_address,
+    return new Trainer(options, json.id, json.first_name, json.last_name, json.email,
       json.bio, stats, languages, json.badges, socialLinks, testimonials, worksIn, json.avatar, json.address.country);
   }
 

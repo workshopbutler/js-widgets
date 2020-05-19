@@ -3,6 +3,7 @@ import IPlainObject from '../../interfaces/IPlainObject';
 import DefaultSettings from './DefaultSettings';
 import {ScheduleColumnType} from './ScheduleColumnType';
 import WidgetConfig from './WidgetConfig';
+import FeaturedConfig from './FeaturedConfig';
 
 /**
  * Contains @Schedule widget configuration options
@@ -108,6 +109,11 @@ export default class ScheduleConfig extends WidgetConfig {
    */
   readonly onlyFeatured: boolean;
 
+  /**
+   * Configuration for featured events;
+   */
+  readonly featured: FeaturedConfig;
+
   protected constructor(options: IPlainObject) {
     super(options);
     this.eventPageUrl = options.eventPageUrl;
@@ -132,6 +138,7 @@ export default class ScheduleConfig extends WidgetConfig {
     this.future = options.future !== undefined ? options.future : true;
     this.trainerId = options.trainerId !== undefined ? options.trainerId : undefined;
     this.onlyFeatured = options.onlyFeatured !== undefined ? options.onlyFeatured : false;
+    this.featured = new FeaturedConfig(options.featured);
   }
 
 }

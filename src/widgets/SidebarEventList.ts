@@ -85,8 +85,12 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
       const url = this.getUrl(country, length);
       transport.get(url, {},
         (resp: ISuccess) => {
-          const events = resp.data.filter((event: IPlainObject) => event.hashed_id !== this.config.excludeId);
-          this.events = events.map((event: IPlainObject) => Event.fromJSON(event, this.config));
+          let events = resp.data.map((e: IPlainObject) => Event.fromJSON(e, this.config));
+          events = events.filter((e: Event) => e.hashedId !== this.config.excludeId);
+          if (this.config.featured.onTop) {
+            events = events.filter((e: Event) => e.featured).concat(events.filter((e: Event) => !e.featured));
+          }
+          this.events = events;
           this.renderUpcomingEventList();
         });
     });
@@ -116,8 +120,9 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
   private renderUpcomingEventList() {
     $.when(getTemplate(this.config)).done(template => {
       const templateParams = this.getTemplateParams();
+
       function renderTemplate(event: Event) {
-        const localParams = Object.assign({ event }, templateParams);
+        const localParams = Object.assign({event}, templateParams);
         return nunjucksRenderString(template, localParams);
       }
 

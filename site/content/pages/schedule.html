@@ -24,7 +24,10 @@ url: "schedule"
           filters: ['location', 'type', 'language', 'trainer'],
           registrationPageUrl: '/registration',
           eventPagePattern: 'id={{id}}&title={{title}}&dates={{dates}}',
-          onlyFeatured: true,
+          featured: {
+            highlight: true,
+            onTop: true,
+          }
         }
       ];
       const config = {

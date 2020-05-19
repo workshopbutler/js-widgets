@@ -289,8 +289,8 @@
     "KA": "Georgisk",
     "SK": "Slovakisk",
     "HU": "Ungarsk",
-    "KO": "Koreansk"
-
+    "KO": "Koreansk",
+    "HE": "Hebraisk"
   },
   "rating": {
     "one": "Mer enn 1",
@@ -322,6 +322,7 @@
     "register": "Registrer deg nå",
     "soldOut": "Utsolgt",
     "free": "Gratis",
+    "featured": "Utvalgt",
     "info": {
       "date": "Dato",
       "loc": "Lokasjon",

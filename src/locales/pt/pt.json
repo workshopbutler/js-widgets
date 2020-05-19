@@ -302,7 +302,8 @@
     "KA": "georgiano",
     "SK": "eslovaco",
     "HU": "húngara",
-    "KO": "coreana"
+    "KO": "coreana",
+    "HE": "hebraico"
   },
   "rating": {
     "one": "Mais de 1",
@@ -334,6 +335,7 @@
     "register": "Registrar agora",
     "soldOut": "Esgotado",
     "free": "Grátis",
+    "featured": "Destaque",
     "info": {
       "date": "Data",
       "loc": "Localização",

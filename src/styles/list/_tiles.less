@@ -26,9 +26,9 @@
     min-height: 17em;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 21px 26px 0;
+    padding: 30px 26px 0;
     text-align: left;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     margin-right: 12px;
 
     @media @desktop {
@@ -55,6 +55,8 @@
     /* Smartphones (portrait and landscape) ----------- */
     @media @phone {
       flex: 0 1 100%;
+      min-height: initial;
+      padding: 30px 12px 12px;
       margin-right: 0 !important;
     }
   }
@@ -74,18 +76,21 @@
 
     @media @phone {
       font-size: 1.2em;
+      line-height: 1.4em;
+      margin-bottom: 0;
     }
   }
 
-  .wsb-tile .wsb-free {
+  .wsb-tile .wsb-tag, .wsb-tile .wsb-free {
     position: absolute;
     right: 0;
-    top: -0.1em;
-  }
+    top: 0;
 
-  .wsb-tile-info {
-    margin-bottom: 0.25em;
-
+    @media @phone {
+      left: 0;
+      top: 5px;
+      display: inline-table;
+    }
   }
 
   .wsb-tile-content {

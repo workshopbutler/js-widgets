@@ -3,11 +3,8 @@
     {% if event.type.badge %}
       <img class="wsb-table__img" src="{{ event.type.badge }}">
     {% endif %}
-    <a href="{{ event.url }}" class="wsb-table__link">
-      {{ event.title }}
-    </a>
-    {% if event.free %}
-      <div class="wsb-free">{{ _t('schedule.event.free') | lower }}</div>
-    {% endif %}
+    <a href="{{ event.url }}" class="wsb-table__link">{{ event.title }}</a>
+    {% from "./../tag.njk" import tag %}
+    {{ tag(event, config, _t, _f, false) }}
   </div>
 {% endmacro %}
