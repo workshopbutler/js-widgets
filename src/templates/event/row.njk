@@ -10,6 +10,7 @@
   {% from "./row/trainers.njk" import renderTrainers %}
   {% from "./row/title.njk" import renderTitle %}
   {% from "./row/register.njk" import renderRegisterButton %}
+  {% from "./row/language.njk" import renderLanguage %}
   {% from "./tag.njk" import tag %}
   {{ tag(event, config, _t, _f, true) }}
   {% for col in config.cols %}
@@ -21,6 +22,8 @@
       {{ renderTrainers(event, config, _t, _f) }}
     {% elif col === 'title' %}
       {{ renderTitle(event, config, _t, _f) }}
+     {% elif col === 'language' %}
+      {{ renderLanguage(event, config, _t, _f) }}
     {% else %}
       {{ renderRegisterButton(event, config, _t, _f) }}
     {% endif %}

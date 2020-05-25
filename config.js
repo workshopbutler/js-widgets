@@ -28,10 +28,13 @@ const mapping = {
   'styles': 'styles/common.less'
 };
 
+//console.log(process.env.NODE_ENV);
+//console.log(environments[process.env.NODE_ENV]);
+
 module.exports = {
   isDev,
   src: isDev ? 'site/static/' : `dist/`,
-  env: environments[process.env.NODE_ENV],
+  env: environments['watch'],
   entry: mapping,
   options: options,
   wordpress: process.env.NODE_ENV === "build-wordpress"

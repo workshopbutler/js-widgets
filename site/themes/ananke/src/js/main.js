@@ -1,4 +1,5 @@
 import styles from './../css/main.css';
+import 'flag-icon-css/css/flag-icon.css';
 
 
 // NOTE: TO use Jquery, just call the modules you want

@@ -304,6 +304,7 @@
     "nine": "More than 9"
   },
   "schedule": {
+    "language": "Language",
     "noEvents": "No events were found",
     "when": "When",
     "where": "Where",

@@ -17,6 +17,7 @@
       {% if trainer.country %}
         <div class="wsb-trainer-tile__country">
           {{ _t('country.' + trainer.country) }}
+          <span class="flag-icon flag-icon-{{trainer.country.toLowerCase()}}"></span>
         </div>
       {% endif %}
       <div>
