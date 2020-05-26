@@ -6,7 +6,7 @@ import Localisation from '../../utils/Localisation';
  */
 export default class LanguageFormatter {
 
-  static format(loc: Localisation, language: Language | string | string[], part: any): string | string[]{
+  static format(loc: Localisation, language: Language | string | string[], part: string | null = null): string | string[]{
     if (language instanceof Language) {
       return LanguageFormatter.formatObject(loc, language, part);
     }
@@ -19,12 +19,12 @@ export default class LanguageFormatter {
     return '';
   }
 
-  protected static formatObject(loc: Localisation, language: Language, part): string {
+  protected static formatObject(loc: Localisation, language: Language, part: string | null = null): string {
     switch(part) {
       case 'short':
         return language.spoken.length > 1 ?
-            loc.translate('event.info.shortTwoLangs', {first: language.spoken[0], second: language.spoken[1]}) :
-            loc.translate('language.' + language.spoken[0]);
+          loc.translate('event.info.shortTwoLangs', {first: language.spoken[0], second: language.spoken[1]}) :
+          loc.translate('language.' + language.spoken[0]);
 
       default:
         const
