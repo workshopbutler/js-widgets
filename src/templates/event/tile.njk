@@ -21,7 +21,7 @@
     </div>
     <div class="wsb-tile-info wsb-tile-location">
       {{ _f(event.location) }},
-      {{ _f(event.language) }}
+      {{ _f(event.language, 'short') }}
     </div>
     <div class="wsb-tile-content">
       {% for trainer in event.trainers %}

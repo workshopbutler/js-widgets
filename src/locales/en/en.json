@@ -329,6 +329,7 @@
       "loc": "Location",
       "oneLang": "Event is in $t(language.{{lang}})",
       "twoLangs": "Event is in $t(language.{{first}}) and $t(language.{{second}})",
+      "shortTwoLangs": "$t(language.{{first}}) and $t(language.{{second}})",
       "materials": ", all materials and handouts are in $t(language.{{lang}})",
       "now": "Current time in {{zone}}",
       "tickets": "Tickets"
