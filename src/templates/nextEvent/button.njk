@@ -1,0 +1,12 @@
+{% macro button(event, config, _t, _f) %}
+  {% if event %}
+    <a href="{% if button.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
+       target="{{ button.target }}" class="wsb-next-element-button">
+      {% if button.title %} {{ button.title }} {% else %} {{ _t('nextEvent.register') }} {% endif %}
+    </a>
+  {% else %}
+    <span class="wsb-next-element-no-event">
+      {% if button.noEventTitle %} {{ button.noEventTitle }} {% else %} {{ _t('nextEvent.notAvailable') }} {% endif %}
+  </span>
+  {% endif %}
+{% endmacro %}

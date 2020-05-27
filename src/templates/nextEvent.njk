@@ -1,14 +1,6 @@
-<div class="{{ theme }}">
+{% from "./nextEvent/button.njk" import button %}
+<div class="{{ config.theme }}">
   <div class="wsb-content wsb-next-event">
-    {% if event %}
-      <a href="{% if registration == 'true' %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
-         target="{{ target }}" class="wsb-next-element-button">
-        {% if title %} {{ title }} {% else %} {{ _t('nextEvent.register') }} {% endif %}
-      </a>
-    {% else %}
-      <span class="wsb-next-element-no-event">
-        {% if no_event_title %} {{ no_event_title }} {% else %} {{ _t('nextEvent.notAvailable') }} {% endif %}
-    </span>
-    {% endif %}
+    {{ button(event, config.button, _t, _f) }}
   </div>
 </div>
