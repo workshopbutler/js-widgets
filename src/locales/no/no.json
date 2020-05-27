@@ -454,5 +454,9 @@
     "future": "Kommende kurs",
     "past": "Tidligere kurs",
     "noEvents": "Ingen oppsatte kurs"
+  },
+  "nextEvent": {
+    "register": "Registrer",
+    "notAvailable": "Ingen planlagte hendelser"
   }
 }

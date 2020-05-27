@@ -11,6 +11,7 @@ import TestimonialList from './TestimonialList';
 import TrainerList from './TrainerList';
 import TrainerProfile from './TrainerProfile';
 import AttendeeList from './AttendeeList';
+import NextEvent from './NextEvent';
 
 // Singleton
 let factory: WidgetFactory;
@@ -57,7 +58,7 @@ export default class WidgetFactory {
    */
   createWidget(config: any, index: number, apiKey: string, templates: ITemplates) {
     const supportedWidgets = ['Schedule', 'EventPage', 'RegistrationPage', 'TrainerProfile',
-      'TrainerList', 'SidebarEventList', 'TestimonialList', 'AttendeeList'];
+      'TrainerList', 'SidebarEventList', 'TestimonialList', 'AttendeeList', 'NextEvent'];
     if (!config.type || !supportedWidgets.includes(config.type)) {
       logError(`Unknown widget type at the index ${index}`);
       return false;
@@ -93,6 +94,9 @@ export default class WidgetFactory {
         return true;
       case 'SidebarEventList':
         SidebarEventList.plugin(config.target, apiKey, templates, this.loc, config);
+        return true;
+      case 'NextEvent':
+        NextEvent.plugin(config.target, apiKey, templates, this.loc, config);
         return true;
       default:
         logError(`Unknown widget type at the index ${index}`);

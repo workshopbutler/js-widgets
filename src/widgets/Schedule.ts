@@ -120,11 +120,6 @@ export default class Schedule extends Widget<ScheduleConfig> {
   }
 
   private getUrl() {
-    let fields = 'title,schedule,location,hashed_id,free,type,registration_page,' +
-      'spoken_languages,sold_out,facilitators,free_ticket_type,paid_ticket_types,cover_image';
-    if (this.config.fields) {
-      fields += ',' + this.config.fields.join(',');
-    }
     let categoryId = '';
     if (this.config.categoryId) {
       categoryId = `&categoryId=${this.config.categoryId}`;
@@ -146,7 +141,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
     if (!this.config.future) {
       sort = '-start_date';
     }
-    const query = `dates=${dates}&sort=${sort}&public=true&fields=${fields}${categoryId}` +
+    const query = `dates=${dates}&sort=${sort}&public=true${categoryId}` +
       `${eventTypeId}${trainerId}${expand}`;
     return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}&per_page=-1`;
   }

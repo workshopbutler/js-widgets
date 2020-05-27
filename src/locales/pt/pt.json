@@ -467,5 +467,9 @@
     "future": "Próximos eventos",
     "past": "Eventos passados",
     "noEvents": "Sem eventos"
+  },
+  "nextEvent": {
+    "register": "Registrar",
+    "notAvailable": "Nenhum evento planejado"
   }
 }
