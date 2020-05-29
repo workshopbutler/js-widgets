@@ -62,7 +62,7 @@
   "scripts": {
     "dev": "NODE_ENV=dev webpack-dev-server --mode development",
     "test": "mocha --require ts-node/register 'test/**/*.ts'",
-    "watch": "SET NODE_ENV=watch & webpack-dev-server --mode development",
+    "watch": "NODE_ENV=watch webpack-dev-server --mode development",
     "fast-build": "NODE_ENV=build webpack --mode production",
     "build": "for lang in en de es fr nl no pt \n do \n LANG=$lang NODE_ENV=build webpack --mode production \n done",
     "build-wordpress": "NODE_ENV=build-wordpress webpack --mode production",
