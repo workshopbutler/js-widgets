@@ -8,6 +8,7 @@
   {% from "./row/schedule.njk" import renderSchedule %}
   {% from "./row/location.njk" import renderLocation %}
   {% from "./row/trainers.njk" import renderTrainers %}
+  {% from "./row/language.njk" import renderLanguage %}
   {% from "./row/title.njk" import renderTitle %}
   {% from "./row/register.njk" import renderRegisterButton %}
   {% from "./tag.njk" import tag %}
@@ -17,6 +18,8 @@
       {{ renderSchedule(event, config, _t, _f) }}
     {% elif col === 'location' %}
       {{ renderLocation(event, config, _t, _f) }}
+    {% elif col === 'language' %}
+      {{ renderLanguage(event, config, _t, _f) }}
     {% elif col === 'trainers' %}
       {{ renderTrainers(event, config, _t, _f) }}
     {% elif col === 'title' %}
