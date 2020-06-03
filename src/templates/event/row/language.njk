@@ -1,5 +1,7 @@
 {% macro renderLanguage(event, config, _t, _f) %}
   <div class="wsb-table__col wsb-table__col-language">
-    {{ _t('language.' + event.language.spoken[0]) }}
+    {% for lang in event.language.spoken %}
+      {{ _t('language.' + lang) }}{% if loop.index < loop.length %},{% endif %}
+    {% endfor %}
   </div>
 {% endmacro %}
