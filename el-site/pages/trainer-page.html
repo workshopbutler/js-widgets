@@ -1,0 +1,50 @@
+---
+layout: layouts/base.njk
+title: Trainer Profile
+permalink: /trainer-profile/
+templateEngineOverride: false
+tags: ['widget']
+---
+
+<div class="container">
+  <div id="wsb-trainer-details"></div>
+</div>
+
+<script>
+  const apiKey = siteConfig.apiKey;
+  const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
+  document.addEventListener('wsbwidgetsloaded', function() {
+    const widgets = [
+      {
+        type: 'TrainerProfile',
+        target: '#wsb-trainer-details',
+        theme: themeName,
+        widgets: [
+          {
+            type: 'SidebarEventList',
+            target: '#upcoming-events',
+            eventPageUrl: '/event-page',
+            future: true,
+            theme: themeName,
+            trainerId: WorkshopButlerWidgets.getQueryParam('id')
+          },
+          {
+            type: 'SidebarEventList',
+            target: '#past-events',
+            eventPageUrl: '/event-page',
+            future: false,
+            theme: themeName,
+            trainerId: WorkshopButlerWidgets.getQueryParam('id')
+          }
+        ]
+      }
+    ];
+    const config = {
+      apiKey: apiKey,
+      locale: 'en'
+    };
+
+    WorkshopButlerWidgets.launch(config, widgets);
+  });
+
+</script>

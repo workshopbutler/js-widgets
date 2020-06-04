@@ -1,0 +1,29 @@
+---
+layout: layouts/base.njk
+title: Testimonial List
+permalink: /testimonials/
+templateEngineOverride: false
+tags: ['widget']
+---
+<div id="wsb-endorsement-list"></div>
+
+<script>
+  const apiKey = siteConfig.apiKey;
+  const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
+  document.addEventListener('wsbwidgetsloaded', function() {
+    const widgets = [
+      {
+        type: 'TestimonialList',
+        target: '#wsb-endorsement-list',
+        trainerId: 28,
+        theme: themeName,
+      }
+    ];
+    const config = {
+      apiKey: apiKey,
+      locale: 'de'
+    };
+
+    WorkshopButlerWidgets.launch(config, widgets);
+  });
+</script>
