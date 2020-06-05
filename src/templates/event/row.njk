@@ -1,10 +1,12 @@
 {% macro drawRow(event, config, _t, _f) %}
-<div class="wsb-table__row {% if config.featured.highlight and event.featured %} wsb-featured {% endif %}"
-     data-event-obj data-event-type="{{ event.type.id }}"
-     data-event-location="{{ event.location.countryCode }}"
-     data-event-language="{{ event.language.spoken | join(',') }}"
-     data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
-     {% if event.category %} data-event-category="{{ event.category.id }}" {% endif %}>
+<div
+  class="wsb-table__row {% if config.featured.highlight and event.featured %} wsb-featured {% endif %}"
+  data-event-obj data-event-type="{{ event.type.id }}"
+  data-event-location="{{ event.location.countryCode }}"
+  data-event-language="{{ event.language.spoken | join(',') }}"
+  data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
+  {% if event.category %} data-event-category="{{ event.category.id }}" {% endif %}
+>
   {% from "./row/schedule.njk" import renderSchedule %}
   {% from "./row/location.njk" import renderLocation %}
   {% from "./row/trainers.njk" import renderTrainers %}
@@ -12,9 +14,13 @@
   {% from "./row/title.njk" import renderTitle %}
   {% from "./row/register.njk" import renderRegisterButton %}
   {% from "./tag.njk" import tag %}
-  {{ tag(event, config, _t, _f, true) }}
+
   {% for col in config.cols %}
-    {% if col === 'schedule' %}
+    {% if col === 'wsb-tag-mob' %}
+      <div class="wsb-table__col wsb-table__col-wsb-tag-mob">
+        {{ tag(event, config, _t, _f, false) }}
+      </div>
+    {% elif col === 'schedule' %}
       {{ renderSchedule(event, config, _t, _f) }}
     {% elif col === 'location' %}
       {{ renderLocation(event, config, _t, _f) }}

@@ -59,16 +59,27 @@ let webpackConfig = {
         use: [
           // config.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
           {
             loader: 'postcss-loader',
             options: {
+              sourceMap: true,
               plugins: [
                 require('autoprefixer')()
               ]
             }
           },
-          'less-loader'
+          {
+            loader: 'less-loader',
+            options: {
+              sourceMap: true
+            }
+          }
         ]
       },
       {
