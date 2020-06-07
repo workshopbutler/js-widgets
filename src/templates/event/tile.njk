@@ -1,27 +1,39 @@
 {% macro drawEvent(event, config, _t, _f) %}
-  <div class="wsb-tile
-      {% if config.featured.highlight and event.featured %} wsb-featured {% endif %}"
-       data-event-obj data-event-type="{{ event.type.id }}"
-       data-event-location="{{ event.location.countryCode }}"
-       data-event-language="{{ event.language.spoken | join(',') }}"
-       data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
-    {% if event.category %} data-event-category="{{ event.category.id }}" {% endif %}>
+  <div
+    class="wsb-tile {% if config.featured.highlight and event.featured %} wsb-featured {% endif %}"
+    data-event-obj data-event-type="{{ event.type.id }}"
+    data-event-location="{{ event.location.countryCode }}"
+    data-event-language="{{ event.language.spoken | join(',') }}"
+    data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
+    {% if event.category %} data-event-category="{{ event.category.id }}" {% endif %}
+  >
     {% from "./tag.njk" import tag %}
     {{ tag(event, config, _t, _f, false) }}
-    <a data-widget-go href="{{ event.url }}" class="wsb-tile-title">{{ event.title | truncate(60) }}</a>
-    <div class="wsb-tile-info wsb-tile-datetime">
-      {% if event.schedule.atOneDay() %}
-        {{ _f(event.schedule, 'full_long') }}
-        {% if event.location.online and event.schedule.timezone %}
-          {{ _f(event.schedule, 'timezone_short') }}
+
+    <a data-widget-go href="{{ event.url }}" class="wsb-tile-title">
+      {{ event.title | truncate(60) }}
+    </a>
+
+    <div class="date-place">
+      <div class="wsb-tile-info wsb-tile-datetime">
+        {% if event.schedule.atOneDay() %}
+          {{ _f(event.schedule, 'full_long') }}
+
+          {% if event.location.online and event.schedule.timezone %}
+            {{ _f(event.schedule, 'timezone_short') }}
+          {% endif %}
+        {% else %}
+          {{ _f(event.schedule, 'full_short') }}
         {% endif %}
-      {% else %}
-        {{ _f(event.schedule, 'full_short') }}
-      {% endif %}
+      </div>
+
+      <div class="dot">•</div>
+
+      <div class="wsb-tile-info wsb-tile-location">
+        {{ _f(event.location) }}
+      </div>
     </div>
-    <div class="wsb-tile-info wsb-tile-location">
-      {{ _f(event.location) }}
-    </div>
+
     <div class="wsb-tile-content">
       {% for trainer in event.trainers %}
         <div class="wsb-trainer">
@@ -29,21 +41,28 @@
             <a href="{{ trainer.url }}">
               <img class="wsb-photo" src="{{ trainer.photo }}"/>
             </a>
-            <a class="wsb-name" href="{{ trainer.url }}"> {{ trainer.fullName() }}</a>
+
+            <a class="wsb-name" href="{{ trainer.url }}">
+              {{ trainer.fullName() }}
+            </a>
           {% else %}
-            <img class="wsb-photo" src="{{ trainer.photo }}"/>{{ trainer.fullName() }}
+            <img class="wsb-photo" src="{{ trainer.photo }}"/>
+            {{ trainer.fullName() }}
           {% endif %}
         </div>
       {% endfor %}
     </div>
+
     <div class="wsb-tile-button">
       {% if event.state.closed() %}
         <button disabled class="wsb-btn wsb-btn-primary wsb-tile-btn">
           {{ _t('schedule.event.soldOut') }}
         </button>
       {% else %}
-        <a href="{% if config.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
-           class="wsb-btn wsb-btn-primary wsb-tile-btn">
+        <a
+          href="{% if config.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
+          class="wsb-btn wsb-btn-primary wsb-tile-btn"
+        >
           {{ _t('schedule.event.register') }}
         </a>
       {% endif %}

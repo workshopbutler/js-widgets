@@ -1,20 +1,19 @@
-
 .wsb-content {
-
   .wsb-tiles {
     .clearfix();
     display: flex;
     justify-content: flex-start;
     align-content: flex-start;
     flex-wrap: wrap;
+    margin-top: 1em;
   }
+
   .wsb-empty-list {
     margin-bottom: 2em;
   }
 
   .wsb-no-events {
     display: none;
-    .wsb-empty-list;
   }
 
   .wsb-tile {
@@ -23,7 +22,6 @@
     overflow: hidden;
     display: inline-block;
     vertical-align: top;
-    min-height: 17em;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     padding: 30px 26px 0;
@@ -31,33 +29,18 @@
     margin-bottom: 24px;
     margin-right: 12px;
 
-    @media @desktop {
-      flex-basis: 20em;
-    }
-
-    @media @desktop, @desktop-small {
+    @media (min-width: 601px) {
       &:hover .wsb-tile-button {
         .transform(translate(0, -70px));
 
         &:before {
-          opacity: 1;
+          display: block;
         }
       }
     }
 
-    @media @tablet {
-      flex: 0 1 48%;
-      min-height: 18em;
-      margin-right: 2% !important;
-      margin-bottom: 20px;
-    }
-
-    /* Smartphones (portrait and landscape) ----------- */
-    @media @phone {
-      flex: 0 1 100%;
-      min-height: initial;
-      padding: 30px 12px 12px;
-      margin-right: 0 !important;
+    @media (max-width: 600px) {
+      flex-basis: 100%;
     }
   }
 
@@ -73,35 +56,57 @@
     &:hover {
       opacity: .85;
     }
-
-    @media @phone {
-      font-size: 1.2em;
-      line-height: 1.4em;
-      margin-bottom: 0;
-    }
   }
 
-  .wsb-tile .wsb-tag, .wsb-tile .wsb-free {
+  .wsb-tile .wsb-tag,
+  .wsb-tile .wsb-free {
     position: absolute;
     right: 0;
     top: 0;
+  }
 
-    @media @phone {
-      left: 0;
-      top: 5px;
-      display: inline-table;
+  .date-place {
+    > * {
+      @media (max-width: 600px) {
+        display: inline-block;
+      }
+    }
+
+    .dot {
+      display: none;
+
+      @media (max-width: 600px) {
+        display: inline-block;
+      }
     }
   }
 
   .wsb-tile-content {
     margin-top: 1.5em;
+    margin-bottom: 2em;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+
+    @media (max-width: 600px) {
+      margin-left: -1em;
+      margin-right: -1em;
+      margin-top: 0;
+    }
 
     .wsb-trainer {
       margin: 0;
-      flex: 1 0 30%;
       display: flex;
+      min-width: 12em;
+
+      @media (max-width: 600px) {
+        padding: 0 1em;
+        margin-top: 1em;
+        min-width: 15em;
+      }
+
+      + .wsb-trainer {
+        margin-top: 1em;
+      }
 
       a {
         margin-right: 0.4em;
@@ -118,17 +123,12 @@
 
     .wsb-photo {
       display: block;
-      float: left;
       margin-right: 13px;
       width: 2em;
       height: 2em;
       border-radius: 10px;
-
-      @media @phone {
-        height: 2em;
-      }
+      flex-shrink: 0;
     }
-
   }
 
   .wsb-tile-button {
@@ -139,6 +139,10 @@
     left: 0;
     .transition(all .15s ease);
 
+    @media (max-width: 600px) {
+      display: none;
+    }
+
     &:before {
       content: '';
       position: absolute;
@@ -147,14 +151,6 @@
       left: 0;
       top: -50px;
       .transition(all .15s ease);
-    }
-
-    @media @tablet {
-      bottom: 0;
-    }
-    /* Smartphones (portrait and landscape) ----------- */
-    @media @phone {
-      display: none;
     }
   }
 
@@ -170,7 +166,5 @@
     font-weight: bold;
     border-radius: 0;
     width: 100%;
-
   }
-
 }
