@@ -2,8 +2,9 @@
   .wsb-table {
     display: table;
     width: 100%;
+    border-collapse: collapse;
 
-    @media (max-width: @cont-bp-sm) {
+    @media (max-width: 600px) {
       display: block;
       margin-top: 15px;
     }
@@ -15,7 +16,7 @@
     display: table-row;
     width: 100%;
 
-    @media (max-width: @cont-bp-sm) {
+    @media (max-width: 600px) {
       display: none;
     }
   }
@@ -24,7 +25,7 @@
     border-bottom: 1px solid;
     display: table-row!important;
 
-    @media (max-width: @cont-bp-sm) {
+    @media (max-width: 600px) {
       display: flex!important;
       flex-wrap: wrap;
       padding: 7px 7px 15px;
@@ -37,7 +38,12 @@
     vertical-align: top;
     display: table-cell;
 
-    @media (max-width: @cont-bp-sm) {
+    @media (max-width: 900px) {
+      width: auto;
+      padding: 16px 6px;
+    }
+
+    @media (max-width: 600px) {
       padding: 7px 0 0 0;
       width: 100%;
     }
@@ -50,7 +56,7 @@
     &.wsb-table__col-wsb-tag-mob {
       display: none;
 
-      @media (max-width: @cont-bp-sm) {
+      @media (max-width: 600px) {
         display: block;
         position: relative;
         left: -7px;
@@ -63,7 +69,7 @@
     }
 
     &.wsb-table__col-schedule {
-      @media (max-width: @cont-bp-sm) {
+      @media (max-width: 600px) {
         width: fit-content;
         padding-right: 7px;
         position: relative;
@@ -76,7 +82,7 @@
     }
 
     &.wsb-table__col-location {
-      @media (max-width: @cont-bp-sm) {
+      @media (max-width: 600px) {
         width: fit-content;
         padding-right: 7px;
         position: relative;
@@ -89,7 +95,7 @@
     }
 
     &.wsb-table__col-language {
-      @media (max-width: @cont-bp-sm) {
+      @media (max-width: 600px) {
         width: fit-content;
         padding-left: 0;
       }
@@ -99,7 +105,7 @@
       order: 1;
 
       .wsb-tag {
-        @media (max-width: @cont-bp-sm) {
+        @media (max-width: 600px) {
           display: none;
         }
       }
@@ -117,7 +123,7 @@
       text-align: right;
       margin-right: 0;
 
-      @media (max-width: @cont-bp-sm) {
+      @media (max-width: 600px) {
         display: none;
       }
     }
@@ -182,6 +188,15 @@
     text-decoration: none !important;
     .transition(all .15s ease);
 
+    @media (max-width: 900px) {
+      width: auto;
+      padding: 0 10px;
+    }
+
+    @media (max-width: 600px) {
+      width: 160px;
+    }
+
     &:disabled {
       opacity: .5;
 
@@ -194,35 +209,4 @@
       opacity: .9;
     }
   }
-
-  // @media @phone {
-  //   .wsb-table__head {
-  //     display: none;
-  //   }
-
-  //   .wsb-table__row {
-  //     flex-wrap: wrap;
-  //     padding: 12px 6px 12px 0;
-
-  //     .wsb-free { // .wsb-tag {
-  //       display: none;
-  //     }
-
-  //     .wsb-mobile {
-  //       display: inline-table;
-  //       margin-bottom: 5px;
-  //     }
-  //   }
-
-  //   .wsb-table__col {
-  //     &.wsb-table__col-schedule,
-  //     &.wsb-table__col-location,
-  //     &.wsb-table__col-register,
-  //     &.wsb-table__col-trainers,
-  //     &.wsb-table__col-title {
-  //       flex: 0 0 100%;
-  //       margin-left: 6px;
-  //     }
-  //   }
-  // }
 }
