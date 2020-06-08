@@ -29,6 +29,10 @@ export default class Schedule extends Widget<ScheduleConfig> {
       logError("Page element, referenced in 'target' attribute, is not found");
       return;
     }
+
+    // Add tag element for mobile view
+    options.cols = ['wsb-tag-mob', ...options.cols];
+
     const config = ScheduleConfig.create(options);
     if (!config) {
       return;
