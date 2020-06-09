@@ -127,7 +127,8 @@ export default class SharedRegistrationForm {
   isPaymentActive() {
     return this.paymentConfig.active
       && this.paymentConfig.stripeClientId !== undefined
-      && this.paymentConfig.stripePublicKey !== undefined;
+      && this.paymentConfig.stripePublicKey !== undefined
+      && this.paymentConfig.stripeClientId !== null;
   }
 
   /**

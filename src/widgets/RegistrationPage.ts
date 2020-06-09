@@ -133,7 +133,6 @@ export default class RegistrationPage extends Widget<RegistrationPageConfig> {
         nunjucksRenderString(template, params) :
         this.templates.registrationPage.render(params);
       this.$root.html(content);
-
       this.$root.data('widget.shared.registration.form', this.getForm());
 
       // this.summaryBlock = this.$root.find('[data-summary]');
