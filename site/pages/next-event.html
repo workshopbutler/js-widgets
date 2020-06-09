@@ -1,0 +1,31 @@
+---
+layout: layouts/base_widget.njk
+title: Next Event
+permalink: /next-even/
+templateEngineOverride: false
+tags: ['widget']
+---
+
+<div id="wsb-next-event"></div>
+<script>
+  const apiKey = siteConfig.apiKey;
+  const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
+  document.addEventListener('wsbwidgetsloaded', function() {
+      const widgets = [
+        {
+          type: 'NextEvent',
+          target: '#wsb-next-event',
+          eventPageUrl: '/event-page',
+          registrationPageUrl: '/registration',
+          theme: themeName,
+          button: {
+            registration: true,
+          }
+        }
+      ];
+      const config = {
+        apiKey: apiKey,
+      };
+      WorkshopButlerWidgets.launch(config, widgets);
+  });
+</script>

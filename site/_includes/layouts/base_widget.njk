@@ -1,0 +1,26 @@
+{% extends "./base.njk" %}
+
+{% block header %}
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=Number.isNaN%2CString.prototype.startsWith%2CString.prototype.repeat%2CIntl"></script>
+  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    const siteConfig = {
+      apiKey: '{{ siteConfig.apiKey }}',
+      theme: '{{ siteConfig.apiKey.theme }}'
+    };
+  </script>
+{% endblock %}
+
+
+{% block footer %}
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script>
+  <script src="/widgets.js"></script>
+{% endblock %}

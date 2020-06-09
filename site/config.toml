@@ -1,8 +1,0 @@
-baseURL = "/"
-languageCode = "en-us"
-title = "Test Widget Website"
-theme = "ananke"
-
-[params]
-  custom_css = ['styles.css']
-  theme = 'britton'

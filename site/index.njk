@@ -1,0 +1,13 @@
+---
+layout: layouts/base.njk
+title: Home Page
+permalink: /
+---
+<div style="width:250px; margin: 0 auto;">
+<h3>All available pages:</h3>
+<ul>
+{% for w in collections.widget %}
+    <li>{{ w.data.title }} - <a href="{{ w.url | url }}" target="_blank">{{ w.data.permalink }}</a></li>
+{% endfor %}
+</ul>
+</div>

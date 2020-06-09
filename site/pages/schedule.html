@@ -1,0 +1,39 @@
+---
+layout: layouts/base_widget.njk
+title: Schedule
+permalink: /schedule/
+templateEngineOverride: false
+tags: ['widget']
+---
+
+<div id="wsb-event-list"></div>
+<script>
+  const apiKey = siteConfig.apiKey;
+  const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
+  document.addEventListener('wsbwidgetsloaded', function() {
+      const widgets = [
+        {
+          type: 'Schedule',
+          target: '#wsb-event-list',
+          theme: themeName,
+          table: true,
+          cols: ['schedule', 'location', 'language', 'trainers', 'title', 'register'],
+          registration: true,
+          eventPageUrl: '/event-page',
+          trainerPageUrl: '/trainer-page',
+          trainerName: true,
+          filters: ['type', 'location', 'language', 'trainer'],
+          registrationPageUrl: '/registration',
+          eventPagePattern: 'id={{id}}&title={{title}}&dates={{dates}}',
+          featured: {
+            highlight: true,
+            onTop: true,
+          }
+        }
+      ];
+      const config = {
+        apiKey: apiKey,
+      };
+      WorkshopButlerWidgets.launch(config, widgets);
+  });
+</script>

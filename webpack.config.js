@@ -11,7 +11,7 @@ const WebpackShellPlugin = require('webpack-shell-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const config = require('./config.js');
-const dest = path.resolve(__dirname, 'dist');
+const dest = path.resolve(__dirname, config.isDev?'public':'dist');
 
 let webpackConfig = {
   watch: config.isDev,
@@ -129,16 +129,6 @@ function getPlugins() {
       filename: config.isDev? `[name].css` : `[name].${getVersion()}.min.css`
     })
   ];
-  const hugoSrc = path.resolve(__dirname, 'site');
-  const hugoCmd = `hugo --buildDrafts --watch --source ${hugoSrc} --destination ${dest} --environment development`;
-
-  if (config.isDev) {
-    plugins.push(new WebpackShellPlugin({
-        onBuildEnd: hugoCmd
-      })
-    );
-    // plugins.push(new BundleAnalyzerPlugin());
-  }
 
   if (!config.isDev) {
     plugins.push(new MinifyPlugin())
