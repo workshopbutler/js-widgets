@@ -8,7 +8,8 @@
           </a>
           <a class="wsb-name" href="{{ trainer.url }}">&nbsp;{% if config.trainerName %} {{ trainer.fullName() }} {% endif %}</a>
         {% else %}
-          <img class="wsb-photo" src="{{ trainer.photo }}"/>&nbsp;{% if config.trainerName %} {{ trainer.fullName() }} {% endif %}
+          <img class="wsb-photo" src="{{ trainer.photo }}"/>
+          <span>{% if config.trainerName %} {{ trainer.fullName() }} {% endif %}</span>
         {% endif %}
       </div>
     {% endfor %}
