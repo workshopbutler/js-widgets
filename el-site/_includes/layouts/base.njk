@@ -1,40 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>{{ renderData.title or title or metadata.title }}</title>
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="360">
-
-  <meta name="viewport" content="width=device-width,minimum-scale=1">
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=Number.isNaN%2CString.prototype.startsWith%2CString.prototype.repeat%2CIntl"></script>
-  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.4.6/css/flag-icon.min.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="/styles.css">
-  <script>
-    const siteConfig = {
-      apiKey: '{{ siteConfig.apiKey }}',
-      theme: '{{ siteConfig.apiKey.theme }}'
-    };
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JS-Widgets Demo | {{ renderData.title or title or metadata.title }}</title>
+<meta name="description" content="">
+<link rel="shortcut icon" href="https://workshopbutler.com/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700,800,900" rel="stylesheet">
+<script type="text/javascript" src="/js/main.js"></script>
+{% block header %}
+{% endblock %}
 </head>
-<body>
-  <main style="max-width: 1280px; margin: 0 auto;">
-    {{ content | safe }}
-  </main>
+<body id="page-top">
+<!-- Navigation -->
+<nav id="menu" class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a class="navbar-brand page-scroll" href="#page-top">Workshop Butler</a> </div>
 
-
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"
-    integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw="
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en"></script>
-  <script src="/widgets.js"></script>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/" class="page-scroll">Home</a></li>
+        <li><a href="/schedule" class="page-scroll">Upcoming Events</a></li>
+        <li><a href="/trainers" class="page-scroll">Our Trainers</a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+</nav>
+{% block content %}
+<!-- Header -->
+<header id="header">
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1 section-title">
+      <h2>{{ title or metadata.title }}</h2>
+    </div>
+  </div>
+</header>
+<!-- About Section -->
+<div id="content">
+  <div class="container">
+  {{ content | safe }}
+  </div>
+</div>
+{% endblock %}
+<!-- Contact Section -->
+<div id="contact">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="social">
+          <ul>
+            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer Section -->
+<div id="footer">
+  <div class="container text-center">
+    <p>&copy; Workshop Butler</p>
+  </div>
+</div>
+{% block footer %}
+{% endblock %}
 </body>
 </html>
