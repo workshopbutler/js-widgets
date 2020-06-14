@@ -1,27 +1,29 @@
-// tickets
+// Tickets
+
 .wsb-tickets {
-  @media @phone, @tablet {
-    display: flex;
-    flex-wrap: wrap;
-  }
+  margin-bottom: 30px;
 }
+
 .wsb-ticket {
-  padding: 0.5em 0.5em;
+  padding: 10px;
+  margin-bottom: 5px;
   background-color: #fff;
   border: 1px solid transparent;
-  border-radius: 2px;
+  border-radius: 4px;
   text-align: left;
 
   &.state-closed {
     background-color: #ffffff;
     border-color: #c1bfbf;
 
-    .wsb-ticket__name,
     .wsb-ticket__val {
-      color: #7a7a7a;
+      color: #888888;
+    }
+
+    .wsb-ticket__name {
+      color: #333333;
     }
   }
-
 
   @media @tablet {
     flex: 1 0 50%;

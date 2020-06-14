@@ -5,15 +5,18 @@
       <div class="wsb-ticket__val">
         {{ _f(ticket.price) }}
       </div>
+
       <div class="wsb-ticket__name">
         {{ ticket.name }}
       </div>
+
       {% set ticketDescr = _f(ticket, 'desc') %}
       {% if ticketDescr %}
         <div class="wsb-ticket__desc">
           {{ ticketDescr }}
         </div>
       {% endif %}
+
       {% if not ticket.ended() and config.numberOfTickets %}
         <div class="wsb-ticket__footer">
           {{ _f(ticket, 'state') }}

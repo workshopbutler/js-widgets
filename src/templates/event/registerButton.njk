@@ -1,5 +1,5 @@
 {% macro registerButton(event, config, _t, _f) %}
-  <div>
+  <div class="wsb-sidebar__register-wrapper">
     {% if event.state.closed() %}
       <button class="wsb-sidebar__register" disabled>{{ _f(event.state) }}</button>
     {% else %}

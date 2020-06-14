@@ -9,14 +9,16 @@
         —<br>{{ _f(event.schedule, 'end_long') }} {{ _f(event.schedule, 'timezone_short') }}
       {% endif %}
     </div>
+
     <div class="wsb-info">
       <div class="wsb-info__title">{{ _t('event.info.loc') }}:</div>
       {{ _f(event.location) }}
       <div class="wsb-info__footer">{{ _f(event.language) }}</div>
     </div>
   </div>
+
   {% if event.withTickets() %}
-    <div class="wsb-info wsb-tickets">
+    <div class="wsb-tickets">
       {% if event.free %}
         {% from "./freeTicket.njk" import freeTicket %}
         {{ freeTicket(event.tickets, _t, _f) }}
@@ -28,6 +30,7 @@
       {% endif %}
     </div>
   {% endif %}
+
   {% if config.trainers.show %}
     <div class="wsb-trainers">
       {% for trainer in event.trainers %}
@@ -39,14 +42,16 @@
             {% else %}
               <div class="wsb-profile_img" style="{{ photo }}"></div>
             {% endif %}
+
             <div class="wsb-profile__name">
               <div>
                 {% if trainer.url %}
-                  <a href="{{ trainer.url }}">{{ trainer.fullName() }}</a>
+                  <a href="{{ trainer.url }}" class="wsb-profile__name-link">{{ trainer.fullName() }}</a>
                 {% else %}
                   {{ trainer.fullName() }}
                 {% endif %}
               </div>
+
               <div class="wsb-profile__rating">
                 {% from "../common/rating.njk" import render_rating_stars %}
                 {% if trainer.stats.total.publicStats.rating > 0 %}
@@ -55,6 +60,7 @@
                   <span>{{ _t('trainer.experience.rating.review', {count: trainer.stats.total.publicStats.evaluations }) }}</span>
                 {% endif %}
               </div>
+
               {% if config.trainers.bio %}
                 <div class="wsb-profile__bio">
                   {{ trainer.bio }}
@@ -66,5 +72,4 @@
       {% endfor %}
     </div>
   {% endif %}
-
 {% endmacro %}
