@@ -1,0 +1,179 @@
+[
+  {
+    "website": "https://workshopbutler.com/?event01",
+    "location": {
+      "country": "NL",
+      "city": "Amsterdam",
+      "online": false
+    },
+    "state": "active",
+    "statistics": false,
+    "description": "<h2><span style=\"color: inherit; font-family: inherit;\">Growing Organizational Agility with Critical Thinking Ability</span><br></h2><p><br></p><div><p>This is strongly recommended for those who have not previously taken a foundational workshop in critical thinking. It will introduce the basic components of critical thinking, ways to build those components into the design of what you teach, and ways to make that design effective.<br></p><p><br></p><p>We do not understand critical thinking as something additional to content, but rather as integral to it. We focus, therefore, on teaching students to learn not random bits and pieces of information, but systems, organized networks of concepts, active modes of thinking.</p><p><br></p><p><strong>Participants Will</strong></p><p><br></p><ol><li>form a basic concept of critical thinking, understanding in general why it is essential to the mastery of content and effective day-to-day problem solving<br><br></li><li>form a basic concept of the affective and cognitive principles &amp; strategies essential to critical teaching<br><br></li><li>practice using critical thinking in the solution of some everyday problems as well as in the redesign of instructional units.</li></ol><p><br></p><p><strong>Program Description</strong></p><p><br></p><p>The session begins with a general introduction to critical thinking and to its significance not only to the academic but also to the vocational and personal success of students. This first session closes with questions and answers. It is followed by hands-on sessions during which small group activities are used to illustrate the application of various dimensions of critical thinking strategies to instruction as well as to personal life.<br><br>Each session is designed to build on the previous sessions and cultivates increasing knowledge of and skill in critical teaching. Specific topics include: the intellectual standards essential to in-depth, higher-order learning; the basic vocabulary of critical thinking; the micro-skills and macro-abilities of critical thinking; the importance of precision in language usage; how to question students Socratically; how to design assignments, activities, and tests that require critical thinking; and how to assess critical thinking skills and abilities.</p></div><p><br></p>",
+    "tags": [],
+    "tickets": {},
+    "confirmed": false,
+    "featured": true,
+    "card_payment": {
+      "active": true,
+      "stripe": {
+        "key": "pk_live_ZAbyynOzpeV2nEraLGGSi0a5",
+        "client_id": "acct_yynOzpeV2nEraLGG"
+      }
+    },
+    "public": true,
+    "sold_out": false,
+    "invoice": null,
+    "id": 9103,
+    "language": {
+      "spoken": [
+        "NL"
+      ],
+      "materials": null
+    },
+    "registration_page": {
+      "external": false,
+      "url": "https://workshopbutler.com/?event01"
+    },
+    "schedule": {
+      "start": "2020-06-22T09:00:00+0200",
+      "end": "2020-06-24T17:30:00+0200",
+      "hours_per_day": 0,
+      "total_hours": 0,
+      "timezone": "Europe/Amsterdam"
+    },
+    "category": null,
+    "title": "2-day Workshop",
+    "hashed_id": "event01",
+    "type": {
+      "id": 1126,
+      "name": "Practitioner Course Level 1",
+      "min_hours": 1,
+      "free": true
+    },
+    "form": {},
+    "cover_image": {
+      "url": "https://res.cloudinary.com/wsb/image/upload/v1590308314/ivvrddcynarajc4ynj17.jpg",
+      "thumbnail": "https://res.cloudinary.com/wsb/image/upload/t_thumbnail/v1590308314/ivvrddcynarajc4ynj17.jpg"
+    },
+    "trainers": [],
+    "free": false
+  },
+  {
+    "website": "https://workshopbutler.com/?event02",
+    "location": {
+      "country": "DE",
+      "city": "Munich",
+      "online": false
+    },
+    "state": "active",
+    "statistics": false,
+    "description": "<h2><span style=\"color: inherit; font-family: inherit;\">Growing Organizational Agility with Critical Thinking Ability</span><br></h2><p><br></p><div><p>This is strongly recommended for those who have not previously taken a foundational workshop in critical thinking. It will introduce the basic components of critical thinking, ways to build those components into the design of what you teach, and ways to make that design effective.<br></p><p><br></p><p>We do not understand critical thinking as something additional to content, but rather as integral to it. We focus, therefore, on teaching students to learn not random bits and pieces of information, but systems, organized networks of concepts, active modes of thinking.</p><p><br></p><p><strong>Participants Will</strong></p><p><br></p><ol><li>form a basic concept of critical thinking, understanding in general why it is essential to the mastery of content and effective day-to-day problem solving<br><br></li><li>form a basic concept of the affective and cognitive principles &amp; strategies essential to critical teaching<br><br></li><li>practice using critical thinking in the solution of some everyday problems as well as in the redesign of instructional units.</li></ol><p><br></p><p><strong>Program Description</strong></p><p><br></p><p>The session begins with a general introduction to critical thinking and to its significance not only to the academic but also to the vocational and personal success of students. This first session closes with questions and answers. It is followed by hands-on sessions during which small group activities are used to illustrate the application of various dimensions of critical thinking strategies to instruction as well as to personal life.<br><br>Each session is designed to build on the previous sessions and cultivates increasing knowledge of and skill in critical teaching. Specific topics include: the intellectual standards essential to in-depth, higher-order learning; the basic vocabulary of critical thinking; the micro-skills and macro-abilities of critical thinking; the importance of precision in language usage; how to question students Socratically; how to design assignments, activities, and tests that require critical thinking; and how to assess critical thinking skills and abilities.</p></div><p><br></p>",
+    "tags": [],
+    "tickets": {},
+    "confirmed": false,
+    "featured": false,
+    "card_payment": {
+      "active": true,
+      "stripe": {
+        "key": "pk_live_ZAbyynOzpeV2nEraLGGSi0a5",
+        "client_id": "acct_yynOzpeV2nEraLGG"
+      }
+    },
+    "public": true,
+    "sold_out": false,
+    "invoice": null,
+    "id": 8553,
+    "language": {
+      "spoken": [
+        "EN"
+      ],
+      "materials": null
+    },
+    "registration_page": {
+      "external": false,
+      "url": "https://workshopbutler.com/?event02"
+    },
+    "schedule": {
+      "start": "2020-06-24T09:30:00+0200",
+      "end": "2020-06-26T17:30:00+0200",
+      "hours_per_day": 0,
+      "total_hours": 0,
+      "timezone": "Europe/Berlin"
+    },
+    "category": null,
+    "title": "3-day Happiness Workshop",
+    "hashed_id": "event02",
+    "type": {
+      "id": 1126,
+      "name": "Practitioner Course Level 1",
+      "min_hours": 1,
+      "free": true
+    },
+    "form": {},
+    "cover_image": {
+      "url": null,
+      "thumbnail": null
+    },
+    "trainers": [],
+    "free": false
+  },
+  {
+    "website": "https://workshopbutler.com/?event03",
+    "location": {
+      "country": "DE",
+      "city": "Munich",
+      "online": false
+    },
+    "state": "active",
+    "statistics": false,
+    "description": "<h2><span style=\"color: inherit; font-family: inherit;\">Growing Organizational Agility with Critical Thinking Ability</span><br></h2><p><br></p><div><p>This is strongly recommended for those who have not previously taken a foundational workshop in critical thinking. It will introduce the basic components of critical thinking, ways to build those components into the design of what you teach, and ways to make that design effective.<br></p><p><br></p><p>We do not understand critical thinking as something additional to content, but rather as integral to it. We focus, therefore, on teaching students to learn not random bits and pieces of information, but systems, organized networks of concepts, active modes of thinking.</p><p><br></p><p><strong>Participants Will</strong></p><p><br></p><ol><li>form a basic concept of critical thinking, understanding in general why it is essential to the mastery of content and effective day-to-day problem solving<br><br></li><li>form a basic concept of the affective and cognitive principles &amp; strategies essential to critical teaching<br><br></li><li>practice using critical thinking in the solution of some everyday problems as well as in the redesign of instructional units.</li></ol><p><br></p><p><strong>Program Description</strong></p><p><br></p><p>The session begins with a general introduction to critical thinking and to its significance not only to the academic but also to the vocational and personal success of students. This first session closes with questions and answers. It is followed by hands-on sessions during which small group activities are used to illustrate the application of various dimensions of critical thinking strategies to instruction as well as to personal life.<br><br>Each session is designed to build on the previous sessions and cultivates increasing knowledge of and skill in critical teaching. Specific topics include: the intellectual standards essential to in-depth, higher-order learning; the basic vocabulary of critical thinking; the micro-skills and macro-abilities of critical thinking; the importance of precision in language usage; how to question students Socratically; how to design assignments, activities, and tests that require critical thinking; and how to assess critical thinking skills and abilities.</p></div><p><br></p>",
+    "tags": [],
+    "tickets": {},
+    "confirmed": false,
+    "featured": false,
+    "card_payment": {
+      "active": true,
+      "stripe": {
+        "key": "pk_live_ZAbyynOzpeV2nEraLGGSi0a5",
+        "client_id": "acct_yynOzpeV2nEraLGG"
+      }
+    },
+    "public": true,
+    "sold_out": false,
+    "invoice": null,
+    "id": 8553,
+    "language": {
+      "spoken": [
+        "EN"
+      ],
+      "materials": null
+    },
+    "registration_page": {
+      "external": false,
+      "url": "https://workshopbutler.com/?event03"
+    },
+    "schedule": {
+      "start": "2020-05-24T09:30:00+0200",
+      "end": "2020-05-26T17:30:00+0200",
+      "hours_per_day": 0,
+      "total_hours": 0,
+      "timezone": "Europe/Berlin"
+    },
+    "category": null,
+    "title": "4-day Awesomeness Workshop",
+    "hashed_id": "event03",
+    "type": {
+      "id": 1126,
+      "name": "Practitioner Course Level 1",
+      "min_hours": 1,
+      "free": true
+    },
+    "form": {},
+    "cover_image": {
+      "url": null,
+      "thumbnail": null
+    },
+    "trainers": [],
+    "free": false
+  }
+]

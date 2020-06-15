@@ -1,4 +1,4 @@
-import {DateTime} from 'luxon';
+import {getLocalTime, DateTime} from '../../utils/Time';
 import Timezones from '../../common/Timezones';
 import Schedule from '../../models/Schedule';
 import DateTimeFormatter from './DateTimeFormatter';
@@ -62,7 +62,7 @@ export default class ScheduleFormatter {
    * Returns a formatted schedule with start and end dates
    */
   protected static formatFullDate(locale: string, schedule: Schedule): string {
-    const noLocalPartsSupport = DateTime.local().setLocale(locale).toLocaleParts().length === 0;
+    const noLocalPartsSupport = getLocalTime().setLocale(locale).toLocaleParts().length === 0;
     if (schedule.atOneDay()) {
       return DateTimeFormatter.format(locale, schedule.start);
     } else if (schedule.start.year !== schedule.end.year ||
@@ -84,7 +84,7 @@ export default class ScheduleFormatter {
    *  - 19-20 April 2018 in Germany
    */
   protected static formatSameMonthInterval(locale: string, start: DateTime, end: DateTime): string {
-    const thisYear = DateTime.local().setZone(start.zoneName).year === start.year;
+    const thisYear = getLocalTime().setZone(start.zoneName).year === start.year;
     const options = thisYear ? {month: 'long', day: 'numeric'} : {month: 'long', day: 'numeric', year: 'numeric'};
     const startParts = start.setLocale(locale).toLocaleParts(options);
     const endParts = end.setLocale(locale).toLocaleParts(options);
