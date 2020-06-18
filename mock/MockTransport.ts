@@ -1,25 +1,27 @@
+/* eslint-disable no-console, @typescript-eslint/prefer-regexp-exec, @typescript-eslint/no-unused-vars */
+
 /**
  * Mock api AJAX requests
  */
 class MockTransport {
 
-  events = require('./data/events.json')
-  trainers = require('./data/trainers.json')
-  tickets = require('./data/tickets.json')
-  forms = require('./data/forms.json')
-  defaultVersion = "2020-03-19"
+  events = require('./data/events.json');
+  trainers = require('./data/trainers.json');
+  tickets = require('./data/tickets.json');
+  forms = require('./data/forms.json');
+  defaultVersion = '2020-03-19';
 
-  constructor () {
+  constructor() {
     // populate with trainers
-    this.events[0]['trainers'] = this.trainers;
-    this.events[1]['trainers'] = this.trainers.slice(0,1);
-    this.events[2]['trainers'] = this.trainers.slice(1,3);
+    this.events[0].trainers = this.trainers;
+    this.events[1].trainers = this.trainers.slice(0, 1);
+    this.events[2].trainers = this.trainers.slice(1, 3);
 
     [0, 1, 2].forEach(el => {
-      //populate with tickets
-      this.events[el]['tickets'] = this.tickets[el]
-      //populate with form
-      this.events[el]['form'] = this.forms[el];
+      // populate with tickets
+      this.events[el].tickets = this.tickets[el];
+      // populate with form
+      this.events[el].form = this.forms[el];
     });
   }
 
@@ -27,21 +29,21 @@ class MockTransport {
       data: object,
       callbackSuccess: (response: any) => void,
       callbackError?: (error: any) => void) {
-      console.log(`GET ${url}`);
-      switch (url) {
-        case (url.match(/^events\?/) || {}).input:
-          callbackSuccess(this.eventsListResponse());
-          break;
-        case (url.match(/^events\/[^\/]+\?/) || {}).input:
-          callbackSuccess(this.eventResponse());
-          break;
-        case (url.match(/^(facilitators|trainers)\?/) || {}).input:
-          callbackSuccess(this.trainersListResponse());
-          break;
-        case (url.match(/^(facilitators|trainers)\/[^\/]+\?/) || {}).input:
-          callbackSuccess(this.trainerResponse());
-          break;
-      }
+    console.log(`GET ${url}`);
+    switch (url) {
+      case (url.match(/^events\?/) || {}).input:
+        callbackSuccess(this.eventsListResponse());
+        break;
+      case (url.match(/^events\/[^\/]+\?/) || {}).input:
+        callbackSuccess(this.eventResponse());
+        break;
+      case (url.match(/^(facilitators|trainers)\?/) || {}).input:
+        callbackSuccess(this.trainersListResponse());
+        break;
+      case (url.match(/^(facilitators|trainers)\/[^\/]+\?/) || {}).input:
+        callbackSuccess(this.trainerResponse());
+        break;
+    }
   }
 
   post(url: string, data: any, callbackSuccess: (response: any) => void, callbackFailure?: (response: any) => void) {
@@ -56,47 +58,47 @@ class MockTransport {
     console.log(`DELETE ${url}`);
   }
 
-  private eventsListResponse(){
-    const data = this.events
+  private eventsListResponse() {
+    const data = this.events;
     return {
       version: this.defaultVersion,
       total: data.length,
       perPage: data.length,
       page: 1,
-      data: data,
+      data,
     };
   }
 
-  private eventResponse(){
-    const data = this.events[0]
+  private eventResponse() {
+    const data = this.events[0];
     return {
       version: this.defaultVersion,
       total: null,
       perPage: null,
       page: null,
-      data: data,
+      data,
     };
   }
 
-  private trainersListResponse(){
-    const data = this.trainers
+  private trainersListResponse() {
+    const data = this.trainers;
     return {
       version: this.defaultVersion,
       total: data.length,
       perPage: data.length,
       page: 1,
-      data: data,
+      data,
     };
   }
 
-  private trainerResponse(){
-    const data = this.trainers[0]
+  private trainerResponse() {
+    const data = this.trainers[0];
     return {
       version: this.defaultVersion,
       total: null,
       perPage: null,
       page: null,
-      data: data,
+      data,
     };
   }
 
