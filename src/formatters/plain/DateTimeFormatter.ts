@@ -1,11 +1,11 @@
-import {DateTime} from 'luxon';
+import {getLocalTime, DateTime} from '../../utils/Time';
 
 /**
  * Formats a DateTime object
  */
 export default class DateTimeFormatter {
   static format(locale: string, dateTime: DateTime, withTime = false): string {
-    const thisYear = DateTime.local().setZone(dateTime.zoneName).year === dateTime.year;
+    const thisYear = getLocalTime().setZone(dateTime.zoneName).year === dateTime.year;
     const dateFormat = this.getDateFormat(withTime, thisYear);
     return dateTime.setLocale(locale).toLocaleString(dateFormat);
   }

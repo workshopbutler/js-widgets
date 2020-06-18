@@ -1,0 +1,119 @@
+[
+  {
+    "paid": {
+      "vat_excluded": true,
+      "vat_amount": null,
+      "types": [
+        {
+          "id": "ticket01",
+          "name": "Regular",
+          "total": 20,
+          "left": 20,
+          "start": "2020-05-20T00:00:00+0200",
+          "end": "2020-06-22T23:59:59+0200",
+          "vat_excluded": true,
+          "price": {
+            "currency": "EUR",
+            "amount": 198500
+          }
+        },
+        {
+          "id": "ticket02",
+          "name": "Early Bird",
+          "total": 20,
+          "left": 20,
+          "start": "2020-05-11T00:00:00+0200",
+          "end": "2020-05-20T23:59:59+0200",
+          "vat_excluded": true,
+          "price": {
+            "currency": "EUR",
+            "amount": 158500
+          }
+        }
+      ]
+    },
+    "free": {
+      "unlimited": true,
+      "total": -1,
+      "left": -1
+    }
+  },
+  {
+    "paid": {
+      "vat_excluded": false,
+      "vat_amount": null,
+      "types": [
+        {
+          "id": "ticket03",
+          "name": "Early Bird",
+          "total": 23,
+          "left": 23,
+          "start": "2020-03-29T00:00:00+0100",
+          "end": "2020-05-20T23:59:59+0200",
+          "vat_excluded": false,
+          "price": {
+            "currency": "EUR",
+            "amount": 158500
+          }
+        },
+        {
+          "id": "ticket04",
+          "name": "Full Price",
+          "total": 23,
+          "left": 23,
+          "start": "2020-05-20T00:00:00+0200",
+          "end": "2020-06-26T23:59:59+0200",
+          "vat_excluded": false,
+          "price": {
+            "currency": "EUR",
+            "amount": 198500
+          }
+        }
+      ]
+    },
+    "free": {
+      "unlimited": true,
+      "total": -1,
+      "left": -1
+    }
+  },
+  {
+    "paid": {
+      "vat_excluded": false,
+      "vat_amount": null,
+      "types": [
+        {
+          "id": "ticket05",
+          "name": "Early Bird",
+          "total": 23,
+          "left": 23,
+          "start": "2020-03-29T00:00:00+0100",
+          "end": "2020-04-20T23:59:59+0200",
+          "vat_excluded": false,
+          "price": {
+            "currency": "EUR",
+            "amount": 158500
+          }
+        },
+        {
+          "id": "ticket06",
+          "name": "Full Price",
+          "total": 23,
+          "left": 23,
+          "start": "2020-04-20T00:00:00+0200",
+          "end": "2020-05-26T23:59:59+0200",
+          "vat_excluded": false,
+          "price": {
+            "currency": "EUR",
+            "amount": 198500
+          }
+        }
+      ]
+    },
+    "free": {
+      "unlimited": true,
+      "total": -1,
+      "left": -1
+    }
+  }
+]

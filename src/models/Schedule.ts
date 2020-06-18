@@ -1,4 +1,4 @@
-import {DateTime, Info} from 'luxon';
+import {getLocalTime, DateTime, Info} from '../utils/Time';
 import IPlainObject from '../interfaces/IPlainObject';
 
 /**
@@ -16,7 +16,7 @@ export default class Schedule {
    */
   constructor(attrs: IPlainObject) {
     // check if the browser support IANA-specified zones
-    if (attrs.timezone && Info.features().zones && DateTime.local().setZone(attrs.timezon).isValid) {
+    if (attrs.timezone && Info.features().zones && getLocalTime().setZone(attrs.timezon).isValid) {
       this.timezone = attrs.timezone;
     } else {
       this.timezone = null;
@@ -32,7 +32,7 @@ export default class Schedule {
    * Returns true if the event has ended
    */
   ended(): boolean {
-    const now = DateTime.local().setZone(this.defaultTimezone());
+    const now = getLocalTime().setZone(this.defaultTimezone());
     return this.end < now;
   }
 
