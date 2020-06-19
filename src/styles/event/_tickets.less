@@ -6,9 +6,12 @@
   @media (max-width: 600px) {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 
     > * {
       width: calc(50% - 2px);
+      margin-bottom: 4px;
     }
   }
 
@@ -17,24 +20,18 @@
 
     > * {
       width: 100%;
-
-      + * {
-        margin-top: 4px;
-      }
     }
   }
 }
 
 .wsb-ticket {
   padding: 10px;
-  margin-bottom: 5px;
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 4px;
   text-align: left;
 
   @media (max-width: 600px) {
-    margin-bottom: 0;
     font-size: 13px;
   }
 
