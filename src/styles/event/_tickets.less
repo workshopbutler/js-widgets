@@ -2,6 +2,27 @@
 
 .wsb-tickets {
   margin-bottom: 30px;
+
+  @media (max-width: 600px) {
+    display: flex;
+    justify-content: space-between;
+
+    > * {
+      width: calc(50% - 2px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+
+    > * {
+      width: 100%;
+
+      + * {
+        margin-top: 4px;
+      }
+    }
+  }
 }
 
 .wsb-ticket {
@@ -11,6 +32,11 @@
   border: 1px solid transparent;
   border-radius: 4px;
   text-align: left;
+
+  @media (max-width: 600px) {
+    margin-bottom: 0;
+    font-size: 13px;
+  }
 
   &.state-closed {
     background-color: #ffffff;
@@ -24,22 +50,21 @@
       color: #333333;
     }
   }
-
-  @media @tablet {
-    flex: 1 0 50%;
-  }
-  @media @phone {
-    flex: 1 0 100%;
-  }
 }
-
 
 .wsb-ticket__val {
   margin-bottom: 0.4em;
-  font-size: 2em;
+  font-size: 32px;
 
-  @media @phone {
+  @media (max-width: 600px) {
+    font-size: 24px;
     margin-bottom: 0;
+  }
+}
+
+.wsb-ticket__name {
+  @media (max-width: 600px) {
+    font-size: 16px;
   }
 }
 
@@ -48,10 +73,9 @@
   min-height: 1.3em;
   font-size: 0.8em;
 
-  @media @tablet {
-    font-size: 1em;
+  @media (max-width: 600px) {
+    font-size: inherit;
   }
-
 }
 
 .wsb-ticket__footer {
@@ -59,8 +83,11 @@
   font-size: 0.8em;
   margin-top: 1em;
 
-  @media @tablet {
-    font-size: 1em;
+  @media (max-width: 600px) {
+    text-align: right;
+    color: #333333;
+    font-size: inherit;
+    margin-top: 0;
   }
 }
 
