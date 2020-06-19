@@ -1,4 +1,4 @@
-import {DateTime} from 'luxon';
+import {DateTime, getLocalTime} from '../../utils/Time';
 import IPaidTicketType from '../../interfaces/IPaidTicketType';
 import IPlainObject from '../../interfaces/IPlainObject';
 import TicketPrice from './TicketPrice';
@@ -59,7 +59,7 @@ export default class PaidTicketType implements IPaidTicketType {
    * @return {boolean}
    */
   inFuture(): boolean {
-    return this.start ? this.start > DateTime.local() : false;
+    return this.start ? this.start > getLocalTime() : false;
   }
 
   /**
@@ -75,7 +75,7 @@ export default class PaidTicketType implements IPaidTicketType {
    * @return {boolean}
    */
   ended(): boolean {
-    return this.end ? this.end < DateTime.local() : false;
+    return this.end ? this.end < getLocalTime() : false;
   }
 
   /**

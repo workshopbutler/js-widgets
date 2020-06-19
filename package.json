@@ -71,8 +71,8 @@
     "build-wordpress": "NODE_ENV=build-wordpress webpack --mode production",
     "check-css-style": "stylelint  \"frontend/css/**/*.less\"",
     "fix-css-style": "stylelint  \"frontend/css/**/*.less\"  --fix",
-    "check-ts-styles": "eslint --ext .js,.ts src/ ",
-    "fix-ts-styles": "eslint --ext .js,.ts src/  --fix",
+    "check-ts-styles": "eslint --ext .js,.ts src/ mock/",
+    "fix-ts-styles": "eslint --ext .js,.ts src/ mock/ --fix",
     "check-types": "tsc"
   },
   "dependencies": {

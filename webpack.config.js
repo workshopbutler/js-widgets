@@ -130,6 +130,17 @@ function getPlugins() {
     })
   ];
 
+  if (config.isDev && config.options.apiKey === 'mock') {
+    plugins.push(new webpack.NormalModuleReplacementPlugin(
+      /\/common\/Transport\.ts/,
+      '../../mock/MockTransport.ts'
+    ));
+    plugins.push(new webpack.NormalModuleReplacementPlugin(
+      /\/utils\/Time\.ts/,
+      '../../mock/MockTime.ts'
+    ));
+  }
+
   if (!config.isDev) {
     plugins.push(new MinifyPlugin())
   }
