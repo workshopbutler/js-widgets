@@ -83,12 +83,22 @@
     font-weight: bold;
     margin-top: 10px;
 
-    .fa-star {
+    .fa-stack,
+    .fa-star,
+    .fa-star-half,
+    .fa-star-half:before {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .fa-star-half:before {
+      position: relative;
+      top: -2px;
       font-size: 16px;
     }
 
     .fa-stack {
-      width: 1.1em;
+      width: 1.2em;
     }
   }
 
