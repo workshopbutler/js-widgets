@@ -1,0 +1,75 @@
+.wsb-content {
+  font-size: 16px;
+  line-height: 1.42857143;
+
+  // body layout
+  .wsb-body {
+    padding-top: 31px;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 66% 4% 30%;
+    grid-template-columns: 66% 4% 30%;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+    grid-template-areas: "descr . first"
+                         "descr . second";
+
+    &.wsb-trainer-profile {
+      grid-template-areas: "header header header"
+                           "descr . first"
+                           "descr . second";
+    }
+
+    @media @phone {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .wsb-description {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    -ms-grid-column: 1;
+    grid-area: descr;
+    -ms-grid-row: 1;
+    grid-row-start: 1;
+    -ms-grid-row-span: 3;
+    grid-row-end: span 3;
+  }
+
+  .wsb-toolbar {
+    width: 100%;
+    &.wsb-first {
+      -ms-grid-row: 1;
+      -ms-grid-column: 3;
+      grid-area: first;
+    }
+    &.wsb-second {
+      -ms-grid-row: 2;
+      -ms-grid-column: 3;
+      grid-area: second;
+    }
+  }
+
+  @media @phone {
+    .wsb-description {
+      width: 100%;
+      margin-right: 0;
+    }
+
+    .wsb-toolbar {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 30px;
+    }
+
+    .wsb-trainers {
+      flex-direction: row;
+    }
+  }
+  @media screen and ( max-width: 33em ), @phone {
+    .wsb-trainers {
+      flex-direction: column;
+    }
+  }
+}

@@ -11,8 +11,6 @@
   min-height: 100%;
 
   .wsb-center {
-    //This attribute is important for built-in pages
-    //width: 1120px;
     margin-right: auto;
     margin-left: auto;
   }
@@ -20,25 +18,48 @@
   // header
   .wsb-header h1 {
     margin: 0 0 14px;
-    font-size: 3em;
+    font-size: 48px;
     font-weight: 600;
     -webkit-font-smoothing: antialiased;
 
-    @media @phone {
-      font-size: 1em;
+    @media (max-width: 600px) {
+      font-size: 40px;
     }
   }
 
   // info block
-  @media @tablet {
-    .wsb-info-block {
+  .wsb-info-block {
+    @media (max-width: 600px) {
       display: flex;
+      flex-direction: column;
       flex-wrap: wrap;
+    }
+  }
+
+  .wsb-body {
+    padding-top: 20px;
+    grid-template-columns: calc(100% - 30px - 300px) 30px 300px;
+
+    @media (max-width: 800px) {
+      grid-template-columns: calc(100% - 20px - 200px) 20px 200px;
+    }
+
+    @media (max-width: 600px) {
+      display: flex;
+      flex-direction: column;
+
+      > *:nth-child(1) { order: 1 }
+      > *:nth-child(2) { order: 3 }
+      > *:nth-child(3) { order: 2 }
     }
   }
 
   .wsb-info {
     margin-bottom: 2em;
+
+    @media (max-width: 600px) {
+      margin-bottom: 1em;
+    }
   }
 
   .wsb-info__title {
@@ -58,11 +79,32 @@
     width: 100%;
   }
 
+  .wsb-toolbar {
+    &.wsb-first {
+      @media (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+
+        > *:nth-child(1) { order: 2 }
+        > *:nth-child(2) { order: 1 }
+        > *:nth-child(3) { order: 3 }
+        > *:nth-child(4) { order: 4 }
+      }
+    }
+
+    &.wsb-second {
+      margin-bottom: 16px;
+    }
+  }
+
   // sidebar register button
+  .wsb-sidebar__register-wrapper {
+    margin-bottom: 2em;
+  }
+
   .wsb-sidebar__register {
     display: block;
     width: 100%;
-    margin-bottom: 1.5em;
     padding: 1em 0;
     text-decoration: none !important;
     color: #fff !important;
@@ -98,11 +140,15 @@
 
   .wsb-workshop {
     border-top: 1px solid #e8e9eb;
-    padding: 10px 0;
+    padding: 10px 0 10px 10px;
     color: @text-grey;
 
     &:last-child {
       border-bottom: 1px solid #e8e9eb;
+    }
+
+    a {
+      font-weight: 700;
     }
 
     .wsb-tag, .wsb-free {
@@ -110,10 +156,15 @@
       width: fit-content;
       margin-bottom: 5px;
     }
+
+    .wsb-tag {
+      position: relative;
+      left: -10px;
+      padding-left: 10px;
+    }
   }
 
   .wsb-before-registration {
     display: none;
   }
-
 }

@@ -1,10 +1,12 @@
 {% macro drawTrainer(trainer, config, _t, _f) %}
-  <div class="wsb-trainer-tile" data-trainer-obj
-       data-trainer-location="{{ trainer.worksIn.join(',') }}"
-       data-trainer-rating="{{ trainer.stats.total.publicStats.rating }}"
-       data-trainer-badge="{{ trainer.nameOfBadges().join(',') }}"
-       data-trainer-language="{{ trainer.languages.join(',') }}"
-       data-trainer-trainer="{{ trainer.fullName() }}">
+  <div
+    class="wsb-trainer-tile" data-trainer-obj
+    data-trainer-location="{{ trainer.worksIn.join(',') }}"
+    data-trainer-rating="{{ trainer.stats.total.publicStats.rating }}"
+    data-trainer-badge="{{ trainer.nameOfBadges().join(',') }}"
+    data-trainer-language="{{ trainer.languages.join(',') }}"
+    data-trainer-trainer="{{ trainer.fullName() }}"
+  >
     <a href="{{ trainer.url }}">
       {% set photo = "background-image: url(" + trainer.photo + ");" %}
       <div class="wsb-trainer-tile_img" style="{{ photo }}"></div>
@@ -14,12 +16,14 @@
       <a href="{{ trainer.url }}">
         <div>{{ trainer.fullName() }}</div>
       </a>
+
       {% if trainer.country %}
         <div class="wsb-trainer-tile__country">
           <span class="flag-icon flag-icon-{{trainer.country.toLowerCase()}} wsb-trainer-tile__flag"></span>
           <span>{{ _t('country.' + trainer.country) }}</span>
         </div>
       {% endif %}
+
       <div>
         {% if config.showBadges %}
           {% for badge in trainer.badges %}
@@ -33,5 +37,4 @@
       </div>
     </div>
   </div>
-
 {% endmacro %}
