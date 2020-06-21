@@ -3,7 +3,6 @@
 @left-column: 10em;
 
 .wsb-content {
-
   select {
     padding: .4em;
     padding-right: 15px;
@@ -41,6 +40,7 @@
       margin-left: 0;
       margin-right: 0.5em;
     }
+
     &[type=checkbox] {
       align-self: flex-start;
     }
@@ -82,6 +82,14 @@
     @media @phone, screen and (max-width: 600px) {
       max-width: 100%;
     }
+
+    section {
+      margin-right: 89px;
+
+      @media(max-width: 1200px) {
+        margin-right: 0;
+      }
+    }
   }
 
   .wsb-form__instructions {
@@ -102,6 +110,9 @@
 
   .wsb-form__required {
     color: @red;
+    font-size: 12px;
+    position: relative;
+    top: -5px;
   }
 
   section {
@@ -125,12 +136,14 @@
   .wsb-form__field {
     flex: 1 1 46%;
     width: 100%;
-    margin-bottom: 21px;
     line-height: 1.2em;
     min-width: 20em;
-    max-width: 40em;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+
+    + .wsb-form__field {
+      margin-top: 21px;
+    }
 
     &.textarea, &.checkbox {
       flex: 1 0 100%;
@@ -150,6 +163,7 @@
           display: none;
         }
       }
+
       &.ticket > .wsb-label {
         display: none;
       }
@@ -159,13 +173,16 @@
       align-items: flex-start;
     }
 
-    &.ticket .wsb-label {
-      padding-top: @label-padding;
+    > .wsb-label {
+      margin-top: 5px;
     }
   }
 
   .wsb-label {
-    flex: 0 0 @left-column;
+    flex: 0 0 160px;
+    margin-bottom: 0;
+    line-height: 24px;
+    font-size: 16px;
 
     @media @phone, screen and (max-width: 600px) {
       flex: 0 0 2em;
@@ -215,12 +232,13 @@
 
   .wsb-form__ticket {
     padding: @left-padding;
-    margin-left: -@left-padding;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
 
     label, input {
       cursor: pointer;
     }
-
 
     &.wsb-active {
       background-color: @background-grey;
@@ -228,6 +246,14 @@
 
     @media @phone {
       margin-left: 0;
+    }
+
+    .wsb-label {
+      font-size: 16px;
+    }
+
+    input {
+      margin-top: 0;
     }
   }
 
@@ -273,12 +299,14 @@
   .wsb-form__tax {
     font-style: italic;
     font-size: 0.75em;
+    margin-top: 10px;
+    margin-left: 12px;
   }
 
   .wsb-form__btn {
     display: inline-block;
     width: 50%;
-    min-width: 300px;
+    max-width: 300px;
     margin-left: @left-column;
     padding: 15px 0;
     text-decoration: none !important;
@@ -317,5 +345,44 @@
     color: @red;
     padding-bottom: 1em;
     margin-left: @left-column;
+  }
+
+  .wsb-form__payment-alert {
+    margin-top: 32px;
+    margin-right: 89px;
+
+    @media(max-width: 1200px) {
+      margin-right: 0;
+    }
+  }
+}
+
+.wsb-registration-page {
+  .wsb-body {
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wsb-tickets > * {
+      @media (max-width: 768px) {
+        width: calc(50% - 2px);
+        margin-bottom: 4px;
+      }
+    }
+
+    .wsb-trainers {
+      @media (max-width: 768px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      > * {
+        @media (max-width: 768px) {
+          width: calc(50% - 2px);
+        }
+      }
+    }
   }
 }

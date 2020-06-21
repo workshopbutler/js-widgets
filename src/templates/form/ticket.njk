@@ -5,13 +5,18 @@
     {% if ticket.active() %}
       <div class="wsb-form__ticket">
         {% set price = _f(ticket.price) %}
-        <input id="{{ ticket.id }}" name="{{ field.name }}" title="{{ field.label }}" type="radio"
-               data-control required value="{{ ticket.id }}" {{ 'disabled' if disabled }}
+        <input
+          id="{{ ticket.id }}"
+          name="{{ field.name }}"
+          title="{{ field.label }}" type="radio"
+          data-control required value="{{ ticket.id }}" {{ 'disabled' if disabled }}
         />
+
         <label for="{{ ticket.id }}" class="wsb-label"><strong>{{ price }}</strong> {{ ticket.name }}</label>
       </div>
     {% endif %}
   {% endfor %}
+
   <div class="wsb-form__tax">
     {% if field.tickets.excludedTax %}
       {{ _t("tax.excluded_all") }} {% if field.tickets.tax %} {{ field.tickets.tax }}% {% endif %}
