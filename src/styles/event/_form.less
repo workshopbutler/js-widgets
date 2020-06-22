@@ -79,7 +79,7 @@
   .wsb-form__body {
     max-width: 90%;
 
-    @media @phone, screen and (max-width: 600px) {
+    @media (max-width: 768px) {
       max-width: 100%;
     }
 
@@ -141,6 +141,11 @@
     display: flex;
     align-items: flex-start;
 
+    @media (max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+    }
+
     + .wsb-form__field {
       margin-top: 21px;
     }
@@ -175,6 +180,10 @@
 
     > .wsb-label {
       margin-top: 5px;
+
+      @media (max-width: 900px) {
+        flex-basis: auto;
+      }
     }
   }
 
@@ -183,10 +192,6 @@
     margin-bottom: 0;
     line-height: 24px;
     font-size: 16px;
-
-    @media @phone, screen and (max-width: 600px) {
-      flex: 0 0 2em;
-    }
   }
 
   .wsb-checkbox {
@@ -214,13 +219,7 @@
     }
   }
 
-  .wsb-ticket-section {
-    @media @phone {
-      background-color: @background-grey;
-      padding: 0.5em 0.5em;
-      margin-bottom: 1em;
-    }
-  }
+  // .wsb-ticket-section {}
 
   .wsb-form__tickets {
     width: 100%;
@@ -354,11 +353,19 @@
     @media(max-width: 1200px) {
       margin-right: 0;
     }
+
+    @media (max-width: 600px) {
+      margin-bottom: 30px;
+    }
   }
 }
 
 .wsb-registration-page {
   .wsb-body {
+    @media (max-width: 800px) {
+      grid-template-columns: calc(100% - 20px - 300px) 20px 300px!important;
+    }
+
     @media (max-width: 768px) {
       display: flex;
       flex-direction: column;
@@ -368,6 +375,15 @@
       @media (max-width: 768px) {
         width: calc(50% - 2px);
         margin-bottom: 4px;
+      }
+
+      @media (max-width: 600px) {
+        height: 118px;
+      }
+
+      @media (max-width: 480px) {
+        height: auto;
+        width: 100%;
       }
     }
 
@@ -381,6 +397,10 @@
       > * {
         @media (max-width: 768px) {
           width: calc(50% - 2px);
+        }
+
+        @media (max-width: 480px) {
+          width: 100%;
         }
       }
     }
