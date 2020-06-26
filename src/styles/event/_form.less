@@ -79,7 +79,7 @@
   .wsb-form__body {
     max-width: 90%;
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       max-width: 100%;
     }
 
@@ -362,17 +362,17 @@
 
 .wsb-registration-page {
   .wsb-body {
-    @media (max-width: 800px) {
-      grid-template-columns: calc(100% - 20px - 300px) 20px 300px!important;
-    }
+    // @media (max-width: 800px) {
+    //   grid-template-columns: calc(100% - 20px - 300px) 20px 300px!important;
+    // }
 
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
       display: flex;
       flex-direction: column;
     }
 
     .wsb-tickets > * {
-      @media (max-width: 768px) {
+      @media (max-width: 600px) {
         width: calc(50% - 2px);
         margin-bottom: 4px;
       }
@@ -388,14 +388,14 @@
     }
 
     .wsb-trainers {
-      @media (max-width: 768px) {
+      @media (max-width: 600px) {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: space-between;
       }
 
       > * {
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
           width: calc(50% - 2px);
         }
 
