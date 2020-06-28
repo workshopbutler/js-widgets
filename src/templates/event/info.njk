@@ -31,7 +31,7 @@
     </div>
   {% endif %}
 
-  {% if event.trainers %}
+  {% if config.trainers.show %}
     <div class="wsb-trainers">
       {% for trainer in event.trainers %}
         <div class="wsb-trainer">
@@ -61,7 +61,7 @@
                 {% endif %}
               </div>
 
-              {% if trainer.bio %}
+              {% if config.trainers.bio %}
                 <div class="wsb-profile__bio">
                   {{ trainer.bio }}
                 </div>
