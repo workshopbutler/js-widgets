@@ -37,10 +37,10 @@
     "statistics": {
       "total": {
         "public": {
-          "rating": 0,
+          "rating": 7,
           "median": 0,
           "nps": 0,
-          "evaluations": 0,
+          "evaluations": 10,
           "votes": {
             "0": 0,
             "1": 0,
