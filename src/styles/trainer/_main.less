@@ -1,9 +1,7 @@
 .wsb-content .wsb-trainer-profile {
-
   .wsb-trainer__header {
     background-color: @light-grey;
     margin-bottom: 15px;
-
     -ms-grid-row: 1;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
@@ -12,15 +10,23 @@
 
   .wsb-trainer__header-row {
     display: flex;
+    align-items: center;
     padding-bottom: 1em;
 
     @media @phone {
       flex-direction: column;
     }
 
+    .wsb-trainer-title {
+      width: 100%;
+      padding: 0 16px;
+    }
+
     img {
       height: 150px;
       width: 150px;
+      border-radius: 50%;
+      object-fit: cover;
 
       @media @phone {
         width: 100%;
@@ -30,8 +36,7 @@
   }
 
   .wsb-trainer__header-col {
-    flex: 1 0 20%;
-    padding: 0 1em;
+    padding: 0 16px;
   }
 
   .wsb-description {
@@ -55,8 +60,8 @@
 
   .wsb-trainer-buttons {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 
     @media @phone {
       display: block;
@@ -64,13 +69,14 @@
   }
 
   .wsb-trainer-name {
-    font-weight: bold;
-    font-size: 2em;
-    margin-bottom: 0;
+    font-weight: 700;
+    font-size: 32px;
     margin-top: 0;
+    margin-bottom: 8px;
   }
 
   .wsb-trainer-country {
+    font-size: 16px;
     margin-top: 0;
     padding-bottom: 1em;
     color: @text-grey;
@@ -78,6 +84,7 @@
 
   .wsb-contact-button {
     width: 150px;
+    margin-left: 32px;
 
     @media @phone {
       width: 100%;
@@ -85,14 +92,20 @@
   }
 
   .wsb-trainer__social-networks {
-    display: inline-block;
-    padding-bottom: 1em;
+    display: flex;
+    justify-content: center;
 
     a {
-      padding-left: 1em;
+      font-size: 16px;
+      padding-left: 16px;
+      text-transform: uppercase;
 
       &:first-child {
         padding-left: 0;
+      }
+
+      .fab {
+        font-size: 24px;
       }
     }
 
@@ -101,17 +114,31 @@
     }
   }
 
+  .header-col__facts-and-badges {
+    width: 100%;
+  }
+
   .wsb-trainer-details-facts {
-    flex: 1 0 100%;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
+    font-size: 13px;
+    padding-right: 50px;
 
     .wsb-trainer-details-fact {
+      align-items: center;
+      justify-content: space-between;
       flex: 1 1 50px;
       text-align: center;
       padding: 10px;
-      display: inline-block;
+      display: flex;
       vertical-align: top;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+
+      + .wsb-trainer-details-fact {
+        margin-left: 8px;
+      }
 
       &:last-child {
         border-right: none;
@@ -124,30 +151,39 @@
     }
 
     .wsb-big-number {
-      font-size: 3em;
+      font-size: 32px;
+      font-weight: 700;
     }
 
     .wsb-descr {
-      color: @text-grey;
+      color: #333;
       display: block;
-      font-size: 1em;
+      text-align: left;
     }
 
     .wsb-descr__sub {
       color: @text-grey;
-      font-size: 0.70em;
+      text-align: left;
     }
   }
 
   .wsb-trainer-badges {
+    width: 300px;
+    flex-shrink: 0;
+
     @media @phone {
       text-align: center;
     }
   }
 
-  .wsb-trainer__badge {
-    width: 100px;
-    padding-bottom: 1em;
+  .wsb-trainer__badge.wsb-trainer__badge {
+    width: 65px;
+    height: auto;
+    padding-bottom: 16px;
+
+    + .wsb-trainer__badge {
+      margin-left: 16px;
+    }
 
     @media @phone {
       width: 250px;
@@ -176,7 +212,7 @@
     }
   }
 
-  @media screen and ( max-width: 40em ) {
+  @media screen and (max-width: 40em) {
     .wsb-trainer-name {
       font-size: 24px;
     }
@@ -188,7 +224,7 @@
     }
 
     .wsb-contact-button {
-      margin-bottom: 10px;
+      font-size: 16px;
     }
   }
 }

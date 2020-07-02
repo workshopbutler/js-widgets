@@ -359,12 +359,12 @@
     "email": "Contact by email",
     "experience": {
       "years": "Years as trainer",
-      "events": "Events held",
+      "events": "Number of events held",
       "rating": {
-        "public": "Rating for public events",
-        "private": "Rating for private events",
-        "basedOn": "based on 1&nbsp;evaluation",
-        "basedOn_plural": "based on {{count}}&nbsp;evaluations",
+        "public": "Public events",
+        "private": "Private events",
+        "basedOn": "1&nbsp;evaluation",
+        "basedOn_plural": "{{count}}&nbsp;evaluations",
         "review": "from 1 review",
         "review_plural": "from {{count}} reviews"
       }
