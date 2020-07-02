@@ -11,8 +11,24 @@
       "country": "RO"
     },
     "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386307/wsqyev2azquqz1rozj9m.jpg",
-    "badges": [],
-    "bio": "<p>    Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.    <br></p>",
+    "badges": [
+      {
+        "id" : 1,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 2,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 3,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      }
+    ],
+    "bio": "<p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p>",
     "countries": [
       "RO"
     ],
@@ -25,11 +41,11 @@
     ],
     "last_name": "Hayley",
     "social_links": {
-      "twitter": null,
-      "facebook": null,
+      "twitter": "https://www.linkedin.com/company/workshop-butler/",
+      "facebook": "https://www.linkedin.com/company/workshop-butler/",
       "linkedin": "https://www.linkedin.com/company/workshop-butler/",
-      "website": null,
-      "blog": null
+      "website": "https://www.linkedin.com/company/workshop-butler/",
+      "blog": "https://www.linkedin.com/company/workshop-butler/"
     },
     "tags": [],
     "organisations": [],
@@ -37,10 +53,10 @@
     "statistics": {
       "total": {
         "public": {
-          "rating": 7,
+          "rating": 9.62,
           "median": 0,
           "nps": 0,
-          "evaluations": 10,
+          "evaluations": 88,
           "votes": {
             "0": 0,
             "1": 0,
@@ -56,10 +72,10 @@
           }
         },
         "private": {
-          "rating": 0,
+          "rating": 9.6,
           "median": 0,
           "nps": 0,
-          "evaluations": 0,
+          "evaluations": 34,
           "votes": {
             "0": 0,
             "1": 0,
@@ -74,7 +90,7 @@
             "10": 0
           }
         },
-        "workshops": 3
+        "workshops": 329
       },
       "recent": {
         "public": {
@@ -117,7 +133,7 @@
         },
         "workshops": 3
       },
-      "years_of_experience": 0
+      "years_of_experience": 10
     }
   },
   {
