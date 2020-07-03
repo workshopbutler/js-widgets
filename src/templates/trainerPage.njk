@@ -59,9 +59,13 @@
                   </span>
                 </div>
 
-                <span class="wsb-big-number">
-                  {{ _f(trainer.stats.total.publicStats.rating) }}
-                </span>
+                <div>
+                  <span class="wsb-big-number">
+                    {{ _f(trainer.stats.total.publicStats.rating) }}
+                  </span>
+
+                  <i class="fas fa-star"></i>
+                </div>
               </div>
             {% endif %}
 
@@ -75,9 +79,13 @@
                   </span>
                 </div>
 
-                <span class="wsb-big-number">
-                  {{ _f(trainer.stats.total.privateStats.rating) }}
-                </span>
+                <div>
+                  <span class="wsb-big-number">
+                    {{ _f(trainer.stats.total.privateStats.rating) }}
+                  </span>
+
+                  <i class="fas fa-star"></i>
+                </div>
               </div>
             {% endif %}
 
@@ -97,9 +105,13 @@
           </div>
 
           <div class="wsb-trainer-badges">
-            {% for badge in trainer.badges %}
-              <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
-            {% endfor %}
+            <div>
+              {% for badge in trainer.badges %}
+                <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
+              {% endfor %}
+            </div>
+
+            <span class="wsb-trainer-more">3+</span>
           </div>
         </div>
       </div>
@@ -108,7 +120,7 @@
         <div class="wsb-desc">{{ trainer.bio | safe }}</div>
 
         {% if trainer.testimonials.length > 0 %}
-          <h3>{{ _t('trainer.feedback') }}</h3>
+          <h3 class="wsb-testimonial-heading">{{ _t('trainer.feedback') }}</h3>
 
           <div>
             {% for testimonial in trainer.testimonials %}

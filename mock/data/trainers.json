@@ -49,7 +49,20 @@
     },
     "tags": [],
     "organisations": [],
-    "testimonials": [],
+    "testimonials": [
+      {
+        "attendee": "Andy",
+        "company": "Weejee",
+        "rating": 9.99,
+        "content": "This talk goes through a production case-study of fashion-house Chloé, looking at specific fixes which we then validated using real-world user-experience metrics. I hope you find it useful! You might also find this new case study write-up from Chloé's engineering team a fun read :)"
+      },
+      {
+        "attendee": "Smallz",
+        "company": "Weejee",
+        "rating": 4.7,
+        "content": "Core Web Vitals metrics. We'll use tools like Lighthouse & Chrome DevTools, show you code snippets for fixes, and highlight how you too can get fast and stay fast."
+      }
+    ],
     "statistics": {
       "total": {
         "public": {

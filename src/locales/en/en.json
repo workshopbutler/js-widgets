@@ -358,7 +358,7 @@
   "trainer": {
     "email": "Contact by email",
     "experience": {
-      "years": "Years as trainer",
+      "years": "Years of experience",
       "events": "Number of events held",
       "rating": {
         "public": "Public events",
