@@ -107,11 +107,15 @@
           <div class="wsb-trainer-badges">
             <div>
               {% for badge in trainer.badges %}
-                <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
+                {% if loop.index <= 3 %}
+                  <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
+                {% endif %}
               {% endfor %}
             </div>
 
-            <span class="wsb-trainer-more">3+</span>
+            {% if trainer.badges.length > 3 %}
+              <span class="wsb-trainer-more">3+</span>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -162,7 +166,7 @@
         {% endif %}
       </div>
 
-      <div class="wsb-toolbar wsb-second">
+      <div class="wsb-toolbar wsb-first">
         {% if config.showFutureEvents or config.showPastEvents %}
           <div class="wsb-trainer-events">
             {% if config.showFutureEvents %}
