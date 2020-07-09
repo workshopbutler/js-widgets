@@ -37,6 +37,6 @@ export default class Payment {
    * Returns true if the script is in test mode
    */
   testMode(): boolean {
-    return this.stripePublicKey.startsWith('pk_test_');
+    return this.stripePublicKey.lastIndexOf('pk_test_', 0) === 0;
   }
 }

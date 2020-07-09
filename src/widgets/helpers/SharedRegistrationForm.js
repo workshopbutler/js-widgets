@@ -116,7 +116,7 @@ export default class SharedRegistrationForm {
    * @private
    */
   isPageSecure() {
-    return window.location.href.startsWith('https') || this.paymentConfig.testMode;
+    return window.location.href.lastIndexOf('https', 0) === 0  || this.paymentConfig.testMode;
   }
 
   /**
