@@ -31,7 +31,9 @@ export default class Schedule extends Widget<ScheduleConfig> {
     }
 
     // Add tag element for mobile view
-    options.cols = ['wsb-tag-mob', ...options.cols];
+    if (options.cols) {
+      options.cols = ['wsb-tag-mob', ...options.cols];
+    }
 
     const config = ScheduleConfig.create(options);
     if (!config) {

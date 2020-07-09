@@ -1,12 +1,12 @@
 {% macro renderSchedule(event, config, _t, _f) %}
   <div class="wsb-table__col wsb-table__col-schedule">
     {% if event.schedule.atOneDay() %}
-      {{ _f(event.schedule, 'full_long') }}
+      {{ _f(event.schedule, 'full_long') | safe }}
       {% if event.location.online and event.schedule.timezone %}
         {{ _f(event.schedule, 'timezone_short') }}
       {% endif %}
     {% else %}
-      {{ _f(event.schedule, 'full_short') }}
+      {{ _f(event.schedule, 'full_short') | safe }}
     {% endif %}
   </div>
 {% endmacro %}
