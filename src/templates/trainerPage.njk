@@ -121,6 +121,9 @@
       </div>
 
       <div class="wsb-description">
+        {% from "./trainer/testimonialsSlider.njk" import testimonialsSlider %}
+        {{ testimonialsSlider() }}
+
         <div class="wsb-desc">{{ trainer.bio | safe }}</div>
 
         {% if trainer.testimonials.length > 0 %}
@@ -130,11 +133,9 @@
             {% for testimonial in trainer.testimonials %}
               <div class="wsb-testimonial">
                 <span class="wsb-cite">
-                  <strong>{{ testimonial.attendee }}</strong>
-
-                  {% if testimonial.company %}
-                    , {{ testimonial.company }}
-                  {% endif %}
+                  <strong>{{ testimonial.attendee }}</strong>{% if testimonial.company %},{% endif %}
+                  {% if testimonial.company %}<span class="wsb-verified"></span>{% endif %}
+                  {% if testimonial.company %}{{ testimonial.company }}{% endif %}
                 </span>
 
                 {% if testimonial.rating %}
