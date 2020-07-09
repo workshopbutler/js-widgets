@@ -83,7 +83,7 @@ let webpackConfig = {
         ]
       },
       {
-        test: /\.png$/,
+        test: /\.(png|svg)$/,
         use: [
           {
             loader: 'url-loader',

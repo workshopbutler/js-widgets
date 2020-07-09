@@ -1,0 +1,8 @@
+{% macro tag(event, config, _t, _f, mobile) %}
+  {% if event.state.closed() %}
+    <span class="{% if mobile %} wsb-mobile {% endif %} wsb-tag wsb-sold-out">{{ _t('event.state.soldOut') }}</span>
+  {% else %}
+    {% from "./tag.njk" import tag %}
+    {{ tag(event, config, _t, _f, mobile) }}
+  {% endif %}
+{% endmacro %}

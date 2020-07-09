@@ -16,18 +16,26 @@
     display: none;
   }
 
+  @space-size: 24px;
+
   .wsb-tile {
-    flex: 0 0 17em;
+    flex: 0 0 320px;
     position: relative;
     overflow: hidden;
     display: inline-block;
     vertical-align: top;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 30px 26px 0;
+    padding: 16px @space-size @space-size @space-size;
     text-align: left;
-    margin-bottom: 24px;
+    margin-bottom: @space-size;
     margin-right: 12px;
+    transition: transform .2s;
+    background-color: @tile-background;
+
+    &:hover {
+      transform: scale(1.03);
+    }
 
     @media (min-width: 601px) {
       &:hover .wsb-tile-button {
@@ -41,71 +49,87 @@
 
     @media (max-width: 600px) {
       flex-basis: 100%;
+      padding: 12px;
     }
+  }
+  .wsb-tile-thumbnail {
+    &.with-thumbnail {
+      margin: -16px -@space-size 16px;
+      height: 214px;
+      background-repeat: no-repeat !important;
+      background-size: contain !important;
+
+      .wsb-thumbnail-content {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        height: 100%;
+        padding: @space-size/2 @space-size 0;
+      }
+      .wsb-tile-title {
+        color: white;
+      }
+
+      @media (max-width: 600px) {
+        height: 182px;
+        background-size: cover !important;
+      }
+    }
+    &.with-stub {
+      background: url('../images/tile-stub.svg');
+      background-size: cover !important;
+
+      .wsb-tile-title {
+        color: unset;
+      }
+    }
+  }
+  a.wsb-tile:hover {
+    text-decoration: none;
+  }
+  .wsb-tile-tags {
+    padding-bottom: 5px;
   }
 
   .wsb-tile-title {
     display: block;
-    font-size: 1.3em;
+    font-size: 20px;
+    line-height: 28px;
     font-weight: bold;
     text-decoration: none !important;
     box-shadow: none !important;
-    margin-bottom: 0.6em;
-    .transition(all .15s ease);
-
-    &:hover {
-      opacity: .85;
-    }
+    margin-bottom: 12px;
   }
 
-  .wsb-tile .wsb-tag,
-  .wsb-tile .wsb-free {
-    position: absolute;
-    right: 0;
-    top: 0;
+  .wsb-date-place {
+    margin-bottom: 20px;
+
+    @media (max-width: 600px) {
+      margin-bottom: 8px;
+    }
+
   }
 
-  .date-place {
-    > * {
-      @media (max-width: 600px) {
-        display: inline-block;
-      }
-    }
-
-    .dot {
-      display: none;
-
-      @media (max-width: 600px) {
-        display: inline-block;
-      }
-    }
+  .wsb-tile-info {
+    margin-bottom: 4px;
   }
 
   .wsb-tile-content {
-    margin-top: 1.5em;
-    margin-bottom: 2em;
     display: flex;
     flex-wrap: wrap;
-
-    @media (max-width: 600px) {
-      margin-left: -1em;
-      margin-right: -1em;
-      margin-top: 0;
-    }
 
     .wsb-trainer {
       margin: 0;
       display: flex;
       min-width: 12em;
+      align-items: center;
 
       @media (max-width: 600px) {
-        padding: 0 1em;
-        margin-top: 1em;
         min-width: 15em;
       }
 
       + .wsb-trainer {
-        margin-top: 1em;
+        margin-top: 10px;
       }
 
       a {
@@ -124,13 +148,13 @@
     .wsb-photo {
       display: block;
       margin-right: 13px;
-      width: 2em;
-      height: 2em;
-      border-radius: 10px;
+      width: 32px;
+      height: 32px;
       flex-shrink: 0;
     }
   }
 
+  //@deprecated
   .wsb-tile-button {
     height: 70px;
     bottom: -70px;
@@ -154,6 +178,7 @@
     }
   }
 
+  //@deprecated
   .wsb-tile-btn {
     padding: 0;
     height: 70px;
