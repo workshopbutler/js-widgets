@@ -1,22 +1,35 @@
-{% macro testimonialsSlider() %}
-  <div class="wsb-testimonials-slider">
-    <div class="wsb-testimonials-stars">
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
+{% macro testimonialsSlider(testimonials) %}
+  {% if testimonials.length > 0 %}
+    <div class="owl-carousel">
+      {% for testimonial in testimonials %}
+        <div class="wsb-testimonials-slide">
+          <div class="wsb-testimonials-stars">
+            {% set rating = testimonial.rating %}
+            {% set stars = range(5) %}
+
+            {% for item in stars %}
+              {% set index = item + 1 %}
+
+              {% if index * 2 <= rating %}
+                <i class="fas fa-star"></i>
+              {% elif index * 2 > rating + 1 %}
+                <i class="far fa-star"></i>
+              {% else %}
+                <div class="fa-stack">
+                  <i class="fas fa-star-half fa-stack-1x"></i>
+                  <i class="far fa-star-half fa-stack-1x fa-flip-horizontal"></i>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="wsb-testimonials-desc">
+            {{ testimonial.content }}
+          </div>
+
+          <div class="wsb-testimonials-author"></div>
+        </div>
+      {% endfor %}
     </div>
-
-    <div class="wsb-testimonials-desc">
-      The Work Together Anywhere workshop has helped us immeasurably in building a successful & happy new distributed team. I talked the team through all of my notes from the workshops and having a shared model for things we need to care about has enabled us to get solid foundations in place quickly. We've already benefited hugely from many of the tips and tricks learned from the workshop.
-
-      <button class="wsb-testimonials-prev"></button>
-      <button class="wsb-testimonials-next"></button>
-    </div>
-
-    <div class="wsb-testimonials-author">
-
-    </div>
-  </div>
+  {% endif %}
 {% endmacro %}

@@ -122,7 +122,7 @@
 
       <div class="wsb-description">
         {% from "./trainer/testimonialsSlider.njk" import testimonialsSlider %}
-        {{ testimonialsSlider() }}
+        {{ testimonialsSlider(trainer.testimonials) }}
 
         <div class="wsb-desc">{{ trainer.bio | safe }}</div>
 

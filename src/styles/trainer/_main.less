@@ -148,7 +148,15 @@
         .fa-star {
           position: relative;
           top: -13px;
+          width: 18px;
           color: #f4b542;
+        }
+
+        .fa-star-half {
+          &:before {
+            position: relative;
+            left: -1px;
+          }
         }
       }
 
@@ -238,7 +246,12 @@
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 6px;
+
+    .fa-stack.fa-stack {
+      width: 18px;
+    }
   }
+
 
   .wsb-testimonial-text {
     margin-top: 8px;
