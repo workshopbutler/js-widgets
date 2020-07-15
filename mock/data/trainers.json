@@ -66,6 +66,12 @@
         "company": "Weejee",
         "rating": 4.7,
         "content": "Core Web Vitals metrics. We'll use tools like Lighthouse & Chrome DevTools, show you code snippets for fixes, and highlight how you too can get fast and stay fast."
+      },
+      {
+        "attendee": "Kile",
+        "company": "Danzig",
+        "rating": 3,
+        "content": "Her warmth, clarity, and practicality are complemented by her ability to create spaces."
       }
     ],
     "statistics": {

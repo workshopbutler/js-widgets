@@ -101,6 +101,41 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
     }
   }
 
+  /**
+   * Load slider script
+   */
+  protected loadSliderScript() {
+    const url: string = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
+
+    $("body").append($("<script />", { src: url }));
+
+    const intId = setInterval(() => {
+      if ($.fn.owlCarousel) {
+        clearInterval(intId);
+        this.initTestimonialsSlider();
+      };
+    }, 100);
+  }
+
+  /**
+   * Initialization of testimonials slider
+   */
+  protected initTestimonialsSlider() {
+    const owl = $(".owl-carousel");
+
+    $('.wsb-testimonials-counter .total')
+      .text(owl.find("> div").length);
+
+    owl.owlCarousel({
+      items: 1,
+      dots: false
+    });
+
+    owl.on('changed.owl.carousel', function(e) {
+      $('.wsb-testimonials-counter .current').text(+e.item.index + 1);
+    });
+  }
+
   private init() {
     if (this.config.theme) {
       this.$root.addClass(this.config.theme);
@@ -130,9 +165,12 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
 
       this.$root.html(content);
       this.updateHTML();
+
       if (this.config.widgets) {
         WidgetFactory.launch({apiKey: this.apiKey}, this.config.widgets);
-      }
+      };
+
+      this.loadSliderScript();
     });
   }
 
