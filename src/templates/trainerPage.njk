@@ -2,7 +2,7 @@
   <div class="wsb-page">
     <div class="wsb-body wsb-trainer-profile">
       <div class="wsb-trainer__header">
-        <div class="wsb-trainer__header-row">
+        <div class="wsb-trainer__header-row trainer-profile-header">
           <img src="{{ trainer.photo }}" alt="{{ trainer.fullName() }}"/>
 
           <div class="wsb-trainer-title">
@@ -47,7 +47,7 @@
           </div>
         </div>
 
-        <div class="wsb-trainer__header-row">
+        <div class="wsb-trainer__header-row row-facts-and-badges">
           <div class="wsb-trainer-details-facts">
             {% if trainer.stats.total.publicStats.evaluations > 0 %}
               <div class="wsb-trainer-details-fact">

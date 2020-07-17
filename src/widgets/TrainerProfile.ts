@@ -131,7 +131,8 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
 
     owl.owlCarousel({
       items: 1,
-      dots: false
+      dots: false,
+      stagePadding: type === 'comment' ? 30 : 0
     });
 
     owl.on('changed.owl.carousel', function(e) {
