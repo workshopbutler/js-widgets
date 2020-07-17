@@ -112,7 +112,10 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
     const intId = setInterval(() => {
       if ($.fn.owlCarousel) {
         clearInterval(intId);
-        this.initTestimonialsSlider();
+        this.initTestimonialsSlider('testimonial');
+        if (window.innerWidth <= 480) {
+          this.initTestimonialsSlider('comment');
+        };
       };
     }, 100);
   }
@@ -120,10 +123,10 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
   /**
    * Initialization of testimonials slider
    */
-  protected initTestimonialsSlider() {
-    const owl = $(".owl-carousel");
+  protected initTestimonialsSlider(type) {
+    const owl = $(`.owl-carousel-${type}`);
 
-    $('.wsb-testimonials-counter .total')
+    $(`.wsb-testimonials-counter-${type} .total`)
       .text(owl.find("> div").length);
 
     owl.owlCarousel({
@@ -132,7 +135,7 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
     });
 
     owl.on('changed.owl.carousel', function(e) {
-      $('.wsb-testimonials-counter .current').text(+e.item.index + 1);
+      $(`.wsb-testimonials-counter-${type} .current`).text(+e.item.index + 1);
     });
   }
 

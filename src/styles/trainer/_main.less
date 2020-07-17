@@ -1,10 +1,33 @@
 .wsb-content .wsb-trainer-profile {
+  @media (max-width: 480px) {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0px;
+    position: relative;
+    width: 100vw;
+    left: calc((100% - 100vw)/ 2);
+
+    .wsb-desc {
+      padding: 0 10px;
+    }
+
+    .wsb-trainer-events {
+      padding: 0 10px;
+    }
+  }
+
   .wsb-trainer__header {
     margin-bottom: 15px;
     -ms-grid-row: 1;
     -ms-grid-column: 1;
     -ms-grid-column-span: 3;
     grid-area: header;
+
+    @media (max-width: 480px) {
+      display: flex;
+      flex-direction: column;
+      order: 1;    
+    }
   }
 
   .wsb-trainer__header-row {
@@ -19,6 +42,13 @@
     .wsb-trainer-title {
       width: 100%;
       padding: 0 16px;
+    
+
+      @media (max-width: 480px) {
+        padding: 16px 0 2px;
+        text-align: center;
+        background-color: #f5f5f5;
+      }
     }
 
     img {
@@ -26,12 +56,36 @@
       width: 150px;
       border-radius: 50%;
       object-fit: cover;
+      -o-object-fit: cover;
       background-color: #fff;
+    
+      @media (max-width: 480px) {
+        width: 100%;
+        height: 100%;
+        border-radius: 0px;
+        object-fit: cover;
+        -o-object-fit: cover;
+        background-color: white;
+      }
+    }
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+  
+      &:first-child {
+        padding: 0;
+      }
     }
   }
 
   .wsb-trainer__header-col {
     padding: 0 16px;
+
+    @media (max-width: 480px) {
+      display: block;
+      width: 100%;
+      padding: 0px;
+    }
   }
 
   .wsb-description {
@@ -40,6 +94,10 @@
     -ms-grid-column: 1;
     grid-row-start: auto;
     grid-row-end: span auto;
+
+    @media (max-width: 480px) {
+      order: 2;
+    }
   }
 
   .wsb-toolbar {
@@ -51,6 +109,10 @@
       -ms-grid-row: 3;
       -ms-grid-column: 3;
     }
+
+    @media (max-width: 480px) {
+      order: 3;
+    }
   }
 
   .wsb-trainer-buttons {
@@ -58,8 +120,11 @@
     justify-content: center;
     align-items: center;
 
-    @media @phone {
-      display: block;
+    @media (max-width: 480px) {
+      display: flex;
+      flex-direction: column-reverse;
+      width: 100%;
+      background-color: #f5f5f5;
     }
   }
 
@@ -68,7 +133,13 @@
     font-size: 32px;
     margin-top: 0;
     margin-bottom: 8px;
+
+    @media (max-width: 480px) {
+      margin-bottom: 2px;
+    }
   }
+
+  
 
   .wsb-trainer-country {
     font-size: 16px;
@@ -81,14 +152,23 @@
     width: 150px;
     margin-left: 32px;
 
-    @media @phone {
-      width: 100%;
+    @media (max-width: 480px) {
+      margin: 0 32px;
+      min-width: calc(100% - 64px);
+      margin-bottom: 25px;
     }
   }
 
   .wsb-trainer__social-networks {
     display: flex;
     justify-content: center;
+
+    @media (max-width: 480px) {
+      display: flex;
+      width: 100%;
+      padding: 0 32px;
+      justify-content: space-between;
+    }
 
     a {
       font-size: 16px;
@@ -103,10 +183,6 @@
         font-size: 24px;
       }
     }
-
-    @media @phone {
-      display: block;
-    }
   }
 
   .header-col__facts-and-badges {
@@ -119,6 +195,10 @@
     margin-left: 5px;
     margin-right: 15px;
     color: #333;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   .wsb-trainer-details-facts {
@@ -126,6 +206,14 @@
     width: 100%;
     font-size: 13px;
     padding-right: 50px;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      padding: 0 32px;
+      padding-top: 10px;
+      background-color: #f5f5f5;
+      margin-bottom: 20px;
+    }
 
     .wsb-trainer-details-fact {
       align-items: center;
@@ -178,9 +266,20 @@
         border-right: none;
       }
 
-      @media @phone {
+      @media (max-width: 480px) {
         flex: 1 1 50%;
+        padding: 0;
         padding-bottom: 1.5em;
+        border-radius: 0;
+
+        .wsb-trainer-number-box {
+          width: 90px;
+          text-align: left;
+        }
+
+        + .wsb-trainer-details-fact {
+          margin: 0;
+        }
       }
     }
 
@@ -210,6 +309,17 @@
     justify-content: space-between;
     align-items: center;
 
+    @media (max-width: 480px) {
+      width: 100%;
+      padding: 0 10px;
+    
+      > div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
     img {
       padding: 5px 0;
 
@@ -217,6 +327,13 @@
         box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
         border-radius: 4px;
         transform: scale(2);
+
+        @media (max-width: 480px) {
+          z-index: 1000;
+          transform: scale(1);
+          box-shadow: none;
+          border-radius: 0;
+        }
       }
     }
   }
@@ -229,8 +346,9 @@
       margin-left: 16px;
     }
 
-    @media @phone {
-      width: 250px;
+    @media (max-width: 480px) {
+      width: 102px;
+      height: 102px;
     }
   }
 
@@ -239,6 +357,10 @@
     color: #333;
     margin-top: 40px;
     margin-bottom: 14px;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   .wsb-testimonial {
@@ -246,6 +368,10 @@
     margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 6px;
+
+    @media (max-width: 480px) {
+      margin: 10px;
+    }
 
     .fa-stack.fa-stack {
       width: 18px;

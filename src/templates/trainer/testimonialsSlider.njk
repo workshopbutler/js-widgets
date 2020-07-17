@@ -1,6 +1,6 @@
-{% macro testimonialsSlider(testimonials) %}
+{% macro testimonialsSlider(testimonials, type) %}
   {% if testimonials.length > 0 %}
-    <div class="owl-carousel">
+    <div class="owl-carousel owl-carousel-testimonial">
       {% for testimonial in testimonials %}
         <div class="wsb-testimonials-slide">
           <div class="wsb-testimonials-stars">
@@ -31,11 +31,18 @@
         </div>
       {% endfor %}
     </div>
-
-    <div class="wsb-testimonials-counter">
-      <span class="current">1</span>
-      /
-      <span class="total">0</span>
-    </div>
+    {% if type == 'testimonial' %}
+      <div class="wsb-testimonials-counter-testimonial">
+        <span class="current">1</span>
+        /
+        <span class="total">0</span>
+      </div>
+    {% else %}
+      <div class="wsb-testimonials-counter-comment">
+        <span class="current">1</span>
+        /
+        <span class="total">0</span>
+      </div>
+    {% endif %}
   {% endif %}
 {% endmacro %}

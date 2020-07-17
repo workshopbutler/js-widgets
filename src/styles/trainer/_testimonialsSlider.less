@@ -15,6 +15,12 @@
       justify-content: center;
       margin-bottom: 12px;
 
+      @media (max-width: 480px) {
+        justify-content: flex-start;
+        padding-left: 10px;
+        margin-bottom: 0;
+      }
+
       * + * {
         margin-left: 5px;
       }
@@ -42,6 +48,11 @@
       font-style: italic;
       font-size: 20px;
       line-height: 28px;
+
+      @media (max-width: 480px) {
+        padding: 0 36px 0 10px;
+        margin-bottom: 20px;
+      }
     }
   }
 
@@ -71,6 +82,10 @@
     > * {
       display: none;
     }
+
+    @media (max-width: 480px) {
+      opacity: 0;
+    }
   }
 
   .owl-prev {
@@ -85,7 +100,7 @@
 
 }
 
-.wsb-testimonials-counter {
+.wsb-testimonials-counter-testimonial {
   font-size: 20px;
   color: #ccc;
   font-weight: italic;
@@ -93,4 +108,8 @@
   display: table;
   margin-top: 15px;
   margin-bottom: 35px;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 }

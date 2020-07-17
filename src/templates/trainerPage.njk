@@ -59,7 +59,7 @@
                   </span>
                 </div>
 
-                <div>
+                <div class="wsb-trainer-number-box">
                   <span class="wsb-big-number">
                     {{ _f(trainer.stats.total.publicStats.rating) }}
                   </span>
@@ -79,7 +79,7 @@
                   </span>
                 </div>
 
-                <div>
+                <div class="wsb-trainer-number-box">
                   <span class="wsb-big-number">
                     {{ _f(trainer.stats.total.privateStats.rating) }}
                   </span>
@@ -92,14 +92,14 @@
             {% if trainer.stats.total.total %}
               <div class="wsb-trainer-details-fact">
                 <span class="wsb-descr">{{ _t('trainer.experience.events') }}</span>
-                <span class="wsb-big-number">{{ trainer.stats.total.total }}</span>
+                <span class="wsb-big-number wsb-trainer-number-box">{{ trainer.stats.total.total }}</span>
               </div>
             {% endif %}
 
             {% if trainer.stats.yearsOfExperience %}
               <div class="wsb-trainer-details-fact">
                 <span class="wsb-descr">{{ _t('trainer.experience.years') }}</span>
-                <span class="wsb-big-number">{{ trainer.stats.yearsOfExperience }}</span>
+                <span class="wsb-big-number wsb-trainer-number-box">{{ trainer.stats.yearsOfExperience }}</span>
               </div>
             {% endif %}
           </div>
@@ -122,14 +122,14 @@
 
       <div class="wsb-description">
         {% from "./trainer/testimonialsSlider.njk" import testimonialsSlider %}
-        {{ testimonialsSlider(trainer.testimonials) }}
+        {{ testimonialsSlider(trainer.testimonials, "testimonial") }}
 
         <div class="wsb-desc">{{ trainer.bio | safe }}</div>
 
         {% if trainer.testimonials.length > 0 %}
           <h3 class="wsb-testimonial-heading">{{ _t('trainer.feedback') }}</h3>
 
-          <div>
+          <div class="owl-carousel-comment">
             {% for testimonial in trainer.testimonials %}
               <div class="wsb-testimonial">
                 <span class="wsb-cite">
