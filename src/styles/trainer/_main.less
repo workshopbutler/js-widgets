@@ -8,19 +8,19 @@
     left: calc((100% - 100vw)/ 2);
 
     .wsb-desc {
-      padding: 0 10px;
+      padding: 0 16px;
 
       @media (max-width: 480px) {
-        margin: 60px 20px 30px;
+        margin: 0px 20px 30px;
         padding: 0;
       }
     }
 
     .wsb-trainer-events {
-      padding: 0 10px;
+      padding: 0 16px;
 
       @media (max-width: 480px) {
-        padding: 0 20px;
+        padding: 8px 20px 0 20px;
       }
     }
   }
@@ -201,7 +201,7 @@
       display: flex;
       width: 100%;
       padding: 0 32px;
-      justify-content: space-between;
+      justify-content: space-around;
     }
 
     a {
@@ -229,9 +229,17 @@
       align-items: flex-start;
     }
 
+    @media (max-width: 480px) {
+      padding-bottom: 33px;
+    }
+
     .wsb-trainer-badges {
       @media(max-width: 1100px) {
         margin-top: 20px;
+      }
+
+      @media (max-width: 480px) {
+        margin-top: 0;
       }
 
       .wsb-trainer-more {
@@ -270,7 +278,7 @@
       padding: 0 32px;
       padding-top: 10px;
       background-color: #f5f5f5;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .wsb-trainer-details-fact {
@@ -289,11 +297,19 @@
         margin-bottom: 8px;
       }
 
+      @media (max-width: 480px) {
+        margin: 0;
+      }
+
       &:nth-child(1),
       &:nth-child(2) {
         > *:first-child {
           min-width: 90px;
           margin-right: 10px;
+
+          @media (max-width: 480px) {
+            margin-right: 0;
+          }
         }
 
         .fa-star {
@@ -378,7 +394,7 @@
 
     @media (max-width: 480px) {
       width: 100%;
-      padding: 0 10px;
+      padding: 0 16px;
 
       > div {
         width: 100%;
@@ -404,7 +420,12 @@
           transform: scale(1);
           box-shadow: none;
           border-radius: 0;
+          padding: 0;
         }
+      }
+
+      @media (max-width: 480px) {
+        padding: 0;
       }
     }
   }
@@ -441,7 +462,7 @@
     border-radius: 6px;
 
     @media (max-width: 480px) {
-      margin: 10px;
+      margin-right: 10px;
     }
 
     .fa-stack.fa-stack {

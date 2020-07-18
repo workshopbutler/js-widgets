@@ -8,6 +8,10 @@
   .owl-stage {
     display: flex;
     padding-right: 0!important;
+
+    @media (max-width: 480px) {
+      padding-left: 16px;
+    }
   }
 
   .wsb-testimonials-slide {
@@ -18,7 +22,6 @@
 
       @media (max-width: 480px) {
         justify-content: flex-start;
-        padding-left: 10px;
         margin-bottom: 0;
       }
 
@@ -32,13 +35,13 @@
       }
 
       .fa-stack {
-        line-height: 17px;
-        width: 27px;
-        margin-left: 0;
+        line-height: 16px;
+        width: 18px;
+        margin-left: 2px;
 
         .fa-star-half:before {
           position: relative;
-          left: 2.5px;
+          left: 2.6px;
         }
       }
     }
@@ -51,13 +54,13 @@
       line-height: 28px;
 
       @media (max-width: 480px) {
-        padding: 0 36px 0 10px;
+        padding: 0 36px 0 0px;
       }
     }
 
     .wsb-cite {
       display: table;
-      margin: 30px auto 0;
+      margin: 12px 16px 48px 0px;
 
       .to-what {
         font-size: 13px;
