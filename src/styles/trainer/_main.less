@@ -39,7 +39,7 @@
 
   .wsb-trainer__header-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     padding-bottom: 16px;
 
     &:first-child {
@@ -176,8 +176,6 @@
     }
   }
 
-
-
   .wsb-trainer-country {
     font-size: 16px;
     margin-top: 0;
@@ -226,55 +224,28 @@
     }
   }
 
-  .header-col__facts-and-badges {
-    width: 100%;
-  }
+
+  // Row with facts and badges
 
   .row-facts-and-badges {
+    @media(max-width: 1650px) {
+      width: auto;
+    }
+
     @media(max-width: 1100px) {
       flex-direction: column;
       align-items: flex-start;
     }
 
     @media (max-width: 480px) {
+      width: 100%;
+      padding: 0 16px;
       padding-bottom: 33px;
     }
-
-    .wsb-trainer-badges {
-      @media(max-width: 1100px) {
-        margin-top: 20px;
-      }
-
-      @media (max-width: 480px) {
-        margin-top: 0;
-      }
-
-      img {
-        @media(max-width: 480px) {
-          width: 30%;
-          height: auto;
-        }
-      }
-
-      .wsb-trainer-more {
-        @media(max-width: 1100px) {
-          display: none;
-        }
-      }
-    }
   }
 
-  .wsb-trainer-more {
-    font-size: 24px;
-    font-weight: 700;
-    margin-left: 5px;
-    margin-right: 15px;
-    color: #333;
 
-    @media (max-width: 480px) {
-      display: none;
-    }
-  }
+  // Details-facts
 
   .wsb-trainer-details-facts {
     display: flex;
@@ -399,64 +370,97 @@
     }
   }
 
-  .wsb-trainer-badges {
+
+  // Badges
+
+  .wsb-trainer-badges-wrapper {
     width: 300px;
     flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    @media (max-width: 480px) {
-      width: 100%;
-      padding: 0 16px;
-
-      > div {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-
-        @media (max-width: 480px) {
-          justify-content: center;
-        }
-      }
+    @media(max-width: 1100px) {
+      margin-top: 20px;
     }
 
-    img {
-      padding: 5px 0;
+    @media (max-width: 480px) {
+      margin-top: 0;
+    }
 
-      &:hover, &:focus {
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-        border-radius: 4px;
-        transform: scale(2);
-
-        @media (max-width: 480px) {
-          z-index: 1000;
-          transform: scale(1);
-          box-shadow: none;
-          border-radius: 0;
-          padding: 0;
-        }
-      }
+    .wsb-badges-inner {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
 
       @media (max-width: 480px) {
-        padding: 0;
+        justify-content: center;
+      }
+
+      .wsb-trainer__badge {
+        padding: 5px 0;
+        width: 65px;
+        height: auto;
+
+        @media (max-width: 480px) {
+          width: 30%;
+          height: auto;
+          width: 102px;
+          height: 102px;
+          padding: 0;
+        }
+
+        &:hover, &:focus {
+          box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+          border-radius: 4px;
+          transform: scale(2);
+
+          @media (max-width: 480px) {
+            z-index: 1000;
+            transform: scale(1);
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+
+    .wsb-badges-inner.wsb-badges-hidden {
+      margin-right: 25px;
+
+      > *:nth-child(3) ~ * {
+        display: none;
+
+        @media (max-width: 1100px) {
+          display: block;
+        }
+      }
+    }
+
+    .wsb-badges-inner.wsb-badges-visible {
+      justify-content: flex-start;
+
+      > *:nth-child(3) ~ * {
+        display: block;
+      }
+    }
+
+    .wsb-trainer-more {
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: 700;
+      margin-left: 5px;
+      margin-right: 15px;
+      color: #333;
+
+      @media(max-width: 1100px) {
+        display: none;
       }
     }
   }
 
-  .wsb-trainer__badge.wsb-trainer__badge {
-    width: 65px;
-    height: auto;
-
-    + .wsb-trainer__badge {
-      margin-left: 16px;
-    }
-
-    @media (max-width: 480px) {
-      width: 102px;
-      height: 102px;
-    }
-  }
 
   .wsb-testimonial-heading {
     font-size: 32px;
@@ -483,7 +487,6 @@
       width: 18px;
     }
   }
-
 
   .wsb-testimonial-text {
     margin-top: 8px;

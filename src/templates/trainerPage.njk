@@ -104,12 +104,10 @@
             {% endif %}
           </div>
 
-          <div class="wsb-trainer-badges">
-            <div>
+          <div class="wsb-trainer-badges-wrapper">
+            <div class="wsb-badges-inner wsb-badges-hidden">
               {% for badge in trainer.badges %}
-                {% if loop.index <= 3 %}
-                  <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
-                {% endif %}
+                <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
               {% endfor %}
             </div>
 

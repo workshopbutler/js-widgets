@@ -2,7 +2,8 @@ import {renderString as nunjucksRenderString} from 'nunjucks';
 import {logError} from '../common/Error';
 import stripHTML from '../common/helpers/StripHtml';
 import getQueryParam from '../common/helpers/UrlParser';
-import transport from '../../mock/MockTransport';
+// import transport from '../../mock/MockTransport';
+import transport from '../common/Transport';
 import Formatter from '../formatters/plain/Formatter';
 import IPlainObject from '../interfaces/IPlainObject';
 import Trainer from '../models/Trainer';
@@ -140,6 +141,17 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
     });
   }
 
+  protected initBadgesShowBtn() {
+    const allBadges = $('.wsb-badges-inner');
+    const btnMore = $('.wsb-trainer-more');
+
+    btnMore.on('click', () => {
+      btnMore.hide();
+      allBadges.removeClass('wsb-badges-hidden');
+      allBadges.addClass('wsb-badges-visible');
+    });
+  }
+
   private init() {
     if (this.config.theme) {
       this.$root.addClass(this.config.theme);
@@ -175,6 +187,8 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
       };
 
       this.loadSliderScript();
+
+      this.initBadgesShowBtn();
     });
   }
 
