@@ -2,7 +2,7 @@ import {renderString as nunjucksRenderString} from 'nunjucks';
 import {logError} from '../common/Error';
 import stripHTML from '../common/helpers/StripHtml';
 import getQueryParam from '../common/helpers/UrlParser';
-import transport from '../common/Transport';
+import transport from '../../mock/MockTransport';
 import Formatter from '../formatters/plain/Formatter';
 import IPlainObject from '../interfaces/IPlainObject';
 import Trainer from '../models/Trainer';
