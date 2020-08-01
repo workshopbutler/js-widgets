@@ -30,10 +30,17 @@
     -ms-grid-column-span: 3;
     grid-area: header;
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       display: flex;
       flex-direction: column;
       order: 1;
+      background-color: #f5f5f5;
+      margin-bottom: 0;
+      padding-top: 25px;
+    }
+
+    @media (max-width: 480px) {
+      padding-top: 0;
     }
   }
 
@@ -44,6 +51,10 @@
 
     &:first-child {
       padding-bottom: 32px;
+
+      @media (max-width: 600px) {
+        padding-bottom: 0;
+      }
     }
 
     .wsb-trainer-title {
@@ -60,7 +71,7 @@
     img {
       height: 150px;
       width: 150px;
-      border-radius: 50%;
+      border-radius: 5px;
       object-fit: cover;
       -o-object-fit: cover;
       background-color: #fff;
@@ -85,11 +96,23 @@
   }
 
   .trainer-profile-header {
+    align-items: center;
+
+    @media (max-width: 1000px) {
+      flex-direction: column;
+    }
+
     @media (max-width: 820px) {
       flex-wrap: wrap;
     }
 
     .wsb-trainer-title {
+      @media (max-width: 1000px) {
+        width: auto;
+        margin-top: 15px;
+        text-align: center;
+      }
+
       @media (max-width: 820px) {
         width: calc(100% - 150px);
       }
@@ -99,15 +122,42 @@
       }
     }
 
+    > *:nth-child(3) {
+      width: 100%;
+    }
+
     .wsb-trainer-buttons {
       @media (max-width: 820px) {
         width: 100%;
+      }
+
+      @media (max-width: 480px) {
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      .wsb-contact-button {
+        @media (max-width: 600px) {
+          width: 100%;
+          margin-left: 0;
+          margin-right: 0;
+          margin-bottom: 20px;
+          max-width: none;
+        }
+
+        @media (max-width: 480px) {
+          margin-top: 8px;
+        }
       }
     }
   }
 
   .wsb-trainer__header-col {
     padding: 0 16px;
+
+    @media (max-width: 600px) {
+      padding: 0 30px;
+    }
 
     @media (max-width: 480px) {
       display: block;
@@ -124,7 +174,7 @@
     grid-row-end: span auto;
 
     @media (max-width: 600px) {
-      order: 2;
+      order: 3;
     }
   }
 
@@ -132,15 +182,20 @@
     &.wsb-first {
       -ms-grid-row: 2;
       -ms-grid-column: 3;
+
+      @media (max-width: 600px) {
+        order: 2;
+      }
     }
+
     &.wsb-second {
       -ms-grid-row: 3;
       -ms-grid-column: 3;
-    }
 
-    @media (max-width: 600px) {
-      order: 3;
-      margin-top: 20px;
+      @media (max-width: 600px) {
+        order: 4;
+        margin-top: 20px;
+      }
     }
   }
 
@@ -154,10 +209,13 @@
       margin-top: 10px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       display: flex;
-      flex-wrap: nowrap;
       flex-direction: column-reverse;
+      flex-wrap: nowrap;
+    }
+
+    @media (max-width: 480px) {
       width: 100%;
       background-color: #f5f5f5;
     }
@@ -169,7 +227,7 @@
     font-weight: 700;
     font-size: 32px;
     margin-top: 0;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
 
     @media (max-width: 480px) {
       margin-bottom: 2px;
@@ -181,15 +239,15 @@
     margin-top: 0;
     padding-bottom: 1em;
     color: @text-grey;
+
+    @media (max-width: 480px) {
+      padding-bottom: 0;
+    }
   }
 
   .wsb-contact-button {
     width: 150px;
     margin-left: 32px;
-
-    @media (max-width: 820px) {
-      margin-top: 10px;
-    }
 
     @media (max-width: 480px) {
       margin: 0 32px;
@@ -202,20 +260,36 @@
     display: flex;
     justify-content: center;
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       display: flex;
+      justify-content: space-between;
       width: 100%;
-      padding: 0 32px;
-      justify-content: space-around;
+    }
+
+    @media (max-width: 360px) {
+      justify-content: center;
     }
 
     a {
       font-size: 16px;
-      padding-left: 16px;
       text-transform: uppercase;
 
+      + a {
+        padding-left: 30px;
+
+        @media (max-width: 600px) {
+          padding-left: 0;
+        }
+      }
+
+      @media (max-width: 360px) {
+        display: none;
+      }
+
       &:first-child {
-        padding-left: 0;
+        @media (max-width: 360px) {
+          display: block;
+        }
       }
 
       .fab {
@@ -225,22 +299,105 @@
   }
 
 
-  // Row with facts and badges
+  // Badges
 
-  .row-facts-and-badges {
-    @media(max-width: 1650px) {
-      width: auto;
-    }
+  .wsb-trainer-badges-wrapper {
+    width: 300px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
 
     @media(max-width: 1100px) {
-      flex-direction: column;
-      align-items: flex-start;
+      margin-top: 20px;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 800px) {
       width: 100%;
-      padding: 0 16px;
-      padding-bottom: 33px;
+    }
+
+    @media (max-width: 600px) {
+      justify-content: center;
+      margin-bottom: 0;
+    }
+
+    .wsb-badges-inner {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      @media (max-width: 800px) {
+        width: auto;
+      }
+
+      @media (max-width: 600px) {
+        width: 330px;
+      }
+
+      .wsb-trainer__badge {
+        padding: 5px 0;
+        width: 70px;
+        height: auto;
+
+        @media (max-width: 800px) {
+          width: 30%;
+        }
+
+        @media (max-width: 600px) {
+          height: auto;
+          width: 102px;
+          padding: 0;
+          margin-bottom: 24px;
+        }
+
+        &:hover, &:focus {
+          box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+          border-radius: 4px;
+          transform: scale(1.5);
+          z-index: 1000;
+          position: relative;
+          background-color: #fff;
+
+          @media (max-width: 480px) {
+            transform: scale(1);
+            box-shadow: none;
+            border-radius: 0;
+            padding: 0;
+          }
+        }
+      }
+    }
+
+    .wsb-badges-inner.wsb-badges-hidden {
+      margin-right: 25px;
+
+      > *:nth-child(3) ~ * {
+        display: none;
+      }
+    }
+
+    .wsb-badges-inner.wsb-badges-visible {
+      justify-content: flex-start;
+
+      > *:nth-child(3) ~ * {
+        display: block;
+      }
+    }
+
+    .wsb-trainer-more {
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: 700;
+      margin-left: 5px;
+      margin-right: 15px;
+      color: #333;
+
+      @media(max-width: 600px) {
+        position: relative;
+        top: -12px;
+      }
     }
   }
 
@@ -249,41 +406,43 @@
 
   .wsb-trainer-details-facts {
     display: flex;
-    width: 100%;
     font-size: 13px;
-    padding-right: 50px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
 
     @media (max-width: 820px) {
       padding-right: 0;
-      flex-wrap: wrap;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 600px) {
       flex-direction: column;
       padding: 0 32px;
       padding-top: 10px;
       background-color: #f5f5f5;
-      margin-bottom: 24px;
+      margin-bottom: 0;
+      padding-bottom: 30px;
+      align-items: center;
     }
 
     .wsb-trainer-details-fact {
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
       flex-shrink: 0;
-      text-align: center;
       padding: 10px;
       display: flex;
       vertical-align: top;
       background-color: #f5f5f5;
       border-radius: 5px;
+      width: calc(50% - 5px);
+      flex-wrap: wrap;
+      margin-bottom: 10px;
 
-      @media (max-width: 820px) {
-        margin-right: 8px;
-        margin-bottom: 8px;
-      }
-
-      @media (max-width: 480px) {
-        margin: 0;
+      @media (max-width: 600px) {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
       }
 
       &:nth-child(1),
@@ -317,16 +476,24 @@
         margin-right: 11px;
       }
 
-      &:nth-child(4) > *:first-child {
-        width: 68px;
-        margin-right: 7px;
+      &:nth-child(4) {
+        > *:first-child {
+          width: 68px;
+          margin-right: 7px;
+        }
+
+        @media (max-width: 600px) {
+          display: none;
+        }
       }
 
       + .wsb-trainer-details-fact {
-        margin-left: 8px;
-
         @media (max-width: 820px) {
           margin-left: 0;
+        }
+
+        @media (max-width: 600px) {
+          padding: 0;
         }
       }
 
@@ -334,19 +501,9 @@
         border-right: none;
       }
 
-      @media (max-width: 480px) {
-        flex: 1 1 50%;
-        padding: 0;
-        padding-bottom: 1.5em;
-        border-radius: 0;
-
-        .wsb-trainer-number-box {
+      .wsb-trainer-number-box {
+        @media (max-width: 600px) {
           width: 90px;
-          text-align: left;
-        }
-
-        + .wsb-trainer-details-fact {
-          margin: 0;
         }
       }
     }
@@ -367,97 +524,6 @@
       color: @text-grey;
       text-align: left;
       display: block;
-    }
-  }
-
-
-  // Badges
-
-  .wsb-trainer-badges-wrapper {
-    width: 300px;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    @media(max-width: 1100px) {
-      margin-top: 20px;
-    }
-
-    @media (max-width: 480px) {
-      margin-top: 0;
-    }
-
-    .wsb-badges-inner {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-
-      @media (max-width: 480px) {
-        justify-content: center;
-      }
-
-      .wsb-trainer__badge {
-        padding: 5px 0;
-        width: 65px;
-        height: auto;
-
-        @media (max-width: 480px) {
-          width: 30%;
-          height: auto;
-          width: 102px;
-          height: 102px;
-          padding: 0;
-        }
-
-        &:hover, &:focus {
-          box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-          border-radius: 4px;
-          transform: scale(2);
-
-          @media (max-width: 480px) {
-            z-index: 1000;
-            transform: scale(1);
-            box-shadow: none;
-            border-radius: 0;
-            padding: 0;
-          }
-        }
-      }
-    }
-
-    .wsb-badges-inner.wsb-badges-hidden {
-      margin-right: 25px;
-
-      > *:nth-child(3) ~ * {
-        display: none;
-
-        @media (max-width: 1100px) {
-          display: block;
-        }
-      }
-    }
-
-    .wsb-badges-inner.wsb-badges-visible {
-      justify-content: flex-start;
-
-      > *:nth-child(3) ~ * {
-        display: block;
-      }
-    }
-
-    .wsb-trainer-more {
-      cursor: pointer;
-      font-size: 24px;
-      font-weight: 700;
-      margin-left: 5px;
-      margin-right: 15px;
-      color: #333;
-
-      @media(max-width: 1100px) {
-        display: none;
-      }
     }
   }
 
@@ -534,22 +600,6 @@
     .fa-stack {
       width: 1.1em;
       line-height: 1.9em;
-    }
-  }
-
-  @media screen and (max-width: 40em) {
-    .wsb-trainer-name {
-      font-size: 24px;
-    }
-
-    .wsb-trainer__social-networks {
-      a:first-child {
-        padding-left: 0;
-      }
-    }
-
-    .wsb-contact-button {
-      font-size: 16px;
     }
   }
 }

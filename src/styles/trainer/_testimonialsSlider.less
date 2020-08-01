@@ -22,10 +22,6 @@
       height: 16px;
       overflow: hidden;
 
-      @media (max-width: 480px) {
-        justify-content: flex-start;
-      }
-
       * + * {
         margin-left: 5px;
       }
@@ -78,6 +74,12 @@
       .userpic {
         margin-right: 10px;
         border-radius: 50%;
+      }
+
+      .who {
+        a {
+          font-weight: 700;
+        }
       }
 
       .to-what {
@@ -133,11 +135,15 @@
 .wsb-testimonials-counter-testimonial {
   font-size: 20px;
   color: #ccc;
-  font-weight: italic;
+  font-style: italic;
   margin: 0 auto;
   display: table;
   margin-top: 15px;
   margin-bottom: 35px;
+
+  @media (max-width: 600px) {
+    margin-top: 0;
+  }
 
   @media (max-width: 480px) {
     display: none;

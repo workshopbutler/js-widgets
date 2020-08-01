@@ -46,76 +46,6 @@
             </div>
           </div>
         </div>
-
-        <div class="wsb-trainer__header-row row-facts-and-badges">
-          <div class="wsb-trainer-details-facts">
-            {% if trainer.stats.total.publicStats.evaluations > 0 %}
-              <div class="wsb-trainer-details-fact">
-                <div>
-                  <span class="wsb-descr">{{ _t('trainer.experience.rating.public') }}</span>
-
-                  <span class="wsb-descr__sub">
-                    {{ _t('trainer.experience.rating.basedOn', { count: trainer.stats.total.publicStats.evaluations }) | safe }}
-                  </span>
-                </div>
-
-                <div class="wsb-trainer-number-box">
-                  <span class="wsb-big-number">
-                    {{ _f(trainer.stats.total.publicStats.rating) }}
-                  </span>
-
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            {% endif %}
-
-            {% if trainer.stats.total.privateStats.evaluations > 0 %}
-              <div class="wsb-trainer-details-fact">
-                <div>
-                  <span class="wsb-descr">{{ _t('trainer.experience.rating.private') }}</span>
-
-                  <span class="wsb-descr__sub">
-                    {{ _t('trainer.experience.rating.basedOn', { count: trainer.stats.total.privateStats.evaluations }) | safe }}
-                  </span>
-                </div>
-
-                <div class="wsb-trainer-number-box">
-                  <span class="wsb-big-number">
-                    {{ _f(trainer.stats.total.privateStats.rating) }}
-                  </span>
-
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            {% endif %}
-
-            {% if trainer.stats.total.total %}
-              <div class="wsb-trainer-details-fact">
-                <span class="wsb-descr">{{ _t('trainer.experience.events') }}</span>
-                <span class="wsb-big-number wsb-trainer-number-box">{{ trainer.stats.total.total }}</span>
-              </div>
-            {% endif %}
-
-            {% if trainer.stats.yearsOfExperience %}
-              <div class="wsb-trainer-details-fact">
-                <span class="wsb-descr">{{ _t('trainer.experience.years') }}</span>
-                <span class="wsb-big-number wsb-trainer-number-box">{{ trainer.stats.yearsOfExperience }}</span>
-              </div>
-            {% endif %}
-          </div>
-
-          <div class="wsb-trainer-badges-wrapper">
-            <div class="wsb-badges-inner wsb-badges-hidden">
-              {% for badge in trainer.badges %}
-                <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
-              {% endfor %}
-            </div>
-
-            {% if trainer.badges.length > 3 %}
-              <span class="wsb-trainer-more">3+</span>
-            {% endif %}
-          </div>
-        </div>
       </div>
 
       <div class="wsb-description">
@@ -172,6 +102,76 @@
       </div>
 
       <div class="wsb-toolbar wsb-first">
+        <div class="wsb-trainer-badges-wrapper">
+          <div class="wsb-badges-inner wsb-badges-hidden">
+            {% for badge in trainer.badges %}
+              <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
+            {% endfor %}
+          </div>
+
+          {% if trainer.badges.length > 3 %}
+            <span class="wsb-trainer-more">3+</span>
+          {% endif %}
+        </div>
+
+        <div class="wsb-trainer-details-facts">
+          {% if trainer.stats.total.publicStats.evaluations > 0 %}
+            <div class="wsb-trainer-details-fact">
+              <div>
+                <span class="wsb-descr">{{ _t('trainer.experience.rating.public') }}</span>
+
+                <span class="wsb-descr__sub">
+                  {{ _t('trainer.experience.rating.basedOn', { count: trainer.stats.total.publicStats.evaluations }) | safe }}
+                </span>
+              </div>
+
+              <div class="wsb-trainer-number-box">
+                <span class="wsb-big-number">
+                  {{ _f(trainer.stats.total.publicStats.rating) }}
+                </span>
+
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if trainer.stats.total.privateStats.evaluations > 0 %}
+            <div class="wsb-trainer-details-fact">
+              <div>
+                <span class="wsb-descr">{{ _t('trainer.experience.rating.private') }}</span>
+
+                <span class="wsb-descr__sub">
+                  {{ _t('trainer.experience.rating.basedOn', { count: trainer.stats.total.privateStats.evaluations }) | safe }}
+                </span>
+              </div>
+
+              <div class="wsb-trainer-number-box">
+                <span class="wsb-big-number">
+                  {{ _f(trainer.stats.total.privateStats.rating) }}
+                </span>
+
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if trainer.stats.total.total %}
+            <div class="wsb-trainer-details-fact">
+              <span class="wsb-descr">{{ _t('trainer.experience.events') }}</span>
+              <span class="wsb-big-number wsb-trainer-number-box">{{ trainer.stats.total.total }}</span>
+            </div>
+          {% endif %}
+
+          {% if trainer.stats.yearsOfExperience %}
+            <div class="wsb-trainer-details-fact">
+              <span class="wsb-descr">{{ _t('trainer.experience.years') }}</span>
+              <span class="wsb-big-number wsb-trainer-number-box">{{ trainer.stats.yearsOfExperience }}</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="wsb-toolbar wsb-second">
         {% if config.showFutureEvents or config.showPastEvents %}
           <div class="wsb-trainer-events">
             {% if config.showFutureEvents %}
