@@ -339,15 +339,16 @@
       .wsb-trainer__badge {
         padding: 5px 0;
         width: 70px;
-        height: auto;
+        height: 70px;
 
         @media (max-width: 800px) {
           width: 48%;
+          height: 48%;
         }
 
         @media (max-width: 600px) {
-          height: auto;
           width: 32%;
+          height: 32%;
           padding: 0;
           margin-bottom: 24px;
         }
@@ -355,7 +356,7 @@
         &:hover, &:focus {
           box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
           border-radius: 4px;
-          transform: scale(1.5);
+          transform: scale(1.8);
           z-index: 1000;
           position: relative;
           background-color: #fff;
@@ -409,6 +410,28 @@
       @media(max-width: 600px) {
         position: relative;
         top: -12px;
+      }
+
+      &.for-two {
+        display: none;
+
+        @media(max-width: 800px) {
+          display: block;
+        }
+
+        @media(max-width: 600px) {
+          display: none;
+        }
+      }
+
+      &.for-three {
+        @media(max-width: 800px) {
+          display: none;
+        }
+
+        @media(max-width: 600px) {
+          display: block;
+        }
       }
     }
   }

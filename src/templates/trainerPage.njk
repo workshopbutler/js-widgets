@@ -110,7 +110,8 @@
           </div>
 
           {% if trainer.badges.length > 3 %}
-            <span class="wsb-trainer-more">3+</span>
+            <span class="wsb-trainer-more for-three">{{ trainer.badges.length - 3 }}+</span>
+            <span class="wsb-trainer-more for-two">{{ trainer.badges.length - 2 }}+</span>
           {% endif %}
         </div>
 
