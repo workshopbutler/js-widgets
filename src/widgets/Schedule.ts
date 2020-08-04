@@ -31,7 +31,9 @@ export default class Schedule extends Widget<ScheduleConfig> {
     }
 
     // Add tag element for mobile view
-    options.cols = ['wsb-tag-mob', ...options.cols];
+    if (options.cols) {
+      options.cols = ['wsb-tag-mob', ...options.cols];
+    }
 
     const config = ScheduleConfig.create(options);
     if (!config) {
@@ -114,6 +116,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
         events: this.events,
         filters: this.filters.getFilters(this.events),
         template: template ? renderTemplate : null,
+        withStub: this.events.filter((e: Event) => e.coverImage.thumbnail !== undefined).length > 0,
       };
       const params = Object.assign(uniqueParams, templateParams);
       const content = this.templates.schedule.render(params);

@@ -26,9 +26,11 @@ copy an API key for your account
 4. Install [Hugo](https://gohugo.io) which is used as a template engine
 
 ## Launch and Build
-`API_KEY=[your API key] npm run watch`
+`API_KEY=[your API key] npm run dev`
 
-This command launches a webserver on `http://localhost:8080`. 
+It is possible to use special `API_KEY=mock` that will replace default API transport with local mock data.
+
+This command launches a webserver on `http://localhost:8080`.
 
 * Open `http://localhost:8080/schedule` for the list of all events
 * Open `http://localhost:8080/trainers` for the list of all trainers

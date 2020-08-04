@@ -5,7 +5,6 @@ permalink: /schedule/
 templateEngineOverride: false
 tags: ['widget']
 ---
-
 <div id="wsb-event-list"></div>
 <script>
   const apiKey = siteConfig.apiKey;
@@ -16,23 +15,16 @@ tags: ['widget']
           type: 'Schedule',
           target: '#wsb-event-list',
           theme: themeName,
-          table: true,
-          cols: ['schedule', 'location', 'language', 'trainers', 'title', 'register'],
+          cols: ['schedule', 'location', 'language', 'trainers', 'title'],
           registration: true,
           eventPageUrl: '/event-page',
-          trainerPageUrl: '/trainer-page',
           trainerName: true,
           filters: ['type', 'location', 'language', 'trainer'],
-          registrationPageUrl: '/registration',
-          eventPagePattern: 'id={{id}}&title={{title}}&dates={{dates}}',
-          featured: {
-            highlight: true,
-            onTop: true,
-          }
         }
       ];
       const config = {
         apiKey: apiKey,
+        locale: 'en'
       };
       WorkshopButlerWidgets.launch(config, widgets);
   });

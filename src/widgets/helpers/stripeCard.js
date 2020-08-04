@@ -5,7 +5,9 @@ export default function createStripeCard(stripeHolderEl, publicKey, stripeAccoun
   const x = (tagName, attrs = null) => {
     const el = document.createElement(tagName);
     if (attrs !== null) {
-      Object.entries(attrs).forEach(e => el.setAttribute(e[0], e[1]));
+      Object.keys(attrs).forEach(function(k) {
+        el.setAttribute(k, attrs[k]);
+      });
     }
     return el;
   };

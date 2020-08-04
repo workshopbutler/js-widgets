@@ -2,5 +2,5 @@
 {% from "./event/list.njk" import list %}
 <div class="wsb-content">
     {{ drawFilters(filters) }}
-    {{ list(events, template, config, _t, _f) }}
+    {{ list(events, withStub, template, config, _t, _f) }}
 </div>

@@ -70,7 +70,7 @@ export default class ScheduleFormatter {
       noLocalPartsSupport) {
       const start = DateTimeFormatter.format(locale, schedule.start);
       const end = DateTimeFormatter.format(locale, schedule.end);
-      return `${start} — ${end}`;
+      return `${start} &ndash; ${end}`;
     } else {
       return this.formatSameMonthInterval(locale, schedule.start, schedule.end);
     }
@@ -93,7 +93,7 @@ export default class ScheduleFormatter {
       if (startParts[i].value === endParts[i].value) {
         interval += startParts[i].value;
       } else {
-        interval += `${startParts[i].value}—${endParts[i].value}`;
+        interval += `${startParts[i].value}–${endParts[i].value}`;
       }
     }
     return interval;
@@ -105,12 +105,12 @@ export default class ScheduleFormatter {
   protected static formatFullDateTime(locale: string, schedule: Schedule): string {
     if (schedule.atOneDay()) {
       const date = DateTimeFormatter.format(locale, schedule.start);
-      const time = `${schedule.start.toFormat('t')}—${schedule.end.toFormat('t')}`;
+      const time = `${schedule.start.toFormat('t')}&ndash;${schedule.end.toFormat('t')}`;
       return `${date}, ${time}`;
     } else {
       const start = DateTimeFormatter.format(locale, schedule.start, true);
       const end = DateTimeFormatter.format(locale, schedule.end, true);
-      return `${start} — ${end}`;
+      return `${start} &ndash; ${end}`;
     }
   }
 

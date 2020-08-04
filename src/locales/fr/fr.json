@@ -283,27 +283,27 @@
     "DA": "danois",
     "NL": "Néerlandais",
     "EN": "Anglais",
-    "FI": "Finlandais",
-    "FR": "French",
+    "FI": "finlandais",
+    "FR": "française",
     "DE": "allemand",
     "IT": "Italien",
-    "SL": "Slovenian",
-    "JA": "Japonais",
-    "NO": "Norwegian",
-    "PL": "Polish",
-    "PT": "Portugais",
-    "RO": "Romanian",
-    "RU": "Russian",
-    "ES": "Espagnol",
-    "SV": "Suédois",
-    "SR": "Serbian",
-    "TR": "Turc",
-    "VI": "Vietnamien",
-    "KA": "Géorgien",
-    "SK": "Slovaque",
-    "HU": "Hongrois",
-    "KO": "Coréen",
-    "HE": "Hébreu"
+    "SL": "slovène",
+    "JA": "japonais",
+    "NO": "norvégienne",
+    "PL": "polonais",
+    "PT": "portugais",
+    "RO": "roumaine",
+    "RU": "russe",
+    "ES": "espagnol",
+    "SV": "suédois",
+    "SR": "serbe",
+    "TR": "turc",
+    "VI": "vietnamien",
+    "KA": "géorgien",
+    "SK": "slovaque",
+    "HU": "hongrois",
+    "KO": "coréen",
+    "HE": "hébreu"
   },
   "rating": {
     "one": "Plus de 1",
@@ -324,7 +324,7 @@
     "what": "Quelle",
     "who": "Qui",
     "event": {
-      "register": "Registre",
+      "register": "S'Inscrire",
       "soldOut": "Épuisé",
       "free": "Gratuit"
     }
@@ -333,7 +333,7 @@
     "noTrainers": "Aucun formateur n'a été trouvé"
   },
   "event": {
-    "register": "Inscrire maintenant",
+    "register": "S'Inscrire",
     "soldOut": "Épuisé",
     "free": "Gratuit",
     "featured": "En vedette",
@@ -365,7 +365,7 @@
     "share": "Partager l'événement",
     "form": {
       "title": "Inscrivez-vous pour l'événement",
-      "button": "Registre"
+      "button": "S'Inscrire"
     }
   },
   "trainer": {
@@ -470,7 +470,7 @@
     "noEvents": "Pas d'événements"
   },
   "nextEvent": {
-    "register": "Registre",
+    "register": "S'Inscrire",
     "notAvailable": "Aucun événement prévu"
   }
 }

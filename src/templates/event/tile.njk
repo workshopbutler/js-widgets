@@ -1,36 +1,46 @@
-{% macro drawEvent(event, config, _t, _f) %}
-  <div
-    class="wsb-tile {% if config.featured.highlight and event.featured %} wsb-featured {% endif %}"
-    data-event-obj data-event-type="{{ event.type.id }}"
-    data-event-location="{{ event.location.countryCode }}"
-    data-event-language="{{ event.language.spoken | join(',') }}"
-    data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
+{% macro drawEvent(event, withStub, config, _t, _f) %}
+  {% set withThumnail = event.coverImage.thumbnail %}
+  <a href="{{ event.url }}"
+     class="wsb-tile {% if config.featured.highlight and event.featured %} wsb-featured {% endif %}"
+     data-event-obj data-event-type="{{ event.type.id }}"
+     data-event-location="{{ event.location.countryCode }}"
+     data-event-language="{{ event.language.spoken | join(',') }}"
+     data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
     {% if event.category %} data-event-category="{{ event.category.id }}" {% endif %}
   >
-    {% from "./tag.njk" import tag %}
-    {{ tag(event, config, _t, _f, false) }}
+    <div class="wsb-tile-thumbnail {% if event.coverImage.thumbnail or withStub %} with-thumbnail {% endif %}
+      {% if not event.coverImage.thumbnail and withStub %} with-stub {% endif %}"
+      {% if event.coverImage.thumbnail %}
+        style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(13, 10, 5, 0.219583) 57.43%, rgba(39, 32, 14, 0.68) 89.64%), url({{ event.coverImage.thumbnail }});"
+      {% endif %}
+    >
+      <div class="wsb-thumbnail-content">
+        <div class="wsb-tile-tags">
+          {% from "./tileTag.njk" import tag %}
+          {{ tag(event, config, _t, _f, false) }}
+        </div>
 
-    <a data-widget-go href="{{ event.url }}" class="wsb-tile-title">
-      {{ event.title | truncate(60) }}
-    </a>
+        <div class="wsb-tile-title">
+          {{ event.title | truncate(60) }}
+        </div>
+      </div>
+    </div>
+    <div class="wsb-date-place">
+      <div class="wsb-tile-info wsb-tile-location">
+        <span class="flag-icon flag-icon-{{ event.location.countryCode.toLowerCase() }} wsb-flag">
+        </span>{{ _f(event.location) }}
+      </div>
 
-    <div class="date-place">
       <div class="wsb-tile-info wsb-tile-datetime">
         {% if event.schedule.atOneDay() %}
-          {{ _f(event.schedule, 'full_long') }}
+          {{ _f(event.schedule, 'full_long') | safe}}
 
           {% if event.location.online and event.schedule.timezone %}
             {{ _f(event.schedule, 'timezone_short') }}
           {% endif %}
         {% else %}
-          {{ _f(event.schedule, 'full_short') }}
+          {{ _f(event.schedule, 'full_short') | safe }}
         {% endif %}
-      </div>
-
-      <div class="dot">•</div>
-
-      <div class="wsb-tile-info wsb-tile-location">
-        {{ _f(event.location) }}
       </div>
     </div>
 
@@ -52,20 +62,5 @@
         </div>
       {% endfor %}
     </div>
-
-    <div class="wsb-tile-button">
-      {% if event.state.closed() %}
-        <button disabled class="wsb-btn wsb-btn-primary wsb-tile-btn">
-          {{ _t('schedule.event.soldOut') }}
-        </button>
-      {% else %}
-        <a
-          href="{% if config.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
-          class="wsb-btn wsb-btn-primary wsb-tile-btn"
-        >
-          {{ _t('schedule.event.register') }}
-        </a>
-      {% endif %}
-    </div>
-  </div>
+  </a>
 {% endmacro %}

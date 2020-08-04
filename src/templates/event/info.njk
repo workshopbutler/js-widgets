@@ -3,10 +3,10 @@
     <div class="wsb-info">
       <div class="wsb-info__title">{{ _t('event.info.date') }}:</div>
       {% if event.schedule.atOneDay() %}
-        {{ _f(event.schedule, 'full_long') }} {{ _f(event.schedule, 'timezone_short') }}
+        {{ _f(event.schedule, 'full_long') | safe }} {{ _f(event.schedule, 'timezone_short') }}
       {% else %}
         {{ _f(event.schedule, 'start_long') }}
-        —<br>{{ _f(event.schedule, 'end_long') }} {{ _f(event.schedule, 'timezone_short') }}
+        &ndash;<br>{{ _f(event.schedule, 'end_long') }} {{ _f(event.schedule, 'timezone_short') }}
       {% endif %}
     </div>
 

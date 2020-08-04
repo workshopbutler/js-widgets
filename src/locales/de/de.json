@@ -383,7 +383,7 @@
       }
     },
     "bio": "Bio",
-    "feedback": "Feedback des Teilnehmers"
+    "feedback": "Teilnehmerfeedback"
   },
   "tax": {
     "excluded_all": "Alle Preise enthalten keine MwSt",
