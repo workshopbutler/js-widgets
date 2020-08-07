@@ -49,55 +49,15 @@
       </div>
 
       <div class="wsb-description">
-        {% from "./trainer/testimonialsSlider.njk" import testimonialsSlider %}
-        {{ testimonialsSlider(trainer.testimonials, "testimonial") }}
+        {% import "./trainer/testimonialsSlider.njk" as sliders %}
+        {% if config.showTestimonialsOnTop %}
+          {{ sliders.testimonialsTop(trainer.testimonials) }}
+        {% endif %}
 
         <div class="wsb-desc">{{ trainer.bio | safe }}</div>
 
-        {% if trainer.testimonials.length > 0 %}
-          <h3 class="wsb-testimonial-heading">{{ _t('trainer.feedback') }}</h3>
-
-          <div class="owl-carousel-comment">
-            {% for testimonial in trainer.testimonials %}
-              <div class="wsb-testimonial">
-                <div class="cite-and-rating">
-                  <span class="wsb-cite">
-                    <img class="userpic" src="data:image/png;base64,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" />
-
-                    <div>
-                      <strong>{{ testimonial.attendee }}</strong>{% if testimonial.company %},{% endif %}
-                      {% if testimonial.company %}<span class="wsb-verified"></span>{% endif %}
-                      {% if testimonial.company %}{{ testimonial.company }}{% endif %}
-                    </div>
-                  </span>
-
-                  {% if testimonial.rating %}
-                    <div class="wsb-rating">
-                      {% set rating = testimonial.rating %}
-                      {% set stars = range(5) %}
-
-                      {% for item in stars %}
-                        {% set index = item + 1 %}
-
-                        {% if index * 2 <= rating %}
-                          <i class="fas fa-star"></i>
-                        {% elif index * 2 > rating + 1 %}
-                          <i class="far fa-star"></i>
-                        {% else %}
-                          <div class="fa-stack">
-                            <i class="fas fa-star-half fa-stack-1x"></i>
-                            <i class="far fa-star-half fa-stack-1x fa-flip-horizontal"></i>
-                          </div>
-                        {% endif %}
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                </div>
-
-                <p class="wsb-testimonial-text">{{ testimonial.content }}</p>
-              </div>
-            {% endfor %}
-          </div>
+        {% if not config.showTestimonialsOnTop %}
+          {{ sliders.testimonialsBottom(trainer.testimonials, _t('trainer.feedback')) }}
         {% endif %}
       </div>
 
@@ -110,7 +70,7 @@
           </div>
 
           {% if trainer.badges.length > 3 %}
-            <span class="wsb-trainer-more">3+</span>
+            <span class="wsb-trainer-more">{{ trainer.badges.length-3 }}+</span>
           {% endif %}
         </div>
 

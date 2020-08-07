@@ -2,7 +2,6 @@ import {renderString as nunjucksRenderString} from 'nunjucks';
 import {logError} from '../common/Error';
 import stripHTML from '../common/helpers/StripHtml';
 import getQueryParam from '../common/helpers/UrlParser';
-// import transport from '../../mock/MockTransport';
 import transport from '../common/Transport';
 import Formatter from '../formatters/plain/Formatter';
 import IPlainObject from '../interfaces/IPlainObject';
@@ -105,39 +104,42 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
   /**
    * Load slider script
    */
-  protected loadSliderScript() {
+  protected initTestimonialsSlider(onLoad: () => any) {
     const url: string = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
 
-    $("body").append($("<script />", { src: url }));
-
-    const intId = setInterval(() => {
-      if ($.fn.owlCarousel) {
-        clearInterval(intId);
-        this.initTestimonialsSlider('testimonial');
-        if (window.innerWidth <= 480) {
-          this.initTestimonialsSlider('comment');
-        };
-      };
-    }, 100);
+    $.getScript(url).done(onLoad);
   }
 
   /**
-   * Initialization of testimonials slider
+   * Initialize bottom testimonials slider
    */
-  protected initTestimonialsSlider(type) {
-    const owl = $(`.owl-carousel-${type}`);
+  protected initTestimonialsBottom() {
+    $(`.owl-carousel-comment`).owlCarousel({
+      items: 1,
+      dots: false,
+      stagePadding: 16,
+      margin: 10
+    });
+  }
 
-    $(`.wsb-testimonials-counter-${type} .total`)
+  /**
+   * Initialize top testimonials slider
+   */
+  protected initTestimonialsTop() {
+    const owl = $(`.owl-carousel-testimonial`);
+
+    $(`.wsb-testimonials-counter .total`)
       .text(owl.find("> div").length);
 
     owl.owlCarousel({
       items: 1,
       dots: false,
-      stagePadding: type === 'comment' ? 16 : 0
+      nav: true
     });
 
     owl.on('changed.owl.carousel', function(e) {
-      $(`.wsb-testimonials-counter-${type} .current`).text(+e.item.index + 1);
+      $(`.wsb-testimonials-counter .current`)
+        .text(+e.item.index + 1);
     });
   }
 
@@ -186,7 +188,10 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
         WidgetFactory.launch({apiKey: this.apiKey}, this.config.widgets);
       };
 
-      this.loadSliderScript();
+      this.initTestimonialsSlider(()=> {
+        this.initTestimonialsTop();
+        if (window.innerWidth <= 480) this.initTestimonialsBottom();
+      });
 
       this.initBadgesShowBtn();
     });
