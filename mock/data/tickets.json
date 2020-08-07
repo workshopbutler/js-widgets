@@ -18,6 +18,19 @@
           }
         },
         {
+          "id": "ticket01-1",
+          "name": "Regular",
+          "total": 20,
+          "left": 20,
+          "start": "2020-05-20T00:00:00+0200",
+          "end": "2020-06-22T23:59:59+0200",
+          "vat_excluded": true,
+          "price": {
+            "currency": "EUR",
+            "amount": 198500
+          }
+        },
+        {
           "id": "ticket02",
           "name": "Early Bird",
           "total": 20,
@@ -28,6 +41,32 @@
           "price": {
             "currency": "EUR",
             "amount": 158500
+          }
+        },
+        {
+          "id": "ticket02-1",
+          "name": "Early Bird",
+          "total": 20,
+          "left": 20,
+          "start": "2020-05-11T00:00:00+0200",
+          "end": "2020-05-20T23:59:59+0200",
+          "vat_excluded": true,
+          "price": {
+            "currency": "EUR",
+            "amount": 157500
+          }
+        },
+        {
+          "id": "ticket02-2",
+          "name": "Early Bird",
+          "total": 20,
+          "left": 20,
+          "start": "2020-05-11T00:00:00+0200",
+          "end": "2020-05-20T23:59:59+0200",
+          "vat_excluded": true,
+          "price": {
+            "currency": "EUR",
+            "amount": 156500
           }
         }
       ]
