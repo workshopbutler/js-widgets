@@ -106,11 +106,12 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
    * Load slider script
    */
   protected loadSliderScript() {
-    const url: string = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
+    const url = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
 
-    $("body").append($("<script />", { src: url }));
+    $('body').append($('<script />', { src: url }));
 
     const intId = setInterval(() => {
+      // @ts-ignore
       if ($.fn.owlCarousel) {
         clearInterval(intId);
         this.initTestimonialsSlider('testimonial');
@@ -124,19 +125,24 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
   /**
    * Initialization of testimonials slider
    */
-  protected initTestimonialsSlider(type) {
-    const owl = $(`.owl-carousel-${type}`);
+  protected initTestimonialsSlider(type: string) {
+    interface Owl extends JQuery {
+      owlCarousel?: Function;
+    };
+
+    const owl: Owl = $(`.owl-carousel-${type}`);
 
     $(`.wsb-testimonials-counter-${type} .total`)
-      .text(owl.find("> div").length);
+      .text(owl.find('> div').length);
 
+    // @ts-ignore
     owl.owlCarousel({
       items: 1,
       dots: false,
-      stagePadding: type === 'comment' ? 16 : 0
+      stagePadding: type === 'comment' ? 16 : 0,
     });
 
-    owl.on('changed.owl.carousel', function(e) {
+    owl.on('changed.owl.carousel', function(e: any) {
       $(`.wsb-testimonials-counter-${type} .current`).text(+e.item.index + 1);
     });
   }

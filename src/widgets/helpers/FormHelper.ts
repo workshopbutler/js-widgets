@@ -91,8 +91,8 @@ export default class FormHelper {
    * @returns {Object} = isValid(Boolean), message(String)
    * @private
    */
+  // @ts-ignore
   protected validateControl($control: JQuery) {
-
     return {
       isValid: true,
       message: '',
