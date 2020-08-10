@@ -43,7 +43,7 @@
     },
     "category": null,
     "title": "2-day Workshop",
-    "hashed_id": "event01",
+    "hashed_id": "9103",
     "type": {
       "id": 1126,
       "name": "Practitioner Course Level 1",
@@ -102,7 +102,7 @@
     },
     "category": null,
     "title": "3-day Happiness Workshop",
-    "hashed_id": "event02",
+    "hashed_id": "8553",
     "type": {
       "id": 1126,
       "name": "Practitioner Course Level 1",
@@ -141,7 +141,7 @@
     "public": true,
     "sold_out": false,
     "invoice": null,
-    "id": 8553,
+    "id": 8329,
     "language": {
       "spoken": [
         "EN"
@@ -161,7 +161,7 @@
     },
     "category": null,
     "title": "4-day Awesomeness Workshop",
-    "hashed_id": "event03",
+    "hashed_id": "8329",
     "type": {
       "id": 1126,
       "name": "Practitioner Course Level 1",
