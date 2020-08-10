@@ -2,11 +2,9 @@
   .wsb-filters {
     display: flex;
     justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    padding-right: 5px;
 
-    @media(max-width: 830px) {
-      flex-wrap: wrap;
-    }
   }
 
   .wsb-filters-left, .wsb-filters-right {
@@ -23,16 +21,19 @@
   }
 
   .wsb-filter {
-    flex-basis: calc(25% - 5px);
+    flex-basis:  calc(25% - 5px);
     flex-shrink: 0;
+    flex-grow: 1;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    min-width: 150px;
 
     @media(max-width: 830px) {
       flex-basis: calc(50% - 5px);
-      margin-bottom: 5px;
     }
 
     @media(max-width: 560px) {
-      flex-basis: 100%;
+      flex-basis: calc(100% - 10px);
     }
   }
 
@@ -40,9 +41,6 @@
     .wsb-filter {
       margin-right: 1em;
 
-      @media @phone {
-        margin: 0 0 12px 0;
-      }
     }
   }
 
