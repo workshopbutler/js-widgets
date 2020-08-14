@@ -109,7 +109,7 @@ export default class Event {
   protected buildUrl(options: IPlainObject): string {
     const pattern = options.eventPagePattern ? options.eventPagePattern : DefaultSettings.eventPagePattern;
     const categoryName = this.category ? this.category.name : '';
-    const dates = this.replaceSpaces(ScheduleFormatter.format('en', this.schedule, 'full_short'));
+    const dates = this.replaceSpaces(ScheduleFormatter.format('en', this.schedule, 'interval'));
     const queryParams = pattern
       .replace('{{id}}', this.hashedId)
       .replace('{{title}}', this.replaceSpaces(this.title))

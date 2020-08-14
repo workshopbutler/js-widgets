@@ -24,12 +24,6 @@ export default class Schedule extends Widget<ScheduleConfig> {
    * @param options {object} Configuration config
    */
   static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: IPlainObject) {
-    const $elems = $(selector);
-    if (!$elems.length) {
-      logError("Page element, referenced in 'target' attribute, is not found");
-      return;
-    }
-
     // Add tag element for mobile view
     if (options.cols) {
       options.cols = ['wsb-tag-mob', ...options.cols];
@@ -40,14 +34,9 @@ export default class Schedule extends Widget<ScheduleConfig> {
       return;
     }
 
-    return $elems.each((index, el) => {
-      const $element = $(el);
-      let data = $element.data('wsb.widgets.event.list');
-      if (!data) {
-        data = new Schedule(el, apiKey, templates, loc, config);
-        $element.data('wsb.widgets.event.list', data);
-      }
-    });
+    return Widget.attachMe(selector, 'event.list', el =>
+      new Schedule(el, apiKey, templates, loc, config)
+    );
   }
 
   private readonly filters: Filters;

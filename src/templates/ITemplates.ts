@@ -8,6 +8,7 @@ export interface ITemplates {
   readonly schedule: ITemplate;
   readonly testimonialList: ITemplate;
   readonly nextEvent: ITemplate;
+  readonly promo: ITemplate;
   readonly eventPage: ITemplate;
   readonly trainerList: ITemplate;
   readonly trainerProfile: ITemplate;

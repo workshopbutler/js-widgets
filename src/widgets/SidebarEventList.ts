@@ -23,25 +23,14 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
    * @param options {object} Configuration config
    */
   static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: IPlainObject) {
-    const $elems = $(selector);
-    if (!$elems.length) {
-      return;
-    }
-
     const config = SidebarEventListConfig.create(options);
     if (!config) {
       return;
     }
 
-    return $elems.each((index, el) => {
-      const $element = $(el);
-      let data = $element.data('wsb.widget.sidebar.event.list');
-
-      if (!data) {
-        data = new SidebarEventList(el, apiKey, templates, loc, config);
-        $element.data('wsb.widget.sidebar.event.list', data);
-      }
-    });
+    return Widget.attachMe(selector, 'sidebar.event.list', el =>
+      new SidebarEventList(el, apiKey, templates, loc, config)
+    );
   }
 
   protected readonly formatter: Formatter;

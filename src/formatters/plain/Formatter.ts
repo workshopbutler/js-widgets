@@ -27,7 +27,7 @@ export default class Formatter {
       return TicketPriceFormatter.format(this.loc, object);
     }
     if (object instanceof Language || type === 'language') {
-      return LanguageFormatter.format(this.loc, object);
+      return LanguageFormatter.format(this.loc, object, type);
     }
     if ((object as ITicketType).withoutLimit !== undefined) {
       return TicketFormatter.format(this.loc, object as ITicketType, type);

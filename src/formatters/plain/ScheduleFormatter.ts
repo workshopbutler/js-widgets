@@ -8,46 +8,46 @@ import DateTimeFormatter from './DateTimeFormatter';
  */
 export default class ScheduleFormatter {
   static format(locale: string, schedule: Schedule, part: string | null): string {
-    return this.formatSchedule(locale, schedule, part ? part : 'full_long');
+    return this.formatSchedule(locale, schedule, part ? part : 'interval_with_time');
   }
 
   /**
    * Returns a formatted schedule. You can pass what part of the schedule to get:
-   *   - start_short - Start date
-   *   - start_long  - Start date and time
-   *   - end_short   - End date
-   *   - end_long    - End date and time
-   *   - full_short  - Start and end date
-   *   - full_long   - Start and end date/time
-   *   - timezone_short  - Timezone abbreviation
-   *   - timezone_long   - Timezone name
+   *   - start - Start date
+   *   - start_with_time  - Start date and time
+   *   - end   - End date
+   *   - end_with_time    - End date and time
+   *   - interval  - Start and end date
+   *   - interval_with_time   - Start and end date/time
+   *   - timezone_abbr  - Timezone abbreviation
+   *   - timezone   - Timezone name
    * @param locale {string} Current locale
    * @param schedule {Schedule} Event's schedule
    * @param part {string} Defines which part of the schedule to format
    * @return {string}
    */
-  protected static formatSchedule(locale: string, schedule: Schedule, part = 'full_long'): string {
+  protected static formatSchedule(locale: string, schedule: Schedule, part = 'interval_with_time'): string {
     // Start/end time for events were added in the same version the timezone was added.
     // So if the timezone exist, we can show time. Otherwise, only the dates.
     const withTime = schedule.timezone != null;
     switch (part) {
-      case 'start_long':
+      case 'start_with_time':
         return DateTimeFormatter.format(locale, schedule.start, withTime);
-      case 'start_short':
+      case 'start':
         return DateTimeFormatter.format(locale, schedule.start);
-      case 'end_long':
+      case 'end_with_time':
         return DateTimeFormatter.format(locale, schedule.end, withTime);
-      case 'end_short':
+      case 'end':
         return DateTimeFormatter.format(locale, schedule.end);
-      case 'timezone_long':
+      case 'timezone':
         return schedule.timezone ? schedule.start.offsetNameLong : '';
-      case 'timezone_short':
+      case 'timezone_abbr':
         return schedule.timezone ?
           Timezones.shortName(schedule.start.offsetNameLong) || schedule.start.offsetNameShort :
           '';
-      case 'full_short':
+      case 'interval':
         return ScheduleFormatter.formatFullDate(locale, schedule);
-      case 'full_long':
+      case 'interval_with_time':
         if (!schedule.timezone) {
           return ScheduleFormatter.formatFullDate(locale, schedule);
         } else {

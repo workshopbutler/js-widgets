@@ -1,0 +1,11 @@
+{% macro date(event, config, _f, _t) %}
+  <div class="wsb-info wsb-date">
+    <div class="wsb-info__title">{{ _t('promo.info.date') }}:</div>
+    {% if event.schedule.atOneDay() %}
+      {{ _f(event.schedule, 'interval_with_time') | safe }} {{ _f(event.schedule, 'timezone_abbr') }}
+    {% else %}
+      {{ _f(event.schedule, 'start_with_time') }}
+      &ndash;<br>{{ _f(event.schedule, 'end_with_time') }} {{ _f(event.schedule, 'timezone_abbr') }}
+    {% endif %}
+  </div>
+{% endmacro %}

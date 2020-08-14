@@ -27,25 +27,13 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
    * @param options {object} Configuration config
    */
   static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: IPlainObject) {
-    const $elems = $(selector);
-    if (!$elems.length) {
-      return;
-    }
-
     const config = TrainerProfileConfig.create(options);
     if (!config) {
       return;
     }
-
-    return $elems.each((index, el) => {
-      const $element = $(el);
-      let data = $element.data('wsb.widget.trainer.details');
-
-      if (!data) {
-        data = new TrainerProfile(el, apiKey, templates, loc, config);
-        $element.data('wsb.widget.trainer.details', data);
-      }
-    });
+    return Widget.attachMe(selector, 'trainer.details', el =>
+      new TrainerProfile(el, apiKey, templates, loc, config)
+    );
   }
 
   protected readonly formatter: Formatter;

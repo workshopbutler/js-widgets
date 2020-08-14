@@ -22,25 +22,14 @@ export default class TestimonialList extends Widget<TestimonialListConfig> {
    * @param options {object} Configuration config
    */
   static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
-    const $elems = $(selector);
-    if (!$elems.length) {
-      return;
-    }
-
     const config = TestimonialListConfig.create(options);
     if (!config) {
       return;
     }
 
-    return $elems.each((index, el) => {
-      const $element = $(el);
-      let data = $element.data('wsb.widget.trainer.testimonials');
-
-      if (!data) {
-        data = new TestimonialList(el, apiKey, templates, loc, config);
-        $element.data('wsb.widget.trainer.testimonials', data);
-      }
-    });
+    return Widget.attachMe(selector, 'testimonials', el =>
+      new TestimonialList(el, apiKey, templates, loc, config)
+    );
   }
 
   protected readonly formatter: Formatter;

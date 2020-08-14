@@ -1,0 +1,10 @@
+{% macro location(event, config, _f, _t) %}
+  <div class="wsb-info wsb-location">
+    <div class="wsb-info__title">{{ _t('promo.info.loc') }}:</div>
+    {% from "../common/flag.njk" import flag %}
+    {% if config.flag %}
+      {{ flag(event.location.countryCode) }}
+    {% endif %}{{ _f(event.location) }}
+    {% if config.language %} &bull; {{ _f(event.language, 'short') }} {% endif %}
+  </div>
+{% endmacro %}
