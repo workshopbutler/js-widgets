@@ -11,6 +11,7 @@ import TestimonialListTmpl from './testimonialList.njk';
 import TrainerListTmpl from './trainerList.njk';
 import TrainerProfileTmpl from './trainerPage.njk';
 import NextEventTmpl from './nextEvent.njk';
+import PromoTmpl from './promo.njk';
 
 /**
  * Default theme's templates, created and supported by Workshop Butler
@@ -26,6 +27,7 @@ export default class DefaultTemplates implements ITemplates {
   readonly registrationPage: DefaultTemplate;
   readonly sidebarEventList: DefaultTemplate;
   readonly nextEvent: DefaultTemplate;
+  readonly promo: DefaultTemplate;
 
   constructor() {
     this.schedule = new DefaultTemplate(TiledScheduleTmpl);
@@ -38,6 +40,7 @@ export default class DefaultTemplates implements ITemplates {
     this.attendeesPage = new DefaultTemplate(AttendeesPageTmpl);
     this.attendeesList = new DefaultTemplate(AttendeesListTmpl);
     this.nextEvent = new DefaultTemplate(NextEventTmpl);
+    this.promo = new DefaultTemplate(PromoTmpl);
   }
 
   /**

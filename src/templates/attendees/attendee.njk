@@ -12,7 +12,7 @@
       </p>
     {% endif %}
     <p>
-      Participated in {{ attendee.event.title }} on {{ _f(attendee.event.schedule, 'full_short') }}
+      Participated in {{ attendee.event.title }} on {{ _f(attendee.event.schedule, 'interval') }}
     </p>
   {% endif %}
   {% if attendee.certificate %}

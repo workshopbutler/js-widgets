@@ -329,6 +329,8 @@
       "loc": "Lokasjon",
       "oneLang": "Arrangement er på $t(language.{{lang}})",
       "twoLangs": "Arrangement er på $t(language.{{first}}) og $t(language.{{second}})",
+      "oneLangShort": "På $t(language.{{lang}})",
+      "twoLangsShort": "På $t(language.{{first}}) and $t(language.{{second}})",
       "materials": ", alle materialer og brosjyrer er på $t(language.{{lang}})",
       "now": "Gjeldende tid i {{zone}}",
       "tickets": "Billetter"
@@ -459,5 +461,24 @@
   "nextEvent": {
     "register": "Registrer",
     "notAvailable": "Ingen planlagte hendelser"
+  },
+  "promo": {
+    "register": "Registrer deg nå",
+    "info": {
+      "loc": "Lokasjon",
+      "date": "Dato",
+      "trainer": "Trener",
+      "trainer_plural": "Trenere"
+    },
+    "header": {
+      "prefixIn": "Starter om",
+      "prefixOn": "Starter",
+      "tomorrow": "Starter i morgen"
+    },
+    "timer": {
+      "days": "dager",
+      "hours": "timer",
+      "minutes": "minutter"
+    }
   }
 }

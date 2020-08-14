@@ -30,25 +30,14 @@ export default class RegistrationPage extends Widget<RegistrationPageConfig> {
    * @param options {object} Configuration config
    */
   static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: IPlainObject) {
-    const $elems = $(selector);
-    if (!$elems.length) {
-      return;
-    }
-
     const config = RegistrationPageConfig.create(options);
     if (!config) {
       return;
     }
 
-    return $elems.each((index, el) => {
-      const $element = $(el);
-      let data = $element.data('wsb.widget.registration.form');
-
-      if (!data) {
-        data = new RegistrationPage(el, apiKey, templates, loc, config);
-        $element.data('wsb.widget.registration.form', data);
-      }
-    });
+    return Widget.attachMe(selector, 'registration.form', el =>
+      new RegistrationPage(el, apiKey, templates, loc, config)
+    );
   }
 
   protected readonly formatter: Formatter;

@@ -1,0 +1,35 @@
+{% from "./promo/header.njk" import header %}
+{% from "./promo/location.njk" import location %}
+{% from "./promo/trainers.njk" import trainers %}
+{% from "./promo/date.njk" import date %}
+
+{% if event %}
+  <div class="{{ config.theme }}">
+    <div class="wsb-content wsb-promo "
+      {% if event.coverImage.url %} style="background-image: url({{ event.coverImage.url }})" {% endif %}>
+      <div class="wsb-promo-bg {% if event.coverImage.url %} wsb-promo-image {% endif %}">
+        <div class="wsb-promo-header">
+          {{ header(event, startsIn, config, _t, _f) }}
+        </div>
+        <div class="wsb-promo-content">
+          <div class="wsb-promo-title">{{ event.title }}</div>
+          <div class="wsb-promo-body">
+            {% for block in config.order %}
+              {% if block === 'date' %}
+                {{ date(event, config, _f, _t) }}
+              {% elseif block === 'location' %}
+                {{ location(event, config, _f, _t) }}
+              {% elseif block === 'trainer' %}
+                {{ trainers(event, config, _f, _t) }}
+              {% endif %}
+            {% endfor %}
+          </div>
+          <a href="{% if button.registration %} {{ event.registrationPage.url }} {% else %} {{ event.url }} {% endif %}"
+             target="{{ button.target }}" class="wsb-promo-button">
+            {% if button.title %} {{ button.title }} {% else %} {{ _t('promo.register') }} {% endif %}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

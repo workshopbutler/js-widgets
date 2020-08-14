@@ -59,7 +59,7 @@ export default class Localisation {
   /**
    * Returns true if the object is a real object
    */
-  protected isObject(mayBeObject: IPlainObject|undefined): boolean {
+  protected isObject(mayBeObject: IPlainObject | undefined): boolean {
     return mayBeObject !== null && typeof mayBeObject === 'object';
   }
 }

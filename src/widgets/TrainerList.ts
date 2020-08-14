@@ -24,25 +24,14 @@ export default class TrainerList extends Widget<TrainerListConfig> {
    * @param options {object} Configuration config
    */
   static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
-    const $elems = $(selector);
-    if (!$elems.length) {
-      return;
-    }
-
     const config = TrainerListConfig.create(options);
     if (!config) {
       return;
     }
 
-    return $elems.each((index, el) => {
-      const $element = $(el);
-      let data = $element.data('wsb.widget.trainer.list');
-
-      if (!data) {
-        data = new TrainerList(el, apiKey, templates, loc, config);
-        $element.data('wsb.widget.trainer.list', data);
-      }
-    });
+    return Widget.attachMe(selector, 'trainer.list', el =>
+      new TrainerList(el, apiKey, templates, loc, config)
+    );
   }
 
   protected readonly formatter: Formatter;
@@ -92,8 +81,9 @@ export default class TrainerList extends Widget<TrainerListConfig> {
   private render() {
     $.when(getTemplate(this.config)).done(template => {
       const templateParams = this.getTemplateParams();
+
       function renderTemplate(trainer: Trainer) {
-        const localParams = Object.assign({ trainer }, templateParams);
+        const localParams = Object.assign({trainer}, templateParams);
         return nunjucksRenderString(template, localParams);
       }
 

@@ -1,3 +1,4 @@
+{% from "../common/flag.njk" import flag %}
 {% macro drawEvent(event, withStub, config, _t, _f) %}
   {% set withThumnail = event.coverImage.thumbnail %}
   <a href="{{ event.url }}"
@@ -27,19 +28,18 @@
     </div>
     <div class="wsb-date-place">
       <div class="wsb-tile-info wsb-tile-location">
-        <span class="flag-icon flag-icon-{{ event.location.countryCode.toLowerCase() }} wsb-flag">
-        </span>{{ _f(event.location) }}
+        {{ flag(event.location.countryCode) }}{{ _f(event.location) }}
       </div>
 
       <div class="wsb-tile-info wsb-tile-datetime">
         {% if event.schedule.atOneDay() %}
-          {{ _f(event.schedule, 'full_long') | safe}}
+          {{ _f(event.schedule, 'interval_with_time') | safe}}
 
           {% if event.location.online and event.schedule.timezone %}
-            {{ _f(event.schedule, 'timezone_short') }}
+            {{ _f(event.schedule, 'timezone_abbr') }}
           {% endif %}
         {% else %}
-          {{ _f(event.schedule, 'full_short') | safe }}
+          {{ _f(event.schedule, 'interval') | safe }}
         {% endif %}
       </div>
     </div>

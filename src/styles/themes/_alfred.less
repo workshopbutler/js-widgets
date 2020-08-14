@@ -13,6 +13,7 @@
         color: @grey;
         background-color: #fff;
       }
+
       border: 2px solid @background-grey;
       background-color: @background-grey;
       border-radius: 4px;
@@ -67,6 +68,7 @@
   .wsb-tag, .wsb-free {
     border-radius: 4px;
   }
+
   .wsb-free {
     background-color: #909d44;
   }
@@ -74,6 +76,7 @@
   .wsb-tile-info, .wsb-date-place {
     color: @text-grey;
   }
+
   .wsb-tile-content .wsb-photo {
     border-radius: 10px;
   }
@@ -108,7 +111,25 @@
     color: #fff !important;
     background-color: @alfred;
   }
+
   .wsb-sharing__icon {
     color: transparent;
+  }
+
+  &.wsb-promo {
+    color: white;
+
+    .wsb-promo-bg {
+      background: radial-gradient(100% 388.81% at 0% 100%, #4A90E2 0%, #66CAF4 100%), linear-gradient(90deg, #4A90E2 39.73%, rgba(74, 144, 226, 0.29) 115.57%);
+    }
+
+    .wsb-promo-bg.wsb-promo-image {
+      background: linear-gradient(90deg, #4A90E2 39.73%, rgba(74, 144, 226, 0.29) 115.57%);
+    }
+  }
+
+  .wsb-promo-button {
+    color: @alfred;
+    border-radius: 0.3em;
   }
 }

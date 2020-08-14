@@ -27,25 +27,14 @@ export default class EventPage extends Widget<EventPageConfig> {
    * @param options {object} Configuration config
    */
   static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
-    const $elems = $(selector);
-    if (!$elems.length) {
-      return;
-    }
-
     const config = EventPageConfig.create(options);
     if (!config) {
       return;
     }
 
-    return $elems.each((index, el) => {
-      const $element = $(el);
-      let data = $element.data('wsb.widget.event.details');
-
-      if (!data) {
-        data = new EventPage(el, apiKey, templates, loc, config);
-        $element.data('wsb.widget.event.details', data);
-      }
-    });
+    return Widget.attachMe(selector, 'event.details', el =>
+      new EventPage(el, apiKey, templates, loc, config)
+    );
   }
 
   protected readonly formatter: Formatter;
@@ -133,7 +122,7 @@ export default class EventPage extends Widget<EventPageConfig> {
 
   private renderWidget() {
     $.when(getTemplate(this.config)).done(template => {
-      const params = Object.assign( { event: this.event }, this.getTemplateParams());
+      const params = Object.assign({event: this.event}, this.getTemplateParams());
 
       const content = template ?
         nunjucksRenderString(template, params) :

@@ -1,0 +1,89 @@
+@import "core/settings";
+
+.wsb-promo {
+  border-radius: 10px;
+}
+
+.wsb-promo-bg {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 10px;
+  padding: 24px 0 32px;
+  color: white;
+
+  @media @phone {
+    padding: 12px 0 12px;
+  }
+}
+
+.wsb-promo-header {
+  font-size: 72px;
+  line-height: 102%;
+  font-weight: 600;
+  padding: 0 32px 24px;
+  border-bottom: 2px dashed white;
+
+  @media @phone {
+    font-size: 42px;
+    padding: 0 12px 12px;
+  }
+}
+.wsb-promo-content {
+  padding: 24px 32px 0;
+
+  @media @phone {
+    padding: 12px 12px 0;
+  }
+}
+
+.wsb-promo-title {
+  font-weight: bold;
+  font-size: 24px;
+  padding-bottom: 12px;
+}
+.wsb-promo-body {
+  display: flex;
+  flex-direction: row;
+
+  @media @phone {
+    flex-direction: column;
+  }
+}
+.wsb-promo-body .wsb-info {
+  padding-right: 32px;
+}
+.wsb-promo .wsb-promo-button {
+  background: white;
+  width: 200px;
+  padding: 12px 0;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @media @phone {
+    width: 100%;
+  }
+}
+.wsb-promo .wsb-trainers .wsb-info__content {
+  display: flex;
+  flex-direction: column;
+
+  @media @phone {
+    flex-direction: row;
+
+    span {
+      margin-right: 5px;
+      &:after {
+        content: ',';
+      }
+      &:last-child:after {
+        content: none;
+      }
+    }
+  }
+}

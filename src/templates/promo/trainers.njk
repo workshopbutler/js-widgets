@@ -1,0 +1,10 @@
+{% macro trainers(event, config, _f, _t) %}
+  <div class="wsb-info wsb-trainers">
+    <div class="wsb-info__title">{{ _t('promo.info.trainer', { count: event.trainers.length }) }}:</div>
+    <div class="wsb-info__content">
+      {% for trainer in event.trainers %}
+        <span>{{ trainer.fullName() }}</span>
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}

@@ -1,3 +1,5 @@
+{% from "../common/flag.njk" import flag %}
+
 {% macro drawTrainer(trainer, config, _t, _f) %}
   <div
     class="wsb-trainer-tile" data-trainer-obj
@@ -19,7 +21,7 @@
 
       {% if trainer.country %}
         <div class="wsb-trainer-tile__country">
-          <span class="flag-icon flag-icon-{{trainer.country.toLowerCase()}} wsb-flag"></span>
+          {{ flag(trainer.country) }}
           <span>{{ _t('country.' + trainer.country) }}</span>
         </div>
       {% endif %}

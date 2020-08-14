@@ -29,25 +29,13 @@ export default class AttendeeList extends Widget<AttendeeListConfig> {
    * @param options {object} Configuration config
    */
   static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: any) {
-    const $elems = $(selector);
-    if (!$elems.length) {
-      return;
-    }
-
     const config = AttendeeListConfig.create(options);
     if (!config) {
       return;
     }
-
-    return $elems.each((index, el) => {
-      const $element = $(el);
-      let data = $element.data('wsb.widget.attendee.list');
-
-      if (!data) {
-        data = new AttendeeList(el, apiKey, templates, loc, config);
-        $element.data('wsb.widget.attendee.list', data);
-      }
-    });
+    return Widget.attachMe(selector, 'attendee.list', el =>
+      new AttendeeList(el, apiKey, templates, loc, config)
+    );
   }
 
   protected readonly formatter: Formatter;
