@@ -62,16 +62,10 @@
       </div>
 
       <div class="wsb-toolbar wsb-first">
-        <div class="wsb-trainer-badges-wrapper">
-          <div class="wsb-badges-inner wsb-badges-hidden">
-            {% for badge in trainer.badges %}
-              <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
-            {% endfor %}
-          </div>
-
-          {% if trainer.badges.length > 3 %}
-            <span class="wsb-trainer-more">{{ trainer.badges.length-3 }}+</span>
-          {% endif %}
+        <div class="wsb-trainer-badges">
+          {% for badge in trainer.badges %}
+            <img alt="{{ badge.name }}" class="wsb-trainer__badge" src="{{ badge.url }}">
+          {% endfor %}
         </div>
 
         <div class="wsb-trainer-details-facts">

@@ -1,0 +1,360 @@
+@import "../core/settings";
+
+@left-column: 10em;
+
+.wsb-content {
+  select {
+    padding: .4em;
+    padding-right: 15px;
+    border-radius: 2px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-position: right 50%;
+    background-repeat: no-repeat;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDZFNDEwNjlGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDZFNDEwNkFGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0NkU0MTA2N0Y3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0NkU0MTA2OEY3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuGsgwQAAAA5SURBVHjaYvz//z8DOYCJgUxAf42MQIzTk0D/M+KzkRGPoQSdykiKJrBGpOhgJFYTWNEIiEeAAAMAzNENEOH+do8AAAAASUVORK5CYII=);
+    height: 2em;
+    cursor: pointer;
+  }
+
+  input,
+  select,
+  textarea {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 2em;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    .transition(all .15s ease);
+
+    &[type=radio], &[type=checkbox] {
+      width: 1.1em;
+      height: 1.1em;
+      display: inline-block;
+      margin-left: 0;
+      margin-right: 0.5em;
+    }
+
+    &[type=checkbox] {
+      align-self: flex-start;
+    }
+
+    &:focus {
+      outline: none !important;
+      border-color: #4a90e2;
+      outline: 0;
+      box-shadow: 0 0 2px #4a90e2, 0 0 2px #4a90e2 inset;
+    }
+
+    &::-webkit-input-placeholder {
+      color: #999
+    }
+
+    &:-ms-input-placeholder {
+      color: #999
+    }
+
+    &::-moz-placeholder {
+      color: #999;
+      opacity: 1
+    }
+  }
+
+  textarea {
+    min-height: 114px;
+  }
+
+
+  // form
+  .wsb-form {
+    margin-top: -24px;
+  }
+
+  .wsb-form__body {
+    max-width: 90%;
+
+    @media (max-width: 600px) {
+      max-width: 100%;
+    }
+
+    section {
+      margin-right: 89px;
+
+      @media(max-width: 1200px) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .wsb-form__instructions {
+    margin: @label-padding 0 0;
+    background-color: aliceblue;
+    padding: 1em;
+
+    @media @phone {
+      margin-bottom: @label-padding;
+    }
+  }
+
+  .wsb-form__section-title {
+    font-size: @h3;
+    font-weight: bold;
+    margin-bottom: 18px;
+  }
+
+  .wsb-form__required {
+    color: @red;
+    font-size: 12px;
+    position: relative;
+    top: -5px;
+  }
+
+  section {
+    padding: 2em 0;
+    border-bottom: 1px solid @grey;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    &:first-of-type {
+      padding-top: 2em;
+    }
+
+    @media @phone, screen and (max-width: 600px) {
+      border-bottom: none;
+      padding: 0.5em 0;
+    }
+  }
+
+  .wsb-form__field {
+    flex: 1 1 46%;
+    width: 100%;
+    line-height: 1.2em;
+    display: flex;
+    align-items: flex-start;
+
+    @media (max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    + .wsb-form__field {
+      margin-top: 21px;
+    }
+
+    &.textarea, &.checkbox {
+      flex: 1 0 100%;
+    }
+
+    @media @phone, screen and (max-width: 600px) {
+      flex: 0 1 100%;
+      min-width: 7em;
+      flex-direction: column;
+      align-items: flex-start;
+
+      &.checkbox {
+        flex-direction: row;
+        align-items: flex-start;
+
+        .wsb-label {
+          display: none;
+        }
+      }
+
+      &.ticket > .wsb-label {
+        display: none;
+      }
+    }
+
+    &.ticket, &.textarea {
+      align-items: flex-start;
+    }
+
+    > .wsb-label {
+      margin-top: 5px;
+
+      @media (max-width: 900px) {
+        flex-basis: auto;
+      }
+    }
+  }
+
+  .wsb-label {
+    flex: 0 0 160px;
+    margin-bottom: 0;
+    line-height: 24px;
+    font-size: 16px;
+  }
+
+  .wsb-checkbox {
+    cursor: pointer;
+  }
+
+  textarea,
+  select,
+  input {
+    padding: 0 10px;
+    border-radius: 2px;
+    box-shadow: none;
+    .transition(all .15s ease);
+
+    &:focus {
+      border-color: #ccc;
+    }
+  }
+
+  select {
+    padding-left: 0.4em;
+
+    @media @phone {
+      padding: 0 0.5em;
+    }
+  }
+
+  // .wsb-ticket-section {}
+
+  .wsb-form__tickets {
+    width: 100%;
+    display: block;
+  }
+
+  @left-padding: 0.75em;
+  @label-padding: 0.9em;
+
+  .wsb-form__ticket {
+    padding: @left-padding;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+
+    label, input {
+      cursor: pointer;
+    }
+
+    &.wsb-active {
+      background-color: @background-grey;
+    }
+
+    @media @phone {
+      margin-left: 0;
+    }
+
+    .wsb-label {
+      font-size: 16px;
+    }
+
+    input {
+      margin-top: 0;
+    }
+  }
+
+  .wsb-form__summary {
+    background-color: @background-grey;
+    margin-left: -@left-padding;
+    padding: @label-padding @left-padding;
+    width: 100%;
+
+    p {
+      margin-top: 0.1em;
+    }
+
+    span {
+      min-width: 8em;
+      display: inline-block;
+    }
+
+    @media @phone {
+      margin-left: 0;
+    }
+  }
+
+  .wsb-promo-link {
+    padding-bottom: 0.5em;
+    display: block;
+    color: @text-grey !important;
+    text-decoration: underline;
+  }
+
+  .wsb-promo-code {
+    display: none;
+  }
+
+  .wsb-promo-block {
+    padding-left: @left-column;
+
+    @media @phone {
+      padding-left: 0;
+    }
+  }
+
+  .wsb-form__tax {
+    font-style: italic;
+    font-size: 0.75em;
+    margin-top: 10px;
+    margin-left: 12px;
+  }
+
+  .wsb-form__btn {
+    display: inline-block;
+    width: 50%;
+    max-width: 300px;
+    margin-left: @left-column;
+    padding: 15px 0;
+    text-decoration: none !important;
+    color: #fff !important;
+    text-align: center;
+    border-radius: 2px;
+    cursor: pointer;
+    .transition(all .15s ease);
+
+    -webkit-font-smoothing: antialiased;
+    border: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    &:focus {
+      outline: none !important;
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: auto;
+    }
+
+    @media @phone, screen and (max-width: 600px) {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  .wsb-form__error {
+    font-size: 1em;
+    color: @red;
+    padding-bottom: 1em;
+    margin-left: @left-column;
+  }
+
+  .wsb-form__payment-alert {
+    margin-top: 32px;
+    margin-right: 89px;
+
+    @media(max-width: 1200px) {
+      margin-right: 0;
+    }
+
+    @media (max-width: 600px) {
+      margin-bottom: 30px;
+    }
+  }
+}
