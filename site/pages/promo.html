@@ -1,22 +1,23 @@
 ---
 layout: layouts/base_widget.njk
-title: Next Event
-permalink: /next-event/
+title: Promo
+permalink: /promo/
 templateEngineOverride: false
 tags: ['widget']
 ---
 
-<div id="wsb-next-event"></div>
+<div id="wsb-promo"></div>
 <script>
   const apiKey = siteConfig.apiKey;
   const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
   document.addEventListener('wsbwidgetsloaded', function() {
       const widgets = [
         {
-          type: 'NextEvent',
-          target: '#wsb-next-event',
+          type: 'Promo',
+          target: '#wsb-promo',
           eventPageUrl: '/event-page',
           registrationPageUrl: '/registration',
+          order: ['date', 'location', 'language', 'trainer'],
           theme: themeName,
           button: {
             registration: true,

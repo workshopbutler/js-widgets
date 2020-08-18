@@ -1,0 +1,27 @@
+{% macro header(event, startsIn, config, _t, _f) %}
+
+{% if config.timer %}
+  {{ _t('promo.header.prefixIn') }}
+    <span class="wsb-promo-timer">
+      <span class="wsb-timer-block wsb-days">
+        <span class="wsb-timer-value">{{ startsIn.days | int }}</span>
+        <span class="wsb-timer-caption">{{ _t('promo.timer.days') }}</span>
+      </span>
+      <span class="wsb-timer-block wsb-hours">
+        <span class="wsb-timer-value">{{ startsIn.hours | int }}</span>
+        <span class="wsb-timer-caption">{{ _t('promo.timer.hours') }}</span>
+      </span>
+      <span class="wsb-timer-block wsb-minutes">
+        <span class="wsb-timer-value">{{ startsIn.minutes | int }}</span>
+        <span class="wsb-timer-caption">{{ _t('promo.timer.minutes') }}</span>
+      </span>
+    </span>
+{% elseif startsIn.days == 1 %}
+  {{ _t('promo.header.tomorrow') }}
+{% elseif startsIn.days <= 6 %}
+  {{ _t('promo.header.prefixIn') }} {{ startsIn.days | int }} {{ _t('promo.timer.days') }}
+{% else %}
+  {{ _t('promo.header.prefixOn') }} {{ _f(event.schedule, 'start') }}
+{% endif %}
+
+{% endmacro %}

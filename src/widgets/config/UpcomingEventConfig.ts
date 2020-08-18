@@ -1,18 +1,18 @@
-import NextEventButtonConfig from './NextEventButtonConfig';
+import UpcomingEventButtonConfig from './UpcomingEventButtonConfig';
 import IPlainObject from '../../interfaces/IPlainObject';
 import WidgetConfig from './WidgetConfig';
 
 /**
- * Configuration for 'Next button' element
+ * Configuration for 'Upcoming event' element
  */
-export default class NextEventConfig extends WidgetConfig {
+export default class UpcomingEventConfig extends WidgetConfig {
 
   /**
    * Returns the config if the options are correct
    * @param options {IPlainObject} Widget's options
    */
-  static create(options: IPlainObject): NextEventConfig | null {
-    return new NextEventConfig(options);
+  static create(options: IPlainObject): UpcomingEventConfig | null {
+    return new UpcomingEventConfig(options);
   }
 
   /**
@@ -38,7 +38,7 @@ export default class NextEventConfig extends WidgetConfig {
   /**
    * Configuration for the button
    */
-  readonly button: NextEventButtonConfig;
+  readonly button: UpcomingEventButtonConfig;
 
   protected constructor(options: IPlainObject) {
     super(options);
@@ -47,7 +47,7 @@ export default class NextEventConfig extends WidgetConfig {
     this.eventPageUrl = options.eventPageUrl;
     this.registrationPageUrl = options.registrationPageUrl;
     this.button = options.button !== undefined ?
-      new NextEventButtonConfig(options.button) :
-      new NextEventButtonConfig({});
+      new UpcomingEventButtonConfig(options.button) :
+      new UpcomingEventButtonConfig({});
   }
 }

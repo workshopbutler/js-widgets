@@ -1,11 +1,11 @@
 {% from "./event/tag.njk" import tag %}
 {% for event in events %}
-  <div class="wsb-workshop {% if config.featured.highlight and event.featured %} wsb-featured {% endif %}">
-    {{ tag(event, config, _t, _f, false) }}
-    {{ _f(event.schedule, 'full_short') }} in {{ _f(event.location) }}
-      <br>
-      <a href="{{ event.url }}">
-        {{ event.title }}
-      </a>
-  </div>
+    <div class="wsb-workshop {% if config.featured.highlight and event.featured %} wsb-featured {% endif %}">
+      {{ tag(event, config, _t, _f, false) }}
+      {{ _f(event.schedule, 'interval') | safe }} in {{ _f(event.location) }}
+        <br>
+        <a href="{{ event.url }}">
+            {{ event.title }}
+        </a>
+    </div>
 {% endfor %}

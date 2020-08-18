@@ -15,6 +15,32 @@ export default abstract class Widget<T extends WidgetConfig> {
   protected readonly formatter: Formatter;
 
   /**
+   * Attaches the component to the HTML elements
+   * @param selector {string} HTML element selector
+   * @param property {string} Name of the property to store the component
+   * @param callback {Function} Component initialisation function
+   */
+  protected static attachMe<K extends Widget<any>>(selector: string,
+                                                   property: string,
+                                                   callback: (el: HTMLElement) => K) {
+    const $elems = $(selector);
+    if (!$elems.length) {
+      return;
+    }
+
+    return $elems.each((index, el) => {
+      const $element = $(el);
+      const identifier = `wsb.widget.${property}`;
+      let data = $element.data(identifier);
+
+      if (!data) {
+        data = callback(el);
+        $element.data(identifier, data);
+      }
+    });
+  }
+
+  /**
    * Creates a new widget
    * @param selector {HTMLElement} JQuery selector
    * @param apiKey {string} API key

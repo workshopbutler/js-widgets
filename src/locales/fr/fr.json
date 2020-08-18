@@ -342,6 +342,8 @@
       "loc": "Emplacement",
       "oneLang": "L'événement est en langue $t(language.{{lang}})",
       "twoLangs": "L'événement est en langue  $t(language.{{first}}) et en $t(language.{{second}})",
+      "oneLangShort": "En $t(language.{{lang}})",
+      "twoLangsShort": "En $t(language.{{first}}) and $t(language.{{second}})",
       "materials": ", Tous les matériaux et documents sont en langue $t(language.{{lang}})",
       "now": "Heure actuelle en {{zone}}",
       "tickets": "Billets"
@@ -472,5 +474,24 @@
   "nextEvent": {
     "register": "S'Inscrire",
     "notAvailable": "Aucun événement prévu"
+  },
+  "promo": {
+    "register": "S'inscrire maintenant",
+    "info": {
+      "loc": "Emplacement",
+      "date": "Date",
+      "trainer": "Formateur",
+      "trainer_plural": "Formateurs"
+    },
+    "header": {
+      "prefixIn": "Commence en",
+      "prefixOn": "Commence le",
+      "tomorrow": "Commence demain"
+    },
+    "timer": {
+      "days": "journées",
+      "hours": "heures",
+      "minutes": "minutes"
+    }
   }
 }

@@ -1,9 +1,9 @@
 import IPlainObject from '../../interfaces/IPlainObject';
 
 /**
- * Configuration for 'Next event' button
+ * Configuration for 'Upcoming event' button
  */
-export default class NextEventButtonConfig {
+export default class UpcomingEventButtonConfig {
 
   /**
    * True if the button should lead to the registration page, not the event page
