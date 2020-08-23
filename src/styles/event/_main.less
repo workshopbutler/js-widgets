@@ -68,4 +68,17 @@
   .wsb-before-registration {
     display: none;
   }
+
+  .wsb-registration-details {
+    display: flex;
+    align-items: flex-start;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+      .wsb-label {
+        flex-basis: auto;
+        display: none;
+      }
+    }
+  }
 }

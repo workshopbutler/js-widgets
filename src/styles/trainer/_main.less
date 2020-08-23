@@ -1,63 +1,25 @@
 .wsb-content .wsb-trainer-profile {
-  @media (max-width: 480px) {
-    display: flex;
-    flex-direction: column;
-    padding-top: 0px;
-    position: relative;
-
-    .wsb-desc {
-      margin: 0px 20px 30px;
-      padding: 0;
-    }
-
-    .wsb-trainer-events {
-      padding: 8px 20px 0 20px;
-    }
-  }
 
   .wsb-trainer__header {
     margin-bottom: 15px;
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
     grid-area: header;
 
     @media (max-width: 800px) {
       display: flex;
       flex-direction: column;
       order: 1;
-      background-color: #f5f5f5;
-      margin-bottom: 0;
       padding-top: 25px;
-    }
-
-    @media (max-width: 480px) {
-      padding-top: 0;
     }
   }
 
-  .wsb-trainer__header-row {
+  .trainer-profile-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     padding-bottom: 16px;
+    flex-wrap: wrap;
 
-    &:first-child {
-      padding-bottom: 32px;
-
-      @media (max-width: 800px) {
-        padding-bottom: 0;
-      }
-    }
-
-    .wsb-trainer-title {
-      width: 100%;
-      padding: 0 16px;
-
-      @media (max-width: 480px) {
-        padding: 16px 0 2px;
-        text-align: center;
-        background-color: #f5f5f5;
-      }
+    @media (max-width: 800px) {
+      flex-direction: column;
     }
 
     img {
@@ -67,135 +29,61 @@
       object-fit: cover;
       -o-object-fit: cover;
       background-color: #fff;
-
-      @media (max-width: 480px) {
-        width: 100%;
-        height: 250px;
-        border-radius: 0px;
-        object-fit: cover;
-        -o-object-fit: cover;
-        background-color: white;
-      }
-    }
-
-    @media (max-width: 480px) {
-      flex-direction: column;
-
-      &:first-child {
-        padding: 0;
-      }
-    }
-  }
-
-  .trainer-profile-header {
-    align-items: center;
-
-    @media (max-width: 1000px) {
-      flex-direction: column;
-    }
-
-    @media (max-width: 820px) {
-      flex-wrap: wrap;
     }
 
     .wsb-trainer-title {
-      @media (max-width: 1000px) {
-        width: auto;
-        margin-top: 15px;
+      flex-grow: 1;
+      flex-basis: calc( 100% - 180px );
+      padding: 26px;
+      @media (max-width: 800px) {
         text-align: center;
       }
-
-      @media (max-width: 820px) {
-        width: calc(100% - 150px);
-      }
-
-      @media (max-width: 480px) {
-        width: 100%;
-      }
-    }
-
-    > *:nth-child(3) {
-      width: 100%;
     }
 
     .wsb-trainer-buttons {
-      @media (max-width: 820px) {
-        width: 100%;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      flex-wrap: wrap;
+
+      > *{
+        margin-top: 20px;
       }
 
-      @media (max-width: 480px) {
-        padding-left: 30px;
-        padding-right: 30px;
-      }
 
       .wsb-contact-button {
-        @media (max-width: 800px) {
-          width: 100%;
-          margin-left: 0;
-          margin-right: 0;
-          margin-bottom: 20px;
-          max-width: none;
-        }
-
-        @media (max-width: 480px) {
-          margin-top: 8px;
-        }
+        width: 150px;
+        max-width: unset;
+        margin-left: 0px;
+        flex-grow: 1;
       }
-    }
-  }
-
-  .wsb-trainer__header-col {
-    padding: 0 16px;
-
-    @media (max-width: 800px) {
-      padding: 0 30px;
-    }
-
-    @media (max-width: 480px) {
-      display: block;
-      width: 100%;
-      padding: 0px;
     }
   }
 
   .wsb-description {
-    -ms-grid-row: 2;
-    -ms-grid-row-span: 2;
-    -ms-grid-column: 1;
-    grid-row-start: auto;
-    grid-row-end: span auto;
-
-    @media (max-width: 800px) {
-      order: 3;
-    }
+    grid-area: descr;
+    order: 3;
   }
 
   .wsb-toolbar {
     &.wsb-first {
-      -ms-grid-row: 2;
-      -ms-grid-column: 3;
-
       @media (max-width: 800px) {
         order: 2;
       }
     }
 
     &.wsb-second {
-      -ms-grid-row: 3;
-      -ms-grid-column: 3;
-
       @media (max-width: 800px) {
         order: 4;
         margin-top: 20px;
       }
     }
-  }
 
-  .wsb-toolbar {
     &.wsb-first {
       @media (max-width: 800px) {
         display: flex;
         flex-direction: column;
+        align-items: center;
 
         > *:nth-child(1) { order: 2 }
         > *:nth-child(2) { order: 1 }
@@ -209,100 +97,35 @@
     }
   }
 
-  .wsb-trainer-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @media (max-width: 820px) {
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    @media (max-width: 800px) {
-      display: flex;
-      flex-direction: column-reverse;
-      flex-wrap: nowrap;
-    }
-
-    @media (max-width: 480px) {
-      width: 100%;
-      background-color: #f5f5f5;
-    }
-
-
-  }
-
   .wsb-trainer-name {
     font-weight: 700;
     font-size: 32px;
     margin-top: 0;
-    margin-bottom: 15px;
-
-    @media (max-width: 480px) {
-      margin-bottom: 2px;
-    }
+    margin-bottom: 10px;
   }
 
   .wsb-trainer-country {
     font-size: 16px;
     margin-top: 0;
-    padding-bottom: 1em;
     color: @text-grey;
-
-    @media (max-width: 480px) {
-      padding-bottom: 0;
-    }
-  }
-
-  .wsb-contact-button {
-    width: 150px;
-    margin-left: 32px;
-
-    @media (max-width: 480px) {
-      margin: 0 32px;
-      min-width: calc(100% - 64px);
-      margin-bottom: 25px;
-    }
   }
 
   .wsb-trainer__social-networks {
     display: flex;
     justify-content: center;
-
-    @media (max-width: 800px) {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    @media (max-width: 360px) {
-      justify-content: center;
-    }
+    flex-grow: 1;
+    padding-left: 26px;
+    padding-right: 26px;
 
     a {
       font-size: 16px;
       text-transform: uppercase;
 
       + a {
-        padding-left: 30px;
-
-        @media (max-width: 800px) {
-          padding-left: 0;
-        }
+        padding-left: 26px;
       }
 
-      @media (max-width: 360px) {
-        display: none;
-      }
-
-      &:first-child {
-        @media (max-width: 360px) {
-          display: block;
-        }
-      }
-
-      .fab {
+      .fab, .fas {
         font-size: 24px;
       }
     }
@@ -318,13 +141,16 @@
     margin-bottom: 20px;
     flex-wrap: wrap;
 
+    @media (max-width: 800px) {
+      justify-content: center;
+    }
 
     .wsb-trainer__badge {
       padding: 5px 0;
       width: 96px;
       height: auto;
       padding: 0;
-      margin-bottom: 24px;
+      margin-bottom: 10px;
     }
   }
 
@@ -337,20 +163,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 20px;
-
-    @media (max-width: 820px) {
-      padding-right: 0;
-    }
-
-    @media (max-width: 800px) {
-      flex-direction: column;
-      padding: 0 32px;
-      padding-top: 10px;
-      background-color: #f5f5f5;
-      margin-bottom: 0;
-      padding-bottom: 30px;
-      align-items: center;
-    }
 
     .wsb-trainer-details-fact {
       flex-direction: column;
@@ -365,23 +177,12 @@
       flex-wrap: wrap;
       margin-bottom: 10px;
 
-      @media (max-width: 800px) {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0;
-      }
-
       &:nth-child(1),
       &:nth-child(2) {
         > *:first-child {
           min-width: 90px;
           margin-right: 10px;
 
-          @media (max-width: 480px) {
-            margin-right: 0;
-          }
         }
 
         .fa-star {
@@ -409,31 +210,12 @@
           width: 68px;
           margin-right: 7px;
         }
-
-        @media (max-width: 800px) {
-          display: none;
-        }
-      }
-
-      + .wsb-trainer-details-fact {
-        @media (max-width: 820px) {
-          margin-left: 0;
-        }
-
-        @media (max-width: 800px) {
-          padding: 0;
-        }
       }
 
       &:last-child {
         border-right: none;
       }
 
-      .wsb-trainer-number-box {
-        @media (max-width: 800px) {
-          width: 90px;
-        }
-      }
     }
 
     .wsb-big-number {
@@ -455,16 +237,11 @@
     }
   }
 
-
   .wsb-testimonial-heading {
     font-size: 32px;
     color: #333;
     margin-top: 40px;
     margin-bottom: 14px;
-
-    @media (max-width: 480px) {
-      display: none;
-    }
   }
 
   .wsb-testimonial {

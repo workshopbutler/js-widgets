@@ -1,6 +1,7 @@
 import {logError} from '../../common/Error';
 import IPlainObject from '../../interfaces/IPlainObject';
 import WidgetConfig from './WidgetConfig';
+import TrainersConfig from './TrainersConfig';
 
 /**
  * Contains @RegistrationPageConfig widget configuration options
@@ -32,7 +33,11 @@ export default class RegistrationPageConfig extends WidgetConfig {
     return valid;
   }
   readonly eventPageUrl?: string;
-  readonly trainers: boolean;
+
+  /**
+   * Trainers' configuration
+   */
+  readonly trainers: TrainersConfig;
 
   /**
      * When true, expired tickets are shown
@@ -62,7 +67,7 @@ export default class RegistrationPageConfig extends WidgetConfig {
   protected constructor(options: IPlainObject) {
     super(options);
     this.eventPageUrl = options.eventPageUrl ? options.eventPageUrl : undefined;
-    this.trainers = false;
+    this.trainers = new TrainersConfig(options.trainers);;
     this.expiredTickets = options.expiredTickets !== undefined ? options.expiredTickets : false;
     this.numberOfTickets = options.numberOfTickets !== undefined ? options.numberOfTickets : true;
     if (options.country) {

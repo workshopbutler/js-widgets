@@ -6,9 +6,13 @@
     <div class="wsb-body">
       <div class="wsb-toolbar wsb-first">
         {% from "./event/registerButton.njk" import registerButton %}
+        {% from "./event/info.njk" import infoHead, infoTickets, infoTrainers %}
+        {{ infoHead(event, config, _t, _f) }}
         {{ registerButton(event, config, _t, _f) }}
-        {% from "./event/info.njk" import info %}
-        {{ info(event, config, _t, _f) }}
+        {{ infoTickets(event, config, _t, _f) }}
+        {% if config.trainers.show %}
+          {{ infoTrainers(event, config.trainers.bio, _t, _f) }}
+        {% endif %}
       </div>
 
       <div class="wsb-description">
@@ -22,7 +26,7 @@
 
       <div class="wsb-toolbar wsb-second">
         {% from "./event/share.njk" import shareEvent %}
-        {{ shareEvent(event, _t, _f) }}
+
         {% if config.showAdditionalButton %}
           {{ registerButton(event, config, _t, _f) }}
         {% endif %}
@@ -35,6 +39,8 @@
             <div data-events-list></div>
           </div>
         {% endif %}
+
+        {{ shareEvent(event, _t, _f) }}
       </div>
     </div>
   </div>
