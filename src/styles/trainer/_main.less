@@ -1,5 +1,17 @@
 .wsb-content .wsb-trainer-profile {
 
+  // Layout
+  @media (min-width: 800px) {
+    display: grid;
+  }
+
+  grid-template-columns: calc(100% - 30px - 300px) 30px 300px;
+  grid-template-rows: auto;
+  grid-template-areas: "header . first"
+                        "descr . first"
+                        "descr . second";
+
+
   .wsb-trainer__header {
     margin-bottom: 15px;
     grid-area: header;

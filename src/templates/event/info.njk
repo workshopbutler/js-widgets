@@ -1,6 +1,4 @@
 {% from "../common/flag.njk" import flag %}
-{% from "./freeTicket.njk" import freeTicket %}
-{% from "./paidTicket.njk" import paidTicket %}
 
 {% macro infoHead(event, config, _t, _f) %}
   <div class="wsb-info">
@@ -15,20 +13,6 @@
 
     <div class="wsb-info__footer">{{ _f(event.language) }}</div>
   </div>
-{% endmacro %}
-
-{% macro infoTickets(event, config, _t, _f) %}
-  {% if event.withTickets() %}
-    <div class="wsb-tickets">
-      {% if event.free %}
-        {{ freeTicket(event.tickets, _t, _f) }}
-      {% else %}
-        {% for ticket in event.tickets.types %}
-          {{ paidTicket(ticket, config, _t, _f) }}
-        {% endfor %}
-      {% endif %}
-    </div>
-  {% endif %}
 {% endmacro %}
 
 {% macro infoTrainers(event, expand_trainer_bio, _t, _f) %}

@@ -2,91 +2,82 @@
 
 .wsb-tickets {
   margin-bottom: 30px;
+}
 
-  @media (max-width: 600px) {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-
-    > * {
-      width: calc(50% - 2px);
-      margin-bottom: 4px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    flex-direction: column;
-
-    > * {
-      width: 100%;
-    }
+.wsb-ticket-free {
+  background-color: #E2F3DC !important;
+  .wsb-ticket__val {
+    color: #819D44;
   }
 }
 
 .wsb-ticket {
-  padding: 10px;
   background-color: #fff;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-radius: 6px;
   text-align: left;
   margin-bottom: 4px;
 
-  @media (max-width: 600px) {
-    font-size: 13px;
+  &.state-closed {
+    opacity: 0.5;
+
+    position: relative;
+    overflow: hidden;
+
+    &:before {
+        position: absolute;
+        content: '';
+        background: #E73B2B;
+        display: block;
+        width: 100%;
+        height: 5px;
+        transform: rotate(-25deg);
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
   }
 
-  &.state-closed {
-    background-color: #ffffff;
-    border-color: #c1bfbf;
+  &.state-highlited {
+    background-color: #FEF3DE !important;
+    border: 1px solid rgba(244, 181, 66, 0.4) !important;
 
     .wsb-ticket__val {
-      color: #888888;
-    }
-
-    .wsb-ticket__name {
-      color: #333333;
+      color: #F5AE1E;
     }
   }
+
+  &>div {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
 }
 
-.wsb-ticket__val {
-  margin-bottom: 0.4em;
-  font-size: 32px;
 
-  @media (max-width: 600px) {
-    font-size: 24px;
-    margin-bottom: 0;
-  }
+.wsb-ticket__val {
+  padding-top: 6px;
+  font-size: 32px;
+  font-weight: bold;
 }
 
 .wsb-ticket__name {
-  @media (max-width: 600px) {
-    font-size: 16px;
-  }
+  padding-bottom: 6px;
 }
 
 .wsb-ticket__desc {
   color: #788188;
   min-height: 1.3em;
   font-size: 0.8em;
-
-  @media (max-width: 600px) {
-    font-size: inherit;
-  }
 }
 
 .wsb-ticket__footer {
   color: #788188;
   font-size: 0.8em;
-  margin-top: 1em;
-
-  @media (max-width: 600px) {
-    text-align: right;
-    color: #333333;
-    font-size: inherit;
-    margin-top: 0;
-  }
+  padding: 6px 16px;
+  background: #fff;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
-
-

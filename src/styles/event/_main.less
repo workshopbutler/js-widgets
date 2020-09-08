@@ -1,10 +1,63 @@
 .wsb-content {
+  //Layout
+
+  .wsb-event-page {
+
+    .wsb-header {
+      background-size: 0px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    @media (max-width: 800px) {
+      .wsb-header.wsb-show-cover {
+        height: 320px;
+        background-size: cover;
+        background-position: center;
+        color:#FFFFFF;
+      }
+    }
+
+
+    .wsb-body {
+      padding-top: 20px;
+
+      display: flex;
+      flex-direction: column;
+
+      .wsb-info, .wsb-register__btn-wrapper { display: none;}
+      .wsb-description {
+        .wsb-cover-image { display: none; }
+        .wsb-info, .wsb-register__btn-wrapper { display: block; }
+      }
+
+
+
+      @media (min-width: 800px) {
+        flex-direction: row;
+
+        .wsb-description {
+          .wsb-cover-image { display: block; }
+          .wsb-info, .wsb-register__btn-wrapper { display: none; }
+        }
+
+        .wsb-aside {
+          width: 300px;
+          margin-left: 30px;
+          .wsb-info, .wsb-register__btn-wrapper { display: block; }
+        }
+      }
+    }
+
+  }
+
   // sidebar register button
-  .wsb-sidebar__register-wrapper {
+  .wsb-register__btn-wrapper {
     margin-bottom: 2em;
   }
 
-  .wsb-sidebar__register {
+  .wsb-register__btn {
     display: block;
     width: 100%;
     padding: 1em 0;

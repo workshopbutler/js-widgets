@@ -1,38 +1,60 @@
+{% from "./event/registerButton.njk" import registerButton %}
+{% from "./event/info.njk" import infoHead, infoTrainers %}
+{% from "./event/freeTicket.njk" import freeTicket %}
+{% from "./event/paidTicket.njk" import paidTicket %}
+{% from "./event/share.njk" import shareEvent %}
+
 <div class="wsb-content">
   <div class="wsb-page wsb-event-page">
+  {% if config.coverImage.showInside() and event.coverImage.url %}
+    {% set cover = "background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6)), url(" + event.coverImage.url + ");" %}
+    <div class="wsb-header wsb-show-cover" style="{{ cover }}" >
+  {% else %}
     <div class="wsb-header">
+  {% endif %}
+      {% if event.confirmed %}<div style="color:#819D44;">Confirmed <i class="fas fa-check"></i></div>{% endif %}
       <h1>{{ event.title }}</h1>
     </div>
     <div class="wsb-body">
-      <div class="wsb-toolbar wsb-first">
-        {% from "./event/registerButton.njk" import registerButton %}
-        {% from "./event/info.njk" import infoHead, infoTickets, infoTrainers %}
-        {{ infoHead(event, config, _t, _f) }}
-        {{ registerButton(event, config, _t, _f) }}
-        {{ infoTickets(event, config, _t, _f) }}
-        {% if config.trainers.show %}
-          {{ infoTrainers(event, config.trainers.bio, _t, _f) }}
-        {% endif %}
-      </div>
-
       <div class="wsb-description">
         {% if config.coverImage.showInside() and event.coverImage %}
           <img src="{{ event.coverImage.url }}" class="wsb-cover-image"/>
         {% endif %}
+
+        {{ infoHead(event, config, _t, _f) }}
+        {{ registerButton(event, config, _t, _f) }}
+
         {% if event.description %}
           <div class="wsb-desc">{{ event.description | safe }}</div>
         {% endif %}
       </div>
 
-      <div class="wsb-toolbar wsb-second">
-        {% from "./event/share.njk" import shareEvent %}
+      <div class="wsb-aside">
+        {{ infoHead(event, config, _t, _f) }}
+        {{ registerButton(event, config, _t, _f) }}
+
+        {% if event.withTickets() %}
+          <div class="wsb-tickets">
+            {% if event.free %}
+              {{ freeTicket(event.tickets, _t, _f) }}
+            {% else %}
+              {% for ticket in event.tickets.types %}
+                {{ paidTicket(ticket, config, _t, _f) }}
+              {% endfor %}
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if config.trainers.show %}
+          {{ infoTrainers(event, config.trainers.bio, _t, _f) }}
+        {% endif %}
 
         {% if config.showAdditionalButton %}
           {{ registerButton(event, config, _t, _f) }}
         {% endif %}
 
         {% if config.showFutureEvents %}
-          <div class="wsb-info" id="upcoming-events">
+          <div class="wsb-events" id="upcoming-events">
             <div class="wsb-events__title">
               {{ _t('sidebar.future') }}:
             </div>
@@ -42,6 +64,5 @@
 
         {{ shareEvent(event, _t, _f) }}
       </div>
-    </div>
   </div>
 </div>

@@ -10,16 +10,15 @@
         {{ ticket.name }}
       </div>
 
-      {% set ticketDescr = _f(ticket, 'desc') %}
-      {% if ticketDescr %}
-        <div class="wsb-ticket__desc">
-          {{ ticketDescr }}
-        </div>
-      {% endif %}
-
-      {% if not ticket.ended() and config.numberOfTickets %}
+      {% if  ticket.active() %}
         <div class="wsb-ticket__footer">
-          {{ _f(ticket, 'state') }}
+          {% set ticketDescr = _f(ticket, 'desc') %}
+          {% if ticketDescr %}
+            {{ ticketDescr }} •
+          {% endif %}
+          {% if not ticket.ended() and config.numberOfTickets %}
+            {{ _f(ticket, 'state') }}
+          {% endif %}
         </div>
       {% endif %}
     </div>
