@@ -93,7 +93,7 @@ let webpackConfig = {
             }
           }
         ]
-      },
+      }
     ]
   },
   resolve: {

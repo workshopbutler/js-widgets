@@ -1,108 +1,63 @@
-@import "./_form";
-@import "./_trainers";
-@import "./_sharing";
-@import "./_tickets";
-@import "./_payment";
-
-
-// high-level layout
 .wsb-content {
-  position: relative;
-  min-height: 100%;
+  //Layout
 
-  .wsb-center {
-    margin-right: auto;
-    margin-left: auto;
-  }
+  .wsb-event-page {
 
-  // header
-  .wsb-header h1 {
-    margin: 0 0 14px;
-    font-size: 48px;
-    font-weight: 600;
-    -webkit-font-smoothing: antialiased;
-
-    @media (max-width: 600px) {
-      font-size: 40px;
-    }
-  }
-
-  // info block
-  .wsb-info-block {
-    @media (max-width: 600px) {
+    .wsb-header {
+      background-size: 0px;
       display: flex;
       flex-direction: column;
-      flex-wrap: wrap;
+      justify-content: flex-end;
     }
-  }
-
-  .wsb-body {
-    padding-top: 20px;
-    grid-template-columns: calc(100% - 30px - 300px) 30px 300px;
 
     @media (max-width: 800px) {
-      grid-template-columns: calc(100% - 20px - 200px) 20px 200px;
-    }
-
-    @media (max-width: 600px) {
-      display: flex;
-      flex-direction: column;
-
-      > *:nth-child(1) { order: 1 }
-      > *:nth-child(2) { order: 3 }
-      > *:nth-child(3) { order: 2 }
-    }
-  }
-
-  .wsb-info {
-    margin-bottom: 2em;
-
-    @media (max-width: 600px) {
-      margin-bottom: 1em;
-    }
-  }
-
-  .wsb-info__title {
-    font-weight: bold;
-    -webkit-font-smoothing: antialiased;
-
-    span {
-      display: none;
-    }
-  }
-
-  .wsb-info__footer {
-    color: #788188;
-  }
-
-  .wsb-cover-image {
-    width: 100%;
-  }
-
-  .wsb-toolbar {
-    &.wsb-first {
-      @media (max-width: 600px) {
-        display: flex;
-        flex-direction: column;
-
-        > *:nth-child(1) { order: 2 }
-        > *:nth-child(2) { order: 1 }
-        > *:nth-child(3) { order: 3 }
-        > *:nth-child(4) { order: 4 }
+      .wsb-header.wsb-show-cover {
+        height: 320px;
+        background-size: cover;
+        background-position: center;
+        color:#FFFFFF;
       }
     }
 
-    &.wsb-second {
-      margin-bottom: 16px;
+
+    .wsb-body {
+      padding-top: 20px;
+
+      display: flex;
+      flex-direction: column;
+
+      .wsb-info, .wsb-register__btn-wrapper { display: none;}
+      .wsb-description {
+        .wsb-cover-image { display: none; }
+        .wsb-info, .wsb-register__btn-wrapper { display: block; }
+      }
+
+
+
+      @media (min-width: 800px) {
+        flex-direction: row;
+
+        .wsb-description {
+          .wsb-cover-image { display: block; }
+          .wsb-info, .wsb-register__btn-wrapper { display: none; }
+        }
+
+        .wsb-aside {
+          width: 300px;
+          margin-left: 30px;
+          .wsb-info, .wsb-register__btn-wrapper { display: block; }
+        }
+      }
     }
+
   }
 
   // sidebar register button
-  .wsb-sidebar__register-wrapper {
+  .wsb-register__btn-wrapper {
     margin-bottom: 2em;
   }
 
-  .wsb-sidebar__register {
+  .wsb-register__btn {
     display: block;
     width: 100%;
     padding: 1em 0;
@@ -134,7 +89,7 @@
   }
 
   .wsb-events__title {
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 10px;
   }
 
@@ -165,5 +120,18 @@
 
   .wsb-before-registration {
     display: none;
+  }
+
+  .wsb-registration-details {
+    display: flex;
+    align-items: flex-start;
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+      .wsb-label {
+        flex-basis: auto;
+        display: none;
+      }
+    }
   }
 }

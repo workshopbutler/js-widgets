@@ -43,10 +43,16 @@ export default class TrainerProfileConfig extends WidgetConfig {
    */
   readonly showPastEvents: boolean;
 
+  /**
+   * True if testimonials should be shown on top of the page
+   */
+  readonly showTestimonialsOnTop: boolean;
+
   protected constructor(options: IPlainObject) {
     super(options);
     this.widgets = options.widgets !== undefined ? options.widgets : [];
     this.showFutureEvents = options.futureEvents !== undefined ? options.futureEvents : true;
     this.showPastEvents = options.pastEvents !== undefined ? options.pastEvents : true;
+    this.showTestimonialsOnTop = !!options.showTestimonialsOnTop;
   }
 }

@@ -43,7 +43,7 @@
     },
     "category": null,
     "title": "2-day Workshop",
-    "hashed_id": "event01",
+    "hashed_id": "9103",
     "type": {
       "id": 1126,
       "name": "Practitioner Course Level 1",
@@ -70,7 +70,7 @@
     "description": "<h2><span style=\"color: inherit; font-family: inherit;\">Growing Organizational Agility with Critical Thinking Ability</span><br></h2><p><br></p><div><p>This is strongly recommended for those who have not previously taken a foundational workshop in critical thinking. It will introduce the basic components of critical thinking, ways to build those components into the design of what you teach, and ways to make that design effective.<br></p><p><br></p><p>We do not understand critical thinking as something additional to content, but rather as integral to it. We focus, therefore, on teaching students to learn not random bits and pieces of information, but systems, organized networks of concepts, active modes of thinking.</p><p><br></p><p><strong>Participants Will</strong></p><p><br></p><ol><li>form a basic concept of critical thinking, understanding in general why it is essential to the mastery of content and effective day-to-day problem solving<br><br></li><li>form a basic concept of the affective and cognitive principles &amp; strategies essential to critical teaching<br><br></li><li>practice using critical thinking in the solution of some everyday problems as well as in the redesign of instructional units.</li></ol><p><br></p><p><strong>Program Description</strong></p><p><br></p><p>The session begins with a general introduction to critical thinking and to its significance not only to the academic but also to the vocational and personal success of students. This first session closes with questions and answers. It is followed by hands-on sessions during which small group activities are used to illustrate the application of various dimensions of critical thinking strategies to instruction as well as to personal life.<br><br>Each session is designed to build on the previous sessions and cultivates increasing knowledge of and skill in critical teaching. Specific topics include: the intellectual standards essential to in-depth, higher-order learning; the basic vocabulary of critical thinking; the micro-skills and macro-abilities of critical thinking; the importance of precision in language usage; how to question students Socratically; how to design assignments, activities, and tests that require critical thinking; and how to assess critical thinking skills and abilities.</p></div><p><br></p>",
     "tags": [],
     "tickets": {},
-    "confirmed": false,
+    "confirmed": true,
     "featured": false,
     "card_payment": {
       "active": true,
@@ -102,7 +102,7 @@
     },
     "category": null,
     "title": "3-day Happiness Workshop",
-    "hashed_id": "event02",
+    "hashed_id": "8553",
     "type": {
       "id": 1126,
       "name": "Practitioner Course Level 1",
@@ -141,7 +141,7 @@
     "public": true,
     "sold_out": false,
     "invoice": null,
-    "id": 8553,
+    "id": 8329,
     "language": {
       "spoken": [
         "EN"
@@ -161,7 +161,7 @@
     },
     "category": null,
     "title": "4-day Awesomeness Workshop",
-    "hashed_id": "event03",
+    "hashed_id": "8329",
     "type": {
       "id": 1126,
       "name": "Practitioner Course Level 1",

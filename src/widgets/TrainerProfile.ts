@@ -89,6 +89,59 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
     }
   }
 
+  /**
+   * Load slider script
+   */
+  protected initTestimonialsSlider(onLoad: () => any) {
+    const url: string = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
+
+    $.getScript(url).done(onLoad);
+  }
+
+  /**
+   * Initialize bottom testimonials slider
+   */
+  protected initTestimonialsBottom() {
+    $(`.owl-carousel-comment`).owlCarousel({
+      items: 1,
+      dots: false,
+      stagePadding: 16,
+      margin: 10
+    });
+  }
+
+  /**
+   * Initialize top testimonials slider
+   */
+  protected initTestimonialsTop() {
+    const owl = $(`.owl-carousel-testimonial`);
+
+    $(`.wsb-testimonials-counter .total`)
+      .text(owl.find("> div").length);
+
+    owl.owlCarousel({
+      items: 1,
+      dots: false,
+      nav: true
+    });
+
+    owl.on('changed.owl.carousel', function(e) {
+      $(`.wsb-testimonials-counter .current`)
+        .text(+e.item.index + 1);
+    });
+  }
+
+  protected initBadgesShowBtn() {
+    const allBadges = $('.wsb-badges-inner');
+    const btnMore = $('.wsb-trainer-more');
+
+    btnMore.on('click', () => {
+      btnMore.hide();
+      allBadges.removeClass('wsb-badges-hidden');
+      allBadges.addClass('wsb-badges-visible');
+    });
+  }
+
   private init() {
     if (this.config.theme) {
       this.$root.addClass(this.config.theme);
@@ -118,9 +171,17 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
 
       this.$root.html(content);
       this.updateHTML();
+
       if (this.config.widgets) {
         WidgetFactory.launch({apiKey: this.apiKey}, this.config.widgets);
-      }
+      };
+
+      this.initTestimonialsSlider(()=> {
+        this.initTestimonialsTop();
+        if (window.innerWidth <= 480) this.initTestimonialsBottom();
+      });
+
+      this.initBadgesShowBtn();
     });
   }
 

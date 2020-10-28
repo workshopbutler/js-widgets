@@ -1,11 +1,9 @@
-@import "core/_mixins";
 @import "core/_normalize";
 @import "core/_scaffolding";
-@import "core/_buttons";
-@import "core/_helpers";
 @import "core/_media";
 
-@import "_grid";
+@import "base/_main";
+@import "base/_form";
 
 // list
 @import "list/_common";
@@ -16,10 +14,16 @@
 @import "list/_trainers";
 
 // event page
+@import "./event/_form";
+@import "./event/_trainers";
+@import "./event/_sharing";
+@import "./event/_tickets";
+@import "./event/_payment";
 @import "./event/_main";
 
 // trainer page
 @import "./trainer/_main";
+@import "./trainer/_testimonialsSlider.less";
 
 // list of attendees
 @import "_attendees";

@@ -9,10 +9,18 @@
     data-trainer-language="{{ trainer.languages.join(',') }}"
     data-trainer-trainer="{{ trainer.fullName() }}"
   >
+
     <a href="{{ trainer.url }}">
       {% set photo = "background-image: url(" + trainer.photo + ");" %}
       <div class="wsb-trainer-tile_img" style="{{ photo }}"></div>
     </a>
+
+    {% if config.showRating and trainer.stats.total.publicStats.rating > 0 %}
+      <div class="wsb-trainer-tile__rating">
+        {{ _f(trainer.stats.total.publicStats.rating) }}
+        <i class="fas fa-star"></i>
+      </div>
+    {% endif %}
 
     <div class="wsb-trainer-tile__info">
       <a href="{{ trainer.url }}">
@@ -26,17 +34,13 @@
         </div>
       {% endif %}
 
-      <div>
-        {% if config.showBadges %}
-          {% for badge in trainer.badges %}
-            <img src="{{ badge.url }}" width="30px"/>
-          {% endfor %}
-        {% endif %}
-        {% if config.showRating and trainer.stats.total.publicStats.rating > 0 %}
-          <i class="fas fa-star"></i>
-          {{ _f(trainer.stats.total.publicStats.rating) }}
-        {% endif %}
-      </div>
+      {% if config.showBadges %}
+        <div class="wsb-trainer-tile__badges">
+        {% for badge in trainer.badges %}
+          <img src="{{ badge.url }}" width="30px"/>
+        {% endfor %}
+        </div>
+      {% endif %}
     </div>
   </div>
 {% endmacro %}

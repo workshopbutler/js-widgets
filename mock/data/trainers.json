@@ -11,36 +11,98 @@
       "country": "RO"
     },
     "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386307/wsqyev2azquqz1rozj9m.jpg",
-    "badges": [],
-    "bio": "<p>    Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.    <br></p>",
+    "badges": [
+      {
+        "id" : 1,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 2,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 3,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 4,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 5,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 6,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 7,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      }
+    ],
+    "bio": "<p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p>",
     "countries": [
       "RO"
     ],
     "email": "lisa@workshopbutler.com",
     "first_name": "Lisa",
-    "id": 4372,
+    "id": 4312,
     "materials": [],
     "languages": [
       "English"
     ],
     "last_name": "Hayley",
     "social_links": {
-      "twitter": null,
-      "facebook": null,
+      "twitter": "https://www.linkedin.com/company/workshop-butler/",
+      "facebook": "https://www.linkedin.com/company/workshop-butler/",
       "linkedin": "https://www.linkedin.com/company/workshop-butler/",
-      "website": null,
-      "blog": null
+      "website": "https://www.linkedin.com/company/workshop-butler/",
+      "blog": "https://www.linkedin.com/company/workshop-butler/"
     },
     "tags": [],
     "organisations": [],
-    "testimonials": [],
+    "testimonials": [
+      {
+        "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386516/yaoppc4slvwcccn6srne.jpg",
+        "attendee": "Andy",
+        "company": "Weejee",
+        "rating": 9.99,
+        "verified": true,
+        "content": "This talk goes through a production case-study of fashion-house Chloé, looking at specific fixes which we then validated using real-world user-experience metrics. I hope you find it useful! You might also find this new case study write-up from Chloé's engineering team a fun read :)",
+        "reason": "Feedback for training «S3 Online Decision Making Practice»"
+      },
+      {
+        "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386516/yaoppc4slvwcccn6srne.jpg",
+        "attendee": "Smallz",
+        "company": "Weejee",
+        "rating": 4.7,
+        "content": "Core Web Vitals metrics. We'll use tools like Lighthouse & Chrome DevTools, show you code snippets for fixes, and highlight how you too can get fast and stay fast."
+      },
+      {
+        "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386516/yaoppc4slvwcccn6srne.jpg",
+        "attendee": "Kile",
+        "company": "Danzig",
+        "rating": 3,
+        "verified": true,
+        "content": "Her warmth, clarity, and practicality are complemented by her ability to create spaces.",
+        "reason": "Feedback for training «S3 Online Decision Making Practice»"
+      }
+    ],
     "statistics": {
       "total": {
         "public": {
-          "rating": 7,
+          "rating": 9.62,
           "median": 0,
           "nps": 0,
-          "evaluations": 10,
+          "evaluations": 88,
           "votes": {
             "0": 0,
             "1": 0,
@@ -56,10 +118,10 @@
           }
         },
         "private": {
-          "rating": 0,
+          "rating": 9.6,
           "median": 0,
           "nps": 0,
-          "evaluations": 0,
+          "evaluations": 34,
           "votes": {
             "0": 0,
             "1": 0,
@@ -74,7 +136,7 @@
             "10": 0
           }
         },
-        "workshops": 3
+        "workshops": 329
       },
       "recent": {
         "public": {
@@ -117,7 +179,7 @@
         },
         "workshops": 3
       },
-      "years_of_experience": 0
+      "years_of_experience": 10
     }
   },
   {
@@ -139,7 +201,7 @@
     ],
     "email": "brandon@workshopbutler.com",
     "first_name": "Brandon",
-    "id": 4408,
+    "id": 4402,
     "materials": [],
     "languages": [
       "English",
@@ -274,6 +336,1130 @@
       "linkedin": "https://www.linkedin.com/company/workshop-butler/",
       "website": "https://workshopbutler.com",
       "blog": null
+    },
+    "tags": [],
+    "organisations": [],
+    "testimonials": [],
+    "statistics": {
+      "total": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "recent": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "years_of_experience": 0
+    }
+  },
+
+  {
+    "active": true,
+    "phone": null,
+    "address": {
+      "street_1": null,
+      "street_2": null,
+      "city": null,
+      "province": null,
+      "postcode": null,
+      "country": "RO"
+    },
+    "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386307/wsqyev2azquqz1rozj9m.jpg",
+    "badges": [
+      {
+        "id" : 1,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 2,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      }
+    ],
+    "bio": "",
+    "countries": [
+      "RO"
+    ],
+    "email": "lisa@workshopbutler.com",
+    "first_name": "Without",
+    "id": 4398,
+    "materials": [],
+    "languages": [
+      "English"
+    ],
+    "last_name": "Description",
+    "social_links": {
+      "twitter": "https://www.linkedin.com/company/workshop-butler/",
+      "facebook": "https://www.linkedin.com/company/workshop-butler/",
+      "linkedin": "https://www.linkedin.com/company/workshop-butler/",
+      "website": "https://www.linkedin.com/company/workshop-butler/",
+      "blog": "https://www.linkedin.com/company/workshop-butler/"
+    },
+    "tags": [],
+    "organisations": [],
+    "testimonials": [
+      {
+        "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386516/yaoppc4slvwcccn6srne.jpg",
+        "attendee": "Andy",
+        "company": "Weejee",
+        "rating": 9.99,
+        "verified": true,
+        "content": "This talk goes through a production case-study of fashion-house Chloé, looking at specific fixes which we then validated using real-world user-experience metrics. I hope you find it useful! You might also find this new case study write-up from Chloé's engineering team a fun read :)",
+        "reason": "Feedback for training «S3 Online Decision Making Practice»"
+      },
+      {
+        "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386516/yaoppc4slvwcccn6srne.jpg",
+        "attendee": "Smallz",
+        "company": "Weejee",
+        "rating": 4.7,
+        "content": "Core Web Vitals metrics. We'll use tools like Lighthouse & Chrome DevTools, show you code snippets for fixes, and highlight how you too can get fast and stay fast."
+      },
+      {
+        "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386516/yaoppc4slvwcccn6srne.jpg",
+        "attendee": "Kile",
+        "company": "Danzig",
+        "rating": 3,
+        "verified": true,
+        "content": "Her warmth, clarity, and practicality are complemented by her ability to create spaces.",
+        "reason": "Feedback for training «S3 Online Decision Making Practice»"
+      }
+    ],
+    "statistics": {
+      "total": {
+        "public": {
+          "rating": 9.62,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 88,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 9.6,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 34,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 329
+      },
+      "recent": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 3
+      },
+      "years_of_experience": 10
+    }
+  },
+  {
+    "active": true,
+    "phone": null,
+    "address": {
+      "street_1": null,
+      "street_2": null,
+      "city": null,
+      "province": null,
+      "postcode": null,
+      "country": "RO"
+    },
+    "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386307/wsqyev2azquqz1rozj9m.jpg",
+    "badges": [
+      {
+        "id" : 1,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 2,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      }
+    ],
+    "bio": "<p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p>",
+    "countries": [
+      "RO"
+    ],
+    "email": "lisa@workshopbutler.com",
+    "first_name": "Without",
+    "id": 1124,
+    "materials": [],
+    "languages": [
+      "English"
+    ],
+    "last_name": "Socials",
+    "social_links": {
+      "twitter": "",
+      "facebook": "",
+      "linkedin": "",
+      "website": "",
+      "blog": ""
+    },
+    "tags": [],
+    "organisations": [],
+    "testimonials": [
+      {
+        "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386516/yaoppc4slvwcccn6srne.jpg",
+        "attendee": "Andy",
+        "company": "Weejee",
+        "rating": 9.99,
+        "verified": true,
+        "content": "This talk goes through a production case-study of fashion-house Chloé, looking at specific fixes which we then validated using real-world user-experience metrics. I hope you find it useful! You might also find this new case study write-up from Chloé's engineering team a fun read :)",
+        "reason": "Feedback for training «S3 Online Decision Making Practice»"
+      },
+      {
+        "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386516/yaoppc4slvwcccn6srne.jpg",
+        "attendee": "Smallz",
+        "company": "Weejee",
+        "rating": 4.7,
+        "content": "Core Web Vitals metrics. We'll use tools like Lighthouse & Chrome DevTools, show you code snippets for fixes, and highlight how you too can get fast and stay fast."
+      },
+      {
+        "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386516/yaoppc4slvwcccn6srne.jpg",
+        "attendee": "Kile",
+        "company": "Danzig",
+        "rating": 3,
+        "verified": true,
+        "content": "Her warmth, clarity, and practicality are complemented by her ability to create spaces.",
+        "reason": "Feedback for training «S3 Online Decision Making Practice»"
+      }
+    ],
+    "statistics": {
+      "total": {
+        "public": {
+          "rating": 9.62,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 88,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 9.6,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 34,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 329
+      },
+      "recent": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 3
+      },
+      "years_of_experience": 10
+    }
+  },
+  {
+    "active": true,
+    "phone": null,
+    "address": {
+      "street_1": null,
+      "street_2": null,
+      "city": null,
+      "province": null,
+      "postcode": null,
+      "country": "RO"
+    },
+    "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386307/wsqyev2azquqz1rozj9m.jpg",
+    "badges": [
+      {
+        "id" : 1,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 2,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 3,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      }
+    ],
+    "bio": "<p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p>",
+    "countries": [
+      "RO"
+    ],
+    "email": "lisa@workshopbutler.com",
+    "first_name": "Without",
+    "id": 2309,
+    "materials": [],
+    "languages": [
+      "English"
+    ],
+    "last_name": "Ratings and testimonials",
+    "social_links": {
+      "twitter": "https://www.linkedin.com/company/workshop-butler/",
+      "facebook": "https://www.linkedin.com/company/workshop-butler/",
+      "linkedin": "https://www.linkedin.com/company/workshop-butler/",
+      "website": "https://www.linkedin.com/company/workshop-butler/",
+      "blog": "https://www.linkedin.com/company/workshop-butler/"
+    },
+    "tags": [],
+    "organisations": [],
+    "testimonials": [],
+    "statistics": {
+      "total": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "recent": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "years_of_experience": 3
+    }
+  },
+  {
+    "mock": {
+      "upcoming_events": [],
+      "past_events": []
+    },
+    "active": true,
+    "phone": null,
+    "address": {
+      "street_1": null,
+      "street_2": null,
+      "city": null,
+      "province": null,
+      "postcode": null,
+      "country": "RO"
+    },
+    "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386307/wsqyev2azquqz1rozj9m.jpg",
+    "badges": [],
+    "bio": "",
+    "countries": [
+      "US"
+    ],
+    "email": "example@workshopbutler.com",
+    "first_name": "Kinda",
+    "id": 3722,
+    "materials": [],
+    "languages": [
+      "English"
+    ],
+    "last_name": "Empty",
+    "social_links": {
+      "twitter": "",
+      "facebook": "",
+      "linkedin": "",
+      "website": "",
+      "blog": ""
+    },
+    "tags": [],
+    "organisations": [],
+    "testimonials": [],
+    "statistics": {
+      "total": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "recent": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "years_of_experience": 0
+    }
+  },
+  {
+    "mock": {
+      "upcoming_events": [],
+      "past_events": [9103]
+    },
+    "active": true,
+    "phone": null,
+    "address": {
+      "street_1": null,
+      "street_2": null,
+      "city": null,
+      "province": null,
+      "postcode": null,
+      "country": "US"
+    },
+    "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386396/jwpedz3jtfawgcif2fau.jpg",
+    "badges": [
+      {
+        "id" : 1,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 2,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 3,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      }
+    ],
+    "bio": "",
+    "countries": [
+      "US"
+    ],
+    "email": "adriana@workshopbutler.com",
+    "first_name": "Profile",
+    "id": 4224,
+    "materials": [],
+    "languages": [
+      "English"
+    ],
+    "last_name": "One",
+    "social_links": {
+      "twitter": "",
+      "facebook": "",
+      "linkedin": "",
+      "website": "",
+      "blog": ""
+    },
+    "tags": [],
+    "organisations": [],
+    "testimonials": [],
+    "statistics": {
+      "total": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "recent": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "years_of_experience": 0
+    }
+  },
+  {
+    "active": true,
+    "phone": null,
+    "address": {
+      "street_1": null,
+      "street_2": null,
+      "city": null,
+      "province": null,
+      "postcode": null,
+      "country": "IT"
+    },
+    "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386396/jwpedz3jtfawgcif2fau.jpg",
+    "badges": [
+      {
+        "id" : 1,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 2,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      }
+    ],
+    "bio": "<p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p>",
+    "countries": [
+      "IT"
+    ],
+    "email": "example@workshopbutler.com",
+    "first_name": "Profile",
+    "id": 4715,
+    "materials": [],
+    "languages": [
+      "English"
+    ],
+    "last_name": "Two",
+    "social_links": {
+      "twitter": "",
+      "facebook": "https://www.linkedin.com/company/workshop-butler/",
+      "linkedin": "https://www.linkedin.com/company/workshop-butler/",
+      "website": "https://www.linkedin.com/company/workshop-butler/",
+      "blog": ""
+    },
+    "tags": [],
+    "organisations": [],
+    "testimonials": [],
+    "statistics": {
+      "total": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "recent": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "years_of_experience": 0
+    }
+  },
+  {
+    "mock": {
+      "upcoming_events": [],
+      "past_events": []
+    },
+    "active": true,
+    "phone": null,
+    "address": {
+      "street_1": null,
+      "street_2": null,
+      "city": null,
+      "province": null,
+      "postcode": null,
+      "country": "IT"
+    },
+    "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386396/jwpedz3jtfawgcif2fau.jpg",
+    "badges": [
+      {
+        "id" : 1,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 2,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      }
+    ],
+    "bio": "<p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p><p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p><p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p><p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p><p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p>",
+    "countries": [
+      "IT"
+    ],
+    "email": "example@workshopbutler.com",
+    "first_name": "Profile",
+    "id": 6801,
+    "materials": [],
+    "languages": [
+      "English"
+    ],
+    "last_name": "Three",
+    "social_links": {
+      "twitter": "",
+      "facebook": "https://www.linkedin.com/company/workshop-butler/",
+      "linkedin": "https://www.linkedin.com/company/workshop-butler/",
+      "website": "https://www.linkedin.com/company/workshop-butler/",
+      "blog": ""
+    },
+    "tags": [],
+    "organisations": [],
+    "testimonials": [],
+    "statistics": {
+      "total": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "recent": {
+        "public": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "private": {
+          "rating": 0,
+          "median": 0,
+          "nps": 0,
+          "evaluations": 0,
+          "votes": {
+            "0": 0,
+            "1": 0,
+            "2": 0,
+            "3": 0,
+            "4": 0,
+            "5": 0,
+            "6": 0,
+            "7": 0,
+            "8": 0,
+            "9": 0,
+            "10": 0
+          }
+        },
+        "workshops": 0
+      },
+      "years_of_experience": 0
+    }
+  },
+  {
+    "mock": {
+      "upcoming_events": [],
+      "past_events": []
+    },
+    "active": true,
+    "phone": null,
+    "address": {
+      "street_1": null,
+      "street_2": null,
+      "city": null,
+      "province": null,
+      "postcode": null,
+      "country": "IT"
+    },
+    "avatar": "https://res.cloudinary.com/wsb/image/upload/t_medium/v1592386396/jwpedz3jtfawgcif2fau.jpg",
+    "badges": [
+      {
+        "id" : 1,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      },
+      {
+        "id" : 2,
+        "name" : "Certificate of Attendance Foundation Workshop",
+        "url" : "https://d28wcrfr1raun5.cloudfront.net/badges/a8544888b3e348d3ab8c41a70d42d78a.jpg"
+      }
+    ],
+    "bio": "<p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p><p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p><p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p><p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p><p>Co-developer and senior teacher, combining a background in communications, business administration and events management with a growing experience as a trainer and mentor. Her warmth, clarity, and practicality are complemented by her ability to create spaces where people collaborate effectively towards a shared purpose.</p>",
+    "countries": [
+      "IT"
+    ],
+    "email": "example@workshopbutler.com",
+    "first_name": "Profile",
+    "id": 5378,
+    "materials": [],
+    "languages": [
+      "English"
+    ],
+    "last_name": "Four",
+    "social_links": {
+      "twitter": "",
+      "facebook": "",
+      "linkedin": "",
+      "website": "",
+      "blog": ""
     },
     "tags": [],
     "organisations": [],

@@ -1,168 +1,308 @@
 .wsb-content .wsb-trainer-profile {
 
-  .wsb-trainer__header {
-    background-color: @light-grey;
-    margin-bottom: 15px;
-
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 3;
-    grid-area: header;
+  // Layout
+  @media (min-width: 800px) {
+    display: grid;
   }
 
-  .wsb-trainer__header-row {
-    display: flex;
-    padding-bottom: 1em;
+  grid-template-columns: calc(100% - 30px - 300px) 30px 300px;
+  grid-template-rows: auto;
+  grid-template-areas: "header . first"
+                        "descr . first"
+                        "descr . second";
 
-    @media @phone {
+
+  .wsb-trainer__header {
+    margin-bottom: 15px;
+    grid-area: header;
+
+    @media (max-width: 800px) {
+      display: flex;
+      flex-direction: column;
+      order: 1;
+      padding-top: 25px;
+    }
+  }
+
+  .trainer-profile-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 16px;
+    flex-wrap: wrap;
+
+    @media (max-width: 800px) {
       flex-direction: column;
     }
 
     img {
       height: 150px;
       width: 150px;
+      border-radius: 5px;
+      object-fit: cover;
+      -o-object-fit: cover;
+      background-color: #fff;
+    }
 
-      @media @phone {
-        width: 100%;
-        height: auto;
+    .wsb-trainer-title {
+      flex-grow: 1;
+      flex-basis: calc( 100% - 180px );
+      padding: 26px;
+      @media (max-width: 800px) {
+        text-align: center;
+      }
+    }
+
+    .wsb-trainer-buttons {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      flex-wrap: wrap;
+
+      > *{
+        margin-top: 20px;
+      }
+
+
+      .wsb-contact-button {
+        width: 150px;
+        max-width: unset;
+        margin-left: 0px;
+        flex-grow: 1;
       }
     }
   }
 
-  .wsb-trainer__header-col {
-    flex: 1 0 20%;
-    padding: 0 1em;
-  }
-
   .wsb-description {
-    -ms-grid-row: 2;
-    -ms-grid-row-span: 2;
-    -ms-grid-column: 1;
-    grid-row-start: auto;
-    grid-row-end: span auto;
+    grid-area: descr;
+    order: 3;
   }
 
   .wsb-toolbar {
     &.wsb-first {
-      -ms-grid-row: 2;
-      -ms-grid-column: 3;
+      @media (max-width: 800px) {
+        order: 2;
+      }
     }
+
     &.wsb-second {
-      -ms-grid-row: 3;
-      -ms-grid-column: 3;
+      @media (max-width: 800px) {
+        order: 4;
+        margin-top: 20px;
+      }
     }
-  }
 
-  .wsb-trainer-buttons {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    &.wsb-first {
+      @media (max-width: 800px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-    @media @phone {
-      display: block;
+        > *:nth-child(1) { order: 2 }
+        > *:nth-child(2) { order: 1 }
+        > *:nth-child(3) { order: 3 }
+        > *:nth-child(4) { order: 4 }
+      }
+    }
+
+    &.wsb-second {
+      margin-bottom: 16px;
     }
   }
 
   .wsb-trainer-name {
-    font-weight: bold;
-    font-size: 2em;
-    margin-bottom: 0;
+    font-weight: 700;
+    font-size: 32px;
     margin-top: 0;
+    margin-bottom: 10px;
   }
 
   .wsb-trainer-country {
+    font-size: 16px;
     margin-top: 0;
-    padding-bottom: 1em;
     color: @text-grey;
   }
 
-  .wsb-contact-button {
-    width: 150px;
-
-    @media @phone {
-      width: 100%;
-    }
-  }
-
   .wsb-trainer__social-networks {
-    display: inline-block;
-    padding-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    padding-left: 26px;
+    padding-right: 26px;
 
     a {
-      padding-left: 1em;
+      font-size: 16px;
+      text-transform: uppercase;
 
-      &:first-child {
-        padding-left: 0;
+      + a {
+        padding-left: 26px;
       }
-    }
 
-    @media @phone {
-      display: block;
+      .fab, .fas {
+        font-size: 24px;
+      }
     }
   }
 
-  .wsb-trainer-details-facts {
-    flex: 1 0 100%;
+
+  // Badges
+
+  .wsb-trainer-badges {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
     flex-wrap: wrap;
 
+    @media (max-width: 800px) {
+      justify-content: center;
+    }
+
+    .wsb-trainer__badge {
+      padding: 5px 0;
+      width: 96px;
+      height: auto;
+      padding: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+
+  // Details-facts
+
+  .wsb-trainer-details-facts {
+    display: flex;
+    font-size: 13px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
     .wsb-trainer-details-fact {
-      flex: 1 1 50px;
-      text-align: center;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-shrink: 0;
       padding: 10px;
-      display: inline-block;
+      display: flex;
       vertical-align: top;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+      width: calc(50% - 5px);
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+
+      &:nth-child(1),
+      &:nth-child(2) {
+        > *:first-child {
+          min-width: 90px;
+          margin-right: 10px;
+
+        }
+
+        .fa-star {
+          position: relative;
+          top: -13px;
+          width: 18px;
+          color: #f4b542;
+        }
+
+        .fa-star-half {
+          &:before {
+            position: relative;
+            left: -1px;
+          }
+        }
+      }
+
+      &:nth-child(3) > *:first-child {
+        width: 70px;
+        margin-right: 11px;
+      }
+
+      &:nth-child(4) {
+        > *:first-child {
+          width: 68px;
+          margin-right: 7px;
+        }
+      }
 
       &:last-child {
         border-right: none;
       }
 
-      @media @phone {
-        flex: 1 1 50%;
-        padding-bottom: 1.5em;
-      }
     }
 
     .wsb-big-number {
-      font-size: 3em;
+      font-size: 32px;
+      font-weight: 700;
+      display: inline-block;
     }
 
     .wsb-descr {
-      color: @text-grey;
+      color: #333;
       display: block;
-      font-size: 1em;
+      text-align: left;
     }
 
     .wsb-descr__sub {
       color: @text-grey;
-      font-size: 0.70em;
+      text-align: left;
+      display: block;
     }
   }
 
-  .wsb-trainer-badges {
-    @media @phone {
-      text-align: center;
-    }
+  .wsb-testimonial-heading {
+    font-size: 32px;
+    color: #333;
+    margin-top: 40px;
+    margin-bottom: 14px;
   }
-
-  .wsb-trainer__badge {
-    width: 100px;
-    padding-bottom: 1em;
-
-    @media @phone {
-      width: 250px;
-    }
-  }
-
 
   .wsb-testimonial {
-    background-color: @light-grey;
-    padding: 20px;
+    padding: 17px 20px;
     margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+
+    .fa-stack.fa-stack {
+      width: 18px;
+    }
   }
 
-  .wsb-cite {
-    color: @text-grey;
+  .wsb-testimonial-text {
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+
+  .cite-and-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .wsb-cite {
+      display: flex;
+      align-items: center;
+
+      img {
+        margin-right: 10px;
+      }
+
+      strong {
+        color: #4a90e2;
+      }
+    }
+  }
+
+  .wsb-verified {
+    background-color: #4A90E2;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-image: url('../images/icon-check.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    top: 2px;
+    margin-right: 2px;
   }
 
   .wsb-rating {
@@ -173,22 +313,6 @@
     .fa-stack {
       width: 1.1em;
       line-height: 1.9em;
-    }
-  }
-
-  @media screen and ( max-width: 40em ) {
-    .wsb-trainer-name {
-      font-size: 24px;
-    }
-
-    .wsb-trainer__social-networks {
-      a:first-child {
-        padding-left: 0;
-      }
-    }
-
-    .wsb-contact-button {
-      margin-bottom: 10px;
     }
   }
 }

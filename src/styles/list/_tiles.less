@@ -29,7 +29,7 @@
     padding: 16px @space-size @space-size @space-size;
     text-align: left;
     margin-bottom: @space-size;
-    margin-right: 12px;
+    margin-left: 12px;
     transition: transform .2s;
     background-color: @tile-background;
 
@@ -48,7 +48,7 @@
     }
 
     @media (max-width: 600px) {
-      flex-basis: 100%;
+      flex-basis: calc(100% - 24px);
       padding: 12px;
     }
   }

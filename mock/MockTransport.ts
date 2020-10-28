@@ -13,7 +13,7 @@ class MockTransport {
 
   constructor() {
     // populate with trainers
-    this.events[0].trainers = this.trainers;
+    this.events[0].trainers = this.trainers.slice(0, 4);
     this.events[1].trainers = this.trainers.slice(0, 1);
     this.events[2].trainers = this.trainers.slice(1, 3);
 
@@ -32,16 +32,16 @@ class MockTransport {
     console.log(`GET ${url}`);
     switch (url) {
       case (url.match(/^events\?/) || {}).input:
-        callbackSuccess(this.eventsListResponse());
+        callbackSuccess(this.eventsListResponse(url));
         break;
       case (url.match(/^events\/[^\/]+\?/) || {}).input:
-        callbackSuccess(this.eventResponse());
+        callbackSuccess(this.eventResponse(url));
         break;
       case (url.match(/^(facilitators|trainers)\?/) || {}).input:
-        callbackSuccess(this.trainersListResponse());
+        callbackSuccess(this.trainersListResponse(url));
         break;
       case (url.match(/^(facilitators|trainers)\/[^\/]+\?/) || {}).input:
-        callbackSuccess(this.trainerResponse());
+        callbackSuccess(this.trainerResponse(url));
         break;
     }
   }
@@ -58,8 +58,23 @@ class MockTransport {
     console.log(`DELETE ${url}`);
   }
 
-  private eventsListResponse() {
-    const data = this.events;
+  private eventsListResponse(url: string) {
+    const parsedURL = new URL(url, window.location.origin);
+    const trainerId = parsedURL.searchParams.get('trainerId');
+    const dates = parsedURL.searchParams.get('dates');
+    let filter: any[] | null = null;
+
+    if (trainerId && dates) {
+      const trainer = this.trainers.find((e: any) => trainerId == e.id);
+      if (dates == 'future') {
+        filter = trainer?.mock?.upcoming_events || null;
+      } else if (dates == 'past') {
+        filter = trainer?.mock?.past_events || null;
+      }
+    }
+
+    const data = filter?this.events.filter( (e: any) => filter?.includes(e.id)):this.events;
+
     return {
       version: this.defaultVersion,
       total: data.length,
@@ -69,8 +84,9 @@ class MockTransport {
     };
   }
 
-  private eventResponse() {
-    const data = this.events[0];
+  private eventResponse(url: string) {
+    const id = url.match(/^events\/(\d+)\?/)?.pop();
+    const data = this.events.find((e: any) => id == e.id);
     return {
       version: this.defaultVersion,
       total: null,
@@ -80,7 +96,7 @@ class MockTransport {
     };
   }
 
-  private trainersListResponse() {
+  private trainersListResponse(url: string) {
     const data = this.trainers;
     return {
       version: this.defaultVersion,
@@ -91,8 +107,9 @@ class MockTransport {
     };
   }
 
-  private trainerResponse() {
-    const data = this.trainers[0];
+  private trainerResponse(url: string) {
+    const id = url.match(/^(facilitators|trainers)\/(\d+)\?/)?.pop();
+    const data = this.trainers.find((e: any) => id == e.id);
     return {
       version: this.defaultVersion,
       total: null,

@@ -1,0 +1,102 @@
+.wsb-content {
+  position: relative;
+  min-height: 100%;
+  min-width: 320px;
+  max-width: 1170px;
+  font-size: 16px;
+  line-height: 1.42857143;
+
+
+  .wsb-center {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  // header
+  .wsb-header h1 {
+    margin: 0 0 14px;
+    font-size: 48px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+
+    @media (max-width: 800px) {
+      font-size: 40px;
+    }
+  }
+
+  // body layout
+  .wsb-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wsb-toolbar {
+    width: 100%;
+    &.wsb-first {
+      -ms-grid-row: 1;
+      -ms-grid-column: 3;
+      grid-area: first;
+    }
+    &.wsb-second {
+      -ms-grid-row: 2;
+      -ms-grid-column: 3;
+      grid-area: second;
+    }
+  }
+
+  @media @phone {
+    .wsb-description {
+      width: 100%;
+      margin-right: 0;
+    }
+
+    .wsb-toolbar {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 30px;
+    }
+
+    .wsb-trainers {
+      flex-direction: row;
+    }
+  }
+  @media screen and ( max-width: 33em ), @phone {
+    .wsb-trainers {
+      flex-direction: column;
+    }
+  }
+
+  // info block
+  .wsb-info-block {
+    @media (max-width: 800px) {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+  }
+
+  .wsb-info {
+    margin-bottom: 2em;
+
+    @media (max-width: 800px) {
+      margin-bottom: 1em;
+    }
+  }
+
+  .wsb-info__title {
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+
+    span {
+      display: none;
+    }
+  }
+
+  .wsb-info__footer {
+    color: #788188;
+  }
+
+  .wsb-cover-image {
+    width: 100%;
+  }
+}

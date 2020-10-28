@@ -1,0 +1,106 @@
+{% macro testimonialsTop(testimonials) %}
+  {% if testimonials.length > 0 %}
+    <div class="owl-carousel owl-carousel-testimonial">
+      {% for testimonial in testimonials %}
+        <div class="wsb-testimonials-slide">
+          {% if testimonial.rating %}
+            <div class="wsb-testimonials-stars">
+              {% set rating = testimonial.rating %}
+              {% set stars = range(5) %}
+
+              {% for item in stars %}
+                {% set index = item + 1 %}
+
+                {% if index * 2 <= rating %}
+                  <i class="fas fa-star"></i>
+                  {% elif index * 2 > rating + 1 %}
+                  <i class="far fa-star"></i>
+                {% else %}
+                  <div class="fa-stack">
+                    <i class="fas fa-star-half fa-stack-1x"></i>
+                    <i class="far fa-star-half fa-stack-1x fa-flip-horizontal"></i>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <div class="wsb-testimonials-desc">
+            {{ testimonial.content }}
+          </div>
+
+          <div class="wsb-cite">
+            <div class="wsb-cite__inner">
+              {% if testimonial.avatar %}
+                <img class="userpic" src="{{ testimonial.avatar }}"/>
+              {% endif %}
+              <div>
+                <div class="who">
+                  <a href="/">{{ testimonial.attendee }}</a>{% if testimonial.company %},{% endif %}
+                  {% if testimonial.verified %}<span class="wsb-verified"></span>{% endif %}
+                  {% if testimonial.company %}{{ testimonial.company }}{% endif %}
+                </div>
+
+                <div class="to-what">
+                  {% if testimonial.reason %}{{ testimonial.reason }}{% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="wsb-testimonials-counter">
+      <span class="current">1</span> / <span class="total">0</span>
+    </div>
+  {% endif %}
+{% endmacro %}
+
+
+{% macro testimonialsBottom(testimonials, header) %}
+  {% if testimonials.length > 0 %}
+    <h3 class="wsb-testimonial-heading">{{ header }}</h3>
+
+    <div class="owl-carousel-comment">
+      {% for testimonial in testimonials %}
+        <div class="wsb-testimonial">
+          <div class="cite-and-rating">
+            <span class="wsb-cite">
+              <img class="userpic" src="{{ testimonial.avatar }}"/>
+              <div>
+                <strong>{{ testimonial.attendee }}</strong>{% if testimonial.company %},{% endif %}
+                {% if testimonial.verified %}<span class="wsb-verified"></span>{% endif %}
+                {% if testimonial.company %}{{ testimonial.company }}{% endif %}
+              </div>
+            </span>
+
+            {% if testimonial.rating %}
+              <div class="wsb-rating">
+                {% set rating = testimonial.rating %}
+                {% set stars = range(5) %}
+
+                {% for item in stars %}
+                  {% set index = item + 1 %}
+
+                  {% if index * 2 <= rating %}
+                    <i class="fas fa-star"></i>
+                    {% elif index * 2 > rating + 1 %}
+                    <i class="far fa-star"></i>
+                  {% else %}
+                    <div class="fa-stack">
+                      <i class="fas fa-star-half fa-stack-1x"></i>
+                      <i class="far fa-star-half fa-stack-1x fa-flip-horizontal"></i>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <p class="wsb-testimonial-text">{{ testimonial.content }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endmacro %}

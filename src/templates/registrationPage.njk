@@ -6,12 +6,19 @@
 
     <div class="wsb-body">
       <div class="wsb-toolbar wsb-first">
-        <div class="wsb-info-block">
-          {% from "./event/info.njk" import info %}
-          {{ info(event, config, _t, _f) }}
+        {% from "./event/info.njk" import infoHead, infoTrainers %}
+        <div class="wsb-registration-details">
+          <div class="wsb-label">Details</div>
+          {{ infoHead(event, config, _t, _f) }}
         </div>
-      </div>
 
+        {% if config.trainers.show %}
+        <div class="wsb-registration-details">
+          <div class="wsb-label">Trainers</div>
+          {{ infoTrainers(event, false, _t, _f) }}
+        </div>
+        {% endif %}
+      </div>
       <div class="wsb-description">
         {% from "./form.njk" import registrationForm %}
         {% if event.registrationForm %}

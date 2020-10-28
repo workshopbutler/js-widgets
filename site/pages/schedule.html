@@ -5,7 +5,9 @@ permalink: /schedule/
 templateEngineOverride: false
 tags: ['widget']
 ---
+
 <div id="wsb-event-list"></div>
+<div id="wsb-event-list-2"></div>
 <script>
   const apiKey = siteConfig.apiKey;
   const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
@@ -17,6 +19,7 @@ tags: ['widget']
           theme: themeName,
           cols: ['schedule', 'location', 'language', 'trainers', 'title'],
           registration: true,
+          table: true,
           eventPageUrl: '/event-page',
           trainerName: true,
           filters: ['type', 'location', 'language', 'trainer'],
