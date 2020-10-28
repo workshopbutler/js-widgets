@@ -3,25 +3,27 @@
     <div class="owl-carousel owl-carousel-testimonial">
       {% for testimonial in testimonials %}
         <div class="wsb-testimonials-slide">
-          <div class="wsb-testimonials-stars">
-            {% set rating = testimonial.rating %}
-            {% set stars = range(5) %}
+          {% if testimonial.rating %}
+            <div class="wsb-testimonials-stars">
+              {% set rating = testimonial.rating %}
+              {% set stars = range(5) %}
 
-            {% for item in stars %}
-              {% set index = item + 1 %}
+              {% for item in stars %}
+                {% set index = item + 1 %}
 
-              {% if index * 2 <= rating %}
-                <i class="fas fa-star"></i>
-              {% elif index * 2 > rating + 1 %}
-                <i class="far fa-star"></i>
-              {% else %}
-                <div class="fa-stack">
-                  <i class="fas fa-star-half fa-stack-1x"></i>
-                  <i class="far fa-star-half fa-stack-1x fa-flip-horizontal"></i>
-                </div>
-              {% endif %}
-            {% endfor %}
-          </div>
+                {% if index * 2 <= rating %}
+                  <i class="fas fa-star"></i>
+                  {% elif index * 2 > rating + 1 %}
+                  <i class="far fa-star"></i>
+                {% else %}
+                  <div class="fa-stack">
+                    <i class="fas fa-star-half fa-stack-1x"></i>
+                    <i class="far fa-star-half fa-stack-1x fa-flip-horizontal"></i>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
 
           <div class="wsb-testimonials-desc">
             {{ testimonial.content }}
@@ -29,7 +31,9 @@
 
           <div class="wsb-cite">
             <div class="wsb-cite__inner">
-              <img class="userpic" src="{{ testimonial.avatar }}" />
+              {% if testimonial.avatar %}
+                <img class="userpic" src="{{ testimonial.avatar }}"/>
+              {% endif %}
               <div>
                 <div class="who">
                   <a href="/">{{ testimonial.attendee }}</a>{% if testimonial.company %},{% endif %}
@@ -63,7 +67,7 @@
         <div class="wsb-testimonial">
           <div class="cite-and-rating">
             <span class="wsb-cite">
-              <img class="userpic" src="{{ testimonial.avatar }}" />
+              <img class="userpic" src="{{ testimonial.avatar }}"/>
               <div>
                 <strong>{{ testimonial.attendee }}</strong>{% if testimonial.company %},{% endif %}
                 {% if testimonial.verified %}<span class="wsb-verified"></span>{% endif %}
@@ -81,7 +85,7 @@
 
                   {% if index * 2 <= rating %}
                     <i class="fas fa-star"></i>
-                  {% elif index * 2 > rating + 1 %}
+                    {% elif index * 2 > rating + 1 %}
                     <i class="far fa-star"></i>
                   {% else %}
                     <div class="fa-stack">
