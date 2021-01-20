@@ -5,10 +5,10 @@
     {{ flag(event.location.countryCode) }} {{ _f(event.location) }} <br/>
 
     {% if event.schedule.atOneDay() %}
-      {{ _f(event.schedule, 'interval_with_time') | safe }} {{ _f(event.schedule, 'timezone_abbr') }}
+      {{ _f(event.schedule, 'interval_with_time') }} {{ _f(event.schedule, 'timezone_abbr') }}
     {% else %}
       {{ _f(event.schedule, 'start_with_time') }}
-      &ndash; {{ _f(event.schedule, 'end_with_time') }} {{ _f(event.schedule, 'timezone_abbr') }}
+      – {{ _f(event.schedule, 'end_with_time') }} {{ _f(event.schedule, 'timezone_abbr') }}
     {% endif %}
 
     <div class="wsb-info__footer">{{ _f(event.language) }}</div>

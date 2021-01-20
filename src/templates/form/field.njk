@@ -3,7 +3,7 @@
   {% from "./checkbox.njk" import checkbox %}
   {% from "./input.njk" import input %}
   {% from "./label.njk" import label %}
-  <div id="wsb-form-field-{{ field.name }}" class="wsb-form__field {{ field.type }}">
+  <div id="wsb-form-field-{{ field.name }}" class="wsb-form__field">
     {{ label(field, config, _t, _f) }}
     {% if field.type === "textarea" %}
       <textarea name="{{ field.name }}" data-control title="{{ field.label }}"
@@ -16,6 +16,23 @@
           <option value="{{ option.value }}">{{ option.label }}</option>
         {% endfor %}
       </select>
+    {% elif field.type === "radio" %}
+    <div class="wsb-form__radio-group">
+    {% for option in field.options %}
+      <div class="wsb-form__radio">
+        <input
+          id="{{ field.name }}_{{ loop.index }}"
+          name="{{ field.name }}"
+          title="{{ field.label }}"
+          type="radio"
+          value="{{ option.value }}"
+          {{ 'checked' if loop.first }}
+          {{ 'disabled' if disabled }} {{ 'required' if field.required }} data-control
+        />
+        <label for="{{ field.name }}_{{ loop.index }}" class="wsb-label">{{ option.label }}</label>
+      </div>
+    {% endfor %}
+    </div>
     {% elif field.type === "country" %}
       <select name="{{ field.name }}" title="{{ field.label }}"
               data-control {{ 'required' if field.required }} {{ 'disabled' if disabled }}>

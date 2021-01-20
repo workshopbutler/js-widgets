@@ -120,6 +120,28 @@ export default class EventPage extends Widget<EventPageConfig> {
       });
   }
 
+  /**
+   * Initialize top testimonials slider
+   */
+  protected initTestimonialsTop() {
+    const owl = $(`.owl-carousel-testimonial`);
+
+    $(`.wsb-testimonials-counter .total`)
+      .text(owl.find("> div").length);
+
+
+    owl.owlCarousel({
+      items: 1,
+      dots: false,
+      nav: true
+    });
+
+    owl.on('changed.owl.carousel', function(e) {
+      $(`.wsb-testimonials-counter .current`)
+        .text(+e.item.index + 1);
+    });
+  }
+
   private renderWidget() {
     $.when(getTemplate(this.config)).done(template => {
       const params = Object.assign({event: this.event}, this.getTemplateParams());
@@ -133,6 +155,12 @@ export default class EventPage extends Widget<EventPageConfig> {
       if (this.config.widgets) {
         WidgetFactory.launch({apiKey: this.apiKey}, this.config.widgets);
       }
+
+      // init testimonial slider
+      $.getScript(
+        'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'
+      ).done(() => { this.initTestimonialsTop(); });
+
     });
   }
 

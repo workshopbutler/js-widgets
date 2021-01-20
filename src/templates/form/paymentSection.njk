@@ -1,8 +1,13 @@
+{% from "./field.njk" import formField %}
+{% from "./payment.njk" import payment %}
 {% macro paymentSection(section, disabled, config, _t, _f) %}
-  <section class="wsb-ticket-section" data-payment-section>
-    {% from "./field.njk" import formField %}
+  <section class="wsb-payment-section" data-payment-section>
     {% for field in section.fields %}
-      {{ formField(field, disabled, [], config, _t, _f) }}
+      {% if field.name === "payment_type" %}
+        {{ payment(field, disabled, config, _t, _f) }}
+      {% else %}
+        {{ formField(field, disabled, [], config, _t, _f) }}
+      {% endif %}
     {% endfor %}
     <div class="wsb-form__field wsb-form__payment" data-card-section style="display:none;">
       <label class="wsb-label"></label>

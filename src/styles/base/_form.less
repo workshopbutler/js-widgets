@@ -20,8 +20,6 @@
   select,
   textarea {
     display: block;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
     height: 2em;
@@ -50,6 +48,10 @@
       border-color: #4a90e2;
       outline: 0;
       box-shadow: 0 0 2px #4a90e2, 0 0 2px #4a90e2 inset;
+    }
+
+    &:invalid {
+      border: 1px solid #E73B2B;
     }
 
     &::-webkit-input-placeholder {
@@ -93,7 +95,7 @@
     background-color: aliceblue;
     padding: 1em;
 
-    @media @phone {
+    @media (max-width: 480px) {
       margin-bottom: @label-padding;
     }
   }
@@ -123,7 +125,7 @@
       padding-top: 2em;
     }
 
-    @media @phone, screen and (max-width: 600px) {
+    @media (max-width: 600px) {
       border-bottom: none;
       padding: 0.5em 0;
     }
@@ -209,14 +211,14 @@
   select {
     padding-left: 0.4em;
 
-    @media @phone {
+    @media (max-width: 480px) {
       padding: 0 0.5em;
     }
   }
 
   // .wsb-ticket-section {}
 
-  .wsb-form__tickets {
+  .wsb-form__tickets, .wsb-form__radio-group {
     width: 100%;
     display: block;
   }
@@ -224,7 +226,7 @@
   @left-padding: 0.75em;
   @label-padding: 0.9em;
 
-  .wsb-form__ticket {
+  .wsb-form__radio {
     padding: @left-padding;
     display: flex;
     align-items: center;
@@ -234,11 +236,15 @@
       cursor: pointer;
     }
 
-    &.wsb-active {
+    input:disabled+label {
+      color: #ccc;
+    }
+
+    &.wsb-active  {
       background-color: @background-grey;
     }
 
-    @media @phone {
+    @media (max-width: 480px) {
       margin-left: 0;
     }
 
@@ -266,7 +272,7 @@
       display: inline-block;
     }
 
-    @media @phone {
+    @media (max-width: 480px) {
       margin-left: 0;
     }
   }
@@ -285,16 +291,17 @@
   .wsb-promo-block {
     padding-left: @left-column;
 
-    @media @phone {
+    @media (max-width: 480px) {
       padding-left: 0;
     }
   }
 
   .wsb-form__tax {
     font-style: italic;
-    font-size: 0.75em;
+    font-size: 0.85em;
     margin-top: 10px;
     margin-left: 12px;
+    color: #888;
   }
 
   .wsb-form__btn {
@@ -328,7 +335,7 @@
       cursor: auto;
     }
 
-    @media @phone, screen and (max-width: 600px) {
+    @media (max-width: 480px) {
       width: 100%;
       margin-left: 0;
     }

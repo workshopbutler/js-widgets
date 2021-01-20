@@ -38,7 +38,11 @@
         flex-direction: row;
 
         .wsb-description {
-          .wsb-cover-image { display: block; }
+          width: calc(100% - 30px - 300px);
+          .wsb-cover-image {
+            margin-bottom: 32px;
+            display: block;
+          }
           .wsb-info, .wsb-register__btn-wrapper { display: none; }
         }
 
@@ -133,5 +137,15 @@
         display: none;
       }
     }
+  }
+}
+
+.wsb-registration-page {
+  .wsb-body {
+
+    display: flex;
+    flex-direction: column;
+
+    max-width:800px;
   }
 }

@@ -1,3 +1,4 @@
+{% import "./trainer/testimonialsSlider.njk" as sliders %}
 <div class="wsb-content">
   <div class="wsb-page">
     <div class="wsb-body wsb-trainer-profile">
@@ -47,7 +48,6 @@
       </div>
 
       <div class="wsb-description">
-        {% import "./trainer/testimonialsSlider.njk" as sliders %}
         {% if config.showTestimonialsOnTop %}
           {{ sliders.testimonialsTop(trainer.testimonials) }}
         {% endif %}

@@ -3,6 +3,7 @@
 {% from "./event/freeTicket.njk" import freeTicket %}
 {% from "./event/paidTicket.njk" import paidTicket %}
 {% from "./event/share.njk" import shareEvent %}
+{% from "./trainer/testimonialsSlider.njk" import testimonialsTop %}
 
 <div class="wsb-content">
   <div class="wsb-page wsb-event-page">
@@ -17,12 +18,16 @@
     </div>
     <div class="wsb-body">
       <div class="wsb-description">
-        {% if config.coverImage.showInside() and event.coverImage %}
+        {% if config.coverImage.showInside() and event.coverImage.url %}
           <img src="{{ event.coverImage.url }}" class="wsb-cover-image"/>
         {% endif %}
 
         {{ infoHead(event, config, _t, _f) }}
         {{ registerButton(event, config, _t, _f) }}
+
+        {% if event.testimonials %}
+          {{ testimonialsTop(event.testimonials) }}
+        {% endif %}
 
         {% if event.description %}
           <div class="wsb-desc">{{ event.description | safe }}</div>

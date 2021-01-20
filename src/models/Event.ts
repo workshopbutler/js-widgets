@@ -14,6 +14,7 @@ import Type from './workshop/Type';
 import CoverImage from './workshop/CoverImage';
 import PaidTickets from './workshop/PaidTickets';
 import Payment from './workshop/Payment';
+import Testimonial from './Testimonial';
 
 export default class Event {
 
@@ -28,9 +29,10 @@ export default class Event {
     const coverImage = CoverImage.fromJSON(json.cover_image);
     const category = json.category ? new Category(json.category) : undefined;
     const payment = Payment.fromJSON(json.card_payment);
-    const featured = json.featured ? json.featured : false;
+    const featured = !!json.featured;
+    const testimonials = json.testimonials?.map((testimonial: IPlainObject) => Testimonial.fromJSON(testimonial)) || [];
     return new Event(options, json.id, json.hashed_id, json.title, schedule, language, location,
-      registrationPage, trainers, tickets, json.confirmed, json.free, json.private, json.sold_out, json.description,
+      registrationPage, trainers, testimonials,tickets, json.confirmed, json.free, json.private, json.sold_out, json.description,
       type, category, coverImage, payment, featured, json.form
     );
   }
@@ -70,6 +72,7 @@ export default class Event {
               public location: Location,
               public registrationPage: RegistrationPage,
               public trainers: Trainer[] = [],
+              readonly testimonials: Testimonial[] = [], // list of testimonials for the event
               public tickets?: FreeTicketType | PaidTickets,
               public confirmed = false,
               public free = false,

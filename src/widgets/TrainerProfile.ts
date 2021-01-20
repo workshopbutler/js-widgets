@@ -90,15 +90,6 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
   }
 
   /**
-   * Load slider script
-   */
-  protected initTestimonialsSlider(onLoad: () => any) {
-    const url: string = 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js';
-
-    $.getScript(url).done(onLoad);
-  }
-
-  /**
    * Initialize bottom testimonials slider
    */
   protected initTestimonialsBottom() {
@@ -176,7 +167,10 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
         WidgetFactory.launch({apiKey: this.apiKey}, this.config.widgets);
       };
 
-      this.initTestimonialsSlider(()=> {
+      // load testimonial slider
+      $.getScript(
+        'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'
+      ).done(()=> {
         this.initTestimonialsTop();
         if (window.innerWidth <= 480) this.initTestimonialsBottom();
       });

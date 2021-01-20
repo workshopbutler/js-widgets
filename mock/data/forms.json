@@ -27,6 +27,14 @@
               {
                 "value": "Invoice",
                 "label": "Invoice"
+              },
+              {
+                "value": "Card",
+                "label": "Card"
+              },
+              {
+                "value": "Cash",
+                "label": "Cash"
               }
             ]
           }

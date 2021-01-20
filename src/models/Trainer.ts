@@ -1,7 +1,7 @@
 import IPlainObject from '../interfaces/IPlainObject';
 import getLangCode from '../utils/language';
 import SocialLinks from './trainer/SocialLinks';
-import Testimonial from './trainer/Testimonial';
+import Testimonial from './Testimonial';
 import TrainerStats from './trainer/TrainerStats';
 
 /**
@@ -36,7 +36,7 @@ export default class Trainer {
               readonly languages: string[] = [],
               readonly badges: any[] = [],
               readonly socialLinks: SocialLinks = new SocialLinks(),
-              readonly testimonials: any[] = [], // list of testimonials the trainer has
+              readonly testimonials: Testimonial[] = [], // list of testimonials the trainer has
               readonly worksIn: string[] = [], // List of countries the trainer works in
               readonly photo?: string,
               readonly country?: string) {

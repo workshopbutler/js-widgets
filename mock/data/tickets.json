@@ -150,9 +150,9 @@
       ]
     },
     "free": {
-      "unlimited": true,
-      "total": -1,
-      "left": -1
+      "unlimited": false,
+      "total": 100,
+      "left": 10
     }
   }
 ]

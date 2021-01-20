@@ -1,0 +1,22 @@
+{% from "./label.njk" import label %}
+{% macro payment(field, disabled, config, _t, _f) %}
+<div id="wsb-form-field-{{ field.name }}" class="wsb-form__field">
+  {{ label(field, config, _t, _f) }}
+  <div class="wsb-form__radio-group">
+  {% for option in field.options %}
+    <div class="wsb-form__radio">
+      <input
+        id="{{ field.name }}_{{ loop.index }}"
+        name="{{ field.name }}"
+        title="{{ field.label }}"
+        type="radio"
+        value="{{ option.value }}"
+        {{ 'checked' if loop.first }}
+        {{ 'disabled' if disabled }} {{ 'required' if field.required }} data-control
+      />
+      <label for="{{ field.name }}_{{ loop.index }}" class="wsb-label">{{ option.label }}</label>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+{% endmacro %}

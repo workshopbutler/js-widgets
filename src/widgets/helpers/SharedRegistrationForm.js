@@ -72,7 +72,7 @@ export default class SharedRegistrationForm {
   init() {
     this.successMessage.hide();
     this.initPromoActivation();
-    this.initActiveTicketSelection();
+    this.initActiveRadioSelection();
     this.deactivateCardPayment();
     this.lockIfNoPaymentMethod();
   }
@@ -84,7 +84,8 @@ export default class SharedRegistrationForm {
   deactivateCardPayment() {
     if (this.isPaymentActive() && !this.isPageSecure()) {
       this.root.addClass('wsb-form-not-secure');
-      this.getCardPaymentOption().prop('disabled', 'disabled').removeProp('selected');
+      this.root.find('[data-control]select[name="payment_type"] option[value="Card"]').prop('disabled', 'disabled').removeProp('selected');
+      this.root.find('[data-control]input[name="payment_type"][value="Card"]').prop('disabled', 'disabled').removeProp('checked');
     }
   }
 
@@ -107,7 +108,12 @@ export default class SharedRegistrationForm {
    * @private
    */
   cardPaymentAllowed() {
-    return !!this.getCardPaymentOption().length;
+    const paymentTypeSelector = '[data-control][name="payment_type"]'
+    // check both radio and select variants
+    return !!(
+      this.root.find(paymentTypeSelector+' option[value="Card"]').length ||
+      this.root.find(paymentTypeSelector+'[value="Card"]').length
+    );
   }
 
   /**
@@ -136,7 +142,12 @@ export default class SharedRegistrationForm {
    * @return {boolean}
    */
   invoicePaymentAllowed() {
-    return !!this.root.find('[data-control][name="payment_type"] option[value="Invoice"]').length;
+    const paymentTypeSelector = '[data-control][name="payment_type"]'
+    // check both radio and select variants
+    return !!(
+      this.root.find(paymentTypeSelector+' option[value="Invoice"]').length ||
+      this.root.find(paymentTypeSelector+'[value="Invoice"]').length
+    );
   }
 
   /**
@@ -157,14 +168,6 @@ export default class SharedRegistrationForm {
     } else {
       this.cardSection.css('display', 'none');
     }
-  }
-
-  /**
-   * @return {JQuery<HTMLElement> | jQuery | HTMLElement}
-   * @private
-   */
-  getCardPaymentOption() {
-    return this.root.find('[data-control][name="payment_type"] option[value="Card"]');
   }
 
   /**
@@ -430,20 +433,21 @@ export default class SharedRegistrationForm {
     });
   }
 
-  /**
+    /**
    * Initialises ticket selection
    * @private
    */
-  initActiveTicketSelection() {
-    const tickets = this.root.find('#wsb-tickets input');
-    tickets.on('change', () => {
-      this.toggleTicket(tickets, false);
-      this.toggleTicket(tickets.filter(':checked'), true);
+  initActiveRadioSelection() {
+    const radioGroups = this.root.find('.wsb-form__radio');
+    radioGroups.each( group => {
+      const radios = this.root.find('input[type="radio"]');
+      radios.on('change', () => {
+        this.toggleRadio(radios, false);
+        this.toggleRadio(radios.filter(':checked'), true);
+      });
+      // init all checked items at the start
+      this.toggleRadio(radios.filter(':checked'), true);
     });
-    if (tickets.length > 0) {
-      const activeTicket = tickets.first();
-      this.toggleTicket(activeTicket, true);
-    }
   }
 
   /**
@@ -451,7 +455,7 @@ export default class SharedRegistrationForm {
    * @param on {boolean}
    * @private
    */
-  toggleTicket(tickets, on) {
+  toggleRadio(tickets, on) {
     const name = 'wsb-active';
     if (on) {
       tickets.prop('checked', 'true');

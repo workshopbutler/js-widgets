@@ -2,6 +2,7 @@ import Event from '../Event';
 import Country from './Country';
 import Field, {FieldType} from './Field';
 import Select from './Select';
+import Radio from './Radio';
 import Ticket from './Ticket';
 import PaidTickets from '../workshop/PaidTickets';
 
@@ -19,6 +20,8 @@ export default class Section {
     switch (fieldData.type) {
       case FieldType.Select:
         return new Select(fieldData);
+      case FieldType.Radio:
+        return new Radio(fieldData);
       case FieldType.Country:
         return new Country(fieldData);
       case FieldType.Ticket:

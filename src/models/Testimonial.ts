@@ -1,4 +1,4 @@
-import IPlainObject from '../../interfaces/IPlainObject';
+import IPlainObject from '../interfaces/IPlainObject';
 
 export default class Testimonial {
 
