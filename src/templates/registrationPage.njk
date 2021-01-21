@@ -1,3 +1,4 @@
+{% from "./event/info.njk" import infoHead, infoTrainers %}
 <div class="wsb-content">
   <div class="wsb-page wsb-registration-page">
     <div class="wsb-header">
@@ -5,8 +6,7 @@
     </div>
 
     <div class="wsb-body">
-      <div class="wsb-toolbar wsb-first">
-        {% from "./event/info.njk" import infoHead, infoTrainers %}
+      <section class="wsb-info-section">
         <div class="wsb-registration-details">
           <div class="wsb-label">Details</div>
           {{ infoHead(event, config, _t, _f) }}
@@ -18,13 +18,12 @@
           {{ infoTrainers(event, false, _t, _f) }}
         </div>
         {% endif %}
-      </div>
-      <div class="wsb-description">
-        {% from "./form.njk" import registrationForm %}
-        {% if event.registrationForm %}
-          {{ registrationForm(event, countries, config, _t, _f) }}
-        {% endif %}
-      </div>
+      </section>
+
+      {% from "./form.njk" import registrationForm %}
+      {% if event.registrationForm %}
+        {{ registrationForm(event, countries, config, _t, _f) }}
+      {% endif %}
     </div>
   </div>
 </div>

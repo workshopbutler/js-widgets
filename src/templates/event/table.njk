@@ -1,31 +1,7 @@
 {% macro table(events, tmpl, config, _t, _f) %}
   {% from "./row.njk" import drawRow %}
-  <div class="wsb-schedule">
+  <div class="wsb-schedule wsb-table-container">
     <div class="wsb-table" data-event-list>
-      {# Head #}
-      <div class="wsb-table__head">
-        {% for col in config.cols %}
-          {% set className = ['wsb-table__col', col] %}
-          <div
-            class="wsb-table__col {{ className | join('-') }}
-            {{ "without-name" if not config.trainerName and col === 'trainers' }}"
-          >
-            {% if col === 'schedule' %}
-              {{ _t('schedule.when') }}
-            {% elif col === 'location' %}
-              {{ _t('schedule.where') }}
-            {% elif col === 'language' %}
-              {{ _t('schedule.language') }}
-            {% elif col === 'trainers' %}
-              {{ _t('schedule.who') }}
-            {% elif col === 'title' %}
-              {{ _t('schedule.what') }}
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-
-      {# Rows #}
       {% for event in events %}
         {% if tmpl %}
           {{ tmpl(event, config, _t, _f) | safe }}

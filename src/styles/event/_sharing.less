@@ -2,25 +2,14 @@
 
   .wsb-sharing__icon {
     display: inline-block;
-    vertical-align: top;
-    width: 2em;
-    height: 2em;
     margin-left: 1em;
-    border: 2px solid @icon-grey;
-    border-radius: 1em;
-    position: relative;
-    -webkit-transition: all 0.15s ease;
     transition: all 0.15s ease;
 
-    &:hover {
-      border-color: @icon-grey;
-    }
-
-    &::before {
+    &:before {
       content: "";
-      position: absolute;
-      background-size: cover !important;
-      opacity: 0.7;
+      font-family: "Font Awesome 5 Brands";
+      font-weight: 900;
+      color: #6F7276;
     }
 
     &:first-child {
@@ -28,27 +17,15 @@
     }
 
     &.type-tw::before {
-      left: 0.45em;
-      top: 0.55em;
-      width: 1em;
-      height: 0.8em;
-      background: url(../images/icon-tw.png) no-repeat;
+      content: "\f099";
     }
 
     &.type-ld::before {
-      left: 0.35em;
-      top: 0.35em;
-      width: 1em;
-      height: 1em;
-      background: url(../images/icon-ld.png) no-repeat;
+      content: "\f08c";
     }
 
     &.type-fb::before {
-      left: 0.50em;
-      top: 0.40em;
-      width: 0.7em;
-      height: 1em;
-      background: url(../images/icon-fb.png) no-repeat;
+      content: "\f39e";
     }
   }
 }

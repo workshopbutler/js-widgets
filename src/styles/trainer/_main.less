@@ -1,33 +1,35 @@
 .wsb-content .wsb-trainer-profile {
 
-  // Layout
-  @media (min-width: 800px) {
-    display: grid;
+  display: flex;
+  flex-direction: column;
+
+  .wsb-description {
+    margin-bottom: 32px;
   }
 
-  grid-template-columns: calc(100% - 30px - 300px) 30px 300px;
-  grid-template-rows: auto;
-  grid-template-areas: "header . first"
-                        "descr . first"
-                        "descr . second";
+  .wsb-aside {
+    .wsb-trainer-badges, .wsb-trainer-details-facts { display: none; }
+  }
 
+  @media (min-width: 800px) {
+    flex-direction: row;
 
-  .wsb-trainer__header {
-    margin-bottom: 15px;
-    grid-area: header;
+    .wsb-description {
+      width: calc(100% - 30px - 300px);
+      .wsb-trainer-badges, .wsb-trainer-details-facts { display: none; }
+    }
 
-    @media (max-width: 800px) {
-      display: flex;
-      flex-direction: column;
-      order: 1;
-      padding-top: 25px;
+    .wsb-aside {
+      width: 300px;
+      margin-left: 30px;
+      .wsb-trainer-badges, .wsb-trainer-details-facts { display: flex; }
     }
   }
 
   .trainer-profile-header {
     display: flex;
     align-items: center;
-    padding-bottom: 16px;
+    margin-bottom: 32px;
     flex-wrap: wrap;
 
     @media (max-width: 800px) {
@@ -35,9 +37,8 @@
     }
 
     img {
-      height: 150px;
-      width: 150px;
-      border-radius: 5px;
+      height: 176px;
+      width: 176px;
       object-fit: cover;
       -o-object-fit: cover;
       background-color: #fff;
@@ -64,48 +65,24 @@
 
 
       .wsb-contact-button {
-        width: 150px;
+        width: 176px;
         max-width: unset;
         margin-left: 0px;
         flex-grow: 1;
       }
-    }
-  }
 
-  .wsb-description {
-    grid-area: descr;
-    order: 3;
-  }
-
-  .wsb-toolbar {
-    &.wsb-first {
       @media (max-width: 800px) {
-        order: 2;
-      }
-    }
-
-    &.wsb-second {
-      @media (max-width: 800px) {
-        order: 4;
-        margin-top: 20px;
-      }
-    }
-
-    &.wsb-first {
-      @media (max-width: 800px) {
-        display: flex;
         flex-direction: column;
-        align-items: center;
-
-        > *:nth-child(1) { order: 2 }
-        > *:nth-child(2) { order: 1 }
-        > *:nth-child(3) { order: 3 }
-        > *:nth-child(4) { order: 4 }
+        .wsb-contact-button {
+          width: 100%;
+          min-width: 300px;
+          margin: 0;
+        }
       }
-    }
 
-    &.wsb-second {
-      margin-bottom: 16px;
+      @media (max-width: 600px) {
+          width: 100%;
+      }
     }
   }
 
@@ -143,14 +120,13 @@
     }
   }
 
-
   // Badges
 
   .wsb-trainer-badges {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     flex-wrap: wrap;
 
     @media (max-width: 800px) {
@@ -174,17 +150,16 @@
     font-size: 13px;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 
     .wsb-trainer-details-fact {
       flex-direction: column;
       justify-content: space-between;
       flex-shrink: 0;
-      padding: 10px;
+      padding: 12px 16px 7px 16px;;
       display: flex;
       vertical-align: top;
       background-color: #f5f5f5;
-      border-radius: 5px;
       width: calc(50% - 5px);
       flex-wrap: wrap;
       margin-bottom: 10px;
@@ -234,15 +209,16 @@
       font-size: 32px;
       font-weight: 700;
       display: inline-block;
+      line-height: 1.1em;
     }
 
-    .wsb-descr {
+    .wsb-fact-description {
       color: #333;
       display: block;
       text-align: left;
     }
 
-    .wsb-descr__sub {
+    .wsb-fact-description__sub {
       color: @text-grey;
       text-align: left;
       display: block;
@@ -260,7 +236,6 @@
     padding: 17px 20px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
-    border-radius: 6px;
 
     .fa-stack.fa-stack {
       width: 18px;
@@ -292,7 +267,7 @@
   }
 
   .wsb-verified {
-    background-color: #4A90E2;
+    background-color: @text-grey;
     border-radius: 50%;
     width: 16px;
     height: 16px;

@@ -4,6 +4,9 @@ import SocialLinks from './trainer/SocialLinks';
 import Testimonial from './Testimonial';
 import TrainerStats from './trainer/TrainerStats';
 
+// @ts-ignore
+import defaultImage from '../styles/images/stub-trainer-photo.svg';
+
 /**
  * A trainer
  */
@@ -57,6 +60,10 @@ export default class Trainer {
    */
   nameOfBadges(): string[] {
     return this.badges.map(badge => badge.name);
+  }
+
+  getPhotoOrDefault(): string {
+    return this.photo || defaultImage;
   }
 
   private getTrainerUrl(baseUrl: string): string {

@@ -15,16 +15,12 @@ export default class FormHelper {
     this.assignEvents();
   }
 
+  /**
+   * This is a legacy method which always return true
+   */
   isValidFormData() {
-    let valid = true;
-
     this.removeErrors();
-    this.$controls.each((index, control) => {
-      const isValidControl = this.isValidControl($(control));
-      valid = valid && isValidControl;
-    });
-
-    return valid;
+    return true;
   }
 
   removeErrors() {
@@ -85,20 +81,6 @@ export default class FormHelper {
     this.errors = this.errors.filter(item => item.name !== $control.attr('name'));
   }
 
-  /**
-   * Validate given control
-   * @param {jQuery} $control - element
-   * @returns {Object} = isValid(Boolean), message(String)
-   * @private
-   */
-  protected validateControl($control: JQuery) {
-
-    return {
-      isValid: true,
-      message: '',
-    };
-  }
-
   protected assignEvents() {
     this.$controls.on('input change', this.onInputControl.bind(this));
   }
@@ -108,11 +90,5 @@ export default class FormHelper {
       const $control = $(e.currentTarget);
       this.removeError($control);
     }
-  }
-
-  protected isValidControl($control: JQuery<HTMLElement>) {
-    const validation = this.validateControl($control);
-
-    return validation.isValid;
   }
 }

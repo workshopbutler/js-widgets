@@ -6,7 +6,6 @@
   select {
     padding: .4em;
     padding-right: 15px;
-    border-radius: 2px;
     -webkit-appearance: none;
     -moz-appearance: none;
     background-position: right 50%;
@@ -23,12 +22,13 @@
     box-sizing: border-box;
     width: 100%;
     height: 2em;
-    padding: 6px 12px;
+    padding: 0 10px;
+    font-size: 16px;
     line-height: 1.42857143;
     color: #333;
     background-color: #fff;
     border: 1px solid #bbb;
-    border-radius: 4px;
+    box-shadow: none;
     .transition(all .15s ease);
 
     &[type=radio], &[type=checkbox] {
@@ -45,7 +45,7 @@
 
     &:focus {
       outline: none !important;
-      border-color: #4a90e2;
+      border-color: #ccc;
       outline: 0;
       box-shadow: 0 0 2px #4a90e2, 0 0 2px #4a90e2 inset;
     }
@@ -72,38 +72,33 @@
     min-height: 114px;
   }
 
+  select {
+    padding-left: 0.4em;
 
-  // form
-  .wsb-form {
-    margin-top: -24px;
+    @media (max-width: 480px) {
+      padding: 0 0.5em;
+    }
   }
 
+  // form
   .wsb-form__body {
     max-width: 100%;
-
-    section {
-      margin-right: 89px;
-
-      @media(max-width: 1200px) {
-        margin-right: 0;
-      }
-    }
   }
 
   .wsb-form__instructions {
-    margin: @label-padding 0 0;
-    background-color: aliceblue;
+    border-left: solid 2px orange;
+    margin: 2em 0 0;
+    background-color: #FFF9DB;
     padding: 1em;
-
-    @media (max-width: 480px) {
-      margin-bottom: @label-padding;
-    }
   }
 
   .wsb-form__section-title {
     font-size: @h3;
     font-weight: bold;
     margin-bottom: 18px;
+    @media (max-width: 800px) {
+      margin-bottom: 12px;
+    }
   }
 
   .wsb-form__required {
@@ -115,7 +110,7 @@
 
   section {
     padding: 2em 0;
-    border-bottom: 1px solid @grey;
+    border-bottom: 1px solid @text-grey;
 
     &:last-of-type {
       border-bottom: none;
@@ -123,11 +118,6 @@
 
     &:first-of-type {
       padding-top: 2em;
-    }
-
-    @media (max-width: 600px) {
-      border-bottom: none;
-      padding: 0.5em 0;
     }
   }
 
@@ -138,13 +128,8 @@
     display: flex;
     align-items: flex-start;
 
-    @media (max-width: 800px) {
-      display: flex;
-      flex-direction: column;
-    }
-
     + .wsb-form__field {
-      margin-top: 21px;
+      margin-top: 20px;
     }
 
     &.textarea, &.checkbox {
@@ -156,6 +141,10 @@
       min-width: 7em;
       flex-direction: column;
       align-items: flex-start;
+
+      + .wsb-form__field {
+        margin-top: 10px;
+      }
 
       &.checkbox {
         flex-direction: row;
@@ -175,10 +164,8 @@
       align-items: flex-start;
     }
 
-    > .wsb-label {
-      margin-top: 5px;
-
-      @media (max-width: 800px) {
+    @media (max-width: 800px) {
+      > .wsb-label {
         flex-basis: auto;
       }
     }
@@ -187,7 +174,7 @@
   .wsb-label {
     flex: 0 0 160px;
     margin-bottom: 0;
-    line-height: 24px;
+    line-height: 32px;
     font-size: 16px;
   }
 
@@ -195,28 +182,13 @@
     cursor: pointer;
   }
 
-  textarea,
-  select,
-  input {
-    padding: 0 10px;
-    border-radius: 2px;
-    box-shadow: none;
-    .transition(all .15s ease);
-
-    &:focus {
-      border-color: #ccc;
+  .wsb-ticket-section {
+    @media (max-width: 800px) {
+      .wsb-label[for=ticket] {
+        display: none;
+      }
     }
   }
-
-  select {
-    padding-left: 0.4em;
-
-    @media (max-width: 480px) {
-      padding: 0 0.5em;
-    }
-  }
-
-  // .wsb-ticket-section {}
 
   .wsb-form__tickets, .wsb-form__radio-group {
     width: 100%;
@@ -240,16 +212,13 @@
       color: #ccc;
     }
 
-    &.wsb-active  {
-      background-color: @background-grey;
-    }
-
     @media (max-width: 480px) {
       margin-left: 0;
     }
 
     .wsb-label {
       font-size: 16px;
+      line-height: 1.2em;
     }
 
     input {
@@ -313,7 +282,6 @@
     text-decoration: none !important;
     color: #fff !important;
     text-align: center;
-    border-radius: 2px;
     cursor: pointer;
     .transition(all .15s ease);
 
@@ -350,14 +318,18 @@
 
   .wsb-form__payment-alert {
     margin-top: 32px;
-    margin-right: 89px;
-
-    @media(max-width: 1200px) {
-      margin-right: 0;
-    }
 
     @media (max-width: 600px) {
       margin-bottom: 30px;
+    }
+  }
+
+  .wsb-form__checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    input, label {
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
 }

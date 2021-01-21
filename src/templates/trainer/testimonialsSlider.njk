@@ -36,7 +36,7 @@
               {% endif %}
               <div>
                 <div class="who">
-                  <a href="/">{{ testimonial.attendee }}</a>{% if testimonial.company %},{% endif %}
+                  <strong>{{ testimonial.attendee }}</strong>{% if testimonial.company %},{% endif %}
                   {% if testimonial.verified %}<span class="wsb-verified"></span>{% endif %}
                   {% if testimonial.company %}{{ testimonial.company }}{% endif %}
                 </div>
@@ -67,7 +67,9 @@
         <div class="wsb-testimonial">
           <div class="cite-and-rating">
             <span class="wsb-cite">
-              <img class="userpic" src="{{ testimonial.avatar }}"/>
+              {% if testimonial.avatar %}
+                <img class="userpic" src="{{ testimonial.avatar }}"/>
+              {% endif %}
               <div>
                 <strong>{{ testimonial.attendee }}</strong>{% if testimonial.company %},{% endif %}
                 {% if testimonial.verified %}<span class="wsb-verified"></span>{% endif %}

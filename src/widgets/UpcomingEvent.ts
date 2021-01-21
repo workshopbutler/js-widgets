@@ -9,7 +9,6 @@ import Widget from './Widget';
 import ISuccess from '../interfaces/ISuccess';
 import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
-import {getLocalTime} from '../utils/Time';
 import Duration from '../models/utils/Duration';
 
 /**

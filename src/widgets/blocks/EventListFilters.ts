@@ -45,7 +45,7 @@ export default class EventListFilters extends ListFilters<Event> {
     });
     if (events.length) {
       this.root.find('[data-empty-list]').hide();
-      events.show();
+      events.removeAttr('style');
     } else {
       this.root.find('[data-empty-list]').show();
     }

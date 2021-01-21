@@ -124,20 +124,21 @@ export default class EventPage extends Widget<EventPageConfig> {
    * Initialize top testimonials slider
    */
   protected initTestimonialsTop() {
-    const owl = $(`.owl-carousel-testimonial`);
+    const owl = $('.owl-carousel-testimonial');
 
-    $(`.wsb-testimonials-counter .total`)
-      .text(owl.find("> div").length);
+    $('.wsb-testimonials-counter .total')
+      .text(owl.find('> div').length);
 
-
+    // @ts-ignore
     owl.owlCarousel({
       items: 1,
       dots: false,
-      nav: true
+      nav: true,
     });
 
     owl.on('changed.owl.carousel', function(e) {
-      $(`.wsb-testimonials-counter .current`)
+      $('.wsb-testimonials-counter .current')
+        // @ts-ignore
         .text(+e.item.index + 1);
     });
   }

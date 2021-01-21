@@ -19,7 +19,7 @@
     <div class="wsb-trainers">
       {% for trainer in event.trainers %}
         <div class="wsb-trainer wsb-profile">
-          {% set photo = "background-image: url(" + trainer.photo + ");" %}
+          {% set photo = "background-image: url(" + trainer.getPhotoOrDefault() + ");" %}
           {% if trainer.url %}
             <a class="wsb-profile_img" href="{{ trainer.url }}" style="{{ photo }}"></a>
           {% else %}

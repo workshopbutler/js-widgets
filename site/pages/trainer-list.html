@@ -39,8 +39,7 @@ tags: ['widget']
        data-trainer-language="{{ trainer.languages.join(',') }}"
        data-trainer-trainer="{{ trainer.fullName() }}">
     <a href="{{ trainer.url }}">
-      {% set photo = "background-image: url(" + trainer.photo + ");" %}
-      <div class="wsb-trainer-tile_img" style="{{ photo }}"></div>
+      <div class="wsb-trainer-tile_img" style="background-image: url('{{ trainer.getPhotoOrDefault() }}');"></div>
     </a>
 
     <div class="wsb-trainer-tile__info">

@@ -1,6 +1,6 @@
 [
   {
-    "instructions": null,
+    "instructions": "This is a test form instruction",
     "sections": [
       {
         "id": "ticket",

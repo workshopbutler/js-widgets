@@ -40,10 +40,12 @@ export default class TicketFormatter {
         date: DateTimeFormatter.format(loc.locale, ticket.end)});
     }
     if (ticket.end && ticket.active()) {
-      return loc.translate('event.ticket.endsOn', { date: DateTimeFormatter.format(loc.locale, ticket.end)});
+      return loc.translate('event.ticket.endsOn', {
+        date: DateTimeFormatter.format(loc.locale, ticket.end)});
     }
     if (ticket.start && ticket.inFuture()) {
-      return loc.translate('event.ticket.onSaleFrom', { date: DateTimeFormatter.format(loc.locale, ticket.start)});
+      return loc.translate('event.ticket.onSaleFrom', {
+        date: DateTimeFormatter.format(loc.locale, ticket.start)});
     }
     return '';
   }

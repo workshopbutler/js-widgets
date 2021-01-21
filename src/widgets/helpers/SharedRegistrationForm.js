@@ -61,7 +61,6 @@ export default class SharedRegistrationForm {
       this.paymentConfig.stripeClientId);
 
     this.displayCardSection(this.cardPaymentSelected());
-
     return true;
   }
 
@@ -84,8 +83,12 @@ export default class SharedRegistrationForm {
   deactivateCardPayment() {
     if (this.isPaymentActive() && !this.isPageSecure()) {
       this.root.addClass('wsb-form-not-secure');
-      this.root.find('[data-control]select[name="payment_type"] option[value="Card"]').prop('disabled', 'disabled').removeProp('selected');
-      this.root.find('[data-control]input[name="payment_type"][value="Card"]').prop('disabled', 'disabled').removeProp('checked');
+      this.root.find(
+        '[data-control]select[name="payment_type"] option[value="Card"]'
+      ).prop('disabled', 'disabled').removeProp('selected');
+      this.root.find(
+        '[data-control]input[name="payment_type"][value="Card"]'
+      ).prop('disabled', 'disabled').removeProp('checked');
     }
   }
 
@@ -108,7 +111,7 @@ export default class SharedRegistrationForm {
    * @private
    */
   cardPaymentAllowed() {
-    const paymentTypeSelector = '[data-control][name="payment_type"]'
+    const paymentTypeSelector = '[data-control][name="payment_type"]';
     // check both radio and select variants
     return !!(
       this.root.find(paymentTypeSelector+' option[value="Card"]').length ||
@@ -142,7 +145,7 @@ export default class SharedRegistrationForm {
    * @return {boolean}
    */
   invoicePaymentAllowed() {
-    const paymentTypeSelector = '[data-control][name="payment_type"]'
+    const paymentTypeSelector = '[data-control][name="payment_type"]';
     // check both radio and select variants
     return !!(
       this.root.find(paymentTypeSelector+' option[value="Invoice"]').length ||
@@ -155,7 +158,7 @@ export default class SharedRegistrationForm {
    * @return {boolean}
    */
   cardPaymentSelected() {
-    return this.root.find('[data-control][name="payment_type"]').first().val() === 'Card';
+    return this.root.find('[data-control][name="payment_type"]:checked').val() === 'Card';
   }
 
   /**
@@ -433,13 +436,13 @@ export default class SharedRegistrationForm {
     });
   }
 
-    /**
+  /**
    * Initialises ticket selection
    * @private
    */
   initActiveRadioSelection() {
     const radioGroups = this.root.find('.wsb-form__radio');
-    radioGroups.each( group => {
+    radioGroups.each( () => {
       const radios = this.root.find('input[type="radio"]');
       radios.on('change', () => {
         this.toggleRadio(radios, false);

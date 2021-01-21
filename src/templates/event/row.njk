@@ -16,8 +16,8 @@
   {% from "./tag.njk" import tag %}
 
   {% for col in config.cols %}
-    {% if col === 'wsb-tag-mob' %}
-      <div class="wsb-table__col wsb-table__col-wsb-tag-mob">
+    {% if col === 'tag' %}
+      <div class="wsb-table__col wsb-table__col-tag">
         {{ tag(event, config, _t, _f, false) }}
       </div>
     {% elif col === 'schedule' %}

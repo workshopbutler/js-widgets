@@ -1,13 +1,12 @@
 ---
 layout: layouts/base_widget.njk
 title: Schedule
-permalink: /schedule/
+permalink: /schedule-tiles/
 templateEngineOverride: false
 tags: ['widget']
 ---
 
 <div id="wsb-event-list"></div>
-<div id="wsb-event-list-2"></div>
 <script>
   const apiKey = siteConfig.apiKey;
   const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
@@ -17,17 +16,22 @@ tags: ['widget']
           type: 'Schedule',
           target: '#wsb-event-list',
           theme: themeName,
-          cols: ['schedule', 'location', 'language', 'trainers', 'title', 'register'],
+          cols: ['schedule', 'location', 'trainers', 'title', 'register'],
           registration: true,
-          table: true,
           eventPageUrl: '/event-page',
+          trainerPageUrl: '/trainer-page',
           trainerName: true,
           filters: ['type', 'location', 'language', 'trainer'],
+          registrationPageUrl: '/registration',
+          eventPagePattern: 'id={{id}}&title={{title}}&dates={{dates}}',
+          featured: {
+            highlight: true,
+            onTop: true,
+          }
         }
       ];
       const config = {
         apiKey: apiKey,
-        locale: 'en'
       };
       WorkshopButlerWidgets.launch(config, widgets);
   });

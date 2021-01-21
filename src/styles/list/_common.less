@@ -1,5 +1,5 @@
 .wsb-content {
-  .wsb-tag {
+  .wsb-tag, .wsb-free {
     text-transform: uppercase;
     font-size: 0.8em;
     padding: 0.25em 0.5em;
@@ -13,7 +13,7 @@
   }
 
   .wsb-free {
-    .wsb-tag;
+    background-color: #909d44;
   }
 
   .wsb-mobile {
@@ -21,13 +21,12 @@
   }
 
   .wsb-featured {
-    background-color: fade(@yellow, 10%) !important;
+    background-color: #FEF8EC !important;
   }
 
   .wsb-flag {
     width: 20px;
     height: 15px;
-    border-radius: 2px;
     background-size: cover;
     margin-right: 4px;
 
@@ -36,7 +35,8 @@
       border-radius: 0;
       background-position-y: 1px;
       width: 15px;
-    }
+  }
+
   }
 
 }

@@ -1,61 +1,91 @@
+@alfred: #4A90E2;
+@default-color: #333;
+
 .alfred .wsb-content {
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  color: #333;
+  color: @default-color;
 
-  .wsb-body {
-    margin-bottom: 80px;
+  a {
+    color: @alfred;
   }
 
-  .wsb-tickets {
+  .wsb-verified {
+    background-color: @alfred;
+  }
 
-    .wsb-ticket {
+  .wsb-tickets .wsb-ticket {
+      border-radius: 6px;
+  }
 
-      border: 1px solid #DDDDDD;
-      background-color: #F5F5F5;
-    }
+  .wsb-event-page .wsb-profile {
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .wsb-registration-page .wsb-profile_img {
+    border-radius: 10px;
+  }
+
+  .wsb-registration-page .wsb-profile__country {
+    display: none;
   }
 
   .wsb-register__btn,
   .wsb-form__btn {
     background-color: @alfred;
-    border-radius: 0.3em;
+    border-radius: 4px;
     font-weight: 400;
   }
 
-  // tiles
-  .wsb-tile {
+  .wsb-form__radio.wsb-active  {
+      background-color: rgba(74, 144, 226, 0.11);
+      border-radius: 4px;
+  }
+
+  input,
+  select,
+  textarea,
+  .wsb-form__card,
+  .wsb-tile,
+  .wsb-tag,
+  .wsb-free {
     border-radius: 4px;
+  }
+
+  .wsb-flag {
+    border-radius: 2px;
   }
 
   .wsb-tile-title {
     color: @alfred;
   }
 
-  .wsb-tag, .wsb-free {
+  .wsb-trainer-tile__rating {
     border-radius: 4px;
   }
 
-  .wsb-free {
-    background-color: #909d44;
+  .wsb-trainer-tile {
+    border-radius: 6px;
+  }
+
+  .wsb-trainer {
+    color: @default-color;
+    .wsb-photo {
+      border-radius: 6px;
+    }
+  }
+
+  .wsb-workshop .wsb-tag, .wsb-workshop .wsb-free {
+    border-radius: 0px;
   }
 
   .wsb-tile-info, .wsb-date-place {
     color: @text-grey;
   }
 
-  .wsb-tile-content .wsb-photo {
-    border-radius: 10px;
-  }
-
-  .wsb-tile-button:before {
-    background: -webkit-linear-gradient(rgba(251, 251, 251, 0), rgba(251, 251, 251, 1));
-    background: -o-linear-gradient(rgba(251, 251, 251, 0), rgba(251, 251, 251, 1));
-    background: -moz-linear-gradient(rgba(251, 251, 251, 0), rgba(251, 251, 251, 1));
-    background: linear-gradient(rgba(251, 251, 251, 0), rgba(251, 251, 251, 1));
-  }
-
-  .wsb-tile-btn {
-    color: #fff;
+  .wsb-table-container {
+    border-radius: 6px;
+    border: 1px solid #ddd;
   }
 
   .wsb-table__first-free,
@@ -63,23 +93,39 @@
     color: #98a552;
   }
 
-  // table
-  .wsb-table__head {
-    color: #777;
-    border-color: #e7e7e7;
-  }
-
-  .wsb-table__row {
-    border-color: #e7e7e7;
+  .wsb-table__row + .wsb-table__row {
+    border-top: 1px solid #ddd;
   }
 
   .wsb-table__btn {
     color: #fff !important;
     background-color: @alfred;
+    border-radius: 4px;
+  }
+
+  .wsb-trainer-profile .trainer-profile-header img {
+    border-radius: 6px;
+  }
+
+  .wsb-trainer-details-facts .wsb-trainer-details-fact {
+    border-radius: 5px;
+  }
+
+  .wsb-profile__rating {
+    border-radius: 4px;
   }
 
   .wsb-sharing__icon {
     color: transparent;
+    width: 2em;
+
+    &:before {
+      font-size: 24px;
+    }
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 
   &.wsb-promo {
@@ -94,8 +140,12 @@
     }
   }
 
+  .wsb-testimonial {
+    border-radius: 6px;
+  }
+
   .wsb-promo-button {
     color: @alfred;
-    border-radius: 0.3em;
+    border-radius: 4px;
   }
 }

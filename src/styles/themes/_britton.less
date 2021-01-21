@@ -1,159 +1,135 @@
 @britton: #7796a8;
+@default-color: #3d4246;
 
 .britton .wsb-content {
-  font-family: 'Droid Sans', Helvetica Neue, Helvetica, Arial, sans-serif;
-  color: #3d4246;
+  font-family: Open Sans, Arial, sans-serif;
+  color: @default-color;
 
   a {
     color: @britton;
   }
 
-  // tiles
-  .wsb-tile {
-    background-color: #f6f6f6;
+  .wsb-verified {
+    background-color: @britton;
+  }
+
+  .wsb-tickets .wsb-ticket {
+    border-radius: 3px;
+  }
+
+  .wsb-event-page .wsb-profile {
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .wsb-registration-page .wsb-profile_img {
+    border-radius: 3px;
+  }
+
+  .wsb-registration-page .wsb-profile__country {
+    display: none;
+  }
+
+  input,
+  select,
+  textarea,
+  .wsb-form__card,
+  .wsb-tile,
+  .wsb-flag {
+    border-radius: 2px;
   }
 
   .wsb-tile-title {
     color: @britton;
-    font-weight: bold;
-    -webkit-font-smoothing: antialiased;
-    overflow: hidden;
+  }
+
+  .wsb-tile,
+  .wsb-trainer-tile {
+    border-radius: 3px;
+  }
+
+  .wsb-trainer {
+    color: @default-color;
+
+    .wsb-photo {
+      border-radius: 3px;
+   }
   }
 
   .wsb-free {
-    background-color: #859529;
-    -webkit-font-smoothing: antialiased;
+    background-color: #909D44;
+  }
+
+  .wsb-trainer-profile .trainer-profile-header img {
+    border-radius: 3px;
+  }
+
+  .wsb-trainer-details-facts .wsb-trainer-details-fact {
+    border-radius: 3px;
   }
 
   .wsb-tile-info, .wsb-date-place {
     color: @text-grey;
   }
 
-  .wsb-tile-content .wsb-photo {
-    border-radius: 4px;
+  .wsb-table-container {
+    border-radius: 3px;
+    border: 1px solid #ddd;
   }
 
-  .wsb-tile-button {
-    padding: 0 23px;
-    bottom: 0;
-    -webkit-transform: none !important;
-    -moz-transform: none !important;
-    -ms-transform: none !important;
-    -o-transform: none !important;
-    transform: none !important;
-  }
-
-  .wsb-tile-btn {
-    position: static;
-    height: 3em;
-    font-weight: 400;
-    font-size: 1em;
-  }
-
-  // table
-  .wsb-table__head {
-    color: #788188;
-    border-color: #e8e9eb;
-  }
-
-  .wsb-table__row {
-    border-color: #e8e9eb;
-
-    &:nth-child(2n + 1) {
-      background-color: #f6f6f6;
-    }
+  .wsb-table__row + .wsb-table__row {
+    border-top: 1px solid #ddd;
   }
 
   .wsb-table__btn {
-    background: #7796a8;
+    background: @britton;
     border: 1px solid #668394;
     color: #fff !important;
+    border-radius: 3px;
   }
 
   .wsb-table__first-free,
   .wsb-table__free {
     font-weight: bold;
     color: #859529;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  // page
-  .wsb-title,
-  .wsb-profile__name h3,
-  .wsb-form__title,
-  .wsb-form__label,
-  .wsb-events__title,
-  .wsb-trainer__name h3 {
-    font-weight: bold;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .wsb-header {
-    background-color: @background-grey;
-  }
-
-  .wsb-form__input {
-    font-family: "Droid Sans", "Helvetica Neue", Arial, sans-serif;
   }
 
   .wsb-register__btn,
   .wsb-form__btn {
     background-color: @britton;
     border: 1px solid #668393 !important;
+    border-radius: 3px;
   }
 
-  .wsb-ticket {
-    &.state-closed {
-      background-color: transparent;
-    }
-
-    padding: 11px 9px;
-    background-color: @background-grey;
-    border: 1px solid #e8e8e8;
+  .wsb-form__radio.wsb-active  {
+    background-color: rgba(119, 150, 168, 0.13);
     border-radius: 2px;
-    margin: 0 0 10px;
-  }
-
-  .wsb-ticket__val {
-    color: #333;
-    font-weight: bold;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  .wsb-ticket__name {
-    font-weight: bold;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  &.wsb-footer {
-    background-color: #F6F6F6;
-  }
-
-  .wsb-ticket__footer {
-    text-transform: uppercase;
   }
 
   // sharing
   .wsb-sharing__icon {
-    width: 48.9%;
+    width: 49%;
     margin-left: 0;
     margin-bottom: 6px;
-    border: 1px solid #E8E8E8;
     background-color: #F6F6F6;
     color: @britton !important;
-    padding: 0.2em 0 0.5em 2em;
-    border-radius: 2px;
-    .transition(all .15s ease);
+    padding: 0 0 6px 20px;
+    border-radius: 3px;
 
-    .icon {
-      position: absolute;
-      left: 0.6em;
-      top: 4px;
+    &:before {
+      font-size: 24px;
+      position: relative;
+      left: -12px;
+      top: 3px;
+
     }
 
     &:hover {
-      border-color: #CCC;
+      text-decoration: none !important;
+      opacity: 0.7;
     }
+
+
   }
 
   // promo

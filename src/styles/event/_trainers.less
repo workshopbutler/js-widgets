@@ -19,6 +19,10 @@
     max-width: 300px;
   }
 
+  .wsb-event-page .wsb-profile:last-of-type {
+    margin-bottom: 32px;
+  }
+
   .wsb-registration-page .wsb-profile {
     flex-direction: row;
   }
@@ -32,16 +36,22 @@
   }
 
   .wsb-event-page .wsb-profile_img {
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
     height: 300px;
     width: 300px;
   }
 
   .wsb-registration-page .wsb-profile_img {
-    border-radius: 7px;
     height: 70px;
     width: 70px;
+  }
+
+  .wsb-registration-page .wsb-profile__name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding: 0 40px 0 12px;
+
   }
 
   .wsb-event-page  .wsb-profile__rating {
@@ -49,7 +59,6 @@
     margin-top: 265px;
     margin-left: 16px;
     background: #819D44;
-    border-radius: 4px;
     font-size: 12px;
     font-weight: bold;
     color: #F5F5F5;
@@ -61,7 +70,6 @@
     margin-top: 55px;
     margin-left: 25px;
     background: #819D44;
-    border-radius: 4px;
     font-size: 12px;
     font-weight: bold;
     color: #F5F5F5;
@@ -76,12 +84,6 @@
 
   .wsb-event-page .wsb-profile__name {
     background: @tile-background;
-    border-bottom-left-radius: 7px;
-    border-bottom-right-radius: 7px;
-
-    &-link {
-      font-weight: 700;
-    }
   }
 
   .wsb-profile__bio {

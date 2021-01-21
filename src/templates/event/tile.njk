@@ -49,14 +49,14 @@
         <div class="wsb-trainer">
           {% if trainer.url %}
             <a href="{{ trainer.url }}">
-              <img class="wsb-photo" src="{{ trainer.photo }}"/>
+              <img class="wsb-photo" src="{{ trainer.getPhotoOrDefault() }}"/>
             </a>
 
             <a class="wsb-name" href="{{ trainer.url }}">
               {{ trainer.fullName() }}
             </a>
           {% else %}
-            <img class="wsb-photo" src="{{ trainer.photo }}"/>
+            <img class="wsb-photo" src="{{ trainer.getPhotoOrDefault() }}"/>
             {{ trainer.fullName() }}
           {% endif %}
         </div>

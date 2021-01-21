@@ -42,7 +42,7 @@
         {% endfor %}
       </select>
     {% elif field.type === "checkbox" %}
-      {{ checkbox(field, disabled, config, _t, _f) }}
+      <div class="wsb-form__checkbox-wrapper">{{ checkbox(field, disabled, config, _t, _f) }}</div>
     {% elif field.type === "ticket" %}
       {{ ticket(field, disabled, config, _t, _f) }}
     {% else %}

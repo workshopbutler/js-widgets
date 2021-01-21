@@ -1,6 +1,6 @@
 {% from "./event/tag.njk" import tag %}
 {% for event in events %}
-    <div class="wsb-workshop {% if config.featured.highlight and event.featured %} wsb-featured {% endif %}">
+    <div class="wsb-workshop{% if config.featured.highlight and event.featured %} wsb-featured{% endif %}">
       {{ tag(event, config, _t, _f, false) }}
       {{ _f(event.schedule, 'interval') }} in {{ _f(event.location) }}
         <br>

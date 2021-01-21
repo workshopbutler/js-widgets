@@ -194,7 +194,7 @@ class Transport {
    * @param url {string} Backend URL
    */
   private updateLocalOrigin(url: string): string {
-    if (url === 'http://127.0.0.1:9000/api-new/') {
+    if (url === 'http://127.0.0.1:9000/api/') {
       return 'http://127.0.0.1:9000';
     } else {
       return url;

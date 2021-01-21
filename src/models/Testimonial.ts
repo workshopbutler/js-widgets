@@ -3,7 +3,8 @@ import IPlainObject from '../interfaces/IPlainObject';
 export default class Testimonial {
 
   static fromJSON(json: IPlainObject): Testimonial {
-    return new Testimonial(json.attendee, json.content, json.verified, json.avatar, json.company, json.reason, json.rating);
+    return new Testimonial(
+      json.attendee, json.content, json.verified, json.avatar, json.company, json.reason, json.rating);
   }
 
   constructor(readonly attendee: string,

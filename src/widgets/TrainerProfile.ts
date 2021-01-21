@@ -93,11 +93,12 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
    * Initialize bottom testimonials slider
    */
   protected initTestimonialsBottom() {
-    $(`.owl-carousel-comment`).owlCarousel({
+    // @ts-ignore
+    $('.owl-carousel-comment').owlCarousel({
       items: 1,
       dots: false,
       stagePadding: 16,
-      margin: 10
+      margin: 10,
     });
   }
 
@@ -105,19 +106,21 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
    * Initialize top testimonials slider
    */
   protected initTestimonialsTop() {
-    const owl = $(`.owl-carousel-testimonial`);
+    const owl = $('.owl-carousel-testimonial');
 
-    $(`.wsb-testimonials-counter .total`)
-      .text(owl.find("> div").length);
+    $('.wsb-testimonials-counter .total')
+      .text(owl.find('> div').length);
 
+    // @ts-ignore
     owl.owlCarousel({
       items: 1,
       dots: false,
-      nav: true
+      nav: true,
     });
 
     owl.on('changed.owl.carousel', function(e) {
-      $(`.wsb-testimonials-counter .current`)
+      $('.wsb-testimonials-counter .current')
+        // @ts-ignore
         .text(+e.item.index + 1);
     });
   }
@@ -172,7 +175,7 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
         'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'
       ).done(()=> {
         this.initTestimonialsTop();
-        if (window.innerWidth <= 480) this.initTestimonialsBottom();
+        if (window.innerWidth <= 480) { this.initTestimonialsBottom(); }
       });
 
       this.initBadgesShowBtn();

@@ -1,5 +1,4 @@
 import {renderString as nunjucksRenderString} from 'nunjucks';
-import {logError} from '../common/Error';
 import transport from '../common/Transport';
 import IPlainObject from '../interfaces/IPlainObject';
 import Event from '../models/Event';
@@ -26,7 +25,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
   static plugin(selector: string, apiKey: string, templates: ITemplates, loc: Localisation, options: IPlainObject) {
     // Add tag element for mobile view
     if (options.cols) {
-      options.cols = ['wsb-tag-mob', ...options.cols];
+      options.cols = ['tag', ...options.cols];
     }
 
     const config = ScheduleConfig.create(options);

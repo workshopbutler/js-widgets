@@ -3,34 +3,40 @@
 const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const MinifyPlugin = require('babel-minify-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const config = require('./config.js');
-const dest = path.resolve(__dirname, config.isDev?'public':'dist');
+const isDev = (process.env.NODE_ENV !== "build" && process.env.NODE_ENV !== "build-wordpress");
+const options = {
+  backend: "https://api.workshopbutler.com/",
+  apiKey: process.env.API_KEY,
+  theme: 'alfred',
+  apiVersion: '2020-04-06',
+  lang: process.env.LANG ? process.env.LANG : 'en',
+};
 
 let webpackConfig = {
-  watch: config.isDev,
-  entry: config.entry,
+  watch: isDev,
+  entry: {
+    widgets: './app.ts',
+  },
   context: path.resolve(__dirname, 'src'),
   devServer: {
-    contentBase: dest,
+    contentBase: path.resolve(__dirname, isDev?'public':'dist'),
     watchContentBase: true,
     disableHostCheck: true,
   },
   output: {
-    path: path.resolve(__dirname, config.src),
-    filename: config.isDev ? `[name].js` : `[name].${getVersion()}.${config.options.lang}.js`,
-    sourceMapFilename: config.isDev ? `[name].js.map` : `[name].${getVersion()}.js.map`
+    path: path.resolve(__dirname, isDev ? 'site/static/' : `dist/`),
+    filename: isDev ? `[name].js` : `[name].${getVersion()}.${options.lang}.js`,
+    sourceMapFilename: isDev ? `[name].js.map` : `[name].${getVersion()}.js.map`
   },
   externals: {
     jquery: 'jQuery'
   },
-  devtool: config.isDev ? 'inline-source-map' : false,
+  devtool: isDev ? 'inline-source-map' : false,
   plugins: getPlugins(),
   module: {
     rules: [
@@ -38,7 +44,7 @@ let webpackConfig = {
         test: /locales/,
         loader: '@alienfast/i18next-loader',
         query: {
-          include: [`**/${config.options.lang}.json`]
+          include: [`**/${options.lang}.json`]
         },
       },
       {
@@ -57,7 +63,6 @@ let webpackConfig = {
         test: /\.less$/,
         exclude: /node_modules/,
         use: [
-          // config.isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
@@ -120,17 +125,17 @@ function getPlugins() {
       nunjucks: 'nunjucks'
     }),
     new webpack.DefinePlugin({
-      BACKEND_URL: JSON.stringify(config.env.backend),
-      API_VERSION: JSON.stringify(config.options.apiVersion),
+      BACKEND_URL: JSON.stringify(options.backend),
+      API_VERSION: JSON.stringify(options.apiVersion),
       WIDGET_VERSION: JSON.stringify(getVersion()),
-      WIDGET_LANGUAGE: JSON.stringify(config.options.lang),
+      WIDGET_LANGUAGE: JSON.stringify(options.lang),
     }),
     new MiniCssExtractPlugin({
-      filename: config.isDev? `[name].css` : `[name].${getVersion()}.min.css`
+      filename: isDev? `[name].css` : `[name].${getVersion()}.min.css`
     })
   ];
 
-  if (config.isDev && config.options.apiKey === 'mock') {
+  if (isDev && options.apiKey === 'mock') {
     plugins.push(new webpack.NormalModuleReplacementPlugin(
       /\/common\/Transport\.ts/,
       '../../mock/MockTransport.ts'
@@ -139,10 +144,6 @@ function getPlugins() {
       /\/utils\/Time\.ts/,
       '../../mock/MockTime.ts'
     ));
-  }
-
-  if (!config.isDev) {
-    plugins.push(new MinifyPlugin())
   }
 
   return plugins;
@@ -156,7 +157,7 @@ function getMinimizer() {
       sourceMap: true // set to true if you want JS source maps
     }),
   ];
-  if (!config.wordpress) {
+  if (process.env.NODE_ENV !== "build-wordpress") {
     minimizer.push(new OptimizeCSSAssetsPlugin({}));
   }
   return minimizer;

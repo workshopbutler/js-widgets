@@ -1,4 +1,5 @@
-/* eslint-disable no-console, @typescript-eslint/prefer-regexp-exec, @typescript-eslint/no-unused-vars */
+/* eslint-disable no-console, @typescript-eslint/prefer-regexp-exec,
+  @typescript-eslint/no-unused-vars, eqeqeq, camelcase */
 
 /**
  * Mock api AJAX requests

@@ -13,6 +13,10 @@ export default class SocialLinks {
     }
   }
 
+  isEmpty(): boolean {
+    return !Object.values(this).some(v => !!v);
+  }
+
   constructor(readonly website?: string,
               readonly blog?: string,
               readonly twitter?: string,

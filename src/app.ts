@@ -1,6 +1,8 @@
 import getQueryParam from './common/helpers/UrlParser';
 import WidgetFactory from './widgets/Factory';
 
+import './styles/common.less';
+
 $(() => {
   (window as any).WorkshopButlerWidgets = {
     getQueryParam,

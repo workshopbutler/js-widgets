@@ -5,11 +5,11 @@
     </div>
     <div class="wsb-sharing js-sharing" data-title="{{ event.title }}" data-summary="{{ event.title }}. {{ _f(event.schedule) }}, {{ _f(event.location) }}" data-hashtags="training">
         <a href=""
-           onclick="window.open('http://twitter.com/intent/tweet?url=' + window.location.href + '&text=' + $(this).parent('div').data('summary'), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-           class="wsb-sharing__icon type-tw" data-share-link="twitter" target="_blank">Twitter</a>
-        <a href=""
            onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=' + window.location.href + '&title=' + $(this).parent('div').data('title') + '&summary=' + $(this).parent('div').data('summary'), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
            class="wsb-sharing__icon type-ld" data-share-link="linkedin" target="_blank">LinkedIn</a>
+        <a href=""
+           onclick="window.open('http://twitter.com/intent/tweet?url=' + window.location.href + '&text=' + $(this).parent('div').data('summary'), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+           class="wsb-sharing__icon type-tw" data-share-link="twitter" target="_blank">Twitter</a>
         <a href=""
            onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + window.location.href + '&t=' + $(this).parent('div').data('title') + '&text=' + $(this).parent('div').data('summary'), '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
            class="wsb-sharing__icon type-fb" data-share-link="facebook" target="_blank">Facebook</a>

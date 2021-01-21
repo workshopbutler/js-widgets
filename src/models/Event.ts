@@ -31,9 +31,10 @@ export default class Event {
     const payment = Payment.fromJSON(json.card_payment);
     const featured = !!json.featured;
     const testimonials = json.testimonials?.map((testimonial: IPlainObject) => Testimonial.fromJSON(testimonial)) || [];
-    return new Event(options, json.id, json.hashed_id, json.title, schedule, language, location,
-      registrationPage, trainers, testimonials,tickets, json.confirmed, json.free, json.private, json.sold_out, json.description,
-      type, category, coverImage, payment, featured, json.form
+    return new Event(
+      options, json.id, json.hashed_id, json.title, schedule, language, location, registrationPage, trainers,
+      testimonials, tickets, json.confirmed, json.free, json.private, json.sold_out, json.description, type,
+      category, coverImage, payment, featured, json.form
     );
   }
 

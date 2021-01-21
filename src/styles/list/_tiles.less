@@ -16,8 +16,6 @@
     display: none;
   }
 
-  @space-size: 24px;
-
   .wsb-tile {
     flex: 0 0 320px;
     position: relative;
@@ -26,25 +24,18 @@
     vertical-align: top;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 16px @space-size @space-size @space-size;
+    padding: 16px;
     text-align: left;
-    margin-bottom: @space-size;
-    margin-left: 12px;
+    margin-bottom: 16px;
+    margin-left: 6px;
+    margin-right: 6px;
     transition: transform .2s;
     background-color: @tile-background;
 
     &:hover {
-      transform: scale(1.03);
-    }
-
-    @media (min-width: 601px) {
-      &:hover .wsb-tile-button {
-        .transform(translate(0, -70px));
-
-        &:before {
-          display: block;
-        }
-      }
+      margin-top: -4px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2));
     }
 
     @media (max-width: 600px) {
@@ -54,17 +45,17 @@
   }
   .wsb-tile-thumbnail {
     &.with-thumbnail {
-      margin: -16px -@space-size 16px;
+      margin: -16px -16px 16px;
       height: 214px;
       background-repeat: no-repeat !important;
-      background-size: contain !important;
+      background-size: cover !important;
 
       .wsb-thumbnail-content {
         display: flex;
         justify-content: space-between;
         flex-direction: column;
         height: 100%;
-        padding: @space-size/2 @space-size 0;
+        padding: 12px 16px 0;
       }
       .wsb-tile-title {
         color: white;
@@ -78,6 +69,7 @@
     &.with-stub {
       background: url('../images/tile-stub.svg');
       background-size: cover !important;
+      background-position: center;
 
       .wsb-tile-title {
         color: unset;
@@ -98,14 +90,14 @@
     font-weight: bold;
     text-decoration: none !important;
     box-shadow: none !important;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .wsb-date-place {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 
     @media (max-width: 600px) {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
   }
@@ -151,45 +143,7 @@
       width: 32px;
       height: 32px;
       flex-shrink: 0;
+      object-fit: cover;
     }
-  }
-
-  //@deprecated
-  .wsb-tile-button {
-    height: 70px;
-    bottom: -70px;
-    position: absolute;
-    right: 0;
-    left: 0;
-    .transition(all .15s ease);
-
-    @media (max-width: 600px) {
-      display: none;
-    }
-
-    &:before {
-      content: '';
-      position: absolute;
-      height: 50px;
-      right: 0;
-      left: 0;
-      top: -50px;
-      .transition(all .15s ease);
-    }
-  }
-
-  //@deprecated
-  .wsb-tile-btn {
-    padding: 0;
-    height: 70px;
-    position: absolute;
-    right: 0;
-    left: 0;
-    top: 0;
-    font-size: 1.5em;
-    line-height: 3em;
-    font-weight: bold;
-    border-radius: 0;
-    width: 100%;
   }
 }
