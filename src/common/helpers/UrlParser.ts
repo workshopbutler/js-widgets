@@ -38,17 +38,13 @@ export function absoluteURL(url: string): string {
 }
 
 export function updatePathWithQuery(key: string, value: string): void {
-  if (history.pushState) {
-    const url = new URI().addSearch(key, value).normalizeSearch().toString();
-    window.history.pushState({path: url}, '', url);
-  }
+  const url = new URI().addSearch(key, value).normalizeSearch().toString();
+  window.history.pushState({path: url}, '', url);
 }
 
 export function deleteQueryFromPath(key: string): void {
-  if (history.pushState) {
-    const url = new URI().removeSearch(key).toString();
-    window.history.pushState({path: url}, '', url);
-  }
+  const url = new URI().removeSearch(key).toString();
+  window.history.pushState({path: url}, '', url);
 }
 
 export function hasValueInPath(type: string, value?: string): boolean {
