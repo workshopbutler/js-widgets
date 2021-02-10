@@ -40,7 +40,7 @@ export default abstract class ReactiveFilter implements Filter {
   }
 
   protected getValue(): string | undefined {
-    const dataMap = new URI().search(true);
-    return dataMap[this.query];
+    const dataMap = new URI().query(true);
+    return !!dataMap[this.query]?String(dataMap[this.query]):undefined;
   }
 }
