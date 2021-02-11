@@ -143,7 +143,7 @@
     "LT": "Lithuania",
     "LU": "Luxembourg",
     "MO": "Macao",
-    "MK": "North Macedonia",
+    "MK": "Macedonia",
     "MG": "Madagascar",
     "MW": "Malawi",
     "MY": "Malaysia",
@@ -264,33 +264,34 @@
   "language": {
     "AR": "Arabic",
     "BG": "Bulgarian",
-    "ZH": "Chinese",
-    "HR": "Croatian",
     "CS": "Czech",
     "DA": "Danish",
-    "NL": "Dutch",
+    "DE": "German",
     "EN": "English",
+    "ES": "Spanish",
     "FI": "Finnish",
     "FR": "French",
-    "DE": "German",
+    "HE": "Hebrew",
+    "HR": "Croatian",
+    "HU": "Hungarian",
     "IT": "Italian",
-    "SL": "Slovenian",
     "JA": "Japanese",
+    "KA": "Georgian",
+    "KO": "Korean",
+    "MK": "Macedonian",
+    "NL": "Dutch",
     "NO": "Norwegian",
     "PL": "Polish",
     "PT": "Portuguese",
     "RO": "Romanian",
     "RU": "Russian",
-    "ES": "Spanish",
-    "SV": "Swedish",
+    "SK": "Slovakian",
+    "SL": "Slovenian",
     "SR": "Serbian",
+    "SV": "Swedish",
     "TR": "Turkish",
     "VI": "Vietnamese",
-    "KA": "Georgian",
-    "SK": "Slovakian",
-    "HU": "Hungarian",
-    "KO": "Korean",
-    "HE": "Hebrew"
+    "ZH": "Chinese"
   },
   "rating": {
     "one": "More than 1",
@@ -338,6 +339,7 @@
     "state": {
       "ended": "This event has ended",
       "private": "This event is private",
+      "canceled": "This event is canceled",
       "soldOut": "Sold out"
     },
     "ticket": {
@@ -360,13 +362,13 @@
   "trainer": {
     "email": "Contact by email",
     "experience": {
-      "years": "Years of experience",
-      "events": "Number of events held",
+      "years": "Years as trainer",
+      "events": "Events held",
       "rating": {
-        "public": "Public events",
-        "private": "Private events",
-        "basedOn": "1&nbsp;evaluation",
-        "basedOn_plural": "{{count}}&nbsp;evaluations",
+        "public": "Rating for public events",
+        "private": "Rating for private events",
+        "basedOn": "based on 1&nbsp;evaluation",
+        "basedOn_plural": "based on {{count}}&nbsp;evaluations",
         "review": "from 1 review",
         "review_plural": "from {{count}} reviews"
       }
