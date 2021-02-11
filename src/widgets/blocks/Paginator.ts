@@ -18,8 +18,8 @@ export default class Paginator {
   }
 
   static getPageFromQuery(): number {
-    const dataMap = new URI().search(true);
-    return dataMap[this.QUERY] ? dataMap[this.QUERY] : 1;
+    const dataMap = new URI().query(true);
+    return dataMap[this.QUERY] ? Number(dataMap[this.QUERY]) : 1;
   }
 
   constructor(root: JQuery<HTMLElement>,

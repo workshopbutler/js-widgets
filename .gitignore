@@ -1,7 +1,6 @@
 .tmp
 node_modules
 *.iml
-package-lock.json
 npm-debug.log
 target
 .idea/
