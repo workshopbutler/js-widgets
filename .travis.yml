@@ -2,12 +2,6 @@ language: node_js
 node_js:
   - "node"
 
-before_install:
-  - wget https://s3.amazonaws.com/aws-cli/awscli-bundle.zip
-  - unzip awscli-bundle.zip
-  - ./awscli-bundle/install -b ~/bin/aws
-  - export PATH=~/bin:$PATH
-
 install:
   - npm install
 
@@ -18,17 +12,9 @@ script:
   - npm test
 
 after_success:
-  - mkdir -p .latest .all
+  - mkdir -p .latest
   - cp -n dist/widgets.*.js .latest/
   - cp -n dist/widgets.*.min.css .latest/
-
-  - export AWS_ACCESS_KEY_ID=$AWS_S3_ACCESS_KEY
-  - export AWS_SECRET_ACCESS_KEY=$AWS_S3_SECRET_KEY
-  - export AWS_DEFAULT_REGION=eu-central-1
-  - aws s3 sync s3://wsb-integrations .all
-  - cp -n dist/widgets.*.js .all/
-  - cp -n dist/widgets.*.min.css .all/
-
 
 deploy:
   - provider: s3
@@ -36,15 +22,7 @@ deploy:
     secret_access_key: $AWS_S3_SECRET_KEY
     skip_cleanup: true
     local_dir: .latest
-    bucket: wsb-integrations
-    on:
-      all_branches: true
-      tags: true
-
-  - provider: surge
-    project: ./.all/
-    domain: cdn.workshopbutler.com
-    skip_cleanup: true
+    bucket: cdn.workshopbutler.com
     on:
       all_branches: true
       tags: true
