@@ -33,13 +33,13 @@
 
       <div class="wsb-tile-info wsb-tile-datetime">
         {% if event.schedule.atOneDay() %}
-          {{ _f(event.schedule, 'interval_with_time') | safe}}
+          {{ _f(event.schedule, 'interval_with_time')}}
 
           {% if event.location.online and event.schedule.timezone %}
             {{ _f(event.schedule, 'timezone_abbr') }}
           {% endif %}
         {% else %}
-          {{ _f(event.schedule, 'interval') | safe }}
+          {{ _f(event.schedule, 'interval') }}
         {% endif %}
       </div>
     </div>
