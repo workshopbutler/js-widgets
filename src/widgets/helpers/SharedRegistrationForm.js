@@ -368,21 +368,19 @@ export default class SharedRegistrationForm {
   submitSucceeded() {
     if (this.formConfig.successRedirectUrl && this.formConfig.successRedirectUrl !== '') {
       window.location.href = this.formConfig.successRedirectUrl;
-    } else {
-      window.scrollTo(
-        {
-          top: this.successMessage.scrollTop(),
-          behavior: 'smooth',
-        }
-      );
-      this.successMessage.show();
-      this.form.hide();
-      // clear form and errors here
-      this.formHelper.clearForm();
-      this.unlockFromSubmit();
-      if (this.cardPaymentEnabled) {
-        this.stripeCard.clearCardInput();
-      }
+      return;
+    }
+
+    this.form.hide();
+    this.successMessage.show('slow');
+
+    this.successMessage[0].scrollIntoView({block: 'center'});
+
+    // clear form and errors here
+    this.formHelper.clearForm();
+    this.unlockFromSubmit();
+    if (this.cardPaymentEnabled) {
+      this.stripeCard.clearCardInput();
     }
   }
 

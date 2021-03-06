@@ -11,7 +11,7 @@
   >
 
     <a href="{{ trainer.url }}">
-      <div class="wsb-trainer-tile_img" style="background-image: url('{{ trainer.getPhotoOrDefault() }}');"></div>
+      <div class="wsb-trainer-tile__img" style="background-image: url('{{ trainer.getPhotoOrDefault() }}');"></div>
     </a>
 
     {% if config.showRating and trainer.stats.total.publicStats.rating > 0 %}

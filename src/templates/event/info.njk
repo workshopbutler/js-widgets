@@ -21,9 +21,9 @@
         <div class="wsb-trainer wsb-profile">
           {% set photo = "background-image: url(" + trainer.getPhotoOrDefault() + ");" %}
           {% if trainer.url %}
-            <a class="wsb-profile_img" href="{{ trainer.url }}" style="{{ photo }}"></a>
+            <a class="wsb-profile__img" href="{{ trainer.url }}" style="{{ photo }}"></a>
           {% else %}
-            <div class="wsb-profile_img" style="{{ photo }}"></div>
+            <div class="wsb-profile__img" style="{{ photo }}"></div>
           {% endif %}
 
           {% if trainer.stats.total.publicStats.rating > 0 %}

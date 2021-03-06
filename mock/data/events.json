@@ -32,7 +32,7 @@
     },
     "registration_page": {
       "external": false,
-      "url": "https://workshopbutler.com/?event01"
+      "url": "https://workshopbutler.com/?event01&register"
     },
     "schedule": {
       "start": "2020-06-22T09:00:00+0200",
@@ -118,7 +118,7 @@
     },
     "registration_page": {
       "external": false,
-      "url": "https://workshopbutler.com/?event02"
+      "url": "https://workshopbutler.com/?event02&register"
     },
     "schedule": {
       "start": "2020-06-24T09:30:00+0200",
@@ -177,7 +177,7 @@
     },
     "registration_page": {
       "external": false,
-      "url": "https://workshopbutler.com/?event03"
+      "url": "https://workshopbutler.com/?event03&register"
     },
     "schedule": {
       "start": "2020-05-24T09:30:00+0200",

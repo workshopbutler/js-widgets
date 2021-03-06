@@ -31,32 +31,3 @@ tags: ['widget']
     WorkshopButlerWidgets.launch(config, widgets);
   });
 </script>
-<script id="event-tpl" type="text/x-nunjucks">
-<div class="wsb-trainer-tile" data-trainer-obj
-       data-trainer-location="{{ trainer.worksIn.join(',') }}"
-       data-trainer-rating={{ trainer.publicStats.rating }}
-       data-trainer-badge="{{ trainer.nameOfBadges().join(',') }}"
-       data-trainer-language="{{ trainer.languages.join(',') }}"
-       data-trainer-trainer="{{ trainer.fullName() }}">
-    <a href="{{ trainer.url }}">
-      <div class="wsb-trainer-tile_img" style="background-image: url('{{ trainer.getPhotoOrDefault() }}');"></div>
-    </a>
-
-    <div class="wsb-trainer-tile__info">
-      <a href="{{ trainer.url }}">
-        <div>{{ trainer.fullName() }}</div>
-      </a>
-      <div>
-        {% if config.showBadges %}
-          {% for badge in trainer.badges %}
-            <img src="{{ badge.url }}" width="30px"/>
-          {% endfor %}
-        {% endif %}
-        {% if config.showRating and trainer.publicStats.rating > 0 %}
-          <i class="fas fa-star"></i>
-          {{ _f(trainer.publicStats.rating) }}
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</script>
