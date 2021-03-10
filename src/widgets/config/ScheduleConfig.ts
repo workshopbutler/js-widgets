@@ -45,14 +45,14 @@ export default class ScheduleConfig extends WidgetConfig {
   readonly eventPageUrl: string;
 
   /**
-   * Category ID to filter the events
+   * Lst of Category IDs to filter the events
    */
-  readonly categoryId?: number;
+  readonly categoryIds?: number[];
 
   /**
-   * Event Type ID to filter the events
+   * List of Event Type IDs to filter the events
    */
-  readonly eventTypeId?: number;
+  readonly typeIds?: number[];
 
   /**
    * A url of the page with an installed 'RegistrationPage' widget on it
@@ -124,8 +124,8 @@ export default class ScheduleConfig extends WidgetConfig {
     this.cols = options.cols !== undefined ? options.cols : defaultCols;
     this.trainerName = options.trainerName !== undefined ? options.trainerName : true;
     this.registration = options.registration !== undefined ? options.registration : false;
-    this.categoryId = options.categoryId;
-    this.eventTypeId = options.eventTypeId;
+    this.categoryIds = options.categoryIds;
+    this.typeIds = options.typeIds;
     this.eventPagePattern = options.eventPagePattern !== undefined ?
       options.eventPagePattern :
       DefaultSettings.eventPagePattern;

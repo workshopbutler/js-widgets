@@ -80,7 +80,7 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
             events = events.filter((e: Event) => e.featured).concat(events.filter((e: Event) => !e.featured));
           }
           this.events = events;
-          this.renderUpcomingEventList();
+          this.renderEventList();
         });
     });
   }
@@ -106,7 +106,7 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
     return defer.promise();
   }
 
-  private renderUpcomingEventList() {
+  private renderEventList() {
     $.when(getTemplate(this.config)).done(template => {
       const templateParams = this.getTemplateParams();
 
@@ -158,14 +158,14 @@ export default class SidebarEventList extends Widget<SidebarEventListConfig> {
     if (country) {
       url += `&countryCode=${country}`;
     }
-    if (this.config.eventType) {
-      url += `&eventType=${this.config.eventType}`;
+    if (this.config.typeIds?.length) {
+      url += `&typeIds=${this.config.typeIds.join(',')}`;
     }
     if (this.config.trainerId) {
       url += `&trainerId=${this.config.trainerId}`;
     }
-    if (this.config.categoryId) {
-      url += `&categoryId=${this.config.categoryId}`;
+    if (this.config.categoryIds?.length) {
+      url += `&categoryIds=${this.config.categoryIds.join(',')}`;
     }
     if (this.config.expand.length > 0) {
       url += `&expand=${this.config.expand.toString()}`;
