@@ -115,13 +115,13 @@ export default class Schedule extends Widget<ScheduleConfig> {
   }
 
   private getUrl() {
-    let categoryId = '';
-    if (this.config.categoryId) {
-      categoryId = `&categoryId=${this.config.categoryId}`;
+    let categoryIds = '';
+    if (this.config.categoryIds?.length) {
+      categoryIds = `&categoryIds=${this.config.categoryIds.join(',')}`;
     }
-    let eventTypeId = '';
-    if (this.config.eventTypeId) {
-      eventTypeId = `&eventType=${this.config.eventTypeId}`;
+    let typeIds = '';
+    if (this.config.typeIds?.length) {
+      typeIds = `&typeIds=${this.config.typeIds.join(',')}`;
     }
     let trainerId = '';
     if (this.config.trainerId) {
@@ -136,8 +136,8 @@ export default class Schedule extends Widget<ScheduleConfig> {
     if (!this.config.future) {
       sort = '-start_date';
     }
-    const query = `dates=${dates}&sort=${sort}&public=true${categoryId}` +
-      `${eventTypeId}${trainerId}${expand}`;
+    const query = `dates=${dates}&sort=${sort}&public=true${categoryIds}` +
+      `${typeIds}${trainerId}${expand}`;
     return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}&per_page=-1`;
   }
 

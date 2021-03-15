@@ -90,16 +90,16 @@ export default abstract class UpcomingEvent<T extends UpcomingEventConfig> exten
    * @private
    */
   private getUrl() {
-    let categoryId = '';
-    if (this.config.categoryId) {
-      categoryId = `&categoryId=${this.config.categoryId}`;
+    let categoryIds = '';
+    if (this.config.categoryIds.length) {
+      categoryIds = `&categoryIds=${this.config.categoryIds.join(',')}`;
     }
-    let eventTypeId = '';
-    if (this.config.eventTypeIds) {
-      eventTypeId = `&eventType=${this.config.eventTypeIds.join(',')}`;
+    let typeIds = '';
+    if (this.config.typeIds.length) {
+      typeIds = `&typeIds=${this.config.typeIds.join(',')}`;
     }
-    const query = `dates=future&sort=+start_date&public=true${categoryId}` +
-      `${eventTypeId}`;
+    const query = `dates=future&sort=+start_date&public=true${categoryIds}` +
+      `${typeIds}`;
     return `events?api_key=${this.apiKey}&${query}&t=${this.getWidgetStats()}&per_page=1`;
   }
 

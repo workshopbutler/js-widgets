@@ -41,7 +41,7 @@ export default class SidebarEventListConfig extends WidgetConfig {
   readonly hideIfEmpty: boolean;
   readonly length: number;
   readonly country?: string;
-  readonly eventType?: number;
+  readonly typeIds?: number[];
   readonly future: boolean;
   readonly trainerId?: number;
   readonly excludeId?: string;
@@ -57,9 +57,9 @@ export default class SidebarEventListConfig extends WidgetConfig {
   readonly expand: string[];
 
   /**
-   * Category ID to filter the events
+   * Lst of Category IDs to filter the events
    */
-  readonly categoryId?: number;
+  readonly categoryIds?: number[];
 
   /**
    * Featured config
@@ -74,11 +74,10 @@ export default class SidebarEventListConfig extends WidgetConfig {
     this.future = options.future !== undefined ? options.future : true;
 
     this.country = options.country !== undefined ? options.country : undefined;
-    this.eventType = options.eventType !== undefined ? options.eventType : undefined;
+    this.typeIds = options.typeIds !== undefined ? options.typeIds : [];
     this.trainerId = options.trainerId !== undefined ? options.trainerId : undefined;
     this.excludeId = options.excludeId !== undefined ? options.excludeId : undefined;
-
-    this.categoryId = options.categoryId;
+    this.categoryIds = options.categoryIds !== undefined ? options.categoryIds : [];
 
     this.eventPagePattern = options.eventPagePattern !== undefined ?
       options.eventPagePattern :

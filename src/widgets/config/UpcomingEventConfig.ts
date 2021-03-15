@@ -26,14 +26,14 @@ export default class UpcomingEventConfig extends WidgetConfig {
   readonly registrationPageUrl?: string;
 
   /**
-   * Id of the category to select events from
+   * Ids of the categories to select events from
    */
-  readonly categoryId: number | null;
+  readonly categoryIds: number[];
 
   /**
    * Ids of the event types to select events from
    */
-  readonly eventTypeIds: number[];
+  readonly typeIds: number[];
 
   /**
    * Configuration for the button
@@ -42,8 +42,8 @@ export default class UpcomingEventConfig extends WidgetConfig {
 
   protected constructor(options: IPlainObject) {
     super(options);
-    this.categoryId = options.categoryId !== undefined ? options.categoryId : null;
-    this.eventTypeIds = options.eventTypeIds !== undefined ? options.eventTypeIds : [];
+    this.categoryIds = options.categoryIds !== undefined ? options.categoryIds : [];
+    this.typeIds = options.typeIds !== undefined ? options.typeIds : [];
     this.eventPageUrl = options.eventPageUrl;
     this.registrationPageUrl = options.registrationPageUrl;
     this.button = options.button !== undefined ?
