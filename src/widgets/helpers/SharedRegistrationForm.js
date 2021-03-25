@@ -1,4 +1,5 @@
 import createStripeCard from './stripeCard';
+import createPayPalButton from './payPalButton';
 import {logInfo} from '../../common/Error';
 import transport from '../../common/Transport';
 
@@ -12,6 +13,7 @@ export default class SharedRegistrationForm {
    */
   constructor(selector, formHelper, formConfig, paymentConfig) {
     this.root = $(selector);
+    this.transport = transport;
     this.cardSection = this.root.find('[data-card-section]');
     this.submitBtn = this.root.find('[type="submit"]');
     this.successMessage = this.root.find('#wsb-success');
@@ -23,7 +25,8 @@ export default class SharedRegistrationForm {
     this.paymentConfig = paymentConfig;
     this.stripeCard = null;
     this.cardPaymentEnabled = this.initStripeCard();
-    this.invoicePaymentEnabled = !this.isPaymentActive() || this.invoicePaymentAllowed();
+    this.payPalPaymentEnabled = this.initPayPal();
+    this.invoicePaymentEnabled = !this.isCardPaymentActive() || this.invoicePaymentAllowed();
     this.formIsLocked = false;
     this.activateEvents();
     this.init();
@@ -49,7 +52,7 @@ export default class SharedRegistrationForm {
 
     if (!(
       this.cardPaymentAllowed()
-      && this.isPaymentActive()
+      && this.isCardPaymentActive()
       && this.isPageSecure())
     ) {
       return false;
@@ -61,6 +64,30 @@ export default class SharedRegistrationForm {
       this.paymentConfig.stripeClientId);
 
     this.displayCardSection(this.cardPaymentSelected());
+    return true;
+  }
+
+  /**
+   * Init payment by PayPal
+   * @return {boolean}
+   * @private
+   */
+  initPayPal() {
+
+    if (!(this.isPayPalActive() && this.payPalPaymentAllowed())) {
+      return false;
+    }
+
+    // here we are guessing currency by the selected ticket
+    const currency = this.getTotalAmount().currency;
+
+    const el = document.createElement('script');
+    el.setAttribute('src',
+      `https://www.paypal.com/sdk/js?currency=${currency}&client-id=${this.paymentConfig.payPalClientId}`);
+    el.addEventListener('load', () => createPayPalButton('#paypal-button-container', this));
+    document.head.appendChild(el);
+
+    this.displayPayPalButton(this.payPalPaymentSelected());
     return true;
   }
 
@@ -81,7 +108,7 @@ export default class SharedRegistrationForm {
    * @private
    */
   deactivateCardPayment() {
-    if (this.isPaymentActive() && !this.isPageSecure()) {
+    if (this.isCardPaymentActive() && !this.isPageSecure()) {
       this.root.addClass('wsb-form-not-secure');
       this.root.find(
         '[data-control]select[name="payment_type"] option[value="Card"]'
@@ -97,7 +124,7 @@ export default class SharedRegistrationForm {
    * @private
    */
   lockIfNoPaymentMethod() {
-    if (this.cardPaymentEnabled || this.invoicePaymentEnabled || this.paymentConfig.free) {
+    if (this.cardPaymentEnabled || this.invoicePaymentEnabled || this.payPalPaymentEnabled || this.paymentConfig.free) {
       return;
     }
     this.root.addClass('wsb-form-without-payment');
@@ -129,15 +156,24 @@ export default class SharedRegistrationForm {
   }
 
   /**
-   * Returns true if the payment configuration is available
+   * Returns true if the card payment is active
    * @returns boolean
    * @private
    */
-  isPaymentActive() {
+  isCardPaymentActive() {
     return this.paymentConfig.active
       && this.paymentConfig.stripeClientId !== undefined
       && this.paymentConfig.stripePublicKey !== undefined
       && this.paymentConfig.stripeClientId !== null;
+  }
+
+  /**
+   * Returns true if the PayPal is active
+   * @returns boolean
+   * @private
+   */
+  isPayPalActive() {
+    return this.paymentConfig.payPalClientId !== undefined;
   }
 
   /**
@@ -157,8 +193,29 @@ export default class SharedRegistrationForm {
    * @private
    * @return {boolean}
    */
+  payPalPaymentAllowed() {
+    const paymentTypeSelector = '[data-control][name="payment_type"]';
+    // check both radio and select variants
+    return !!(
+      this.root.find(paymentTypeSelector+' option[value="PayPal"]').length ||
+      this.root.find(paymentTypeSelector+'[value="PayPal"]').length
+    );
+  }
+
+  /**
+   * @private
+   * @return {boolean}
+   */
   cardPaymentSelected() {
     return this.root.find('[data-control][name="payment_type"]:checked').val() === 'Card';
+  }
+
+  /**
+   * @private
+   * @return {boolean}
+   */
+  payPalPaymentSelected() {
+    return this.root.find('[data-control][name="payment_type"]:checked').val() === 'PayPal';
   }
 
   /**
@@ -174,15 +231,32 @@ export default class SharedRegistrationForm {
   }
 
   /**
-   * Modifies form when a payment type switches between invoice and card
+   * @param state {boolean}
+   * @private
+   */
+  displayPayPalButton(state) {
+    if (state) {
+      this.root.find('#paypal-button-container').removeAttr('style');
+      this.root.find('#default-submit-button').css('display', 'none');
+    } else {
+      this.root.find('#default-submit-button').removeAttr('style');
+      this.root.find('#paypal-button-container').css('display', 'none');
+    }
+  }
+
+  /**
+   * Modifies form when a payment type switches
    * @private
    */
   onChangePaymentType() {
-    if (!this.cardPaymentEnabled) {
-      return;
+    if (this.cardPaymentEnabled) {
+      this.stripeCard.clearCardInput();
+      this.displayCardSection(this.cardPaymentSelected());
     }
-    this.stripeCard.clearCardInput();
-    this.displayCardSection(this.cardPaymentSelected());
+
+    if (this.payPalPaymentEnabled){
+      this.displayPayPalButton(this.payPalPaymentSelected());
+    }
   }
 
   /**
@@ -204,7 +278,7 @@ export default class SharedRegistrationForm {
       return;
     }
 
-    if (this.cardPaymentSelected() && !this.cardPaymentEnabled) {
+    if (this.payPalPaymentSelected() || (this.cardPaymentSelected() && !this.cardPaymentEnabled)) {
       this.showSubmitError('Payment method not allowed');
       return;
     }
@@ -242,7 +316,7 @@ export default class SharedRegistrationForm {
     const url = this.paymentConfig.preRegisterUrl;
 
     this.lockFormSubmit();
-    transport.post(url, this.prepareFormData(formData),
+    this.transport.post(url, this.prepareFormData(formData),
       response => {
         this.processCardPayment(url, formData, response.data.stripe_client_secret);
       }, response => {
@@ -286,6 +360,18 @@ export default class SharedRegistrationForm {
   }
 
   /**
+   * Return current amount and currency
+   * @private
+   */
+  getTotalAmount() {
+    const ticket = this.form.find('[name="ticket"]:checked');
+    return {
+      amount: ticket.data('amount'),
+      currency: ticket.data('currency'),
+    };
+  }
+
+  /**
    * Handles card payments and sends a confirmation signal on success
    * @param url
    * @param formData
@@ -316,7 +402,7 @@ export default class SharedRegistrationForm {
       // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
       formData.intent_id = result.paymentIntent.id;
 
-      transport.post(this.paymentConfig.registerUrl, this.prepareFormData(formData),
+      this.transport.post(this.paymentConfig.registerUrl, this.prepareFormData(formData),
         () => {
           this.submitSucceeded();
         }, () => {
@@ -395,7 +481,7 @@ export default class SharedRegistrationForm {
     const registrationUrl = this.paymentConfig.registerUrl;
 
     this.lockFormSubmit();
-    transport.post(registrationUrl, this.prepareFormData(formData),
+    this.transport.post(registrationUrl, this.prepareFormData(formData),
       () => {
         this.submitSucceeded();
       }, response => {

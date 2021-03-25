@@ -22,6 +22,11 @@ export default class PaymentConfig {
   readonly stripeClientId?: string;
 
   /**
+   * PayPal client id
+   */
+  readonly payPalClientId?: string;
+
+  /**
    * True if it's a test mode
    */
   readonly testMode: boolean;
@@ -38,11 +43,12 @@ export default class PaymentConfig {
 
   constructor(active: boolean, free: boolean, testMode: boolean,
               preRegisterUrl: string, registerUrl: string,
-              stripePublicKey?: string, stripeClientId?: string) {
+              stripePublicKey?: string, stripeClientId?: string, payPalClientId?: string) {
     this.active = active;
     this.free = free;
     this.stripePublicKey = stripePublicKey;
     this.stripeClientId = stripeClientId;
+    this.payPalClientId = payPalClientId;
     this.testMode = testMode;
     this.preRegisterUrl = preRegisterUrl;
     this.registerUrl = registerUrl;

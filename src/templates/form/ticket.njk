@@ -11,6 +11,8 @@
           title="{{ field.label }}" type="radio"
           data-control required value="{{ ticket.id }}" {{ 'disabled' if disabled }}
           {{ 'checked' if not next_loop }}
+          data-amount="{{ ticket.price.amount }}"
+          data-currency="{{ ticket.price.currency }}"
         />
 
         <label for="{{ ticket.id }}" class="wsb-label"><strong>{{ price }}</strong> {{ ticket.name }}</label>
