@@ -42,9 +42,10 @@
       {% if event.state.closed() %}
         <button class="wsb-form__btn" disabled>{{ _f(event.state) }}</button>
       {% else %}
-        <button type="submit" class="wsb-form__btn">
+        <button type="submit" class="wsb-form__btn" id="default-submit-button">
           <i class="fa fa-spinner fa-spin" style="display: none;"></i> {{ _t('event.form.button') }}
         </button>
+        <div id="paypal-button-container" style="display:none;"></div>
       {% endif %}
     </div>
   </form>

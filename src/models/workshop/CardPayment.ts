@@ -1,14 +1,14 @@
 import IPlainObject from '../../interfaces/IPlainObject';
 
-export default class Payment {
+export default class CardPayment {
 
   /**
-   * Converts JSON to Payment object
+   * Converts JSON to CardPayment object
    * @param json {IPlainObject} JSON data
-   * @return Optional Payment object
+   * @return Optional CardPayment object
    */
   static fromJSON(json?: IPlainObject) {
-    return json ? new Payment(json.active, json.stripe.key, json.stripe.client_id) : undefined;
+    return json ? new CardPayment(json.active, json.stripe.key, json.stripe.client_id) : undefined;
   }
 
   /**

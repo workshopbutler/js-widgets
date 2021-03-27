@@ -37,8 +37,18 @@ export default class FormHelper {
     this.$controls.each((index, el) => {
       const $el = $(el);
       const name = $el.attr('name');
-      if (name && formData[name] === undefined) {
-        formData[name] = this.getControlValue($el);
+      if (!(name && formData[name] === undefined)) {
+        return;
+      }
+
+      if ($el.is(':checkbox')) {
+        formData[name] = $el.prop('checked');
+      } else if ($el.is(':radio')) {
+        if ($el.prop('checked')) {
+          formData[name] = $el.val();
+        }
+      } else {
+        formData[name] = $el.val();
       }
     });
 

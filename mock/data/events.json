@@ -20,6 +20,10 @@
         "client_id": "acct_yynOzpeV2nEraLGG"
       }
     },
+    "paypal_payment": {
+      "active": true,
+      "client_id": "sb"
+    },
     "public": true,
     "sold_out": false,
     "invoice": null,
