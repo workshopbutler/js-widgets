@@ -104,7 +104,7 @@ export default class Schedule extends Widget<ScheduleConfig> {
         events: this.events,
         filters: this.filters.getFilters(this.events),
         template: template ? renderTemplate : null,
-        withImage: this.events.filter((e: Event) => e.coverImage.thumbnail !== undefined).length > 0,
+        withImage: this.events.filter((e: Event) => e.coverImage.thumbnailMedium !== undefined).length > 0,
       };
       const params = Object.assign(uniqueParams, templateParams);
       const content = this.templates.schedule.render(params);

@@ -6,7 +6,7 @@ import IPlainObject from '../../interfaces/IPlainObject';
 export default class CoverImage {
 
   static fromJSON(json?: IPlainObject): CoverImage {
-    return json ? new CoverImage(json.url, json.thumbnail) : new CoverImage();
+    return json ? new CoverImage(json.url, json.thumbnail, json.thumbnail_m) : new CoverImage();
   }
 
   /**
@@ -15,12 +15,19 @@ export default class CoverImage {
   readonly url?: string;
 
   /**
-   * URL to the thumbnail
+   * URL to the small thumbnail
    */
   readonly thumbnail?: string;
 
-  constructor(url?: string, thumbnail?: string) {
+  /**
+   * URL to the medium thumbnail
+   */
+  readonly thumbnailMedium?: string;
+
+  constructor(url?: string, thumbnail?: string, thumbnailMedium?: string) {
     this.url = url ? url : undefined;
     this.thumbnail = thumbnail ? thumbnail : undefined;
+    this.thumbnailMedium = thumbnailMedium ? thumbnailMedium : undefined;
   }
+
 }

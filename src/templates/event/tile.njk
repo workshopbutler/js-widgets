@@ -8,8 +8,8 @@
      data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
     {% if event.category %} data-event-category="{{ event.category.id }}" {% endif %}
   >
-    {% if event.coverImage.thumbnail and withImage %}
-      <img class="wsb-tile-image" src="{{ event.coverImage.thumbnail }}" />
+    {% if event.coverImage.thumbnailMedium and withImage %}
+      <img class="wsb-tile-image" src="{{ event.coverImage.thumbnailMedium }}" />
     {% endif %}
 
     <div class="wsb-tile-header {{ "with-stub" if withImage }}">
