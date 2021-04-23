@@ -24,7 +24,6 @@
     vertical-align: top;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    padding: 16px;
     text-align: left;
     margin-bottom: 16px;
     margin-left: 6px;
@@ -40,47 +39,58 @@
 
     @media (max-width: 600px) {
       flex-basis: calc(100% - 24px);
-      padding: 12px;
     }
   }
-  .wsb-tile-thumbnail {
-    &.with-thumbnail {
-      margin: -16px -16px 16px;
-      height: 214px;
-      background-repeat: no-repeat !important;
-      background-size: cover !important;
-
-      .wsb-thumbnail-content {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        height: 100%;
-        padding: 12px 16px 0;
-      }
-      .wsb-tile-title {
-        color: white;
-      }
-
-      @media (max-width: 600px) {
-        height: 182px;
-        background-size: cover !important;
-      }
-    }
-    &.with-stub {
-      background: url('../images/tile-stub.svg');
-      background-size: cover !important;
-      background-position: center;
-
-      .wsb-tile-title {
-        color: unset;
-      }
+  .wsb-tile-image {
+    object-fit: cover;
+    height: 230px;
+    width: 100%;
+    @media (max-width: 600px) {
+      height: 182px;
     }
   }
+
+  .wsb-tile-header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 12px 16px 0;
+    width:100%;
+  }
+
+  .wsb-tile-header.with-stub {
+    height: 230px;
+
+    background: url('../images/tile-stub.svg');
+    background-size: cover;
+    background-position: center;
+
+    @media (max-width: 600px) {
+      height: 182px;
+    }
+
+    .wsb-tile-title {
+      margin-bottom: 14px;
+    }
+  }
+
+  .wsb-tile-image + .wsb-tile-header.with-stub {
+    position: absolute;
+    top: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(13, 10, 5, 0.219583) 57.43%, rgba(39, 32, 14, 0.68) 89.64%);
+
+    .wsb-tile-title {
+      color: white !important;
+    }
+  }
+
   a.wsb-tile:hover {
     text-decoration: none;
   }
+
   .wsb-tile-tags {
     padding-bottom: 5px;
+    min-height: 30px;
   }
 
   .wsb-tile-title {
@@ -90,16 +100,13 @@
     font-weight: bold;
     text-decoration: none !important;
     box-shadow: none !important;
-    margin-bottom: 14px;
   }
 
   .wsb-date-place {
-    margin-bottom: 25px;
-
+    padding: 16px 16px 25px 16px;
     @media (max-width: 600px) {
-      margin-bottom: 10px;
+      padding: 12px;
     }
-
   }
 
   .wsb-tile-info {
@@ -109,6 +116,11 @@
   .wsb-tile-content {
     display: flex;
     flex-wrap: wrap;
+
+    padding: 0 16px 25px 16px;
+    @media (max-width: 600px) {
+      padding: 0 12px 12px 12px;
+    }
 
     .wsb-trainer {
       margin: 0;
