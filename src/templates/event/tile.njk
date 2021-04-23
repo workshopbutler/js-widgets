@@ -1,6 +1,5 @@
 {% from "../common/flag.njk" import flag %}
-{% macro drawEvent(event, withStub, config, _t, _f) %}
-  {% set withThumnail = event.coverImage.thumbnail %}
+{% macro drawEvent(event, withImage, config, _t, _f) %}
   <a href="{{ event.url }}"
      class="wsb-tile {% if config.featured.highlight and event.featured %} wsb-featured {% endif %}"
      data-event-obj data-event-type="{{ event.type.id }}"
@@ -9,23 +8,21 @@
      data-event-trainer="{{ event.nameOfTrainers() | join(',') }}"
     {% if event.category %} data-event-category="{{ event.category.id }}" {% endif %}
   >
-    <div class="wsb-tile-thumbnail {% if event.coverImage.thumbnail or withStub %} with-thumbnail {% endif %}
-      {% if not event.coverImage.thumbnail and withStub %} with-stub {% endif %}"
-      {% if event.coverImage.thumbnail %}
-        style="background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(13, 10, 5, 0.219583) 57.43%, rgba(39, 32, 14, 0.68) 89.64%), url({{ event.coverImage.thumbnail }});"
-      {% endif %}
-    >
-      <div class="wsb-thumbnail-content">
-        <div class="wsb-tile-tags">
-          {% from "./tileTag.njk" import tag %}
-          {{ tag(event, config, _t, _f, false) }}
-        </div>
+    {% if event.coverImage.thumbnail and withImage %}
+      <img class="wsb-tile-image" src="{{ event.coverImage.thumbnail }}" />
+    {% endif %}
 
-        <div class="wsb-tile-title">
-          {{ event.title | truncate(60) }}
-        </div>
+    <div class="wsb-tile-header {{ "with-stub" if withImage }}">
+      <div class="wsb-tile-tags">
+        {% from "./tileTag.njk" import tag %}
+        {{ tag(event, config, _t, _f, false) }}
+      </div>
+
+      <div class="wsb-tile-title">
+        {{ event.title | truncate(60) }}
       </div>
     </div>
+
     <div class="wsb-date-place">
       <div class="wsb-tile-info wsb-tile-location">
         {{ flag(event.location.countryCode) }}{{ _f(event.location) }}
