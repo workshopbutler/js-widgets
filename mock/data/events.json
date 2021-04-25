@@ -84,7 +84,8 @@
     "form": {},
     "cover_image": {
       "url": "https://res.cloudinary.com/wsb/image/upload/v1590308314/ivvrddcynarajc4ynj17.jpg",
-      "thumbnail": "https://res.cloudinary.com/wsb/image/upload/t_thumbnail/v1590308314/ivvrddcynarajc4ynj17.jpg"
+      "thumbnail": "https://res.cloudinary.com/wsb/image/upload/t_thumbnail/v1590308314/ivvrddcynarajc4ynj17.jpg",
+      "thumbnail_m": "https://res.cloudinary.com/wsb/image/upload/t_thumbnail/v1590308314/ivvrddcynarajc4ynj17.jpg"
     },
     "trainers": [],
     "free": false
