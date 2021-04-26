@@ -20,7 +20,7 @@ import Testimonial from './Testimonial';
 export default class Event {
 
   static fromJSON(json: IPlainObject, options: IPlainObject): Event {
-    const schedule = new Schedule(json.schedule);
+    const schedule = Schedule.fromJSON(json.schedule);
     const location = Location.fromJSON(json.location);
     const language = Language.fromJSON(json.language);
     const trainers = Event.getTrainers(json, options);
