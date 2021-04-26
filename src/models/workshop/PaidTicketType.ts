@@ -8,9 +8,10 @@ import TicketPrice from './TicketPrice';
  */
 export default class PaidTicketType implements IPaidTicketType {
 
-  static fromJSON(json: IPlainObject, timezone: string): PaidTicketType {
-    const start = json.start?DateTime.fromISO(json.start, {zone: timezone}):undefined;
-    const end = json.end?DateTime.fromISO(json.end, {zone: timezone}):undefined;
+  static fromJSON(json: IPlainObject, timezone?: string | undefined): PaidTicketType {
+    const options = timezone ? {zone: timezone} : {setZone: true};
+    const start = json.start?DateTime.fromISO(json.start, options):undefined;
+    const end = json.end?DateTime.fromISO(json.end, options):undefined;
     const price = TicketPrice.fromJSON(json.price);
     return new PaidTicketType(json.id, json.name, json.total, json.left, start, end, json.vat_excluded, price);
   }

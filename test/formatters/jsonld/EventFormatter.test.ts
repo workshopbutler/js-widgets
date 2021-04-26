@@ -23,7 +23,7 @@ describe('JSON-LD formatted Event', () => {
   const options = {
     eventPageUrl: 'https://workshopbutler.com',
   };
-  const schedule = new Schedule({
+  const schedule = Schedule.fromJSON({
     start: '2018-01-01T12:00+01:00',
     end: '2018-01-02T18:00+01:00',
     timezone: 'Europe/Amsterdam',
@@ -102,4 +102,3 @@ describe('JSON-LD formatted Event', () => {
     expect(withCover.image[1]).to.equal('https://thumb.com');
   });
 });
-

@@ -4,7 +4,7 @@ import PaidTicketType from './PaidTicketType';
 
 export default class PaidTickets {
 
-  static fromJSON(json: IPlainObject, timezone: string): PaidTickets {
+  static fromJSON(json: IPlainObject, timezone?: string | undefined): PaidTickets {
     const types = json.types.map((ticket: IPlainObject) =>
       PaidTicketType.fromJSON(ticket, timezone),
     );

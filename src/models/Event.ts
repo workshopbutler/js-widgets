@@ -24,7 +24,7 @@ export default class Event {
     const location = Location.fromJSON(json.location);
     const language = Language.fromJSON(json.language);
     const trainers = Event.getTrainers(json, options);
-    const tickets = Event.getTickets(json.free, json.tickets, schedule.defaultTimezone());
+    const tickets = Event.getTickets(json.free, json.tickets);
     const registrationPage = new RegistrationPage(json.registration_page, options.registrationPageUrl, json.hashed_id);
     const type = json.type ? (typeof json.type === 'number' ? json.type : new Type(json.type)) : undefined;
     const coverImage = CoverImage.fromJSON(json.cover_image);
@@ -42,7 +42,7 @@ export default class Event {
 
   private static getTickets(free: boolean,
                             tickets: IPlainObject,
-                            timezone: string): FreeTicketType | PaidTickets | undefined {
+                            timezone?: string | undefined): FreeTicketType | PaidTickets | undefined {
     if (tickets.free || tickets.paid) {
       return free ?
         FreeTicketType.fromJSON(tickets.free) :
