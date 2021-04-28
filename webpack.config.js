@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -151,8 +151,7 @@ function getPlugins() {
 
 function getMinimizer() {
   let minimizer = [
-    new UglifyJsPlugin({
-      cache: true,
+    new TerserPlugin({
       parallel: true,
       sourceMap: true // set to true if you want JS source maps
     }),
