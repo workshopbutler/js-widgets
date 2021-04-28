@@ -10,11 +10,11 @@
           "total": 20,
           "left": 20,
           "start": "2020-05-20T00:00:00+0200",
-          "end": "2020-06-22T23:59:59+0200",
+          "end": "2020-06-20T23:59:59+0200",
           "vat_excluded": true,
           "price": {
             "currency": "EUR",
-            "amount": 198500
+            "amount": 198501
           }
         },
         {
@@ -23,7 +23,7 @@
           "total": 20,
           "left": 20,
           "start": "2020-05-20T00:00:00+0200",
-          "end": "2020-06-22T23:59:59+0200",
+          "end": "2020-06-20T23:59:59+0200",
           "vat_excluded": true,
           "price": {
             "currency": "EUR",
@@ -35,7 +35,7 @@
           "name": "Early Bird",
           "total": 20,
           "left": 20,
-          "start": "2020-05-11T00:00:00+0200",
+          "start": "2020-05-10T00:00:00+0200",
           "end": "2020-05-20T23:59:59+0200",
           "vat_excluded": true,
           "price": {
@@ -47,8 +47,8 @@
           "id": "ticket02-1",
           "name": "Early Bird",
           "total": 20,
-          "left": 20,
-          "start": "2020-05-11T00:00:00+0200",
+          "left": 3,
+          "start": "2020-05-10T00:00:00+0200",
           "end": "2020-05-20T23:59:59+0200",
           "vat_excluded": true,
           "price": {
@@ -60,8 +60,8 @@
           "id": "ticket02-2",
           "name": "Early Bird",
           "total": 20,
-          "left": 20,
-          "start": "2020-05-11T00:00:00+0200",
+          "left": 0,
+          "start": "2020-05-10T00:00:00+0200",
           "end": "2020-05-20T23:59:59+0200",
           "vat_excluded": true,
           "price": {
@@ -87,7 +87,7 @@
           "name": "Early Bird",
           "total": 23,
           "left": 23,
-          "start": "2020-03-29T00:00:00+0100",
+          "start": "2020-03-20T00:00:00+0200",
           "end": "2020-05-20T23:59:59+0200",
           "vat_excluded": false,
           "price": {
@@ -101,7 +101,7 @@
           "total": 23,
           "left": 23,
           "start": "2020-05-20T00:00:00+0200",
-          "end": "2020-06-26T23:59:59+0200",
+          "end": "2020-06-20T23:59:59+0200",
           "vat_excluded": false,
           "price": {
             "currency": "EUR",
@@ -126,7 +126,7 @@
           "name": "Early Bird",
           "total": 23,
           "left": 23,
-          "start": "2020-03-29T00:00:00+0100",
+          "start": "2020-03-20T00:00:00+0200",
           "end": "2020-04-20T23:59:59+0200",
           "vat_excluded": false,
           "price": {
@@ -140,7 +140,7 @@
           "total": 23,
           "left": 23,
           "start": "2020-04-20T00:00:00+0200",
-          "end": "2020-05-26T23:59:59+0200",
+          "end": "2020-05-20T23:59:59+0200",
           "vat_excluded": false,
           "price": {
             "currency": "EUR",

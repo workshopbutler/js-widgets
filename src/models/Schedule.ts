@@ -11,21 +11,34 @@ export default class Schedule {
   readonly hoursPerDay: number;
   readonly totalHours: number;
 
-  /**
-   * @param attrs {IPlainObject} JSON representation of the schedule
-   */
-  constructor(attrs: IPlainObject) {
-    // check if the browser support IANA-specified zones
-    if (attrs.timezone && Info.features().zones && getLocalTime().setZone(attrs.timezon).isValid) {
-      this.timezone = attrs.timezone;
+  static fromJSON(json: IPlainObject): Schedule {
+    return new Schedule(
+      json.start,
+      json.end,
+      json.timezone,
+      json.hours_per_day,
+      json.total_hours
+    );
+  }
+
+  constructor(
+    start: string,
+    end: string,
+    timezone: string | null,
+    hoursPerDay: number,
+    totalHours: number,
+  ) {
+    // check if the browser support IANA-specified zones (may conflicts with polyfill in some browsers)
+    if (timezone && Info.features().zones && getLocalTime().setZone(timezone).isValid) {
+      this.timezone = timezone;
     } else {
       this.timezone = null;
     }
-    this.hoursPerDay = attrs.hours_per_day;
-    this.totalHours = attrs.total_hours;
+    this.hoursPerDay = hoursPerDay;
+    this.totalHours = totalHours;
 
-    this.start = DateTime.fromISO(attrs.start, {zone: this.defaultTimezone()});
-    this.end = DateTime.fromISO(attrs.end, {zone: this.defaultTimezone()});
+    this.start = DateTime.fromISO(start, {zone: this.defaultTimezone()});
+    this.end = DateTime.fromISO(end, {zone: this.defaultTimezone()});
   }
 
   /**
