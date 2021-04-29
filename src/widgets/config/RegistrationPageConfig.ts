@@ -64,6 +64,16 @@ export default class RegistrationPageConfig extends WidgetConfig {
      */
   readonly successRedirectUrl: string;
 
+  /**
+   * Default ticket id will be used if no URL param has been provided
+   */
+  readonly ticketId?: string;
+
+  /**
+   * Default event id will be used if no URL param has been provided
+   */
+  readonly eventId?: string;
+
   protected constructor(options: IPlainObject) {
     super(options);
     this.eventPageUrl = options.eventPageUrl ? options.eventPageUrl : undefined;
@@ -75,5 +85,7 @@ export default class RegistrationPageConfig extends WidgetConfig {
       this.countryDefault = options.country.default !== undefined ? options.country.default : undefined;
     }
     this.successRedirectUrl = options.successRedirectUrl !== undefined ? options.successRedirectUrl : undefined;
+    this.ticketId = options.ticketId ? options.ticketId : undefined;
+    this.eventId = options.eventId ? options.eventId : undefined;
   }
 }

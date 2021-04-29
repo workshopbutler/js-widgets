@@ -58,8 +58,8 @@ export default class RegistrationPage extends Widget<RegistrationPageConfig> {
                         config: RegistrationPageConfig) {
     super(selector, apiKey, templates, loc, config);
     this.formatter = new Formatter(loc);
-    this.ticketId = '';
-    let id = '';
+    this.ticketId = config.ticketId || '';
+    let id = config.eventId || '';
 
     window.location.search.substr(1).split('&').forEach(el => {
       const param = el.split('=', 2);
