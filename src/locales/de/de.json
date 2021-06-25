@@ -304,7 +304,10 @@
     "SV": "Schwedisch",
     "TR": "Türkisch",
     "VI": "Vietnamesisch",
-    "ZH": "Chinesisch"
+    "ZH": "Chinesisch",
+    "EL": "Griechisch",
+    "ID": "Indonesisch",
+    "MS": "Malaiisch"
   },
   "rating": {
     "one": "Mehr als 1",

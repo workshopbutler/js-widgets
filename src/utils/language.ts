@@ -37,6 +37,9 @@ export default function getLangCode(language: string): string {
     ['Turkish', 'TR'],
     ['Vietnamese', 'VI'],
     ['Chinese', 'ZH'],
+    ['Greek', 'EL'],
+    ['Indonesian', 'ID'],
+    ['Malay', 'MS'],
   ]);
   const code = langs.get(language);
   return code ? code : language;
