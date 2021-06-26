@@ -291,7 +291,10 @@
     "SV": "Svensk",
     "TR": "Turkish",
     "VI": "Vietnamesisk",
-    "ZH": "Kinesisk"
+    "ZH": "Kinesisk",
+    "EL": "Gresk",
+    "ID": "Indonesisk",
+    "MS": "Malaysisk"
   },
   "rating": {
     "one": "Mer enn 1",

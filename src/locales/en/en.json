@@ -291,7 +291,10 @@
     "SV": "Swedish",
     "TR": "Turkish",
     "VI": "Vietnamese",
-    "ZH": "Chinese"
+    "ZH": "Chinese",
+    "EL": "Greek",
+    "ID": "Indonesian",
+    "MS": "Malay"
   },
   "rating": {
     "one": "More than 1",

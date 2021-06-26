@@ -304,7 +304,10 @@
     "SV": "sueco",
     "TR": "turco",
     "VI": "vietnamita",
-    "ZH": "chinês"
+    "ZH": "chinês",
+    "EL": "grego",
+    "ID": "indonésio",
+    "MS": "malaio"
   },
   "rating": {
     "one": "Mais de 1",

@@ -275,17 +275,17 @@
     "AX": "Åland Islands"
   },
   "language": {
-    "AR": "arabe",
-    "BG": "bulgare",
+    "AR": "Arabe",
+    "BG": "Bulgare",
     "CS": "Tchèque",
-    "DA": "danois",
-    "DE": "allemand",
+    "DA": "Danois",
+    "DE": "Allemand",
     "EN": "Anglais",
     "ES": "Espagnol",
     "FI": "Finlandais",
     "FR": "French",
     "HE": "Hébreu",
-    "HR": "croate",
+    "HR": "Croate",
     "HU": "Hongrois",
     "IT": "Italien",
     "JA": "Japonais",
@@ -304,7 +304,10 @@
     "SV": "Suédois",
     "TR": "Turc",
     "VI": "Vietnamien",
-    "ZH": "chinois"
+    "ZH": "Chinois",
+    "EL": "Grecque",
+    "ID": "Indonésien",
+    "MS": "Malais"
   },
   "rating": {
     "one": "Plus de 1",
