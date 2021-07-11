@@ -35,4 +35,4 @@ jobs:
         aws-region: eu-central-1
     - name: Copy files to the S3 bucket
       run: |
-        aws s3 sync dist/ s3://cdn.workshopbutler.com --include "widgets.*.js" --include "widgets.*.min.css"
+        aws s3 sync dist/ s3://cdn.workshopbutler.com --exclude "*" --include "widgets.*.js" --include "widgets.*.min.css"
