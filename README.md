@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/workshopbutler/js-widgets.svg?branch=master)](https://travis-ci.org/workshopbutler/js-widgets)
+[![.github/workflows/deploy.yml](https://github.com/workshopbutler/js-widgets/actions/workflows/deploy.yml/badge.svg)](https://github.com/workshopbutler/js-widgets/actions/workflows/deploy.yml)
 
 # Workshop Butler JS Widgets
 
