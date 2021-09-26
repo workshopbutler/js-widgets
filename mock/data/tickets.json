@@ -1,8 +1,8 @@
 [
   {
     "paid": {
-      "vat_excluded": true,
-      "vat_amount": null,
+      "tax_excluded": true,
+      "tax_rate": 10,
       "types": [
         {
           "id": "ticket01",
@@ -11,10 +11,10 @@
           "left": 20,
           "start": "2020-05-20T00:00:00+0200",
           "end": "2020-06-20T23:59:59+0200",
-          "vat_excluded": true,
           "price": {
             "currency": "EUR",
-            "amount": 198501
+            "amount": 198501,
+            "tax": 9199
           }
         },
         {
@@ -24,10 +24,10 @@
           "left": 20,
           "start": "2020-05-20T00:00:00+0200",
           "end": "2020-06-20T23:59:59+0200",
-          "vat_excluded": true,
           "price": {
             "currency": "EUR",
-            "amount": 198500
+            "amount": 198500,
+            "tax": 9299
           }
         },
         {
@@ -37,10 +37,10 @@
           "left": 20,
           "start": "2020-05-10T00:00:00+0200",
           "end": "2020-05-20T23:59:59+0200",
-          "vat_excluded": true,
           "price": {
             "currency": "EUR",
-            "amount": 158500
+            "amount": 158500,
+            "tax": 9399
           }
         },
         {
@@ -50,10 +50,10 @@
           "left": 3,
           "start": "2020-05-10T00:00:00+0200",
           "end": "2020-05-20T23:59:59+0200",
-          "vat_excluded": true,
           "price": {
             "currency": "EUR",
-            "amount": 157500
+            "amount": 157500,
+            "tax": 9499
           }
         },
         {
@@ -63,10 +63,10 @@
           "left": 0,
           "start": "2020-05-10T00:00:00+0200",
           "end": "2020-05-20T23:59:59+0200",
-          "vat_excluded": true,
           "price": {
             "currency": "EUR",
-            "amount": 156500
+            "amount": 156500,
+            "tax": 9599
           }
         }
       ]
@@ -79,8 +79,8 @@
   },
   {
     "paid": {
-      "vat_excluded": false,
-      "vat_amount": null,
+      "tax_excluded": false,
+      "tax_rate": 25,
       "types": [
         {
           "id": "ticket03",
@@ -89,10 +89,10 @@
           "left": 23,
           "start": "2020-03-20T00:00:00+0200",
           "end": "2020-05-20T23:59:59+0200",
-          "vat_excluded": false,
           "price": {
             "currency": "EUR",
-            "amount": 158500
+            "amount": 158500,
+            "tax": 9699
           }
         },
         {
@@ -102,10 +102,10 @@
           "left": 23,
           "start": "2020-05-20T00:00:00+0200",
           "end": "2020-06-20T23:59:59+0200",
-          "vat_excluded": false,
           "price": {
             "currency": "EUR",
-            "amount": 198500
+            "amount": 198500,
+            "tax": 9799
           }
         }
       ]
@@ -118,8 +118,8 @@
   },
   {
     "paid": {
-      "vat_excluded": false,
-      "vat_amount": null,
+      "tax_excluded": false,
+      "tax_rate": null,
       "types": [
         {
           "id": "ticket05",
@@ -128,10 +128,10 @@
           "left": 23,
           "start": "2020-03-20T00:00:00+0200",
           "end": "2020-04-20T23:59:59+0200",
-          "vat_excluded": false,
           "price": {
             "currency": "EUR",
-            "amount": 158500
+            "amount": 158500,
+            "tax": 9899
           }
         },
         {
@@ -141,10 +141,10 @@
           "left": 23,
           "start": "2020-04-20T00:00:00+0200",
           "end": "2020-05-20T23:59:59+0200",
-          "vat_excluded": false,
           "price": {
             "currency": "EUR",
-            "amount": 198500
+            "amount": 198500,
+            "tax": 9999
           }
         }
       ]

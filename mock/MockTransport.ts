@@ -10,7 +10,7 @@ class MockTransport {
   trainers = require('./data/trainers.json');
   tickets = require('./data/tickets.json');
   forms = require('./data/forms.json');
-  defaultVersion = '2020-03-19';
+  defaultVersion = '2021-09-26';
 
   constructor() {
     // populate with trainers

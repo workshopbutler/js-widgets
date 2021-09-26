@@ -13,7 +13,7 @@ const options = {
   backend: "https://api.workshopbutler.com/",
   apiKey: process.env.API_KEY,
   theme: 'alfred',
-  apiVersion: '2020-04-06',
+  apiVersion: '2021-09-26',
   lang: process.env.LANG ? process.env.LANG : 'en',
 };
 

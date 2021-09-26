@@ -155,5 +155,319 @@
         ]
       }
     ]
+  },
+  {
+    "instructions": "This is a test form instruction",
+    "sections": [
+      {
+        "id": "ticket",
+        "label": "Ticket",
+        "fields": [
+          {
+            "name": "ticket",
+            "type": "ticket",
+            "required": false,
+            "label": "Ticket"
+          }
+        ]
+      },
+      {
+        "id": "payment",
+        "label": null,
+        "fields": [
+          {
+            "name": "payment_type",
+            "type": "select",
+            "required": true,
+            "label": "Payment method",
+            "options": [
+              {
+                "value": "Invoice",
+                "label": "Invoice"
+              },
+              {
+                "value": "Card",
+                "label": "Card"
+              },
+              {
+                "value": "PayPal",
+                "label": "PayPal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "general",
+        "label": "Personal Info",
+        "fields": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": true,
+            "label": "First Name"
+          },
+          {
+            "name": "last_name",
+            "type": "text",
+            "required": true,
+            "label": "Last Name"
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "label": "Email"
+          }
+        ]
+      },
+      {
+        "id": "work",
+        "label": "Work Info",
+        "fields": [
+          {
+            "name": "organisation",
+            "type": "text",
+            "required": false,
+            "label": "Company"
+          }
+        ]
+      },
+      {
+        "id": "billing",
+        "label": "Billing info",
+        "fields": [
+          {
+            "name": "tax_name",
+            "type": "text",
+            "required": false,
+            "label": "VAT Name"
+          },
+          {
+            "name": "tax_number",
+            "type": "text",
+            "required": false,
+            "label": "VAT Number"
+          },
+          {
+            "name": "billing.street_1",
+            "type": "text",
+            "required": false,
+            "label": "Street 1"
+          },
+          {
+            "name": "billing.street_2",
+            "type": "text",
+            "required": false,
+            "label": "Street 2"
+          },
+          {
+            "name": "billing.city",
+            "type": "text",
+            "required": false,
+            "label": "City"
+          },
+          {
+            "name": "billing.province",
+            "type": "text",
+            "required": false,
+            "label": "Province/State"
+          },
+          {
+            "name": "billing.postcode",
+            "type": "text",
+            "required": false,
+            "label": "Postcode"
+          },
+          {
+            "name": "billing.country",
+            "type": "country",
+            "required": false,
+            "label": "Country"
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "Additional Information",
+        "fields": [
+          {
+            "name": "comment",
+            "type": "textarea",
+            "required": false,
+            "label": "Comment"
+          },
+          {
+            "name": "0049d118",
+            "type": "text",
+            "required": false,
+            "label": "Anything else we should know? "
+          },
+          {
+            "name": "87724352",
+            "type": "text",
+            "required": false,
+            "label": "Dietary restrictions (for face-to-face courses)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "instructions": "This is a test form instruction",
+    "sections": [
+      {
+        "id": "ticket",
+        "label": "Ticket",
+        "fields": [
+          {
+            "name": "ticket",
+            "type": "ticket",
+            "required": false,
+            "label": "Ticket"
+          }
+        ]
+      },
+      {
+        "id": "payment",
+        "label": null,
+        "fields": [
+          {
+            "name": "payment_type",
+            "type": "select",
+            "required": true,
+            "label": "Payment method",
+            "options": [
+              {
+                "value": "Invoice",
+                "label": "Invoice"
+              },
+              {
+                "value": "Card",
+                "label": "Card"
+              },
+              {
+                "value": "PayPal",
+                "label": "PayPal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "general",
+        "label": "Personal Info",
+        "fields": [
+          {
+            "name": "first_name",
+            "type": "text",
+            "required": true,
+            "label": "First Name"
+          },
+          {
+            "name": "last_name",
+            "type": "text",
+            "required": true,
+            "label": "Last Name"
+          },
+          {
+            "name": "email",
+            "type": "email",
+            "required": true,
+            "label": "Email"
+          }
+        ]
+      },
+      {
+        "id": "work",
+        "label": "Work Info",
+        "fields": [
+          {
+            "name": "organisation",
+            "type": "text",
+            "required": false,
+            "label": "Company"
+          }
+        ]
+      },
+      {
+        "id": "billing",
+        "label": "Billing info",
+        "fields": [
+          {
+            "name": "tax_name",
+            "type": "text",
+            "required": false,
+            "label": "VAT Name"
+          },
+          {
+            "name": "tax_number",
+            "type": "text",
+            "required": false,
+            "label": "VAT Number"
+          },
+          {
+            "name": "billing.street_1",
+            "type": "text",
+            "required": false,
+            "label": "Street 1"
+          },
+          {
+            "name": "billing.street_2",
+            "type": "text",
+            "required": false,
+            "label": "Street 2"
+          },
+          {
+            "name": "billing.city",
+            "type": "text",
+            "required": false,
+            "label": "City"
+          },
+          {
+            "name": "billing.province",
+            "type": "text",
+            "required": false,
+            "label": "Province/State"
+          },
+          {
+            "name": "billing.postcode",
+            "type": "text",
+            "required": false,
+            "label": "Postcode"
+          },
+          {
+            "name": "billing.country",
+            "type": "country",
+            "required": false,
+            "label": "Country"
+          }
+        ]
+      },
+      {
+        "id": "other",
+        "label": "Additional Information",
+        "fields": [
+          {
+            "name": "comment",
+            "type": "textarea",
+            "required": false,
+            "label": "Comment"
+          },
+          {
+            "name": "0049d118",
+            "type": "text",
+            "required": false,
+            "label": "Anything else we should know? "
+          },
+          {
+            "name": "87724352",
+            "type": "text",
+            "required": false,
+            "label": "Dietary restrictions (for face-to-face courses)"
+          }
+        ]
+      }
+    ]
   }
 ]

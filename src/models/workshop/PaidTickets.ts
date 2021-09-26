@@ -8,7 +8,7 @@ export default class PaidTickets {
     const types = json.types.map((ticket: IPlainObject) =>
       PaidTicketType.fromJSON(ticket, timezone),
     );
-    return new PaidTickets(types, json.vat_excluded, json.vat_amount);
+    return new PaidTickets(types, json.tax_excluded, json.tax_rate);
   }
 
   /**

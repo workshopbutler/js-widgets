@@ -9,11 +9,6 @@ export default interface IPaidTicketType extends ITicketType {
   readonly numberOfTicketsLeft: number;
   readonly start?: DateTime;
   readonly end?: DateTime;
-
-  /**
-     * True when a sales tax is NOT included in the price
-     */
-  readonly excludedTax: boolean;
   readonly price: TicketPrice;
 
   /**

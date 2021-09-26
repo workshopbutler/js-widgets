@@ -13,7 +13,7 @@ export default class PaidTicketType implements IPaidTicketType {
     const start = json.start ? DateTime.fromISO(json.start, options) : undefined;
     const end = json.end ? DateTime.fromISO(json.end, options) : undefined;
     const price = TicketPrice.fromJSON(json.price);
-    return new PaidTicketType(json.id, json.name, json.total, json.left, start, end, json.vat_excluded, price);
+    return new PaidTicketType(json.id, json.name, json.total, json.left, start, end, price);
   }
 
   readonly id: string;
@@ -22,11 +22,6 @@ export default class PaidTicketType implements IPaidTicketType {
   readonly numberOfTicketsLeft: number;
   readonly start?: DateTime;
   readonly end?: DateTime;
-
-  /**
-   * True when a sales tax is NOT included in the price
-   */
-  readonly excludedTax: boolean;
   readonly price: TicketPrice;
 
   constructor(
@@ -36,7 +31,6 @@ export default class PaidTicketType implements IPaidTicketType {
     left: number,
     start: DateTime | undefined,
     end: DateTime | undefined,
-    excludedTax: boolean,
     price: TicketPrice
   ) {
     this.id = id;
@@ -45,7 +39,6 @@ export default class PaidTicketType implements IPaidTicketType {
     this.numberOfTicketsLeft = left;
     this.start = start;
     this.end = end;
-    this.excludedTax = excludedTax;
     this.price = price;
   }
 
