@@ -14,6 +14,7 @@ export default function getLangCode(language: string): string {
     ['German', 'DE'],
     ['English', 'EN'],
     ['Spanish', 'ES'],
+    ['Estonian', 'ET'],
     ['Finnish', 'FI'],
     ['French', 'FR'],
     ['Hebrew', 'HE'],
