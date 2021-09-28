@@ -67,10 +67,10 @@ describe('JSON-LD formatted Event', () => {
       new PaidTicketType('1', 'Regular', 10, 5,
         DateTime.fromFormat('2018-01-01', 'yyyy-MM-dd'),
         DateTime.fromFormat('2018-01-03', 'yyyy-MM-dd'),
-        true, new TicketPrice(100, 'EUR', '€')),
+        new TicketPrice(100, 10, 'EUR', '€')),
       new PaidTicketType('1', 'Early Bird', 10, 5,
         DateTime.fromFormat('2017-12-01', 'yyyy-MM-dd'), DateTime.fromFormat('2018-01-01', 'yyyy-MM-dd'),
-        true, new TicketPrice(100, 'EUR', '€')),
+        new TicketPrice(100, 10, 'EUR', '€')),
     ];
     event.tickets = new PaidTickets(types, true);
     const formattedWithTickets = EventFormatter.format(event);
