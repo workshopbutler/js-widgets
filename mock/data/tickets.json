@@ -3,6 +3,7 @@
     "paid": {
       "tax_excluded": true,
       "tax_rate": 10,
+      "tax_validation": true,
       "types": [
         {
           "id": "ticket01",

@@ -11,7 +11,8 @@
           title="{{ field.label }}" type="radio"
           data-control required value="{{ ticket.id }}" {{ 'disabled' if disabled }}
           {{ 'checked' if not next_loop }}
-          data-amount="{{ ticket.price.getAmount(field.tickets.excludedTax) }}"
+          data-amount="{{ ticket.price.amount }}"
+          data-tax="{{ ticket.price.tax }}"
           data-currency="{{ ticket.price.currency }}"
         />
 
@@ -29,9 +30,10 @@
     {% endif %}
   {% endfor %}
 
-  <div class="wsb-form__tax">
+  <div class="wsb-form__tax" data-tax-description>
     {% if field.tickets.excludedTax %}
-      {% if not field.tickets.tax %}{{ _t("tax.excluded_all") }}{% endif %}
+      {{ _t("tax.excluded_all") }}{% if field.tickets.tax %} {{ field.tickets.tax }}%{% endif %}
+      {% if field.tickets.validateTax %}<a data-vat-apply-link>Enter VAT ID</a>{% endif %}
     {% else %}
       {{ _t("tax.included_all") }}
     {% endif %}

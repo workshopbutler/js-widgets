@@ -20,7 +20,7 @@ export default class TicketSection extends Section {
   /**
    * Tax amount
    */
-  readonly tax?: number;
+  readonly tax: number | null;
 
   protected readonly event: Event;
 

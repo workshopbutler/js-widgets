@@ -4,6 +4,19 @@
     {% from "./field.njk" import formField %}
     {% for field in section.fields %}
       {{ formField(field, disabled, [], config, _t, _f) }}
+      {% if field.type === "ticket" and field.tickets.validateTax %}
+      <div class="wsb-form__field" style="display:none;" data-tax-widget>
+        <label class="wsb-label">VAT ID</label>
+        <div class="wsb-form__tax-widget">
+          <div class="wsb-form__tax-widget-input">
+            <input name="vat" title="vat" type="text" data-tax-widget-value />
+            <input name="tax_intent_id" type="hidden" data-control data-tax-intent-id/>
+            <div data-tax-widget-message></div>
+          </div>
+          <a data-tax-widget-button>Apply</a>
+        </div>
+      </div>
+      {% endif %}
     {% endfor %}
     {% if section.showSummary() %}
       <div class="wsb-form__field ticket">

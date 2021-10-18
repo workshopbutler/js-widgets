@@ -278,6 +278,51 @@
     margin-top: 10px;
     margin-left: 12px;
     color: #888;
+
+    a {
+      cursor: pointer;
+    }
+  }
+
+  .wsb-form__tax-widget {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    a {
+      padding: 7px 0 0 20px;
+      cursor: pointer;
+    }
+
+    a.disabled {
+      pointer-events: none;
+      text-decoration: none;
+      cursor: default;
+      opacity: 0.6;
+    }
+
+    .ok-message, .warn-message, .error-message {
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .ok-message {
+      color: #819D44;
+      background-color: #E2F3DC;
+    }
+
+    .warn-message {
+      color: #788188;
+      background-color: #FEF3DE;
+    }
+
+    .error-message {
+      color: #FFFFFF;
+      background-color: #f1847a;
+    }
+
+
   }
 
   .wsb-form__btn {

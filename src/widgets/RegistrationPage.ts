@@ -143,9 +143,11 @@ export default class RegistrationPage extends Widget<RegistrationPageConfig> {
   private getPaymentConfig() {
     const registerUrl = `attendees/register?api_key=${this.apiKey}&t=${this.getWidgetStats()}`;
     const preRegisterUrl = `attendees/pre-register?api_key=${this.apiKey}&t=${this.getWidgetStats()}`;
+    const taxValidationUrl = `tax-validation/:number?api_key=${this.apiKey}&t=${this.getWidgetStats()}`
+      +`&lang=${this.formatter.getLocale()}`;
 
     return new PaymentConfig(this.event.cardPayment?.active || false, this.event.free,
-      this.event.cardPayment?.testMode() || false, preRegisterUrl, registerUrl,
+      this.event.cardPayment?.testMode() || false, preRegisterUrl, registerUrl, taxValidationUrl,
       this.event.cardPayment?.stripePublicKey, this.event.cardPayment?.stripeClientId,
       this.event.payPalPayment?.clientId);
   }

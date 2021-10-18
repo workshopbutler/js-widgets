@@ -1,5 +1,6 @@
 import createStripeCard from './stripeCard';
 import createPayPalButton from './payPalButton';
+import TaxWidget from './TaxWidget';
 import {logInfo} from '../../common/Error';
 import transport from '../../common/Transport';
 
@@ -28,6 +29,7 @@ export default class SharedRegistrationForm {
     this.payPalPaymentEnabled = this.initPayPal();
     this.invoicePaymentEnabled = !this.isCardPaymentActive() || this.invoicePaymentAllowed();
     this.formIsLocked = false;
+    this.taxExempt = false;
     this.activateEvents();
     this.init();
   }
@@ -98,6 +100,7 @@ export default class SharedRegistrationForm {
   init() {
     this.successMessage.hide();
     this.initPromoActivation();
+    this.initTaxApplication();
     this.initActiveRadioSelection();
     this.deactivateCardPayment();
     this.lockIfNoPaymentMethod();
@@ -366,7 +369,7 @@ export default class SharedRegistrationForm {
   getTotalAmount() {
     const ticket = this.form.find('[name="ticket"]:checked');
     return {
-      amount: ticket.data('amount'),
+      amount: ticket.data('amount') + (!this.taxFreeIntent ? ticket.data('tax')||0 : 0),
       currency: ticket.data('currency'),
     };
   }
@@ -520,6 +523,15 @@ export default class SharedRegistrationForm {
     });
   }
 
+  initTaxApplication() {
+    this.root.find('[data-vat-apply-link]').on('click', e => {
+      this.root.find('[data-tax-description]').hide();
+      this.root.find('[data-tax-widget]').show();
+    });
+    return new TaxWidget(this.root.find('[data-tax-widget]'), this.applyTaxExempt.bind(this),
+      this.paymentConfig.taxValidationUrl);
+  }
+
   /**
    * Initialises ticket selection
    * @private
@@ -550,6 +562,15 @@ export default class SharedRegistrationForm {
     } else {
       tickets.removeProp('checked');
       tickets.parent().removeClass(name);
+    }
+  }
+
+  applyTaxExempt(exempt) {
+    this.taxExempt = exempt;
+    if(exempt) {
+      this.root.find('.wsb-ticket__tax').css('display', 'none');
+    } else {
+      this.root.find('.wsb-ticket__tax').removeAttr('style');
     }
   }
 }

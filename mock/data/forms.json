@@ -11,6 +11,12 @@
             "type": "ticket",
             "required": false,
             "label": "Ticket"
+          },
+          {
+            "name": "promo_code",
+            "type": "text",
+            "required": false,
+            "label": "Promo code"
           }
         ]
       },
@@ -168,6 +174,12 @@
             "type": "ticket",
             "required": false,
             "label": "Ticket"
+          },
+          {
+            "name": "promo_code",
+            "type": "text",
+            "required": false,
+            "label": "Promo code"
           }
         ]
       },
@@ -325,6 +337,12 @@
             "type": "ticket",
             "required": false,
             "label": "Ticket"
+          },
+          {
+            "name": "promo_code",
+            "type": "text",
+            "required": false,
+            "label": "Promo code"
           }
         ]
       },
