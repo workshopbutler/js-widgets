@@ -525,8 +525,8 @@ export default class SharedRegistrationForm {
 
   initTaxApplication() {
     this.root.find('[data-vat-apply-link]').on('click', e => {
-      this.root.find('[data-tax-description]').hide();
-      this.root.find('[data-tax-widget]').show();
+      this.root.find('[data-tax-description]').hide('fast');
+      this.root.find('[data-tax-widget]').show('fast');
     });
     return new TaxWidget(this.root.find('[data-tax-widget]'), this.applyTaxExempt.bind(this),
       this.paymentConfig.taxValidationUrl);

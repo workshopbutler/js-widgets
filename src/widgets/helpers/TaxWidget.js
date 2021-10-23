@@ -8,75 +8,78 @@ export default class TaxWidget {
     this.taxValidationUrl = taxValidationUrl;
 
     this.message = $el.find('[data-tax-widget-message]');
-    this.button = $el.find('[data-tax-widget-button]');
+    this.applyButton = $el.find('[data-tax-widget-apply]');
+    this.clearButton = $el.find('[data-tax-widget-clear]');
     this.input = $el.find('[data-tax-widget-value]');
     this.intentId = $el.find('[data-tax-intent-id]');
 
-    this.clearOnChange = false;
-    this.buttonEnabled = true;
+    this.resetOnChange = false;
 
+    this.reset();
     this.activateEvents();
   }
 
-  activateEvents() {
-    this.root
-      .on('click', '[data-tax-widget-button]', this.onButtonClick.bind(this))
-      .on('change', '[data-tax-widget-value]', this.onChangeValue.bind(this));
+  reset(resetInput = true) {
+    this.renderApplyButton(true);
+    this.renderClearButton(false);
+    if(resetInput) {
+      this.input.val('');
+    }
+    this.message.hide('fast');
+    this.intentId.val('');
+    this.resetOnChange = false;
+
+    this.taxExemptCallback(false);
+
   }
 
-  onButtonClick() {
-    if (!this.buttonEnabled) {return;}
+  activateEvents() {
+    this.applyButton.on('click', this.onApplyClick.bind(this));
+    this.clearButton.on('click', this.onClearClick.bind(this));
+    this.input.on('input', this.onChangeValue.bind(this));
+  }
 
-    if (this.clearOnChange) {
-      this.clear();
-    } else {
-      this.apply(this.input.val());
+  onApplyClick() {
+    if( this.applyButton.hasClass('disabled') ) {
+      return;
     }
+    this.apply(this.input.val());
+  }
+
+  onClearClick() {
+    if( this.clearButton.hasClass('disabled') ) {
+      return;
+    }
+    this.reset(true);
   }
 
   onChangeValue() {
-    if(this.clearOnChange) {
-      this.clear();
+    if(!this.resetOnChange) {
+      return;
     }
+    this.reset(false);
   }
 
-  renderClearButton() {
-    this.buttonEnabled = true;
-    this.button.text('Clear');
-    this.button.toggleClass('disabled', !this.buttonEnabled);
+  renderClearButton(enabled = true) {
+    this.clearButton.toggleClass('disabled', !enabled);
   }
 
   renderApplyButton(enabled = true) {
-    this.buttonEnabled = enabled;
-    this.button.text('Apply');
-    this.button.toggleClass('disabled', !this.buttonEnabled);
-  }
-
-  clear() {
-    this.renderApplyButton(true);
-    this.input.val('');
-    this.clearMessage();
-    this.intentId.val('');
-    this.clearOnChange = false;
-  }
-
-  clearMessage() {
-    this.message.text('');
-    this.message.removeClass();
+    this.applyButton.toggleClass('disabled', !enabled);
   }
 
   renderMessage(type, text) {
-    this.clearMessage();
     this.message.text(text);
-    this.message.addClass(type+'-message');
+    this.message.attr('class', type+'-message');
+    this.message.show('fast');
   }
 
   apply(taxNumber) {
-
     if(!taxNumber) {return;}
 
     this.renderApplyButton(false);
-    this.clearOnChange = true;
+    this.renderClearButton(true);
+    this.resetOnChange = true;
 
     const url = this.taxValidationUrl.replace(':number', taxNumber);
     transport.get(url, {},
@@ -85,17 +88,20 @@ export default class TaxWidget {
       },
       data => {
         this.processFailResponse(data);
-      });
+      }
+    );
   }
 
   processOkResponse(response) {
+    if(!this.resetOnChange) {
+      // FIXME: potential race condition may happen here
+      return;
+    }
     const data = response.data;
-
     // eslint-disable-next-line no-console
     console.log(data);
     this.intentId.val(data.tax_intent_id);
     this.renderMessage(data.message_type, data.message_text);
-    this.renderClearButton();
 
     this.taxExemptCallback(data.tax_exempt);
   }
@@ -103,7 +109,7 @@ export default class TaxWidget {
   processFailResponse(response) {
     // eslint-disable-next-line no-console
     console.log(response);
-    this.clear();
+    this.reset(false);
   }
 
 
