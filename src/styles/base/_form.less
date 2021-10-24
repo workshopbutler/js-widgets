@@ -253,11 +253,13 @@
     }
   }
 
+  #wsb-form-field-promo_code {
+    margin-top: 20px;
+  }
+
   .wsb-promo-link {
     padding-bottom: 0.5em;
     display: block;
-    color: @text-grey !important;
-    text-decoration: underline;
   }
 
   .wsb-promo-code {
@@ -266,9 +268,14 @@
 
   .wsb-promo-block {
     padding-left: @left-column;
+    width: calc( 100% - 188px );
+
+    @media (max-width: 800px) {
+      padding-left: 0;
+    }
 
     @media (max-width: 480px) {
-      padding-left: 0;
+      width: 100%;
     }
   }
 
@@ -278,6 +285,94 @@
     margin-top: 10px;
     margin-left: 12px;
     color: #888;
+
+    a {
+      cursor: pointer;
+    }
+  }
+
+  .wsb-form__tax-widget {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 180px;
+    grid-template-rows: auto;
+    column-gap: 8px;
+    grid-template-areas: "input buttons" "message message";
+
+    @media (max-width: 480px) {
+      grid-template-columns: auto;
+      grid-template-areas: "input" "message" "buttons";
+    }
+
+    .ok-message, .warn-message, .error-message {
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .ok-message {
+      color: #819D44;
+      background-color: #E2F3DC;
+    }
+
+    .warn-message {
+      color: #788188;
+      background-color: #FEF3DE;
+    }
+
+    .error-message {
+      color: #FFFFFF;
+      background-color: #f1847a;
+    }
+  }
+
+  .wsb-form__tax-widget-input {
+    grid-area: input;
+  }
+
+  .wsb-form__tax-widget-buttons {
+    grid-area: buttons;
+    display: flex;
+    align-items: center;
+
+    a {
+      cursor: pointer;
+      flex-grow: 1;
+      padding: 0.35em 0;
+      text-align: center;
+      user-select: none;
+    }
+
+    a.disabled {
+      pointer-events: none;
+      text-decoration: none;
+      cursor: default;
+      opacity: 0.6;
+    }
+  }
+
+  .wsb-form__tax-widget-message {
+    grid-area: message;
+  }
+
+  .wsb-form__tax-widget-apply {
+    border-radius: 4px;
+    background-color: #4a90e2;
+    border: solid 1px #4a90e2;
+    color: #fff !important;
+    text-decoration: none !important;
+  }
+
+  @media (max-width: 480px) {
+    .wsb-form__tax-widget-clear {
+      border-radius: 4px;
+      border: solid 1px #4a90e2;
+      margin-left: 7px;
+    }
+
+    .wsb-form__tax-widget-buttons {
+      margin-top: 12px;
+    }
   }
 
   .wsb-form__btn {

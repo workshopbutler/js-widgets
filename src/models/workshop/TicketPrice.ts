@@ -25,7 +25,4 @@ export default class TicketPrice {
     return new TicketPrice(amount, this.tax, this.currency, this.sign);
   }
 
-  getAmount(appendTax = false): number {
-    return this.amount + (appendTax ? this.tax : 0);
-  }
 }

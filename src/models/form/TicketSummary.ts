@@ -31,7 +31,7 @@ export default class TicketSummary {
     return `${lines.join('')}<hr>${total}`;
   }
 
-  protected getFinalPrice(price: TicketPrice, tax?: number): TicketPrice {
+  protected getFinalPrice(price: TicketPrice, tax: number | null): TicketPrice {
     return tax ? price.withAmount(price.amount * (1 + tax / 100)) : price;
   }
 

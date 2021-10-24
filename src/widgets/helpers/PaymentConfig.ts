@@ -41,8 +41,10 @@ export default class PaymentConfig {
    */
   readonly registerUrl: string;
 
+  readonly taxValidationUrl: string;
+
   constructor(active: boolean, free: boolean, testMode: boolean,
-              preRegisterUrl: string, registerUrl: string,
+              preRegisterUrl: string, registerUrl: string, taxValidationUrl: string,
               stripePublicKey?: string, stripeClientId?: string, payPalClientId?: string) {
     this.active = active;
     this.free = free;
@@ -52,5 +54,6 @@ export default class PaymentConfig {
     this.testMode = testMode;
     this.preRegisterUrl = preRegisterUrl;
     this.registerUrl = registerUrl;
+    this.taxValidationUrl = taxValidationUrl;
   }
 }

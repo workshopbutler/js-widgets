@@ -72,7 +72,7 @@ describe('JSON-LD formatted Event', () => {
         DateTime.fromFormat('2017-12-01', 'yyyy-MM-dd'), DateTime.fromFormat('2018-01-01', 'yyyy-MM-dd'),
         new TicketPrice(100, 10, 'EUR', '€')),
     ];
-    event.tickets = new PaidTickets(types, true);
+    event.tickets = new PaidTickets(types, true, 0, false);
     const formattedWithTickets = EventFormatter.format(event);
     expect(formattedWithTickets.offers).to.have.length(2);
   });

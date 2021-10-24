@@ -8,8 +8,13 @@ export default class PaidTickets {
     const types = json.types.map((ticket: IPlainObject) =>
       PaidTicketType.fromJSON(ticket, timezone),
     );
-    return new PaidTickets(types, json.tax_excluded, json.tax_rate);
+    return new PaidTickets(types, json.tax_excluded, json.tax_rate, json.tax_validation);
   }
+
+  /**
+   * True when the tax validation is required
+   */
+  readonly validateTax: boolean;
 
   /**
    * True when a sales tax is NOT included in the price
@@ -19,7 +24,7 @@ export default class PaidTickets {
   /**
    * Tax size (in percents)
    */
-  readonly tax?: number;
+  readonly tax: number | null;
 
   /**
    * Available ticket types for a workshop
@@ -31,10 +36,11 @@ export default class PaidTickets {
    */
   activeTicketId: string | null;
 
-  constructor(types: IPaidTicketType[], excludedTax: boolean, tax?: number) {
+  constructor(types: IPaidTicketType[], excludedTax: boolean, tax: number, validateTax: boolean) {
     this.types = types;
     this.excludedTax = excludedTax;
-    this.tax = tax ? tax : undefined;
+    this.tax = tax ? tax : null;
+    this.validateTax = !!validateTax;
     this.activeTicketId = this.getActiveTicketId();
   }
 

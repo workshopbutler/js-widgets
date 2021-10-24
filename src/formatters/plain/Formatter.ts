@@ -44,4 +44,8 @@ export default class Formatter {
     }
     return '';
   }
+
+  getLocale() {
+    return this.loc.locale;
+  }
 }
