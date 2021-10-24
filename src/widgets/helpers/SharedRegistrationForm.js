@@ -369,7 +369,7 @@ export default class SharedRegistrationForm {
   getTotalAmount() {
     const ticket = this.form.find('[name="ticket"]:checked');
     return {
-      amount: ticket.data('amount') + (!this.taxFreeIntent ? ticket.data('tax')||0 : 0),
+      amount: ticket.data('amount') + (this.taxExempt ? 0 : ticket.data('tax') || 0),
       currency: ticket.data('currency'),
     };
   }
