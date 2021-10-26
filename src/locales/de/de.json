@@ -394,8 +394,15 @@
     "feedback": "Teilnehmerfeedback"
   },
   "tax": {
-    "excluded_all": "Alle Preise enthalten keine MwSt",
-    "included_all": "Alle Preisangaben inkl. MwSt"
+    "excluded_all": "Alle Preise enthalten keine MwSt.",
+    "included_all": "Alle Preisangaben inkl. MwSt.",
+    "amount": "{{amount}} MwSt.",
+    "widget": {
+      "apply": "Anwenden",
+      "clear": "löschen",
+      "apply-link": "MwSt. eingeben",
+      "tax_id": "Umsatzsteuer-ID"
+    }
   },
   "form": {
     "country": "Wählen Sie ein Land",

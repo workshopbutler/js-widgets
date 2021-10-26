@@ -21,7 +21,7 @@
           {{ ticket.name }}
           {% if field.tickets.excludedTax and ticket.price.tax > 0 %}
           <span class="wsb-ticket__tax">
-            + {{ _f(ticket.price.withAmount(ticket.price.tax)) }} VAT
+            + {{ _t('tax.amount', {amount:_f(ticket.price.withAmount(ticket.price.tax))}) }}
           </span>
           {% endif %}
         </label>
@@ -33,7 +33,7 @@
   <div class="wsb-form__tax" data-tax-description>
     {% if field.tickets.excludedTax %}
       {{ _t("tax.excluded_all") }}{% if field.tickets.tax %} {{ field.tickets.tax }}%{% endif %}
-      {% if field.tickets.validateTax %}<a data-vat-apply-link>Enter VAT ID</a>{% endif %}
+      {% if field.tickets.validateTax %}<a data-vat-apply-link>{{ _t("tax.widget.apply-link") }}</a>{% endif %}
     {% else %}
       {{ _t("tax.included_all") }}
     {% endif %}

@@ -382,7 +382,14 @@
   },
   "tax": {
     "excluded_all": "All prices do not include VAT",
-    "included_all": "All prices include VAT"
+    "included_all": "All prices include VAT",
+    "amount": "{{amount}} VAT",
+    "widget": {
+      "apply": "Apply",
+      "clear": "Clear",
+      "apply-link": "Enter VAT ID",
+      "tax_id": "VAT ID"
+    }
   },
   "form": {
     "country": "Choose a country",

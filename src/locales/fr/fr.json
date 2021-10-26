@@ -395,7 +395,14 @@
   },
   "tax": {
     "excluded_all": "Tous les prix ne comprennent pas la TVA",
-    "included_all": "Tous les prix incluent la TVA"
+    "included_all": "Tous les prix incluent la TVA",
+    "amount": "{{amount}} TVA",
+    "widget": {
+      "apply": "Appliquer",
+      "clear": "Effacer",
+      "apply-link": "Saisir le numéro de TVA",
+      "tax_id": "Numéro de TVA"
+    }
   },
   "form": {
     "country": "Choisissez un pays",

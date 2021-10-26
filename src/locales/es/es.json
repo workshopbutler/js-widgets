@@ -395,7 +395,14 @@
   },
   "tax": {
     "excluded_all": "Todos los precios no incluyen el IVA",
-    "included_all": "Todos los precios incluyen el IVA"
+    "included_all": "Todos los precios incluyen el IVA",
+    "amount": "{{amount}} IVA",
+    "widget": {
+      "apply": "Solicitar",
+      "clear": "limpiar",
+      "apply-link": "Ingrese el ID de IVA",
+      "tax_id": "ID de IVA"
+    }
   },
   "form": {
     "country": "Elige un país",

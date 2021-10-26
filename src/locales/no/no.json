@@ -382,7 +382,14 @@
   },
   "tax": {
     "excluded_all": "Alle priser uten MVA",
-    "included_all": "Alle priser med MVA"
+    "included_all": "Alle priser med MVA",
+    "amount": "{{amount}} MVA",
+    "widget": {
+      "apply": "Apply",
+      "clear": "Clear",
+      "apply-link": "Skriv inn MVA-ID",
+      "tax_id": "MVA-ID"
+    }
   },
   "form": {
     "country": "Velg et land",

@@ -395,7 +395,14 @@
   },
   "tax": {
     "excluded_all": "Alle prijzen zijn exclusief BTW",
-    "included_all": "Alle prijzen zijn inclusief BTW"
+    "included_all": "Alle prijzen zijn inclusief BTW",
+    "amount": "{{amount}} BTW",
+    "widget": {
+      "apply": "Toepassen",
+      "clear": "Wissen",
+      "apply-link": "Voer BTW-nummer in",
+      "tax_id": "BTW-nummer"
+    }
   },
   "form": {
     "country": "Kies een land",

@@ -6,15 +6,15 @@
       {{ formField(field, disabled, [], config, _t, _f) }}
       {% if field.type === "ticket" and field.tickets.validateTax %}
       <div class="wsb-form__field" style="display:none;" data-tax-widget>
-        <label class="wsb-label">VAT ID</label>
+        <label class="wsb-label">{{ _t('tax.widget.tax_id') }}</label>
         <div class="wsb-form__tax-widget">
           <div class="wsb-form__tax-widget-input">
             <input name="tax_id" title="tax" type="text" data-tax-widget-value/>
             <input name="tax_intent_id" type="hidden" data-control data-tax-intent-id/>
           </div>
           <div class="wsb-form__tax-widget-buttons">
-            <a class="wsb-form__tax-widget-apply" data-tax-widget-apply>Apply</a>
-            <a class="wsb-form__tax-widget-clear" data-tax-widget-clear>Clear</a>
+            <a class="wsb-form__tax-widget-apply" data-tax-widget-apply>{{ _t('tax.widget.apply') }}</a>
+            <a class="wsb-form__tax-widget-clear" data-tax-widget-clear>{{ _t('tax.widget.clear') }}</a>
           </div>
           <div class="wsb-form__tax-widget-message"><div data-tax-widget-message></div></div>
         </div>
