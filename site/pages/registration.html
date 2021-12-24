@@ -9,6 +9,10 @@ tags: ['widget']
 <div id="wsb-registration-form"></div>
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+  const url = new URLSearchParams(window.location.search);
+  console.log(url.keys());
+</script>
+<script>
   const apiKey = siteConfig.apiKey;
   const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
   document.addEventListener('wsbwidgetsloaded', function () {
