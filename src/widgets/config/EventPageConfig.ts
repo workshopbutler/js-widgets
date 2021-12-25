@@ -1,14 +1,15 @@
 import {logError} from '../../common/Error';
 import {absoluteURL, safeHref} from '../../common/helpers/UrlParser';
 import IPlainObject from '../../interfaces/IPlainObject';
-import WidgetConfig from './WidgetConfig';
 import CoverImageConfig from './CoverImageConfig';
 import TrainersConfig from './TrainersConfig';
+import WidgetConfig from './WidgetConfig';
+import {ForwardSearchParamsSettingType, WithPassSearchParamsSetting} from './ForwardSearchParamsSetting';
 
 /**
  * Contains @EventPageConfig widget configuration options
  */
-export default class EventPageConfig extends WidgetConfig {
+export default class EventPageConfig extends WidgetConfig implements WithPassSearchParamsSetting {
 
   /**
    * Returns the config if the options are correct
@@ -86,6 +87,8 @@ export default class EventPageConfig extends WidgetConfig {
    */
   readonly showAdditionalButton: boolean;
 
+  readonly forwardSearchParams: ForwardSearchParamsSettingType;
+
   protected constructor(options: IPlainObject) {
     super(options);
     this.trainers = new TrainersConfig(options.trainers);
@@ -100,6 +103,7 @@ export default class EventPageConfig extends WidgetConfig {
         options.coverImage.width, options.coverImage.height) : new CoverImageConfig();
     this.eventPageUrl = safeHref();
     this.showAdditionalButton = options.showAdditionalButton !== undefined ? options.showAdditionalButton : false;
+    this.forwardSearchParams = options.forwardSearchParams;
   }
 
 }

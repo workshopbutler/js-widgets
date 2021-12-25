@@ -1,28 +1,27 @@
 import IPlainObject from '../../interfaces/IPlainObject';
+import ForwardSearchParamsSetting, {
+  ForwardSearchParamsSettingType,
+} from '../../widgets/config/ForwardSearchParamsSetting';
 
 /**
  * Contains the logic for the event registration
  */
 export default class RegistrationPage {
 
-  /**
-     * Returns a correctly formed url for a registration page of the event
-     * @param registrationPageUrl {string} Url of the page with RegistrationPage widget
-     * @param eventId {string} Hashed event id
-     */
-  protected static getInternalUrl(registrationPageUrl: string, eventId: string): string {
-    return registrationPageUrl + `?id=${eventId}`;
-  }
   readonly external: boolean;
   readonly url?: string;
+  readonly passQueryParams: ForwardSearchParamsSetting;
 
-  constructor(attrs: IPlainObject, registrationUrl: string | null = null, eventId: string) {
+  constructor(attrs: IPlainObject, registrationUrl: string | null = null,
+              forwardSearchParams: ForwardSearchParamsSettingType,
+              eventId: string) {
     if (attrs) {
       this.external = attrs.external;
       this.url = attrs.url;
     }
+    this.passQueryParams = new ForwardSearchParamsSetting(forwardSearchParams);
     if (!this.external && registrationUrl) {
-      this.url = RegistrationPage.getInternalUrl(registrationUrl, eventId);
+      this.url = this.passQueryParams.createUrl(registrationUrl, {id: eventId});
     }
   }
 

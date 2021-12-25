@@ -25,7 +25,8 @@ export default class Event {
     const language = Language.fromJSON(json.language);
     const trainers = Event.getTrainers(json, options);
     const tickets = Event.getTickets(json.free, json.tickets);
-    const registrationPage = new RegistrationPage(json.registration_page, options.registrationPageUrl, json.hashed_id);
+    const registrationPage = new RegistrationPage(json.registration_page,
+      options.registrationPageUrl, options.forwardSearchParams, json.hashed_id);
     const type = json.type ? (typeof json.type === 'number' ? json.type : new Type(json.type)) : undefined;
     const coverImage = CoverImage.fromJSON(json.cover_image);
     const category = json.category ? new Category(json.category) : undefined;

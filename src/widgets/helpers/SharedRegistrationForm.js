@@ -3,6 +3,7 @@ import createPayPalButton from './payPalButton';
 import TaxWidget from './TaxWidget';
 import {logInfo} from '../../common/Error';
 import transport from '../../common/Transport';
+import getQueryParam from "../../common/helpers/UrlParser";
 
 export default class SharedRegistrationForm {
 
@@ -104,6 +105,20 @@ export default class SharedRegistrationForm {
     this.initActiveRadioSelection();
     this.deactivateCardPayment();
     this.lockIfNoPaymentMethod();
+    this.processSearchParams();
+  }
+
+  processSearchParams() {
+    this.formConfig.searchToFieldConfigs.forEach((config, name) => {
+      const value = getQueryParam(name);
+      const field = this.form.find(`[name="${config.to}"]`);
+      if (value !== null) {
+        field.val(value);
+        if (config.hidden) {
+          field.parents(`#wsb-form-field-${config.to}`).hide();
+        }
+      }
+    });
   }
 
   /**
