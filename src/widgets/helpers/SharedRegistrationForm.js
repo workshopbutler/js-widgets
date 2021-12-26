@@ -3,7 +3,7 @@ import createPayPalButton from './payPalButton';
 import TaxWidget from './TaxWidget';
 import {logInfo} from '../../common/Error';
 import transport from '../../common/Transport';
-import getQueryParam from "../../common/helpers/UrlParser";
+import getQueryParam from '../../common/helpers/UrlParser';
 
 export default class SharedRegistrationForm {
 
