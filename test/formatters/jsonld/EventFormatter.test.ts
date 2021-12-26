@@ -29,7 +29,7 @@ describe('JSON-LD formatted Event', () => {
     timezone: 'Europe/Amsterdam',
   });
   const event = new Event(options, 1, 'xufd3', '2-day workshop', schedule, new Language([]),
-    new Location(false, '00'), new RegistrationPage({}, null, ''), []);
+    new Location(false, '00'), new RegistrationPage({}, null, false, ''), []);
   event.description = 'Test description';
   const formatted = EventFormatter.format(event);
 
