@@ -18,15 +18,16 @@ const options = {
 };
 
 let webpackConfig = {
-  watch: isDev,
   entry: {
     widgets: './app.ts',
   },
   context: path.resolve(__dirname, 'src'),
   devServer: {
-    contentBase: path.resolve(__dirname, isDev?'public':'dist'),
-    watchContentBase: true,
-    disableHostCheck: true,
+    static: {
+      directory: path.resolve(__dirname, isDev ? 'public' : 'dist'),
+      watch: true,
+    },
+    allowedHosts: 'all',
   },
   output: {
     path: path.resolve(__dirname, isDev ? 'site/static/' : `dist/`),
@@ -43,16 +44,10 @@ let webpackConfig = {
       {
         test: /locales/,
         loader: '@alienfast/i18next-loader',
-        query: {
-          include: [`**/${options.lang}.json`]
-        },
       },
       {
         test: /\.(njk|nunjucks)$/,
         loader: 'nunjucks-loader',
-        query: {
-          root: path.resolve(__dirname, 'src/templates')
-        }
       },
       {
         test: /\.(js|ts)$/,
@@ -102,17 +97,17 @@ let webpackConfig = {
     ]
   },
   resolve: {
+    fallback: {
+      fs: false
+    },
     modules: [
       "node_modules",
       path.resolve(__dirname, "src")
     ],
     extensions: [".js", ".ts", '.njk']
   },
-  node: {
-    fs: "empty"
-  },
   optimization: {
-    noEmitOnErrors: true,
+    emitOnErrors: false,
     minimizer: getMinimizer()
   },
 };

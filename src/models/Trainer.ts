@@ -4,7 +4,7 @@ import SocialLinks from './trainer/SocialLinks';
 import Testimonial from './Testimonial';
 import TrainerStats from './trainer/TrainerStats';
 
-// @ts-ignore
+// @ts-ignore: suppress an unknown declaration
 import defaultImage from '../styles/images/stub-trainer-photo.svg';
 
 /**

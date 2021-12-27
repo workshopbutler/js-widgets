@@ -57,7 +57,7 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
     const id = getQueryParam('id');
     this.init();
     if (id) {
-      this.loadContent(parseInt(id, 0));
+      this.loadContent(parseInt(id, 10));
     } else {
       logError('`id` query parameter is not found');
     }
@@ -93,7 +93,7 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
    * Initialize bottom testimonials slider
    */
   protected initTestimonialsBottom() {
-    // @ts-ignore
+    // @ts-ignore: TypeScript doesn't know about owl carousel
     $('.owl-carousel-comment').owlCarousel({
       items: 1,
       dots: false,
@@ -111,7 +111,7 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
     $('.wsb-testimonials-counter .total')
       .text(owl.find('> div').length);
 
-    // @ts-ignore
+    // @ts-ignore: TypeScript doesn't know about owl carousel
     owl.owlCarousel({
       items: 1,
       dots: false,
@@ -120,7 +120,7 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
 
     owl.on('changed.owl.carousel', function(e) {
       $('.wsb-testimonials-counter .current')
-        // @ts-ignore
+        // @ts-ignore: TypeScript doesn't know about owl carousel
         .text(+e.item.index + 1);
     });
   }
@@ -168,7 +168,7 @@ export default class TrainerProfile extends Widget<TrainerProfileConfig> {
 
       if (this.config.widgets) {
         WidgetFactory.launch({apiKey: this.apiKey}, this.config.widgets);
-      };
+      }
 
       // load testimonial slider
       $.getScript(

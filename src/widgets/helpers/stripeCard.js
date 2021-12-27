@@ -79,15 +79,15 @@ export default function createStripeCard(stripeHolderEl, publicKey, stripeAccoun
         return Promise.reject(incompleteMessage);
       }
       return cl.confirmCardPayment(clientSecret, {
-        // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         payment_method: {
           card: stripeCardEl,
-          // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           billing_details: paymentMethod ? paymentMethod.billing_details : {},
         },
       });
     },
-    // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     createPaymentMethod: ({billing_details}) => {
       if (!inputComplete) {
         return Promise.reject(incompleteMessage);
@@ -95,7 +95,7 @@ export default function createStripeCard(stripeHolderEl, publicKey, stripeAccoun
       return cl.createPaymentMethod({
         type: 'card',
         card: stripeCardEl,
-        // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         billing_details: billing_details || {},
       });
     },
