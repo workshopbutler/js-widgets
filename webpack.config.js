@@ -3,10 +3,10 @@
 const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const isDev = (process.env.NODE_ENV !== "build" && process.env.NODE_ENV !== "build-wordpress");
 const options = {
@@ -69,9 +69,6 @@ let webpackConfig = {
             loader: 'postcss-loader',
             options: {
               sourceMap: true,
-              plugins: [
-                require('autoprefixer')()
-              ]
             }
           },
           {
@@ -149,7 +146,7 @@ function getMinimizer() {
     new TerserPlugin({}),
   ];
   if (process.env.NODE_ENV !== "build-wordpress") {
-    minimizer.push(new OptimizeCSSAssetsPlugin({}));
+    minimizer.push(new CssMinimizerPlugin({}));
   }
   return minimizer;
 }
