@@ -1,6 +1,4 @@
-
 .wsb-content {
-
   .wsb-no-trainers {
     display: none;
     margin-bottom: 30px;
@@ -8,9 +6,11 @@
 
   .wsb-trainer-tile {
     flex: 0 0 196px;
-    @media (max-width: 420px) {
+
+    @media ( max-width: 420px ) {
       flex-basis: calc(100% - 10px);
     }
+
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -34,12 +34,14 @@
 
   .wsb-trainer-tile__info {
     background-color: #F5F5F5;
-    padding: 12px 16px 12px;
+    padding: 12px 16px;
     line-height: 1em;
     height: 100%;
+
     img {
       width: 4em;
     }
+
     >a {
       padding-bottom: 10px;
       display: block;
@@ -64,6 +66,6 @@
     font-size: 12px;
     font-weight: bold;
     color: #F5F5F5;
-    padding: 2px 4px 2px;
+    padding: 2px 4px;
   }
 }

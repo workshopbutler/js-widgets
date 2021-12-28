@@ -1,4 +1,5 @@
 @alfred: #4A90E2;
+
 @default-color: #333;
 
 .alfred .wsb-content {
@@ -14,7 +15,7 @@
   }
 
   .wsb-tickets .wsb-ticket {
-      border-radius: 6px;
+    border-radius: 6px;
   }
 
   .wsb-event-page .wsb-profile {
@@ -37,9 +38,9 @@
     font-weight: 400;
   }
 
-  .wsb-form__radio.wsb-active  {
-      background-color: rgba(74, 144, 226, 0.11);
-      border-radius: 4px;
+  .wsb-form__radio.wsb-active {
+    background-color: rgb(74 144 226 / 11%);
+    border-radius: 4px;
   }
 
   input,
@@ -70,35 +71,38 @@
 
   .wsb-trainer {
     color: @default-color;
+
     .wsb-photo {
       border-radius: 6px;
     }
   }
 
-  .wsb-workshop .wsb-tag, .wsb-workshop .wsb-free {
-    border-radius: 0px;
+  .wsb-workshop .wsb-tag,
+  .wsb-workshop .wsb-free {
+    border-radius: 0;
   }
 
-  .wsb-tile-info, .wsb-date-place {
+  .wsb-tile-info,
+  .wsb-date-place {
     color: @text-grey;
   }
 
   .wsb-table-container {
     border-radius: 6px;
-    border: 1px solid #ddd;
+    border: 1px solid #DDD;
   }
 
   .wsb-table__first-free,
   .wsb-table__free {
-    color: #98a552;
+    color: #98A552;
   }
 
   .wsb-table__row + .wsb-table__row {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #DDD;
   }
 
   .wsb-table__btn {
-    color: #fff !important;
+    color: #FFF !important;
     background-color: @alfred;
     border-radius: 4px;
   }
@@ -119,7 +123,7 @@
     color: transparent;
     width: 2em;
 
-    &:before {
+    &::before {
       font-size: 24px;
     }
 
@@ -132,11 +136,11 @@
     color: white;
 
     .wsb-promo-bg {
-      background: radial-gradient(100% 388.81% at 0% 100%, #4A90E2 0%, #66CAF4 100%), linear-gradient(90deg, #4A90E2 39.73%, rgba(74, 144, 226, 0.29) 115.57%);
+      background: radial-gradient(100% 388.81% at 0% 100%, #4A90E2 0%, #66CAF4 100%), linear-gradient(90deg, #4A90E2 39.73%, rgb(74 144 226 / 29%) 115.57%);
     }
 
     .wsb-promo-bg.wsb-promo-image {
-      background: linear-gradient(90deg, #4A90E2 39.73%, rgba(74, 144, 226, 0.29) 115.57%);
+      background: linear-gradient(90deg, #4A90E2 39.73%, rgb(74 144 226 / 29%) 115.57%);
     }
   }
 

@@ -12,8 +12,8 @@
   padding: 24px 0 32px;
   color: white;
 
-  @media (max-width: 480px) {
-    padding: 12px 0 12px;
+  @media ( max-width: 480px ) {
+    padding: 12px 0;
   }
 }
 
@@ -24,15 +24,16 @@
   padding: 0 32px 24px;
   border-bottom: 2px dashed white;
 
-  @media (max-width: 480px) {
+  @media ( max-width: 480px ) {
     font-size: 42px;
     padding: 0 12px 12px;
   }
 }
+
 .wsb-promo-content {
   padding: 24px 32px 0;
 
-  @media (max-width: 480px) {
+  @media ( max-width: 480px ) {
     padding: 12px 12px 0;
   }
 }
@@ -42,17 +43,20 @@
   font-size: 24px;
   padding-bottom: 12px;
 }
+
 .wsb-promo-body {
   display: flex;
   flex-direction: row;
 
-  @media (max-width: 480px) {
+  @media ( max-width: 480px ) {
     flex-direction: column;
   }
 }
+
 .wsb-promo-body .wsb-info {
   padding-right: 32px;
 }
+
 .wsb-promo .wsb-promo-button {
   background: white;
   width: 200px;
@@ -65,23 +69,26 @@
     text-decoration: none;
   }
 
-  @media (max-width: 480px) {
+  @media ( max-width: 480px ) {
     width: 100%;
   }
 }
+
 .wsb-promo .wsb-trainers .wsb-info__content {
   display: flex;
   flex-direction: column;
 
-  @media (max-width: 480px) {
+  @media ( max-width: 480px ) {
     flex-direction: row;
 
     span {
       margin-right: 5px;
-      &:after {
-        content: ',';
+
+      &::after {
+        content: ",";
       }
-      &:last-child:after {
+
+      &:last-child::after {
         content: none;
       }
     }

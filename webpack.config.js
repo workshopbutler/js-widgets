@@ -146,10 +146,7 @@ function getPlugins() {
 
 function getMinimizer() {
   let minimizer = [
-    new TerserPlugin({
-      parallel: true,
-      sourceMap: true // set to true if you want JS source maps
-    }),
+    new TerserPlugin({}),
   ];
   if (process.env.NODE_ENV !== "build-wordpress") {
     minimizer.push(new OptimizeCSSAssetsPlugin({}));
