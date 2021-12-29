@@ -29,7 +29,7 @@ export default class Schedule {
     totalHours: number,
   ) {
     // check if the browser support IANA-specified zones (may conflicts with polyfill in some browsers)
-    if (timezone && Info.features().zones && getLocalTime().setZone(timezone).isValid) {
+    if (timezone && Info.isValidIANAZone(timezone) && getLocalTime().setZone(timezone).isValid) {
       this.timezone = timezone;
     } else {
       this.timezone = null;

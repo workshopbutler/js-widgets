@@ -17,10 +17,14 @@ describe('JSON-LD formatted Trainer', () => {
 
   it('should have a correct type', () => {
     const jsonLd = TrainerFormatter.format(bill);
+    // @ts-ignore: as Person is a complex type, we can't use the type assertion
     expect(jsonLd['@type']).to.eq('Person');
   });
-  it('should have a full name', () => {
+  it('should have family and given names', () => {
     const jsonLd = TrainerFormatter.format(bill);
-    expect(jsonLd.name).to.eq('Bill Lucky');
+    // @ts-ignore: as Person is a complex type, we can't use the type assertion
+    expect(jsonLd.familyName).to.eq('Lucky');
+    // @ts-ignore: as Person is a complex type, we can't use the type assertion
+    expect(jsonLd.givenName).to.eq('Bill');
   });
 });

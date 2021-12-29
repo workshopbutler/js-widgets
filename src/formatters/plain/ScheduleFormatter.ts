@@ -2,6 +2,7 @@ import {getLocalTime, DateTime} from '../../utils/Time';
 import Timezones from '../../common/Timezones';
 import Schedule from '../../models/Schedule';
 import DateTimeFormatter from './DateTimeFormatter';
+import {DateTimeFormatOptions} from 'luxon';
 
 /**
  * Formats the schedule
@@ -85,7 +86,11 @@ export default class ScheduleFormatter {
    */
   protected static formatSameMonthInterval(locale: string, start: DateTime, end: DateTime): string {
     const thisYear = getLocalTime().setZone(start.zoneName).year === start.year;
-    const options = thisYear ? {month: 'long', day: 'numeric'} : {month: 'long', day: 'numeric', year: 'numeric'};
+    const options: DateTimeFormatOptions = thisYear ? {month: 'long', day: 'numeric'} : {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric',
+    };
     const startParts = start.setLocale(locale).toLocaleParts(options);
     const endParts = end.setLocale(locale).toLocaleParts(options);
     let interval = '';
