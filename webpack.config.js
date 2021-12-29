@@ -14,7 +14,6 @@ const options = {
   apiKey: process.env.API_KEY,
   theme: 'alfred',
   apiVersion: '2021-09-26',
-  lang: process.env.LANG ? process.env.LANG : 'en',
 };
 
 let webpackConfig = {
@@ -31,7 +30,7 @@ let webpackConfig = {
   },
   output: {
     path: path.resolve(__dirname, isDev ? 'site/static/' : `dist/`),
-    filename: isDev ? `[name].js` : `[name].${getVersion()}.${options.lang}.js`,
+    filename: isDev ? `[name].js` : `[name].${getVersion()}.js`,
     sourceMapFilename: isDev ? `[name].js.map` : `[name].${getVersion()}.js.map`
   },
   externals: {
@@ -112,7 +111,6 @@ function getPlugins() {
       BACKEND_URL: JSON.stringify(options.backend),
       API_VERSION: JSON.stringify(options.apiVersion),
       WIDGET_VERSION: JSON.stringify(getVersion()),
-      WIDGET_LANGUAGE: JSON.stringify(options.lang),
     }),
     new MiniCssExtractPlugin({
       filename: isDev? `[name].css` : `[name].${getVersion()}.min.css`

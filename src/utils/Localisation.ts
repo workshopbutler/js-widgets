@@ -1,9 +1,6 @@
 import i18next from 'i18next';
 import IPlainObject from '../interfaces/IPlainObject';
 import * as resources from '../locales';
-
-declare const WIDGET_LANGUAGE: string;
-
 /**
  * Controls the translation of message tokens to actual strings
  */
@@ -17,16 +14,16 @@ export default class Localisation {
    * @param userDict {IPlainObject} User dictionary to replace some default values
    */
   constructor(locale: string, language: string, userDict: IPlainObject) {
-    const dict = (resources as any)[WIDGET_LANGUAGE];
+    const dict = (resources as any)[language];
     const skinnyResource: IPlainObject = {};
-    skinnyResource[WIDGET_LANGUAGE] = {
-      translation: userDict[WIDGET_LANGUAGE] ? this.deepCopy(dict, userDict[WIDGET_LANGUAGE]) : dict,
+    skinnyResource[language] = {
+      translation: userDict[language] ? this.deepCopy(dict, userDict[language]) : dict,
     };
     this.locale = locale;
     i18next.init({
       debug: false,
-      fallbackLng: WIDGET_LANGUAGE,
-      lng: WIDGET_LANGUAGE,
+      fallbackLng: language,
+      lng: language,
       resources: skinnyResource,
     });
   }

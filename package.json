@@ -1,6 +1,6 @@
 {
   "name": "workshop_butler_widget",
-  "version": "1.17.0",
+  "version": "1.18.0",
   "description": "Workshop Butler JS Widgets",
   "author": "https://workshopbutler.com",
   "license": "ISC",
@@ -65,8 +65,7 @@
     "test": "mocha --require ./ignoreImports.ts --require ts-node/register 'test/**/*.ts' '**/*.test.ts'",
     "watch:webpack": "NODE_ENV=watch webpack-dev-server --mode development",
     "watch:eleventy": "eleventy --watch",
-    "fast-build": "NODE_ENV=build webpack --mode production",
-    "build": "for lang in en de es fr nl no pt \n do \n LANG=$lang NODE_ENV=build webpack --mode production \n done",
+    "build": "NODE_ENV=build webpack --mode production",
     "build-wordpress": "NODE_ENV=build-wordpress webpack --mode production",
     "check-css-style": "stylelint  \"src/styles/**/*.less\"",
     "fix-css-style": "stylelint  \"src/styles/**/*.less\"  --fix",
