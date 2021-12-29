@@ -81,15 +81,7 @@ let webpackConfig = {
       },
       {
         test: /\.(png|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              'limit': 10000,
-              'name': '[name][hash:6].[ext]'
-            }
-          }
-        ]
+        type: 'asset',
       }
     ]
   },
