@@ -13,7 +13,6 @@
 @red: #E73B2B;
 @yellow: #F4B542;
 
-
 /* z-indexes */
 @index-low: 5; // for elements on the page
 @index-middle: 100; // for dropdown and other
@@ -30,24 +29,14 @@
 /* mixins */
 
 .box-sizing(...) {
-  -webkit-box-sizing: @arguments;
-  -moz-box-sizing: @arguments;
   box-sizing: @arguments;
 }
 
 .transition(...) {
-  -webkit-transition: @arguments;
-  -moz-transition: @arguments;
-  -o-transition: @arguments;
   transition: @arguments;
 }
 
-
 .transform(...) {
-  -webkit-transform: @arguments;
-  -moz-transform: @arguments;
-  -ms-transform: @arguments;
-  -o-transform: @arguments;
   transform: @arguments;
 }
 

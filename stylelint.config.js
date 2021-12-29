@@ -9,6 +9,8 @@ module.exports = {
     "no-duplicate-selectors": true,
     "color-named": "never",
     "selector-combinator-space-after": "always",
+    "selector-class-pattern": null,
+    "selector-id-pattern": null,
     "selector-attribute-quotes": "always",
     "selector-attribute-operator-space-before": "never",
     "selector-attribute-operator-space-after": "never",
