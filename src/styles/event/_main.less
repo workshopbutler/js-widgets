@@ -2,24 +2,24 @@
   //Layout
 
   .wsb-event-page {
-
     .wsb-header {
-      background-size: 0px;
+      background-size: 0;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
 
       h1 {
-        margin: 0 0 20px 0;
+        margin: 0 0 20px;
       }
     }
 
-    @media (max-width: 800px) {
+    @media ( max-width: 800px ) {
       .wsb-header.wsb-show-cover {
         height: 320px;
         background-size: cover;
         background-position: center;
-        color:#FFFFFF;
+        color: #FFF;
+
         h1 {
           margin: 0 0 20px 16px;
           font-size: 32px;
@@ -27,18 +27,20 @@
       }
     }
 
-
     .wsb-body {
       padding-top: 20px;
-
       display: flex;
       flex-direction: column;
 
-      .wsb-info, .wsb-register__btn-wrapper { display: none;}
+      .wsb-info,
+      .wsb-register__btn-wrapper { display: none; }
+
       .wsb-description {
         margin-bottom: 32px;
         .wsb-cover-image { display: none; }
-        .wsb-info, .wsb-register__btn-wrapper { display: block; }
+
+        .wsb-info,
+        .wsb-register__btn-wrapper { display: block; }
       }
 
       .wsb-description-text img {
@@ -46,27 +48,31 @@
         height: auto;
       }
 
-      @media (min-width: 800px) {
+      @media ( min-width: 800px ) {
         flex-direction: row;
 
         .wsb-description {
           width: calc(100% - 30px - 300px);
+
           .wsb-cover-image {
             margin-bottom: 32px;
             display: block;
           }
-          .wsb-info, .wsb-register__btn-wrapper { display: none; }
+
+          .wsb-info,
+          .wsb-register__btn-wrapper { display: none; }
         }
 
         .wsb-aside {
           width: 300px;
           margin-left: 30px;
-          .wsb-info, .wsb-register__btn-wrapper { display: block; }
+
+          .wsb-info,
+          .wsb-register__btn-wrapper { display: block; }
           .wsb-info + .wsb-register__btn-wrapper { margin-top: -1em; }
         }
       }
     }
-
   }
 
   // sidebar register button
@@ -79,9 +85,9 @@
     width: 100%;
     padding: 1em 0;
     text-decoration: none !important;
-    color: #fff !important;
+    color: #FFF !important;
     text-align: center;
-    .transition(all .15s ease);
+    .transition(all 0.15s ease);
 
     -webkit-font-smoothing: antialiased;
 
@@ -91,7 +97,7 @@
 
     &:disabled {
       cursor: default;
-      border: 0px;
+      border: 0;
       opacity: 0.5 !important;
     }
 
@@ -111,19 +117,20 @@
   }
 
   .wsb-workshop {
-    border-top: 1px solid #e8e9eb;
+    border-top: 1px solid #E8E9EB;
     padding: 10px 0 10px 10px;
     color: @text-grey;
 
     &:last-child {
-      border-bottom: 1px solid #e8e9eb;
+      border-bottom: 1px solid #E8E9EB;
     }
 
     a {
       font-weight: 700;
     }
 
-    .wsb-tag, .wsb-free {
+    .wsb-tag,
+    .wsb-free {
       display: block;
       margin-bottom: 5px;
       position: relative;
@@ -140,8 +147,9 @@
     display: flex;
     align-items: flex-start;
 
-    @media (max-width: 800px) {
+    @media ( max-width: 800px ) {
       flex-direction: column;
+
       .wsb-label {
         flex-basis: auto;
         display: none;
@@ -152,11 +160,9 @@
 
 .wsb-registration-page {
   .wsb-body {
-
     display: flex;
     flex-direction: column;
-
-    max-width:600px;
+    max-width: 600px;
   }
 
   .wsb-info-section {

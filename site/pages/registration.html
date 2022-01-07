@@ -13,6 +13,8 @@ tags: ['widget']
   const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
   document.addEventListener('wsbwidgetsloaded', function () {
     const widgets = [
+      // this is an example of the configuration of `forwardSearchParams` parameter for Registration page widget.
+      // For more information, visit https://support.workshopbutler.com/article/242-how-to-track-referrals
       {
         type: 'RegistrationPage',
         target: '#wsb-registration-form',
@@ -21,10 +23,17 @@ tags: ['widget']
           show: true,
           bio: true,
         },
-        forwardSearchParams: [{name: 'ref', to: 'first_name', hidden: true}, {
-          name: 'name',
-          to: '0421dc07',
-        }]
+        forwardSearchParams: [
+          {
+            name: 'referral', // name of the query parameter. Example: https://example.com?referral=123
+            to: '0421dc07',   // name of the field to which the value of the query parameter will be forwarded.
+                              // Example: https://example.com?referral=123 ->
+            hidden: true
+          },
+          {
+            name: 'name',
+            to: '0421dc07',
+          }]
       }
     ];
     const config = {

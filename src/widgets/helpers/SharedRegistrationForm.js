@@ -367,7 +367,7 @@ export default class SharedRegistrationForm {
    * @return {*}
    */
   prepareFormData(data) {
-    // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     data.event_id = Number(this.formConfig.eventId);
     for (const item in data) {
       if (!data[item]) {
@@ -401,7 +401,7 @@ export default class SharedRegistrationForm {
     this.stripeCard.confirmCardPayment(
       clientSecret,
       {
-        // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         billing_details: this.prepareBillingDetails(formData),
       }
     ).then(result => {
@@ -417,7 +417,7 @@ export default class SharedRegistrationForm {
         return;
       }
 
-      // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       formData.intent_id = result.paymentIntent.id;
 
       this.transport.post(this.paymentConfig.registerUrl, this.prepareFormData(formData),
@@ -447,7 +447,7 @@ export default class SharedRegistrationForm {
         country: formData['billing.country'] || null,
         line1: formData['billing.street_1'] || null,
         line2: formData['billing.street_2'] || null,
-        // eslint-disable-next-line camelcase,@typescript-eslint/camelcase
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         postal_code: formData['billing.postcode'] || null,
         state: formData['billing.province'] || null,
       },

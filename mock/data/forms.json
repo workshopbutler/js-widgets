@@ -329,50 +329,6 @@
     "instructions": "This is a test form instruction",
     "sections": [
       {
-        "id": "ticket",
-        "label": "Ticket",
-        "fields": [
-          {
-            "name": "ticket",
-            "type": "ticket",
-            "required": false,
-            "label": "Ticket"
-          },
-          {
-            "name": "promo_code",
-            "type": "text",
-            "required": false,
-            "label": "Promo code"
-          }
-        ]
-      },
-      {
-        "id": "payment",
-        "label": null,
-        "fields": [
-          {
-            "name": "payment_type",
-            "type": "select",
-            "required": true,
-            "label": "Payment method",
-            "options": [
-              {
-                "value": "Invoice",
-                "label": "Invoice"
-              },
-              {
-                "value": "Card",
-                "label": "Card"
-              },
-              {
-                "value": "PayPal",
-                "label": "PayPal"
-              }
-            ]
-          }
-        ]
-      },
-      {
         "id": "general",
         "label": "Personal Info",
         "fields": [

@@ -16,11 +16,27 @@ module.exports = {
     "@typescript-eslint"
   ],
   "rules": {
-    "@typescript-eslint/ban-ts-ignore": 1,
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/restrict-plus-operands": "off",
+
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-ignore": "allow-with-description",
+        "ts-nocheck": "allow-with-description",
+        "ts-check": "allow-with-description",
+        "ts-expect-error": "allow-with-description",
+      }],
     "@typescript-eslint/adjacent-overload-signatures": "error",
     "@typescript-eslint/array-type": "error",
     "@typescript-eslint/ban-types": "error",
-    "@typescript-eslint/class-name-casing": "error",
     "@typescript-eslint/consistent-type-assertions": "error",
     "@typescript-eslint/consistent-type-definitions": "error",
     "@typescript-eslint/explicit-function-return-type": "off",
@@ -103,7 +119,31 @@ module.exports = {
       "error",
       "as-needed"
     ],
-    "camelcase": "error",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        selector: "default",
+        format: ["camelCase"],
+        leadingUnderscore: "allow",
+      },
+      {
+        selector: "variable",
+        format: ["camelCase", "UPPER_CASE"]
+      },
+      {
+        selector: "classProperty",
+        modifiers: ["static"],
+        format: ["camelCase", "UPPER_CASE"]
+      },
+      {
+        selector: 'typeLike',
+        format: ['PascalCase'],
+      },
+      {
+        selector: "enumMember",
+        format: ["PascalCase"]
+      },
+    ],
     "comma-dangle": [
       "error",
       "always-multiline"
@@ -153,12 +193,8 @@ module.exports = {
     "no-invalid-this": "off",
     "no-multiple-empty-lines": "error",
     "no-new-wrappers": "error",
-    "no-shadow": [
-      "error",
-      {
-        "hoist": "all"
-      }
-    ],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
     "no-throw-literal": "error",
     "no-trailing-spaces": "error",
     "no-undef-init": "error",

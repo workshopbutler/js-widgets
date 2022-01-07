@@ -129,7 +129,7 @@ export default class EventPage extends Widget<EventPageConfig> {
     $('.wsb-testimonials-counter .total')
       .text(owl.find('> div').length);
 
-    // @ts-ignore
+    // @ts-ignore: owl object is not known to TypeScript
     owl.owlCarousel({
       items: 1,
       dots: false,
@@ -138,7 +138,7 @@ export default class EventPage extends Widget<EventPageConfig> {
 
     owl.on('changed.owl.carousel', function(e) {
       $('.wsb-testimonials-counter .current')
-        // @ts-ignore
+        // @ts-ignore: owl object is not known to TypeScript
         .text(+e.item.index + 1);
     });
   }

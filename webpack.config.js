@@ -3,10 +3,10 @@
 const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const WebpackShellPlugin = require('webpack-shell-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 const isDev = (process.env.NODE_ENV !== "build" && process.env.NODE_ENV !== "build-wordpress");
 const options = {
@@ -14,23 +14,23 @@ const options = {
   apiKey: process.env.API_KEY,
   theme: 'alfred',
   apiVersion: '2021-09-26',
-  lang: process.env.LANG ? process.env.LANG : 'en',
 };
 
 let webpackConfig = {
-  watch: isDev,
   entry: {
     widgets: './app.ts',
   },
   context: path.resolve(__dirname, 'src'),
   devServer: {
-    contentBase: path.resolve(__dirname, isDev?'public':'dist'),
-    watchContentBase: true,
-    disableHostCheck: true,
+    static: {
+      directory: path.resolve(__dirname, isDev ? 'public' : 'dist'),
+      watch: true,
+    },
+    allowedHosts: 'all',
   },
   output: {
     path: path.resolve(__dirname, isDev ? 'site/static/' : `dist/`),
-    filename: isDev ? `[name].js` : `[name].${getVersion()}.${options.lang}.js`,
+    filename: isDev ? `[name].js` : `[name].${getVersion()}.js`,
     sourceMapFilename: isDev ? `[name].js.map` : `[name].${getVersion()}.js.map`
   },
   externals: {
@@ -43,16 +43,10 @@ let webpackConfig = {
       {
         test: /locales/,
         loader: '@alienfast/i18next-loader',
-        query: {
-          include: [`**/${options.lang}.json`]
-        },
       },
       {
         test: /\.(njk|nunjucks)$/,
         loader: 'nunjucks-loader',
-        query: {
-          root: path.resolve(__dirname, 'src/templates')
-        }
       },
       {
         test: /\.(js|ts)$/,
@@ -74,9 +68,6 @@ let webpackConfig = {
             loader: 'postcss-loader',
             options: {
               sourceMap: true,
-              plugins: [
-                require('autoprefixer')()
-              ]
             }
           },
           {
@@ -89,30 +80,22 @@ let webpackConfig = {
       },
       {
         test: /\.(png|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              'limit': 10000,
-              'name': '[name][hash:6].[ext]'
-            }
-          }
-        ]
+        type: 'asset',
       }
     ]
   },
   resolve: {
+    fallback: {
+      fs: false
+    },
     modules: [
       "node_modules",
       path.resolve(__dirname, "src")
     ],
     extensions: [".js", ".ts", '.njk']
   },
-  node: {
-    fs: "empty"
-  },
   optimization: {
-    noEmitOnErrors: true,
+    emitOnErrors: false,
     minimizer: getMinimizer()
   },
 };
@@ -128,7 +111,6 @@ function getPlugins() {
       BACKEND_URL: JSON.stringify(options.backend),
       API_VERSION: JSON.stringify(options.apiVersion),
       WIDGET_VERSION: JSON.stringify(getVersion()),
-      WIDGET_LANGUAGE: JSON.stringify(options.lang),
     }),
     new MiniCssExtractPlugin({
       filename: isDev? `[name].css` : `[name].${getVersion()}.min.css`
@@ -151,13 +133,10 @@ function getPlugins() {
 
 function getMinimizer() {
   let minimizer = [
-    new TerserPlugin({
-      parallel: true,
-      sourceMap: true // set to true if you want JS source maps
-    }),
+    new TerserPlugin({}),
   ];
   if (process.env.NODE_ENV !== "build-wordpress") {
-    minimizer.push(new OptimizeCSSAssetsPlugin({}));
+    minimizer.push(new CssMinimizerPlugin({}));
   }
   return minimizer;
 }

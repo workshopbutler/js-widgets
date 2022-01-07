@@ -1,18 +1,18 @@
 // Tickets
-
 .wsb-tickets {
   margin-bottom: 32px;
 }
 
 .wsb-ticket-free {
   background-color: #E2F3DC !important;
+
   .wsb-ticket__val {
     color: #819D44;
   }
 }
 
 .wsb-ticket {
-  border: 1px solid #DDDDDD;
+  border: 1px solid #DDD;
   background-color: #F5F5F5;
   text-align: left;
   margin-bottom: 12px;
@@ -24,42 +24,39 @@
 
   &.state-closed {
     opacity: 0.5;
-
     position: relative;
     overflow: hidden;
 
-    &:before {
-        position: absolute;
-        content: '';
-        background: #E73B2B;
-        display: block;
-        width: 100%;
-        height: 5px;
-        transform: rotate(-25deg);
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
+    &::before {
+      position: absolute;
+      content: "";
+      background: #E73B2B;
+      display: block;
+      width: 100%;
+      height: 5px;
+      transform: rotate(-25deg);
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
     }
   }
 
   &.state-highlited {
     background-color: #FEF3DE !important;
-    border: 1px solid rgba(244, 181, 66, 0.4) !important;
+    border: 1px solid rgb(244 181 66 / 40%) !important;
 
     .wsb-ticket__val {
       color: #F5AE1E;
     }
   }
 
-  &>div {
+  & > div {
     padding-left: 16px;
     padding-right: 16px;
   }
-
 }
-
 
 .wsb-ticket__val {
   padding-top: 14px;
@@ -81,5 +78,5 @@
 .wsb-ticket__footer {
   color: #888;
   padding: 6px 16px;
-  background: #fff;
+  background: #FFF;
 }

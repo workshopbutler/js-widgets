@@ -8,7 +8,8 @@ export default class TrainerFormatter {
   static format(trainer: Trainer): Person {
     return {
       '@type': 'Person',
-      'name': trainer.fullName(),
+      'familyName': trainer.lastName,
+      'givenName': trainer.firstName,
     };
   }
 }

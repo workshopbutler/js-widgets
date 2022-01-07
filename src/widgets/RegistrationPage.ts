@@ -9,7 +9,7 @@ import RegistrationPageConfig from './config/RegistrationPageConfig';
 import FormHelper from './helpers/FormHelper';
 import getTemplate from './helpers/Templates';
 import getCountryCodes from '../utils/countries';
-// @ts-ignore
+// @ts-ignore: ignore JS class
 import SharedRegistrationForm from './helpers/SharedRegistrationForm';
 import PaymentConfig from './helpers/PaymentConfig';
 import Widget from './Widget';

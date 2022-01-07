@@ -60,29 +60,31 @@ describe('URL, produced by createUrl, ', () => {
   it('should = /register?test=true&ref=milk&id=12', () => {
     const setting = new ForwardSearchParamsSetting(true);
     const windowRef = global.window;
-    // @ts-ignore
+    // @ts-ignore: stub window object
     global.window = {
-      // @ts-ignore
+      // @ts-ignore: stub window object
       location: {
         search: '?test=true&ref=bread',
       },
     };
     const url = setting.createUrl('/register', {id: 12, ref: 'milk'});
     expect(url).to.equal('/register?test=true&ref=milk&id=12');
+    // @ts-ignore: stub window object
     global.window = windowRef;
   });
   it('should = /register?test=true&body=slim&id=12&ref=milk', () => {
     const setting = new ForwardSearchParamsSetting('test,body');
     const windowRef = global.window;
-    // @ts-ignore
+    // @ts-ignore: stub window object
     global.window = {
-      // @ts-ignore
+      // @ts-ignore: stub window object
       location: {
         search: '?test=true&foot=big&body=slim',
       },
     };
     const url = setting.createUrl('/register', {id: 12, ref: 'milk'});
     expect(url).to.equal('/register?test=true&body=slim&id=12&ref=milk');
+    // @ts-ignore: stub window object
     global.window = windowRef;
   });
 });

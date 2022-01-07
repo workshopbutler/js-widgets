@@ -6,10 +6,10 @@
  */
 class MockTransport {
 
-  events = require('./data/events.json');
-  trainers = require('./data/trainers.json');
-  tickets = require('./data/tickets.json');
-  forms = require('./data/forms.json');
+  events = require('../../mock/data/events.json');
+  trainers = require('../../mock/data/trainers.json');
+  tickets = require('../../mock/data/tickets.json');
+  forms = require('../../mock/data/forms.json');
   defaultVersion = '2021-09-26';
 
   constructor() {

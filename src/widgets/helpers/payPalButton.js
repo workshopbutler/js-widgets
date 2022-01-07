@@ -13,7 +13,7 @@ export default function createPayPalButton(selector, registrationForm) {
     },
 
     // Set up the transaction
-    /* eslint @typescript-eslint/camelcase: ["error", {properties: "never"}] */
+    /* eslint @typescript-eslint/naming-convention: "off" */
     /* eslint camelcase: ["error", {properties: "never"}] */
     createOrder(data, actions) {
       const ticket = registrationForm.getTotalAmount();
@@ -58,7 +58,7 @@ export default function createPayPalButton(selector, registrationForm) {
         registrationForm.transport.post(
           registrationForm.paymentConfig.preRegisterUrl,
           registrationForm.prepareFormData(registrationForm.formHelper.getFormData()),
-          ok => resolve(actions.resolve()),
+          () => resolve(actions.resolve()),
           err => {
             registrationForm.processFailResponse(err);
             resolve(actions.reject());
