@@ -10,11 +10,13 @@ export default class LocationFormatter {
       return null;
     } else {
       const address: PostalAddress = {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         '@type': 'PostalAddress',
         'addressCountry': location.countryCode,
         'addressLocality': location.city ? location.city : '',
       };
       return {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         '@type': 'Place',
         address,
       };

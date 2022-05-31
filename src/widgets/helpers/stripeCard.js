@@ -34,6 +34,7 @@ export default function createStripeCard(stripeHolderEl, publicKey, stripeAccoun
         'fontFamily': '"Helvetica Neue", Helvetica, sans-serif',
         'fontSmoothing': 'antialiased',
         'fontSize': '16px',
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         '::placeholder': {
           color: '#aab7c4',
         },

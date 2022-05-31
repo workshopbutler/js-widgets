@@ -177,6 +177,7 @@ export default class RegistrationPage extends Widget<RegistrationPageConfig> {
       'nospace': this.loc.translate('form.error.number'),
       'required': this.loc.translate('form.error.required'),
       'url': this.loc.translate('form.error.url'),
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       'form.error.attendee.exist': this.loc.translate('form.error.attendee'),
     };
   }

@@ -7,6 +7,7 @@ import Trainer from '../../models/Trainer';
 export default class TrainerFormatter {
   static format(trainer: Trainer): Person {
     return {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       '@type': 'Person',
       'familyName': trainer.lastName,
       'givenName': trainer.firstName,

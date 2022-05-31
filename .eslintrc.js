@@ -15,6 +15,15 @@ module.exports = {
   "plugins": [
     "@typescript-eslint"
   ],
+  "overrides": [
+    {
+        // add exception for chai
+        "files": ["*.test.ts",],
+        "rules": {
+            "no-unused-expressions": "off"
+        }
+    }
+  ],
   "rules": {
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-call": "off",

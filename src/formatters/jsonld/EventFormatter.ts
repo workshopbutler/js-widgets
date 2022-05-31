@@ -15,7 +15,9 @@ export default class EventFormatter {
   static format(event: Event): IPlainObject {
     const timeOptions = {suppressMilliseconds: true, suppressSeconds: true};
     let json: IPlainObject = {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       '@context': 'https://schema.org',
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       '@type': 'Event',
       'description': event.description,
       'endDate': event.schedule.end.toISO(timeOptions),

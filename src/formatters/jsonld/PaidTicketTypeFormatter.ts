@@ -10,6 +10,7 @@ export default class PaidTicketTypeFormatter {
    */
   static format(ticketType: IPaidTicketType, url?: string): IPlainObject {
     const json: IPlainObject = {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       '@type': 'Offer',
       'price': ticketType.price.amount,
       'priceCurrency': ticketType.price.currency,
