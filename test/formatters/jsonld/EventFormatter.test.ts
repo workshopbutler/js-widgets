@@ -1,5 +1,4 @@
 import * as chai from 'chai';
-import 'chai/register-should';
 import EventFormatter from '../../../src/formatters/jsonld/EventFormatter';
 import Event from '../../../src/models/Event';
 import Schedule from '../../../src/models/Schedule';

@@ -1,5 +1,4 @@
 import * as chai from 'chai';
-import 'chai/register-should';
 import PaidTicketTypeFormatter from '../../../src/formatters/jsonld/PaidTicketTypeFormatter';
 import PaidTicketType from '../../../src/models/workshop/PaidTicketType';
 import {DateTime} from 'luxon';

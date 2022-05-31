@@ -1,5 +1,4 @@
 import * as chai from 'chai';
-import 'chai/register-should';
 import TrainerFormatter from '../../../src/formatters/jsonld/TrainerFormatter';
 import Trainer from '../../../src/models/Trainer';
 import TrainerStats from '../../../src/models/trainer/TrainerStats';
