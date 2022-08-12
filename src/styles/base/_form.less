@@ -443,4 +443,27 @@
       margin-bottom: 0;
     }
   }
+
+  .wsb-form__billing-message {
+    display: none;
+
+    margin-left: 160px;
+    margin-top: 5px;
+    border-left: solid 2px orange;
+    background-color: #FFF9DB;
+    border-radius: 2px;
+    padding: 10px 20px;
+
+    + .wsb-form__field {
+      margin-top: 20px;
+    }
+
+    @media ( max-width: 800px ) {
+      margin-left: 0px;
+
+      + .wsb-form__field {
+        margin-top: 10px;
+      }
+    }
+  }
 }

@@ -4,6 +4,7 @@ import TaxWidget from './TaxWidget';
 import {logInfo} from '../../common/Error';
 import transport from '../../common/Transport';
 import getQueryParam from '../../common/helpers/UrlParser';
+import {getEUCountryCodes} from '../../utils/countries';
 
 export default class SharedRegistrationForm {
 
@@ -31,6 +32,7 @@ export default class SharedRegistrationForm {
     this.invoicePaymentEnabled = !this.isCardPaymentActive() || this.invoicePaymentAllowed();
     this.formIsLocked = false;
     this.taxExempt = false;
+    this.billingEU = true;
     this.activateEvents();
     this.init();
   }
@@ -543,8 +545,15 @@ export default class SharedRegistrationForm {
       this.root.find('[data-tax-description]').hide('fast');
       this.root.find('[data-tax-widget]').show('fast');
     });
-    return new TaxWidget(this.root.find('[data-tax-widget]'), this.applyTaxExempt.bind(this),
+
+
+    this.taxWidget = new TaxWidget(this.root.find('[data-tax-widget]'), this.applyTaxExempt.bind(this),
       this.paymentConfig.taxValidationUrl);
+
+    if (this.taxWidget.enabled) {
+      this.form.find('[name="billing.country"]').on('change', this.onChangeBillingCountry.bind(this));
+    }
+
   }
 
   /**
@@ -586,6 +595,27 @@ export default class SharedRegistrationForm {
       this.root.find('.wsb-ticket__tax').css('display', 'none');
     } else {
       this.root.find('.wsb-ticket__tax').removeAttr('style');
+    }
+  }
+
+  onChangeBillingCountry(e) {
+    const euCountries = getEUCountryCodes();
+    const country = $(e.target).val();
+    logInfo('change country '+country);
+    if (euCountries.includes(country)) {
+      if (!this.billingEU) {
+        this.applyTaxExempt(false);
+        this.root.find('#wsb-form__billing-message')
+        .text('Additional VAT has been applied. See ticket section for more details.').show(150).delay(5000).hide(150);
+      }
+      this.billingEU = true;
+    } else {
+      if (this.billingEU) {
+        this.taxWidget.reset();
+        this.root.find('#wsb-form__billing-message').text('VAT has been excluded').show(150).delay(5000).hide(150);
+      }
+      this.applyTaxExempt(true);
+      this.billingEU = false;
     }
   }
 }

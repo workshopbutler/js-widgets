@@ -1,7 +1,7 @@
 /**
  * Returns the list of all supported country codes
  */
-export default function getCountryCodes() {
+ export function getCountryCodes() {
   return ['AF', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM', 'AW', 'AU',
     'AT', 'AZ', 'AX', 'BS', 'BH', 'BD', 'BB', 'BY', 'BZ', 'BE', 'BJ', 'BM', 'BT', 'BA', 'BW', 'BN', 'BO',
     'BQ', 'BV', 'BR', 'BG', 'BF', 'BI', 'CV', 'CM', 'CA', 'CF', 'TD', 'CL', 'CN', 'CX', 'CC', 'CD', 'CG', 'CK',
@@ -16,4 +16,8 @@ export default function getCountryCodes() {
     'RS', 'SC', 'SL', 'SG', 'SX', 'SK', 'SI', 'SB', 'SO', 'ZA', 'SS', 'ES', 'LK', 'SD', 'SR', 'SJ', 'SZ', 'SE',
     'CH', 'SY', 'TJ', 'TW', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC', 'TV', 'UG', 'UA',
     'AE', 'GB', 'US', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VG', 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW'];
+}
+export function getEUCountryCodes() {
+  return ['BE','BG','CZ','DK','DE','EE','IE','EL','ES','FR','HR','IT','CY',
+    'LV','LT','LU','HU','MT','NL','AT','PL','PT','RO','SI','SK','FI','SE'];
 }

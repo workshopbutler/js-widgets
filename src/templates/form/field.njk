@@ -49,4 +49,7 @@
       {{ input(field, disabled, config, _t, _f) }}
     {% endif %}
   </div>
+  {% if field.name === "billing.country" %}
+    <div id="wsb-form__billing-message" class="wsb-form__billing-message"></div>
+  {% endif %}
 {% endmacro %}

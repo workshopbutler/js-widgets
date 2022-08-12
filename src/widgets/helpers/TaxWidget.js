@@ -3,6 +3,11 @@ import transport from '../../common/Transport';
 export default class TaxWidget {
 
   constructor($el, taxExemptCallback, taxValidationUrl) {
+    if (!$el.length) {
+      this.enabled = false;
+      return this;
+    }
+    this.enabled = true;
     this.root = $el;
     this.taxExemptCallback = taxExemptCallback;
     this.taxValidationUrl = taxValidationUrl;

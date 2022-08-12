@@ -28,7 +28,7 @@
           </div>
           {{ paymentSection(section, event.state.closed(), config, _t, _f) }}
         {% else %}
-          <section>
+          <section class="wsb-form-section__{{section.id}}">
             {% if section.id != 'footer' %}
               <div class="wsb-form__section-title">{{ _t('form.section.' + section.id) }}</div>
             {% endif %}
