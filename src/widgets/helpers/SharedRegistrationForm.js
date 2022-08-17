@@ -606,13 +606,16 @@ export default class SharedRegistrationForm {
       if (!this.billingEU) {
         this.applyTaxExempt(false);
         this.root.find('#wsb-form__billing-message')
-        .text('Additional VAT has been applied. See ticket section for more details.').show(150).delay(5000).hide(150);
+          .text('Additional VAT has been applied. See ticket section for more details.')
+          .show(150).delay(5000).hide(150);
       }
       this.billingEU = true;
     } else {
       if (this.billingEU) {
         this.taxWidget.reset();
-        this.root.find('#wsb-form__billing-message').text('VAT has been excluded').show(150).delay(5000).hide(150);
+        this.root.find('#wsb-form__billing-message')
+          .text('VAT has been excluded')
+          .show(150).delay(5000).hide(150);
       }
       this.applyTaxExempt(true);
       this.billingEU = false;

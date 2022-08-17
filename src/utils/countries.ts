@@ -1,7 +1,7 @@
 /**
  * Returns the list of all supported country codes
  */
- export function getCountryCodes() {
+export function getCountryCodes() {
   return ['AF', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM', 'AW', 'AU',
     'AT', 'AZ', 'AX', 'BS', 'BH', 'BD', 'BB', 'BY', 'BZ', 'BE', 'BJ', 'BM', 'BT', 'BA', 'BW', 'BN', 'BO',
     'BQ', 'BV', 'BR', 'BG', 'BF', 'BI', 'CV', 'CM', 'CA', 'CF', 'TD', 'CL', 'CN', 'CX', 'CC', 'CD', 'CG', 'CK',
