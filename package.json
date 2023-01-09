@@ -76,7 +76,7 @@
   "dependencies": {
     "browserslist": "^4.19.1",
     "core-js": "^3.20.1",
-    "luxon": "^2.2.0",
+    "luxon": "^2.5.2",
     "npm": "^8.3.0",
     "nunjucks": "^3.2.3",
     "nunjucks-loader": "^3.0.0",
