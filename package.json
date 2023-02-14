@@ -5,7 +5,7 @@
   "author": "https://workshopbutler.com",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.1",
+    "@11ty/eleventy": "^2.0.0",
     "@alienfast/i18next-loader": "^1.1.4",
     "@babel/core": "^7.16.5",
     "@babel/eslint-parser": "^7.16.5",
