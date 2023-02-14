@@ -19,6 +19,7 @@ const options = {
 let webpackConfig = {
   entry: {
     widgets: './app.ts',
+    templates: './templates.ts',
   },
   context: path.resolve(__dirname, 'src'),
   devServer: {
