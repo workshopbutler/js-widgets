@@ -21,6 +21,7 @@ export default class Localisation {
     };
     this.locale = locale;
     i18next.init({
+      compatibilityJSON: 'v3',
       debug: false,
       fallbackLng: language,
       lng: language,
