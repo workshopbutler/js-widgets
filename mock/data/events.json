@@ -140,8 +140,8 @@
     "title": "3-day Happiness Workshop",
     "hashed_id": "8553",
     "type": {
-      "id": 1126,
-      "name": "Practitioner Course Level 1",
+      "id": 1127,
+      "name": "Practitioner Course Level 2",
       "min_hours": 1,
       "free": true
     },
@@ -199,7 +199,7 @@
     "title": "4-day Awesomeness Workshop",
     "hashed_id": "8329",
     "type": {
-      "id": 1126,
+      "id": 1128,
       "name": "Practitioner Course Level 1",
       "min_hours": 1,
       "free": true

@@ -9,8 +9,22 @@ tags: ['widget']
 <div id="wsb-event-list"></div>
 <div id="wsb-event-list-2"></div>
 <script>
+  /**
+   * Returns the value of query parameter or null if the parameter is not found
+   * @param name {string}
+   */
+  function getQueryParam(name) {
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
+    return params[name];
+  }
+
+
   const apiKey = siteConfig.apiKey;
   const themeName = siteConfig.theme ? siteConfig.theme : 'alfred';
+  const typesParams = getQueryParam('types');
+  const types = typesParams?.split(',');
   document.addEventListener('wsbwidgetsloaded', function() {
       const widgets = [
         {
@@ -20,10 +34,11 @@ tags: ['widget']
           cols: ['schedule', 'location', 'language', 'trainers', 'title', 'register'],
           registration: true,
           table: true,
+          typeIds: types,
           eventPageUrl: '/event-page',
           registrationPageUrl: '/registration',
           trainerName: true,
-          filters: ['type', 'location', 'language', 'trainer'],
+          filters: ['type','location', 'language', 'trainer'],
         }
       ];
       const config = {
