@@ -346,9 +346,9 @@
       "date": "Datum",
       "loc": "Ort",
       "oneLang": "Veranstaltung ist auf $t(language.{{lang}})",
-      "twoLangs": "Veranstaltung ist auf $t(language.{{first}}) und $t(language.{{second}})",
+      "twoLangs": "Veranstaltung ist auf $t(language.{{first}}) oder $t(language.{{second}})",
       "oneLangShort": "Auf $t(language.{{lang}})",
-      "twoLangsShort": "Auf $t(language.{{first}}) and $t(language.{{second}})",
+      "twoLangsShort": "Auf $t(language.{{first}}) oder $t(language.{{second}})",
       "materials": ". Alle Materialien und Handouts sind in $t(language.{{lang}})",
       "now": "Aktuelle Zeit in {{zone}}",
       "tickets": "Tickets"

@@ -333,9 +333,9 @@
       "date": "Date",
       "loc": "Location",
       "oneLang": "Event is in $t(language.{{lang}})",
-      "twoLangs": "Event is in $t(language.{{first}}) and $t(language.{{second}})",
+      "twoLangs": "Event is in $t(language.{{first}}) or $t(language.{{second}})",
       "oneLangShort": "In $t(language.{{lang}})",
-      "twoLangsShort": "In $t(language.{{first}}) and $t(language.{{second}})",
+      "twoLangsShort": "In $t(language.{{first}}) or $t(language.{{second}})",
       "materials": ", all materials and handouts are in $t(language.{{lang}})",
       "now": "Current time in {{zone}}",
       "tickets": "Tickets"
